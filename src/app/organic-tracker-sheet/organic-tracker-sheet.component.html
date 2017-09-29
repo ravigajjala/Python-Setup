@@ -1,0 +1,78 @@
+<div class="left-panel">
+  <div class="top-section">
+  <div>
+    <h4 class="pg-title inline-blk">Bonnie Audit Trail</h4>
+
+
+    <span md-button [mdMenuTriggerFor]="menu" class="setting-icon"><i class="material-icons valign_middle">settings</i></span>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item class="setting-menu-item logged-in-user"><div>Logged In as <br>(marek.mutch@scotts.com)</div></button>
+      <button md-menu-item class="setting-menu-item">Manage Users</button>
+      <button md-menu-item class="setting-menu-item">Manage Greenhouse/Stations</button>
+      <button md-menu-item class="setting-menu-item">Manage Plug Catalog</button>
+      <button md-menu-item class="setting-menu-item" (click)="loginService.logout()">Logout</button>
+    </md-menu>
+
+    </div>
+    <md-select placeholder="Location" [(ngModel)]="locationId" name="location" class="input-white sec1-select">
+      <md-option *ngFor="let location of locations">
+        {{location.city}}, {{location.state}}
+      </md-option>
+    </md-select>
+  </div>
+  <md-list>
+    <div>
+      <md-list-item style="cursor: pointer;" (click)="active = idx + 1">
+        <p md-line class="menu-item"  [routerLink]="['/organic-tracker/app-plug-tray-information']">Plug tray information</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+    <div>
+      <md-list-item style="cursor: pointer;" (click)="active = idx + 1">
+        <p md-line class="menu-item"  [routerLink]="['/organic-tracker/app-planting-information']">Planting information</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+    <div>
+      <md-list-item style="cursor: pointer;" (click)="active = idx + 1">
+        <p md-line class="menu-item"  [routerLink]="['/organic-tracker/app-receiving-from-other-stations']">Receiving</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+    <div>
+      <md-list-item style="cursor: pointer;" (click)="active = idx + 1">
+        <p md-line class="menu-item"  [routerLink]="['/organic-tracker/app-ship-to-other-stations']">Ship to</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+    <div>
+      <md-list-item style="cursor: pointer;" (click)="active = idx + 1">
+        <p md-line class="menu-item"  [routerLink]="['/organic-tracker/app-total-salable']">Total salable</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+    <div>
+      <md-list-item style="cursor: pointer;" (click)="active = idx + 1">
+        <p md-line class="menu-item"  [routerLink]="['/organic-tracker/app-store-delivery']">To store delivery/balance</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+    <div>
+      <md-list-item style="cursor: pointer;" (click)="active = idx + 1">
+        <p md-line class="menu-item" [routerLink]="['/organic-tracker/app-master-view']">Master view</p>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+    <!-- <md-list-item class="grey-bg">
+      <p md-line class="menu-item">Master View</p>
+    </md-list-item>
+    <md-divider></md-divider> -->
+    <!-- <md-list-item style="cursor: pointer;" (click)="loginService.logout()">
+      <p md-line class="menu-item">Logout</p>
+    </md-list-item>
+    <md-divider></md-divider> -->
+  </md-list>
+</div>
+
+<router-outlet></router-outlet>
+  

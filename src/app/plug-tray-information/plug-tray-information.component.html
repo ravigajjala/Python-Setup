@@ -1,0 +1,83 @@
+
+<div class="right-scroll">
+  <table *ngIf="active == 1" class="table_one table-width">
+    <thead>
+    <tr>
+      <td>
+        <div class="toggle-button-css" *ngIf="mergeClickBool == false"> 
+          <div>
+            <md-form-field class="full-width">
+              <input mdInput placeholder="Variety">
+            </md-form-field>
+          </div>
+        </div>
+        <div class="flex-display" [class.flex-center]="mergeClickBool">
+          <button md-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+          <button md-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+          <button md-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+        </div>
+        <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
+        <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+          <md-button-toggle-group #group="mdButtonToggleGroup">
+            <md-button-toggle value="left">
+              Type <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="center" (click)="sort()">
+              A-Z <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="right">
+              Wk# <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+          </md-button-toggle-group>
+        </div>
+      </td>
+      <td *ngFor="let head of heads">
+        <span><i class="material-icons rotate_90 valign_middle color-grey">arrow_drop_down</i>{{head}}</span>
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data1" class="form-input-model">
+      <td>
+        <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
+        <span>{{item.name}}</span>
+      </td>
+      <td>
+        <input mdInput name="pfr" [(ngModel)]="item.pfr">
+      </td>
+      <td>
+        <input mdInput name="date_received" [(ngModel)]="item.date_received">
+      </td>
+      <td>
+        <input mdInput name="pfp" [(ngModel)]="item.pfp">
+      </td>
+      <td>
+        <input mdInput name="pfd" [(ngModel)]="item.pfd">
+      </td>
+      <td>
+        <!-- <input mdInput name="reason_code" [(ngModel)]="item.reason_code"> -->
+        <md-select placeholder="" #select="mdSelect">
+            <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>
+            <md-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</md-option>
+          </md-select>
+      </td>
+      <td>
+        <input mdInput name="lot_no" [(ngModel)]="item.lot_no">
+      </td>
+    </tr>
+    <div class="flex-display add-plant" [class.flex-center]="mergeClickBool" *ngIf="mergeClickBool == false">
+        <button md-button ><i class="material-icons rotate_90" style="pointer-events: none">add_circle</i></button>
+        <md-form-field>
+          <input type="text" mdInput [formControl]="myControl" [(ngModel)]="newPlant" (ngModelChange)="addPlant($event)" placeholder="New Plug" [mdAutocomplete]="plant">
+        </md-form-field>
+        <md-autocomplete #plant="mdAutocomplete" [displayWith]="displayFn">
+           <md-option *ngFor="let option of filteredOptions | async" [value]="option" data-id="option.id">
+              {{ option.name }}
+           </md-option>
+        </md-autocomplete>
+
+    </div>
+    </tbody>
+  </table>
+
+</div>

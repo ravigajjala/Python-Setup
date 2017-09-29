@@ -1,0 +1,127 @@
+<div class="right-scroll">
+
+  <table *ngIf="active == 4" class="table_four table-width">
+    <thead>
+    <tr>
+      <td>
+        <div class="toggle-button-css" *ngIf="mergeClickBool == false"> 
+          <div>
+            <md-form-field class="full-width">
+              <input mdInput placeholder="Plant">
+            </md-form-field>
+          </div>
+        </div>
+        <div class="flex-display" [class.flex-center]="mergeClickBool">
+          <button md-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+          <button md-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+          <button md-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+        </div>
+        <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
+        <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+          <md-button-toggle-group #group="mdButtonToggleGroup">
+            <md-button-toggle value="left">
+              Type <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="center" (click)="sort()">
+              A-Z <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="right">
+              Wk# <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+          </md-button-toggle-group>
+        </div>
+      </td>
+      <td *ngFor="let head of heads4">
+        <span *ngIf="head.icon=='down'"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
+        <span *ngIf="head.icon=='cross'"><i class="material-icons valign_middle">clear</i>{{head.name}}</span>
+        <span *ngIf="head.icon=='add'"><i class="material-icons valign_middle;" style="cursor: pointer">add_circle</i>{{head.name}}</span>
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data2" class="form-input-model" [ngClass]="{'disabled-row':item.shipped}">
+      <td>
+        <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
+        <span>{{item.name}}</span>
+      </td>
+      <td>
+        <input mdInput name="lot_no" [(ngModel)]="item.lot_no">
+      </td>
+      <td>
+        <input mdInput name="ft" [(ngModel)]="item.ft">
+      </td>
+      <td>
+        <input mdInput name="rl_no" [(ngModel)]="item.rl_no">
+      </td>
+      <td>
+        <input mdInput name="b_no" [(ngModel)]="item.b_no">
+      </td>
+      <td>
+        <input mdInput name="stchi" [(ngModel)]="item.stchi" [disabled]="item.shipped">
+      </td>
+      <td>
+        <input mdInput name="stmin" [(ngModel)]="item.stmin" [disabled]="item.shipped">
+      </td>
+      <td>
+        <input mdInput name="stdes" [(ngModel)]="item.stdes" [disabled]="item.shipped">
+      </td>
+      <td>
+        <input mdInput name="stmil" [(ngModel)]="item.stmil" [disabled]="item.shipped">
+      </td>
+      <td>
+        <input mdInput name="ststl" [(ngModel)]="item.ststl" [disabled]="item.shipped">
+      </td>
+      <td></td>
+      <td class="add-neg-ship">
+        <button md-raised-button color="primary" *ngIf="!item.shipped" (click)="shipPlant(item)">SHIP</button>
+        <button md-raised-button color="basic" *ngIf="item.shipped" (click)="cancelShip(item)">CANCEL SHIP</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        
+      </td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
+</div>

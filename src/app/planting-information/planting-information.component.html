@@ -1,0 +1,68 @@
+
+<div class="right-scroll">
+
+  <table *ngIf="active == 2" class="table_two table-width">
+    <thead>
+    <tr>
+      <td>
+        <div class="toggle-button-css" *ngIf="mergeClickBool == false"> 
+          <div>
+            <md-form-field class="full-width">
+              <input mdInput placeholder="Plant">
+            </md-form-field>
+          </div>
+        </div>
+        <div class="flex-display" [class.flex-center]="mergeClickBool">
+          <button md-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+          <button md-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+          <button md-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+        </div>
+        <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
+        <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+          <md-button-toggle-group #group="mdButtonToggleGroup">
+            <md-button-toggle value="left">
+              Type <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="center" (click)="sort()">
+              A-Z <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="right">
+              Wk# <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+          </md-button-toggle-group>
+        </div>
+      </td>
+      <td *ngFor="let head of heads2">
+        <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head}}</span>
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data2" class="form-input-model">
+      <td>
+        <div [innerHTML]="item['nameHtml']"  (click)="openDialog(item)" class="icon-box"></div>
+        <span>{{item.name}}</span>
+      </td>
+      <td>
+        <input mdInput name="lot_no" [(ngModel)]="item.lot_no">
+      </td>
+      <td>
+        <input mdInput name="pfp" [(ngModel)]="item.pfp">
+      </td>
+      <td>
+        <input mdInput name="ft" [(ngModel)]="item.ft">
+      </td>
+      <td>
+        <input mdInput name="l_no" [(ngModel)]="item.l_no">
+      </td>
+      <td>
+        <input mdInput name="pot_date" [(ngModel)]="item.pot_date">
+      </td>
+      <td>
+        <input mdInput name="h_no" [(ngModel)]="item.h_no">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,50 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /plants/.*
+  script: bonnie_plants.app
+
+- url: /locations/.*
+  script: bonnie_locations.app
+
+- url: /favicon.ico
+  static_files: dist/favicon.ico
+  upload: dist/assets/favicon.ico
+
+- url: /(.*\.(gif|png|jpg|css|js)(|\.map))$
+  static_files: dist/\1
+  upload: dist/(.*)(|\.map)
+
+- url: /(.*\.(js|css|ico|svg))$
+  static_files: \1
+  upload: .*\.(js|css|ico|svg)$
+
+- url: /(.*)
+  static_files: dist/index.html
+  upload: dist/index.html
+
+libraries:
+- name: webapp2
+  version: latest
+
+skip_files:
+- ^node_modules$
+- ^(.*/)?.*\.py[co]$
+- ^.*.pyc
+- ^e2e$
+- ^src$
+- ^angular-cli.json
+- \.editorconfig
+- \.gitignore
+- ^app\.yaml
+- ^karma\.config\.js
+- ^package\.json
+- ^protractor\.conf\.js
+- ^proxy.conf.json
+- ^README\..*
+- ^tsconfig.json
+- ^tslint\.json
+- ^devData$
+- .git/.*
