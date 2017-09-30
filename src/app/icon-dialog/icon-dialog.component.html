@@ -1,0 +1,105 @@
+<div class="dialog-container">
+	<div class="dialog-header">
+		<div class="icon-logo">
+			<svg class="icon" [ngClass]="'st'+iconClassNumber"><use attr.xlink:href="../../assets/sprites/icon-sprite-sheet.svg#{{currentPlant.icon}}"/></svg>
+		</div>
+		<h2 class="dialog-title inline-blk">{{currentPlant.name}}</h2>
+		<span>Wk21</span>
+	</div>
+	<div class="dialog-section">
+		<h3 class="section-title">PLUG TRAY INFORMATION</h3>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Plug Flats Received</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Date received</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Plug Flats Plotted</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Plug Flats Discarded</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Reasons Code</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Seed Lot Number</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+	</div>
+
+	<div class="dialog-section">
+		<h3 class="section-title">PLANTING INFORMATION</h3>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Finished Trays</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Locator Number</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Potted Date</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">House#/Bay#</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+	</div>
+
+	<div class="dialog-section">
+		<h3 class="section-title">Receiving</h3>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">House#/Bay#</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Quantity</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+	</div>
+
+	<div class="dialog-section">
+		<h3 class="section-title">Ship To</h3>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Ship to Chicago</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Ship to Minneapolis</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+	</div>
+
+	<div class="dialog-section">
+		<h3 class="section-title">TOTAL SALABLE</h3>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">#Discarded</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Reason Code</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Total Flats to Sale</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+	</div>
+
+	<div class="dialog-section">
+		<h3 class="section-title">TOTAL SALABLE</h3>
+		<div class="light-text">In Progress</div>
+	</div>
+
+	<button md-button color="primary" class="close-button" (click)="closeDialog()">
+		CLOSE
+	</button>
+</div>

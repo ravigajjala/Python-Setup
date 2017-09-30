@@ -1,0 +1,58 @@
+
+.dialog-container {
+    font-size: 12px;
+    width:400px;
+}
+
+.dialog-container h2 {
+    font-size: 16px;
+    font-weight: 500;
+}
+.dialog-title+span{
+	font-size: 16px;
+    font-weight: 300;
+    color:#666;
+}
+
+.dialog-container h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #878787;
+}
+
+.dialog-container svg.icon {
+	left:5px;
+}
+.icon-logo{
+	position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin: 0 6px 6px 0;
+}
+.inline-blk {
+    display: inline-block;
+}
+
+.dialog-section {
+    margin-bottom: 25px;
+}
+.close-button{
+	left:80%;
+}
+.entry-cell{
+	margin-right:40px;
+}
+.entry-field{
+	padding:5px 0;
+}
+.entry-name-field{
+	width:170px;
+}
+.entry-count-field{
+	text-align: left;
+}
+.light-text{
+	color:#8c8c8c;
+}

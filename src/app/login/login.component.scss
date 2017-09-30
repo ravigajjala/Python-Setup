@@ -1,0 +1,28 @@
+.page {
+  background: #3949ab;
+  height: 100rem;
+  width: 100rem;
+  float: left;
+}
+
+.login-form {
+  width: 250px;
+  margin: 0 auto;
+  transform: translate3d(0%,50%,0);
+}
+
+h3 {
+  color: #FFF;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.full-width {
+  width: 100%;
+  color: #FFF;
+  margin-bottom: 5px;
+}
+
+[type="submit"] {
+  margin-top: 10px;
+}
