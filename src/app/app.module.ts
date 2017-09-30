@@ -4,7 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 // import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
+
+
+import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, MdAutocompleteModule, MdDatepickerModule, MdListModule, MdInputModule} from '@angular/material';
+
+
 import { HttpModule } from '@angular/http';
 
 import { PlantingInformationService } from './planting-information/planting-information.service';
@@ -68,7 +72,14 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     // Material Modules
-    MaterialModule,
+    MdButtonModule,
+    MatMenuModule,
+    MdButtonToggleModule,
+    MdSelectModule,
+    MdAutocompleteModule,
+    MdDatepickerModule,
+    MdListModule,
+    MdInputModule
     // NgxDatatableModule
   ],
   bootstrap: [AppComponent],
