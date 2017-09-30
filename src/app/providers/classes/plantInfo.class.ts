@@ -23,3 +23,9 @@ export class PlantingInfo{
 	'pottedDate': Date;
 	'houseBay': string;
 }
+
+export class Location {
+    id: string;
+    city: string;
+    state: string;
+}

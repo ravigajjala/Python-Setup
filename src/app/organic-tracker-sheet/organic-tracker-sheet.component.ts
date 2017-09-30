@@ -7,18 +7,19 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 import {CommonDataService} from '../providers/services/common-data.service';
+import {ApiService} from '../providers/services/api.service';
+
 import { Router } from '@angular/router';
 
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
-import { OrganicTrackerSheetService } from './organic-tracker-sheet.service';
 
 @Component({
   selector: 'app-organic-tracker-sheet',
   templateUrl: './organic-tracker-sheet.component.html',
   styleUrls: ['./organic-tracker-sheet.component.scss'],
-  providers: [LoginService, OrganicTrackerSheetService]
+  providers: [LoginService]
 })
 export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
 
@@ -28,8 +29,8 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
     private el: ElementRef,
     private sz: DomSanitizer,
     public dialog: MdDialog,
-    private organicTrackerSheetService: OrganicTrackerSheetService,
     private commonData: CommonDataService,
+    private apiService: ApiService,
     public router:Router
   ) {
 
@@ -129,12 +130,16 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.organicTrackerSheetService.getLocations().subscribe(
+    this.apiService.getLocations().subscribe(
       res => {
         this.locations = res;
       },
       err => {
          console.error('Error occured while retrieving locations');
+         this.locations = [
+            {id: 1, city: 'Milton', state:' WI'},
+            {id: 2, city: 'Houston', state:' TX'},
+          ];
       }
     );
 

@@ -25,6 +25,7 @@ import { MasterViewComponent } from './master-view/master-view.component';
 import { ReceivingFromOtherStationsComponent } from './receiving-from-other-stations/receiving-from-other-stations.component';
 import { ShipToOtherStationsComponent } from './ship-to-other-stations/ship-to-other-stations.component';
 import { CommonDataService} from './providers/services/common-data.service';
+import { ApiService } from './providers/services/api.service';
 
 const appRoutes: Routes = [
   {
@@ -86,6 +87,6 @@ const appRoutes: Routes = [
   entryComponents: [
     IconDialogComponent,
   ],
-  providers: [PlantingInformationService, CommonDataService]
+  providers: [PlantingInformationService, CommonDataService, ApiService]
 })
 export class AppModule { }
