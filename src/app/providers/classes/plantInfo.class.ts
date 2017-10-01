@@ -32,6 +32,11 @@ export class ReceivingInfo{
 	'reasonCode':string;
 }
 
+export class SalableInfo {
+	'discarded': number;
+	'reasonCode': string;
+}
+
 export class Location {
     id: string;
     city: string;

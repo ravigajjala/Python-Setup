@@ -6,7 +6,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {CommonDataService} from '../providers/services/common-data.service';
 import {ApiService} from '../providers/services/api.service';
-import { PlantInfo, PlugTrayInfo, PlantingInfo, ReceivingInfo } from './../providers/classes/plantInfo.class';
+import { PlantInfo, PlugTrayInfo, PlantingInfo, ReceivingInfo, SalableInfo } from './../providers/classes/plantInfo.class';
 
 import { Router } from '@angular/router';
 
@@ -43,6 +43,7 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
       this.commonData.plantData[index].plugTray = new PlugTrayInfo();
       this.commonData.plantData[index].plantingInfo = new PlantingInfo();
       this.commonData.plantData[index].receivingData = new ReceivingInfo();
+      this.commonData.plantData[index].totalSalable = new SalableInfo();
       this.commonData.plantData[index]['nameHtml'] = sz.bypassSecurityTrustHtml(
         `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>`
       );

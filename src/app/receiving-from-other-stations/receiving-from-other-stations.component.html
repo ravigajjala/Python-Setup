@@ -57,26 +57,26 @@
         <span>{{item.name}}</span>
       </td>
       <td>
-        <input mdInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="!item.received">
+        <input mdInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="item.received">
       </td>
       <td>
-        <input mdInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays" [disabled]="!item.received">
+        <input mdInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays" [disabled]="item.received">
       </td>
       <td>
-        <input mdInput name="l_no" [(ngModel)]="item.plantingInfo.locatorNumber" [disabled]="!item.received">
+        <input mdInput name="l_no" [(ngModel)]="item.plantingInfo.locatorNumber" [disabled]="item.received">
       </td>
       <td>
-        <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay" [disabled]="!item.received">
+        <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay" [disabled]="item.received">
       </td>
       
       <td>
-        <input mdInput name="q" [(ngModel)]="item.receivingData.quantity" [disabled]="!item.received">
+        <input mdInput name="q" [(ngModel)]="item.receivingData.quantity" [disabled]="item.received">
       </td>
       <td>
-        <input mdInput name="rl_no" [(ngModel)]="item.receivingData.locator" [disabled]="!item.received">
+        <input mdInput name="rl_no" [(ngModel)]="item.receivingData.locator" [disabled]="item.received">
       </td>
       <td>
-        <input mdInput name="r_d" [(ngModel)]="item.receivingData.discarded" [disabled]="!item.received">
+        <input mdInput name="r_d" [(ngModel)]="item.receivingData.discarded" [disabled]="item.received">
       </td>
       <td class="select-field">
         <md-select placeholder="" #select="mdSelect" [(ngModel)]="item.receivingData.reasonCode">

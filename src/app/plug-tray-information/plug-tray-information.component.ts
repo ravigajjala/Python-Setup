@@ -27,6 +27,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   ) { 
 
     this.myControl = new FormControl();
+    this.varietyControl = new FormControl();
     let i = 0;
     this.data1 = this.data2 = DUMMY_DATA1.map(d => {
       d['nameHtml'] = sz.bypassSecurityTrustHtml(
@@ -62,6 +63,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public filteredOptions: Observable<any[]>;
   public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
+  public varietyControl: FormControl;
+  public varietyOptions: any[];
   public options = [
     {
       name: 'Hot Banana Pepper'
@@ -138,6 +141,12 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       .startWith(null)
       .map(val => val ? this.filter(val) : this.optionsData.slice());
 
+    this.varietyControl.valueChanges
+      .subscribe(
+        val=> {
+          setTimeout(() => {this.varietyOptions = val ? this.filterVariety(val) : this.commonData.plantData}, 0);
+      });
+
     this.PlugTrayForm = new FormGroup({
       dateReceived: new FormControl(null, Validators.required)
     });
@@ -189,6 +198,15 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  /**
+   * [filter values for variety inpiut]
+   * @param  {any}   val [user input value]
+   */
+    filterVariety(val:any):any[] {
+      return this.commonData.plantData.filter(option =>
+        option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
+    }
   
 }
 

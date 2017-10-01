@@ -38,26 +38,26 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of data2" class="form-input-model">
+    <tr *ngFor="let item of commonData.plantData" class="form-input-model">
       <td>
         <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>
       </td>
       <td>
-        <input mdInput name="lot_no" [(ngModel)]="item.lot_no">
+        <input mdInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber">
       </td>
       <td>
-        <input mdInput name="q" [(ngModel)]="item.q">
+        <input mdInput name="q" [(ngModel)]="item.receivingData.quantity">
       </td>
       <td>
-        <input mdInput name="rl_no" [(ngModel)]="item.rl_no">
+        <input mdInput name="rl_no" [(ngModel)]="item.receivingData.locator">
       </td>
       
       <td>
-        <input mdInput name="b_no" [(ngModel)]="item.b_no">
+        <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
       <td>
-        <input mdInput name="ts_d" [(ngModel)]="item.ts_d">
+        <input mdInput name="ts_d" [(ngModel)]="item.totalSalable.discarded">
       </td>
       <td>
         <md-select placeholder="" #select="mdSelect">
@@ -66,7 +66,7 @@
         </md-select>
       </td>
       <td>
-        <span>{{item.q - item.ts_d}}</span>
+        <span>{{item.receivingData.quantity - item.totalSalable.discarded || 0}}</span>
       </td>
     </tr>
     </tbody>
