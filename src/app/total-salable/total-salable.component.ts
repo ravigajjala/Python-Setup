@@ -1,5 +1,7 @@
 import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
 import { Component, OnInit } from '@angular/core';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 import {CommonDataService} from '../providers/services/common-data.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +13,8 @@ import { Router } from '@angular/router';
 export class TotalSalableComponent implements OnInit {
 
   constructor(public commonData: CommonDataService,
-              public router: Router) { }
+              public router: Router,
+              public dialog: MdDialog) { }
 
   public data1 = DUMMY_DATA1;
   public data2 = DUMMY_DATA1;
@@ -44,6 +47,18 @@ export class TotalSalableComponent implements OnInit {
       'Total Flats to Sale'
     ];
   }
+
+
+      
+
+openDialog(currentItem): void {
+    let dialogRef = this.dialog.open(IconDialogComponent, {
+      data: currentItem,
+    });
+  }
+
+
+
 
   sort() {
     if ( !this.isSorted ) {

@@ -1,13 +1,12 @@
 import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
 import { Component, OnInit, AfterViewInit, Renderer2, ElementRef,Inject } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoginService } from '../login/login.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
-import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 import {CommonDataService} from '../providers/services/common-data.service';
 import {ApiService} from '../providers/services/api.service';
+import { PlantInfo, PlugTrayInfo, PlantingInfo, ReceivingInfo } from './../providers/classes/plantInfo.class';
 
 import { Router } from '@angular/router';
 
@@ -28,7 +27,6 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private el: ElementRef,
     private sz: DomSanitizer,
-    public dialog: MdDialog,
     private commonData: CommonDataService,
     private apiService: ApiService,
     public router:Router
@@ -36,22 +34,22 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
 
     this.myControl = new FormControl();
     let i = 0;
-    this.data1 = this.data2 = DUMMY_DATA1.map(d => {
-      d['nameHtml'] = sz.bypassSecurityTrustHtml(
-        `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>${d.name}`
+    this.data2 = DUMMY_DATA1.map((d,index) => {
+      //create each plantInfo Object
+      this.commonData.plantData[index] = new PlantInfo();
+      this.commonData.plantData[index].name = d.name;
+      this.commonData.plantData[index].id = d.id;
+      this.commonData.plantData[index].icon = d.icon;
+      this.commonData.plantData[index].plugTray = new PlugTrayInfo();
+      this.commonData.plantData[index].plantingInfo = new PlantingInfo();
+      this.commonData.plantData[index].receivingData = new ReceivingInfo();
+      this.commonData.plantData[index]['nameHtml'] = sz.bypassSecurityTrustHtml(
+        `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>`
       );
       i < 9 ? i++ : i = 0;
 
-      d['shipped'] = false;
-      return d;
-    });
-    i = 0;
-    this.optionsData = DUMMY_DATA1.map(d => {
-        d['nameHtml'] = sz.bypassSecurityTrustHtml(
-            `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>`
-        );
-        i < 9 ? i++ : i = 0;
-        return d;
+      this.commonData.plantData[index]['shipped'] = false;
+      return this.commonData.plantData[index];
     });
   }
 
@@ -98,12 +96,6 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
 
   public options1 = DUMMY_DATA2;
   private newPlant: any;
-
-  openDialog(currentItem): void {
-    let dialogRef = this.dialog.open(IconDialogComponent, {
-      data: currentItem,
-    });
-  }
 
 
 

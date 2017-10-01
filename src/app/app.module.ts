@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, MdAutocompleteModule, MdDatepickerModule, MdListModule, MdInputModule} from '@angular/material';
+import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, MdAutocompleteModule, MdDatepickerModule, MdListModule, MdInputModule, MdNativeDateModule} from '@angular/material';
 
 
 import { HttpModule } from '@angular/http';
@@ -45,6 +45,12 @@ const appRoutes: Routes = [
       { path: 'app-master-view', component: MasterViewComponent }
     ]
   },
+  {
+    //redirect default - should always be at last
+    path: '**',
+    redirectTo: '/organic-tracker',
+    pathMatch: 'full'
+  }
 ];
 
 
@@ -79,6 +85,7 @@ const appRoutes: Routes = [
     MdSelectModule,
     MdAutocompleteModule,
     MdDatepickerModule,
+    MdNativeDateModule,
     MdListModule,
     MdInputModule
     // NgxDatatableModule

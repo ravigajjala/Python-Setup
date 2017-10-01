@@ -2,8 +2,11 @@ import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
 import { DomSanitizer } from '@angular/platform-browser';
 import {FormControl} from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 import {CommonDataService} from '../providers/services/common-data.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-receiving-from-other-stations',
@@ -15,6 +18,7 @@ export class ReceivingFromOtherStationsComponent implements OnInit{
   constructor(
     private sz: DomSanitizer,
     public commonData:CommonDataService,
+    public dialog: MdDialog,
     public router: Router
   ) { 
     this.myControl = new FormControl();
@@ -80,6 +84,18 @@ export class ReceivingFromOtherStationsComponent implements OnInit{
     ];
 
   }
+
+
+  
+
+  openDialog(currentItem): void {
+    let dialogRef = this.dialog.open(IconDialogComponent, {
+      data: currentItem,
+    });
+  }
+
+
+
 
   sort() {
     if ( !this.isSorted ) {

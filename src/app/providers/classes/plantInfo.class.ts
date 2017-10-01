@@ -24,6 +24,14 @@ export class PlantingInfo{
 	'houseBay': string;
 }
 
+export class ReceivingInfo{
+	'houseBay':string;
+	'quantity': number;
+	'locator': string;
+	'discarded': number;
+	'reasonCode':string;
+}
+
 export class Location {
     id: string;
     city: string;

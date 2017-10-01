@@ -40,28 +40,33 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of data2" class="form-input-model">
+    <tr *ngFor="let item of commonData.plantData" class="form-input-model">
       <td>
-        <div [innerHTML]="item['nameHtml']"  (click)="openDialog(item)" class="icon-box"></div>
+        <div [innerHTML]="item['nameHtml']" class="icon-box" (click)="openDialog(item)"></div>
         <span>{{item.name}}</span>
       </td>
       <td>
-        <input mdInput name="lot_no" [(ngModel)]="item.lot_no">
+        <input mdInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber">
       </td>
       <td>
-        <input mdInput name="pfp" [(ngModel)]="item.pfp">
+        <input mdInput name="plugFlatsPlotted" [(ngModel)]="item.plugTray.plugFlatsPlotted">
       </td>
       <td>
-        <input mdInput name="ft" [(ngModel)]="item.ft">
+        <input mdInput name="finishedTrays" [(ngModel)]="item.plantingInfo.finishedTrays">
       </td>
       <td>
-        <input mdInput name="l_no" [(ngModel)]="item.l_no">
+        <input mdInput name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber">
       </td>
       <td>
-        <input mdInput name="pot_date" [(ngModel)]="item.pot_date">
+        <!-- <input mdInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate"> -->
+        <md-form-field [formGroup]="plantingInfoForm">
+          <input mdInput [mdDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate" formControlName="datePotted">
+          <!-- <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle> -->
+          <md-datepicker #picker></md-datepicker>
+        </md-form-field>
       </td>
       <td>
-        <input mdInput name="h_no" [(ngModel)]="item.h_no">
+        <input mdInput name="houseBay" [(ngModel)]="item.plantingInfo.houseBay">
       </td>
     </tr>
     </tbody>

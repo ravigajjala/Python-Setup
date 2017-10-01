@@ -1,9 +1,9 @@
 import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
 import { Component, OnInit, AfterViewInit, Renderer2, ElementRef,Inject, EventEmitter, Input, Output } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import {FormControl} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 import {CommonDataService} from '../providers/services/common-data.service';
@@ -61,6 +61,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public active = 1;
   public filteredOptions: Observable<any[]>;
   public totalFlatsToSale = 0;
+  public PlugTrayForm: FormGroup;
   public options = [
     {
       name: 'Hot Banana Pepper'
@@ -82,10 +83,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   openDialog(currentItem): void {
     let dialogRef = this.dialog.open(IconDialogComponent, {
       data: currentItem,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 
@@ -140,6 +137,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)
       .map(val => val ? this.filter(val) : this.optionsData.slice());
+
+    this.PlugTrayForm = new FormGroup({
+      dateReceived: new FormControl(null, Validators.required)
+    });
 
     this.totalFlatsToSale = this.getTotalOfColumn(this.data1,'pfd');
   }

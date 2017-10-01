@@ -3,8 +3,9 @@ import { Component, OnInit, AfterViewInit, Renderer2, ElementRef } from '@angula
 import { DomSanitizer } from '@angular/platform-browser';
 import { PlantingInformationService } from './planting-information.service';
 import { Plant } from './plant';
-import {FormControl} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 import {CommonDataService} from '../providers/services/common-data.service';
 import { Router } from '@angular/router';
@@ -24,6 +25,7 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
     private el: ElementRef,
     private sz: DomSanitizer,
     public commonData : CommonDataService,
+    public dialog: MdDialog,
     public router: Router
   ) { 
     this.myControl = new FormControl();
@@ -61,6 +63,8 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
   public active = 2;
   public filteredOptions: Observable<any[]>;
   public totalFlatsToSale = 0;
+  public plantingInfoForm: FormGroup;
+  
 
   getTotalOfColumn(array,key){
     let total = array.reduce(function(a,b){
@@ -104,7 +108,20 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
       .map(val => val ? this.filter(val) : this.optionsData.slice());
 
     this.totalFlatsToSale = this.getTotalOfColumn(this.data1,'pfd');
+
+    this.plantingInfoForm = new FormGroup({
+      datePotted: new FormControl(null, Validators.required)
+    });  
   }
+
+  
+
+  openDialog(currentItem): void {
+    let dialogRef = this.dialog.open(IconDialogComponent, {
+      data: currentItem,
+    });
+  }
+
 
   createPlants() {
     this.plantingInformationService.createPlants().subscribe(res => {
