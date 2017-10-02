@@ -29,23 +29,9 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
     let i = 0;
-    this.data1 = this.data2 = DUMMY_DATA1.map(d => {
-      d['nameHtml'] = sz.bypassSecurityTrustHtml(
-        `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>${d.name}`
-      );
-      i < 9 ? i++ : i = 0;
-
-      d['shipped'] = false;
-      return d;
-    });
+    this.data1 = this.commonData.plantData;
     i = 0;
-    this.optionsData = DUMMY_DATA1.map(d => {
-        d['nameHtml'] = sz.bypassSecurityTrustHtml(
-            `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>`
-        );
-        i < 9 ? i++ : i = 0;
-        return d;
-    });
+    this.optionsData = Object.assign([],this.commonData.plantData);
   }
   public title = 'Bonnie App';
   public locationId = '';
@@ -139,7 +125,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)
-      .map(val => val ? this.filter(val) : this.optionsData.slice());
+      .map(val => val ? this.filterAddPlant(val) : this.optionsData.slice());
 
     this.varietyControl.valueChanges
       .subscribe(
@@ -163,8 +149,9 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
   filter(val: any): any[] {
+    debugger;
     return this.optionsData.filter(option =>
-      option.name.toLowerCase().indexOf(val.name.toLowerCase()) === 0);
+      option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }
 
 
@@ -175,6 +162,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       return order ? order.name : order;
   }
 
+/**
+ * [addPlant description]
+ * @param {any} e [description]
+ */
   addPlant(e: any) {
     if (this.newPlant) {
         this.newPlant = { ...this.newPlant, id: this.data1.length + 1 };
@@ -208,6 +199,16 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
         option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
     }
   
+
+  /**
+ * [filter values for add plant autocomplete]
+ * @param  {any}   val [user input value]
+ */
+  filterAddPlant(val: any): any[] {
+    debugger;
+    return this.optionsData.filter(option =>
+      option.name.toLowerCase().indexOf(val.name.toLowerCase()) === 0);
+  }
 }
 
 

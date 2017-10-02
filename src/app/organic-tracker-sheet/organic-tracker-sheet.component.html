@@ -15,7 +15,7 @@
 
     </div>
     <md-select placeholder="Location" [(ngModel)]="locationId" name="location" class="input-white sec1-select">
-      <md-option *ngFor="let location of locations">
+      <md-option *ngFor="let location of locations" [value]="location">
         {{location.city}}, {{location.state}}
       </md-option>
     </md-select>
