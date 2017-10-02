@@ -30,11 +30,11 @@ import { ApiService } from './providers/services/api.service';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/organic-tracker',
+    redirectTo: '/app-login',
     pathMatch: 'full'
   },
   { path: 'app-login', component: LoginComponent },
-  { path: 'organic-tracker', component: OrganicTrackerSheetComponent ,
+  { path: 'app-organic-tracker-sheet', component: OrganicTrackerSheetComponent ,
     children:[
       { path: 'app-plug-tray-information', component: PlugTrayInformationComponent },
       { path: 'app-planting-information', component: PlantingInformationComponent },
