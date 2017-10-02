@@ -5,7 +5,7 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 @Component({
   selector: 'app-icon-dialog',
   templateUrl: './icon-dialog.component.html',
-  styleUrls: ['./icon-dialog.component.css']
+  styleUrls: ['./icon-dialog.component.scss']
 })
 export class IconDialogComponent implements OnInit {
 
