@@ -169,12 +169,12 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   addPlant(e: any) {
     if (this.newPlant) {
         this.newPlant = { ...this.newPlant, id: this.data1.length + 1 };
-        this.data1 = [
-            ...this.data1,
+        this.commonData.plantData = [
+            ...this.commonData.plantData,
             this.newPlant
         ];
-        this.data2 = [
-            ...this.data2,
+        this.varietyOptions = [
+            ...this.varietyOptions,
             this.newPlant
         ];
         this.newPlant = null;
@@ -205,7 +205,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
  * @param  {any}   val [user input value]
  */
   filterAddPlant(val: any): any[] {
-    debugger;
     return this.optionsData.filter(option =>
       option.name.toLowerCase().indexOf(val.name.toLowerCase()) === 0);
   }
