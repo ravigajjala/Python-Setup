@@ -95,7 +95,9 @@
       <td>
         <span>{{item.q - item.ts_d - item.discarded}}</span>
       </td>
-      <td></td>
+      <td>
+        <md-checkbox class="example-margin" [(ngModel)]="item.checked"></md-checkbox>
+      </td>
     </tr>
     <tr>
       <td>Total</td>
