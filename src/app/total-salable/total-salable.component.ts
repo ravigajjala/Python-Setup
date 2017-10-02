@@ -42,8 +42,7 @@ export class TotalSalableComponent implements OnInit {
       'Quantity',
       'Locator #',
       'House#/Bay#',
-      '#Discarded',
-      'Reason Code',
+      ['#Discarded','Reason Code'],
       'Total Flats to Sale'
     ];
   }

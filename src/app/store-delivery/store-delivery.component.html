@@ -51,15 +51,16 @@
               <td colspan="2" class="top-row" style="text-align:left !important;padding-left: 10px !important">Returned</td>
             </tr>
             <tr>
-              <td *ngFor="let trow of head" class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{trow}}</span></td>
+              <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>#Discarded</span></td>
+              <td class="bottom-row" style="width:57%"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>Reason Code</span></td>
             </tr>
-          </table>
+          </table>  
         </span>
       </td>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of data2" class="form-input-model">
+    <tr *ngFor="let item of data2;let i=index;" class="form-input-model">
       <td>
         <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>
@@ -76,56 +77,11 @@
       <td>
         <span>{{item.q - item.ts_d}}</span>
       </td>
-            <td>
-        <input mdInput name="sixtyeight" [(ngModel)]="item.sixtyeight">
+      <td *ngFor="let route of heads6[4];let in = index;">
+        <input mdInput name="sixtyeight" [(ngModel)]="item.routeValue[in]" (blur)="updateRouteTotal(in)">
       </td>
       <td>
-        <input mdInput name="sixtyeight_one" [(ngModel)]="item.sixtyeight_one">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_two" [(ngModel)]="item.sixtyeight_two">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_three" [(ngModel)]="item.sixtyeight_three">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_four" [(ngModel)]="item.sixtyeight_four">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_five" [(ngModel)]="item.sixtyeight_five">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_six" [(ngModel)]="item.sixtyeight_six">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_seven" [(ngModel)]="item.sixtyeight_seven">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_eight" [(ngModel)]="item.sixtyeight_eight">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_nine" [(ngModel)]="item.sixtyeight_nine">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_ten" [(ngModel)]="item.sixtyeight_ten">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_eleven" [(ngModel)]="item.sixtyeight_eleven">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_twelve" [(ngModel)]="item.sixtyeight_twelve">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_thirteen" [(ngModel)]="item.sixtyeight_thirteen">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_fourteen" [(ngModel)]="item.sixtyeight_fourteen">
-      </td>
-      <td>
-        <input mdInput name="sixtyeight_fifteen" [(ngModel)]="item.sixtyeight_fifteen">
-      </td>
-      <td>
-        <span>{{item.q - item.ts_d}}</span>
+        <span>{{deliveredTotal[i]}}</span>
       </td>
       <td>
         <input mdInput name="discarded" [(ngModel)]="item.discarded">
@@ -147,26 +103,8 @@
       <td></td>
       <td></td>
       <td>{{totalFlatsToSale}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td *ngFor="let totalVal of routeTotal">{{totalVal}}</td>
+      <td>{{sumPlantsDelivered}}</td>
     </tr>
     </tbody>
   </table>

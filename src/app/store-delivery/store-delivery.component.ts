@@ -14,7 +14,7 @@ export class StoreDeliveryComponent implements OnInit {
 
   constructor(public commonData: CommonDataService,
               public router: Router,
-              public dialog: MdDialog) { }
+              public dialog: MdDialog) {}
 
   public heads6 = [];
   public data1 = DUMMY_DATA1;
@@ -22,6 +22,9 @@ export class StoreDeliveryComponent implements OnInit {
   public mergeClickBool = false;
   private isSorted = false;
   public active = 6;
+  public routeTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  public deliveredTotal = [];
+  public sumPlantsDelivered = 0;
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
@@ -82,6 +85,24 @@ export class StoreDeliveryComponent implements OnInit {
       this.isSorted = true;
     }
     this.data1 = this.data1.reverse();
+  }
+
+  updateRouteTotal(index){
+    console.log(this.routeTotal, index);
+    this.routeTotal[index] = 0;
+    for(let i=0; i<this.data2.length;i++){
+      if(this.data2[i].routeValue[index]){
+        this.routeTotal[index] += parseInt(this.data2[i].routeValue[index]);
+      }
+      this.deliveredTotal[i] = this.data2[i].routeValue.reduce(function(sum,value){
+        if(value){
+          return sum + parseInt(value); 
+        }
+      },0)
+      this.sumPlantsDelivered = this.deliveredTotal.reduce(function(sum,value){
+        return sum + value;
+      },0)
+    }
   }
 
 }

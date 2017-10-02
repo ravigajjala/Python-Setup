@@ -750,7 +750,8 @@ export const DUMMY_DATA1 = [
   'ststl': '',
   'ts_d' : '',
   'sixtyeight': '',
-  'received':true
+  'received':true,
+  'routeValue':[]
 }, {
   'id': 2,
   'name': 'Red Pepper Bell',
@@ -761,7 +762,8 @@ export const DUMMY_DATA1 = [
   'reason_code': '',
   'lot_no': '',
   'icon': 'pepper-bell-red',
-  'received':true
+  'received':true,
+  'routeValue':[]
 }, {
   'id': 3,
   'name': 'Hot Banana Pepper',
@@ -772,7 +774,8 @@ export const DUMMY_DATA1 = [
   'reason_code': '',
   'lot_no': '',
   'icon': 'pepper-banana-hot',
-  'received':true
+  'received':true,
+  'routeValue':[]
 }, {
   'id': 4,
   'name': 'Green Bell Pepper',
@@ -782,7 +785,8 @@ export const DUMMY_DATA1 = [
   'pfd': '',
   'reason_code': '',
   'lot_no': '',
-  'icon': 'pepper-bell-green'
+  'icon': 'pepper-bell-green',
+  'routeValue':[]
 }, {
   'id': 5,
   'name': 'Jalapeno Pepper',
@@ -792,7 +796,8 @@ export const DUMMY_DATA1 = [
   'pfd': '',
   'reason_code': '',
   'lot_no': '',
-  'icon': 'pepper-jalapeno'
+  'icon': 'pepper-jalapeno',
+  'routeValue':[]
 }
 ];
 

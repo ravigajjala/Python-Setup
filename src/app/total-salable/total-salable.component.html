@@ -32,9 +32,30 @@
           </md-button-toggle-group>
         </div>
       </td>
-      <td *ngFor="let head of heads5;let i=index">
+
+
+     <!--  <td *ngFor="let head of heads5;let i=index">
         <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head}}</span>
+      </td> -->
+
+
+<td *ngFor="let head of heads5;let i=index" [ngClass]="{'merge-cell-style':i==4}" [colSpan]="i==4?2:1">
+        <span *ngIf="i!=4"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head}}</span>
+        <span *ngIf="i==4" class="sub-table-cont">
+          <table>
+            <tr>
+              <td colspan="2" class="top-row">Discarded at GH</td>
+            </tr>
+            <tr>
+              <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>#Discarded</span></td>
+              <td class="bottom-row select-title"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>Reason Code</span></td>
+            </tr>
+          </table>
+        </span>
       </td>
+
+
+
     </tr>
     </thead>
     <tbody>
