@@ -105,7 +105,7 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
       this.active = value;
       this.commonData.setStage(value);
       console.log('satge updated to' + this.commonData.getStage());
-      this.router.navigate(["/organic-tracker/"+(this.commonData.getStageUrls())[value-1]]);
+      this.router.navigate(["/app-organic-tracker-sheet/"+(this.commonData.getStageUrls())[value-1]]);
     }
   }
 

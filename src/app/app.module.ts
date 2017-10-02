@@ -30,7 +30,7 @@ import { ApiService } from './providers/services/api.service';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/app-login',
+    redirectTo: '/app-organic-tracker-sheet',
     pathMatch: 'full'
   },
   { path: 'app-login', component: LoginComponent },
@@ -44,13 +44,13 @@ const appRoutes: Routes = [
       { path: 'app-store-delivery', component: StoreDeliveryComponent},
       { path: 'app-master-view', component: MasterViewComponent }
     ]
-  },
-  {
-    //redirect default - should always be at last
-    path: '**',
-    redirectTo: '/organic-tracker',
-    pathMatch: 'full'
-  }
+   }
+  // {
+  //   //redirect default - should always be at last
+  //   path: '**',
+  //   redirectTo: '/app-organic-tracker-sheet',
+  //   pathMatch: 'full'
+  // }
 ];
 
 
