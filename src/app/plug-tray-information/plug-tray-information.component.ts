@@ -130,7 +130,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.varietyControl.valueChanges
       .subscribe(
         val=> {
-          setTimeout(() => {this.varietyOptions = val ? this.filterVariety(val) : this.commonData.plantData}, 0);
+          setTimeout(() => {this.varietyOptions = val ? this.filterVariety(val) : []}, 0);
       });
 
     this.PlugTrayForm = new FormGroup({
@@ -142,10 +142,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
   sort() {
     if ( !this.isSorted ) {
-      this.data1 = this.data1.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
+      this.varietyOptions = this.varietyOptions.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
       this.isSorted = true;
     }
-    this.data1 = this.data1.reverse();
+    this.varietyOptions = this.varietyOptions.reverse();
   }
 
   filter(val: any): any[] {
@@ -157,27 +157,23 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
   displayFn(order): string {
       this.newPlant = {...order};
-      console.log('np', this.newPlant);
-
       return order ? order.name : order;
   }
 
 /**
  * [addPlant description]
- * @param {any} e [description]
  */
-  addPlant(e: any) {
-    if (this.newPlant) {
-        this.newPlant = { ...this.newPlant, id: this.data1.length + 1 };
+  addPlant(event,newPlant) {
+    if (newPlant) {
+        newPlant = { ...newPlant, id: this.data1.length + 1 };
         this.commonData.plantData = [
             ...this.commonData.plantData,
-            this.newPlant
+            newPlant
         ];
         this.varietyOptions = [
             ...this.varietyOptions,
-            this.newPlant
+            newPlant
         ];
-        this.newPlant = null;
     }
   }
 
@@ -205,8 +201,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
  * @param  {any}   val [user input value]
  */
   filterAddPlant(val: any): any[] {
-    return this.optionsData.filter(option =>
-      option.name.toLowerCase().indexOf(val.name.toLowerCase()) === 0);
+    if(val && typeof val === 'string'){
+      return this.optionsData.filter(option =>
+      option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
+    }
   }
 }
 

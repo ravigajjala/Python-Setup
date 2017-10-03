@@ -72,18 +72,22 @@
         <input mdInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber">
       </td>
     </tr>
+
+
     <div class="flex-display add-plant" [class.flex-center]="mergeClickBool" *ngIf="mergeClickBool == false">
         <button md-button ><i class="material-icons rotate_90" style="pointer-events: none">add_circle</i></button>
         <md-form-field>
-          <input type="text" mdInput [formControl]="myControl" [(ngModel)]="newPlant" (ngModelChange)="addPlant($event)" placeholder="New Plug" [mdAutocomplete]="plant">
+          <input type="text" mdInput [formControl]="myControl" [(ngModel)]="newPlant" placeholder="New Plug" [mdAutocomplete]="plant">
         </md-form-field>
         <md-autocomplete #plant="mdAutocomplete" [displayWith]="displayFn">
-           <md-option *ngFor="let option of filteredOptions | async" [value]="option" data-id="option.id">
+           <md-option *ngFor="let option of filteredOptions | async" [value]="option" data-id="option.id" (onSelectionChange)="addPlant($event, option)">
               {{ option.name }}
            </md-option>
         </md-autocomplete>
 
     </div>
+
+
     </tbody>
   </table>
   <!-- END: Plug Tray Information -->
