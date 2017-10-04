@@ -196,7 +196,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {any}   val [user input value]
    */
     filterVariety(val:any):any[] {
-      return this.commonData.plantList.filter(option =>
+      return this.commonData.plantData.filter(option =>
         option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
     }
   
