@@ -169,15 +169,23 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
  */
   addPlant(event,newPlant) {
     if (newPlant) {
-        newPlant = { ...newPlant, id: this.commonData.plantData.length + 1 };
+        // newPlant = { ...newPlant, id: this.commonData.plantData.length + 1 };
+        newPlant.id = this.commonData.plantData.length +1;
+        let tempNewPlant = Object.assign({},newPlant);
+        tempNewPlant.plugTray = Object.assign({},newPlant.plugTray);
+        tempNewPlant.plantingInfo = Object.assign({},newPlant.plantingInfo);
+        tempNewPlant.receivingData = Object.assign({},newPlant.receivingData);
+        tempNewPlant.totalSalable = Object.assign({},newPlant.totalSalable);
+        tempNewPlant.storeDeliveryData = Object.assign({},newPlant.storeDeliveryData);
         this.commonData.plantData = [
             ...this.commonData.plantData,
-            newPlant
+            tempNewPlant
         ];
         this.varietyOptions = [
             ...this.varietyOptions,
-            newPlant
+            tempNewPlant
         ];
+        console.log(this.varietyOptions);
     }
     this.trigger.closePanel();
   }
