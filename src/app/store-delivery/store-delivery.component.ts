@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 import {CommonDataService} from '../providers/services/common-data.service';
+import { AppStoreDelivery } from '../providers/classes/plantInfo.class';
 import { Router } from '@angular/router';
 
 @Component({

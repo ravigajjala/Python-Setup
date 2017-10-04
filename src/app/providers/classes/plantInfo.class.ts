@@ -37,6 +37,14 @@ export class SalableInfo {
 	'reasonCode': string;
 }
 
+export class AppStoreDelivery {
+    'totalFlatstoSale':number;
+    'routeNumberSale':number[];
+    'discarded':number;
+    'reasonCode':string;
+    'check':boolean;
+}
+
 export class Location {
     id: string;
     city: string;
