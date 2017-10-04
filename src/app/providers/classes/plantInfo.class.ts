@@ -45,6 +45,7 @@ export class AppStoreDelivery {
     'check':boolean;
 }
 
+
 export class Location {
     id: string;
     city: string;
