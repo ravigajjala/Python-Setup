@@ -130,7 +130,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.varietyControl.valueChanges
       .subscribe(
         val=> {
-          setTimeout(() => {this.varietyOptions = val ? this.filterVariety(val) : []}, 0);
+          setTimeout(() => {this.varietyOptions = val ? this.filterVariety(val) : this.commonData.plantData}, 0);
       });
 
     this.PlugTrayForm = new FormGroup({
