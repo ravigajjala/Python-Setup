@@ -45,6 +45,7 @@ export class ReceivingFromOtherStationsComponent implements OnInit{
 
   public list = [];
   public heads3 = [];
+  public reasonCodes = [];
   public data1 = DUMMY_DATA1;
   public data2 = DUMMY_DATA1;
   public optionsData = [];
@@ -81,6 +82,16 @@ export class ReceivingFromOtherStationsComponent implements OnInit{
       'Locator #',
       '#Discarded',
       'Reason Code'
+    ];
+
+    this.reasonCodes = [
+      {'code':'A','reason':'Poor germ'},
+      {'code':'B','reason':'Pest issue'},
+      {'code':'C','reason':'irrigation problems'},
+      {'code':'D','reason':'Disease'},
+      {'code':'E','reason':'Excess'},
+      {'code':'F','reason':'Fell/Dropped'},
+      {'code':'G','reason':'Other/Act Of God'},
     ];
 
   }

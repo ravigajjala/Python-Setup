@@ -18,6 +18,7 @@ export class TotalSalableComponent implements OnInit {
 
   public data1 = DUMMY_DATA1;
   public data2 = DUMMY_DATA1;
+  public reasonCodes = [];
   public heads5 = [];
   public mergeClickBool = false;
   private isSorted = false;
@@ -44,6 +45,16 @@ export class TotalSalableComponent implements OnInit {
       'House#/Bay#',
       ['#Discarded','Reason Code'],
       'Total Flats to Sale'
+    ];
+
+    this.reasonCodes = [
+      {'code':'A','reason':'Poor germ'},
+      {'code':'B','reason':'Pest issue'},
+      {'code':'C','reason':'irrigation problems'},
+      {'code':'D','reason':'Disease'},
+      {'code':'E','reason':'Excess'},
+      {'code':'F','reason':'Fell/Dropped'},
+      {'code':'G','reason':'Other/Act Of God'},
     ];
   }
 

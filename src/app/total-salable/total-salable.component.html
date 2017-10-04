@@ -1,6 +1,6 @@
 <div class="right-scroll">
   
-<!-- START: Total Salable -->
+  <!-- START: Total Salable -->
   <table *ngIf="active == 5" class="table_five table-width">
     <thead>
     <tr>
@@ -8,7 +8,7 @@
         <div class="toggle-button-css" *ngIf="mergeClickBool == false"> 
           <div>
             <md-form-field class="full-width">
-              <input mdInput placeholder="Plant">
+              <input mdInput placeholder="Variety">
             </md-form-field>
           </div>
         </div>
@@ -39,7 +39,7 @@
       </td> -->
 
 
-<td *ngFor="let head of heads5;let i=index" [ngClass]="{'merge-cell-style':i==4}" [colSpan]="i==4?2:1">
+      <td *ngFor="let head of heads5;let i=index" [ngClass]="{'merge-cell-style':i==4}" [colSpan]="i==4?2:1">
         <span *ngIf="i!=4"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head}}</span>
         <span *ngIf="i==4" class="sub-table-cont">
           <table>
@@ -53,11 +53,9 @@
           </table>
         </span>
       </td>
-
-
-
     </tr>
     </thead>
+    
     <tbody>
     <tr *ngFor="let item of commonData.plantData" class="form-input-model">
       <td>
