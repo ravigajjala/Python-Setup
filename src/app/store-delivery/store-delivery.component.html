@@ -75,7 +75,7 @@
         <input mdInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay">
       </td>
       <td>
-        <span>{{item.q - item.ts_d}}</span>
+        <span>{{item.receivingData.quantity - item.totalSalable.discarded || 0}}</span>
       </td>
       <td *ngFor="let route of heads6[4];let in = index;">
         <input mdInput name="sixtyeight" [(ngModel)]="item.storeDeliveryData.routeNumberSale[in]" (blur)="updateRouteTotal(in)">
