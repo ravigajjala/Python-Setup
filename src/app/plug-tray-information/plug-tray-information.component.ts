@@ -1,6 +1,6 @@
 import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
-import { Component, OnInit, AfterViewInit, Renderer2, ElementRef,Inject, EventEmitter, Input, Output } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, AfterViewInit, Renderer2, ElementRef,Inject, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA, MdAutocompleteTrigger } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
@@ -51,6 +51,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public PlugTrayForm: FormGroup;
   public varietyControl: FormControl;
   public varietyOptions: any[];
+
   public options = [
     {
       name: 'Hot Banana Pepper'
@@ -68,6 +69,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
   public options1 = DUMMY_DATA2;
   private newPlant: any;
+
+  @ViewChild(MdAutocompleteTrigger) trigger;
+
+
 
   openDialog(currentItem): void {
     let dialogRef = this.dialog.open(IconDialogComponent, {
@@ -149,7 +154,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
   filter(val: any): any[] {
-    debugger;
     return this.optionsData.filter(option =>
       option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }
@@ -157,7 +161,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
   displayFn(order): string {
       this.newPlant = {...order};
-      return order ? order.name : order;
+      return null;
   }
 
 /**
@@ -175,6 +179,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
             newPlant
         ];
     }
+    this.trigger.closePanel();
   }
 
   ngAfterViewInit() {
