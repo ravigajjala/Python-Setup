@@ -40,7 +40,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of data2" class="form-input-model" [ngClass]="{'disabled-row':item.shipped}">
+    <tr *ngFor="let item of commonData.plantData" class="form-input-model" [ngClass]="{'disabled-row':item.shipped}">
       <td>
         <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>

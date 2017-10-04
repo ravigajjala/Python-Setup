@@ -31,7 +31,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     let i = 0;
     this.data1 = this.commonData.plantData;
     i = 0;
-    this.optionsData = Object.assign([],this.commonData.plantData);
+    this.optionsData = Object.assign([],this.commonData.plantList);
   }
   public title = 'Bonnie App';
   public locationId = '';
@@ -165,7 +165,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
  */
   addPlant(event,newPlant) {
     if (newPlant) {
-        newPlant = { ...newPlant, id: this.data1.length + 1 };
+        newPlant = { ...newPlant, id: this.commonData.plantData.length + 1 };
         this.commonData.plantData = [
             ...this.commonData.plantData,
             newPlant
@@ -191,7 +191,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {any}   val [user input value]
    */
     filterVariety(val:any):any[] {
-      return this.commonData.plantData.filter(option =>
+      return this.commonData.plantList.filter(option =>
         option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
     }
   

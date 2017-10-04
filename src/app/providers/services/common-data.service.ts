@@ -7,6 +7,8 @@ export class CommonDataService {
 	private currentStage;
 	private stageUrls = [];
   public  plantData = [];
+  public plantList =[];
+  
   constructor() { 
   	this.currentStage = 0;
   	this.stageUrls = ['app-plug-tray-information','app-planting-information','app-receiving-from-other-stations','app-ship-to-other-stations','app-total-salable','app-store-delivery','app-master-view'];

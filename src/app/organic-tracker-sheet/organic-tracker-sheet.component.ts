@@ -36,21 +36,21 @@ export class OrganicTrackerSheetComponent implements OnInit, AfterViewInit {
     let i = 0;
     this.data2 = DUMMY_DATA1.map((d,index) => {
       //create each plantInfo Object
-      this.commonData.plantData[index] = new PlantInfo();
-      this.commonData.plantData[index].name = d.name;
-      this.commonData.plantData[index].id = d.id;
-      this.commonData.plantData[index].icon = d.icon;
-      this.commonData.plantData[index].plugTray = new PlugTrayInfo();
-      this.commonData.plantData[index].plantingInfo = new PlantingInfo();
-      this.commonData.plantData[index].receivingData = new ReceivingInfo();
-      this.commonData.plantData[index].totalSalable = new SalableInfo();
-      this.commonData.plantData[index]['nameHtml'] = sz.bypassSecurityTrustHtml(
+      this.commonData.plantList[index] = new PlantInfo();
+      this.commonData.plantList[index].name = d.name;
+      this.commonData.plantList[index].id = d.id;
+      this.commonData.plantList[index].icon = d.icon;
+      this.commonData.plantList[index].plugTray = new PlugTrayInfo();
+      this.commonData.plantList[index].plantingInfo = new PlantingInfo();
+      this.commonData.plantList[index].receivingData = new ReceivingInfo();
+      this.commonData.plantList[index].totalSalable = new SalableInfo();
+      this.commonData.plantList[index]['nameHtml'] = sz.bypassSecurityTrustHtml(
         `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>`
       );
       i < 9 ? i++ : i = 0;
 
-      this.commonData.plantData[index]['shipped'] = false;
-      return this.commonData.plantData[index];
+      this.commonData.plantList[index]['shipped'] = false;
+      return this.commonData.plantList[index];
     });
   }
 

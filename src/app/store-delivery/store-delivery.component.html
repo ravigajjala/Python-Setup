@@ -60,7 +60,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of data2;let i=index;" class="form-input-model">
+    <tr *ngFor="let item of commonData.plantData;let i=index;" class="form-input-model">
       <td>
         <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>
