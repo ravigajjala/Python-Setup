@@ -17,6 +17,7 @@ export class StoreDeliveryComponent implements OnInit {
               public dialog: MdDialog) {}
 
   public heads6 = [];
+  public reasonCodes = [];
   public data1 = DUMMY_DATA1;
   public data2 = DUMMY_DATA1;
   public mergeClickBool = false;
@@ -67,6 +68,16 @@ export class StoreDeliveryComponent implements OnInit {
       'Reason Code'],
       'Total Balance',
       'Check'
+    ];
+
+    this.reasonCodes = [
+      {'code':'A','reason':'Poor germ'},
+      {'code':'B','reason':'Pest issue'},
+      {'code':'C','reason':'irrigation problems'},
+      {'code':'D','reason':'Disease'},
+      {'code':'E','reason':'Excess'},
+      {'code':'F','reason':'Fell/Dropped'},
+      {'code':'G','reason':'Other/Act Of God'},
     ];
   }
 

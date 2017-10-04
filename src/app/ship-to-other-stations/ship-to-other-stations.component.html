@@ -8,7 +8,7 @@
         <div class="toggle-button-css" *ngIf="mergeClickBool == false"> 
           <div>
             <md-form-field class="full-width">
-              <input mdInput placeholder="Plant">
+              <input mdInput placeholder="Variety">
             </md-form-field>
           </div>
         </div>
@@ -46,16 +46,16 @@
         <span>{{item.name}}</span>
       </td>
       <td>
-        <input mdInput name="lot_no" [(ngModel)]="item.lot_no">
+        <input mdInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber">
       </td>
       <td>
-        <input mdInput name="ft" [(ngModel)]="item.ft">
+        <input mdInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays">
       </td>
       <td>
-        <input mdInput name="rl_no" [(ngModel)]="item.rl_no">
+        <input mdInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
       </td>
       <td>
-        <input mdInput name="b_no" [(ngModel)]="item.b_no">
+        <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
       <td>
         <input mdInput name="stchi" [(ngModel)]="item.stchi" [disabled]="item.shipped">
