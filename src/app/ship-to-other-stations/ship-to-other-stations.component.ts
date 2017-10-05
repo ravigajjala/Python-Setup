@@ -1,4 +1,3 @@
-import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
 import { Component, OnInit } from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
@@ -14,8 +13,6 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   constructor(public commonData: CommonDataService, public router : Router, public dialog: MdDialog) { }
 
-  public data1 = DUMMY_DATA1;
-  public data2 = DUMMY_DATA1;
   public heads4 = [];
   public mergeClickBool = false;
   private isSorted = false;
@@ -60,10 +57,10 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   sort() {
     if ( !this.isSorted ) {
-      this.data1 = this.data1.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
+      this.commonData.plantData = this.commonData.plantData.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
       this.isSorted = true;
     }
-    this.data1 = this.data1.reverse();
+    this.commonData.plantData = this.commonData.plantData.reverse();
   }
 
   shipPlant(item){
