@@ -4,6 +4,7 @@ export class PlantInfo{
 	'icon':string;
 	'plugTray': PlugTrayInfo;
 	'plantingInformation' : PlantingInfo;
+	'shipToData': ShipToInfo;
 }
 
 export class PlugTrayInfo{
@@ -45,6 +46,9 @@ export class AppStoreDelivery {
     'check':boolean;
 }
 
+export class ShipToInfo {
+	'locationValues':any[];
+}
 
 export class Location {
     id: string;

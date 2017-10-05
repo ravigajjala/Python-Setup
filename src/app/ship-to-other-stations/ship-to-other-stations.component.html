@@ -57,10 +57,10 @@
       <td>
         <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
-      <td [ngClass]="{'disabled-row':disabledColumns[5]}">
-        <input mdInput name="stchi" [(ngModel)]="item.stchi" [disabled]="disabledColumns[5]">
+      <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+5]}">
+        <input mdInput name="stchi" [(ngModel)]="item.shipToData.locationValues[ind]" [disabled]="disabledColumns[ind+5]" (blur)="getTotalOfColumn(ind)">
       </td>
-      <td [ngClass]="{'disabled-row':disabledColumns[6]}">
+      <!-- <td [ngClass]="{'disabled-row':disabledColumns[6]}">
         <input mdInput name="stmin" [(ngModel)]="item.stmin" [disabled]="disabledColumns[6]">
       </td>
       <td [ngClass]="{'disabled-row':disabledColumns[7]}">
@@ -71,7 +71,7 @@
       </td>
       <td [ngClass]="{'disabled-row':disabledColumns[9]}">
         <input mdInput name="ststl" [(ngModel)]="item.ststl" [disabled]="disabledColumns[9]">
-      </td>
+      </td> -->
       <td></td>
       <!-- <td class="add-neg-ship">
         <button md-raised-button color="primary" *ngIf="!item.shipped" (click)="shipPlant(item)">SHIP</button>
@@ -80,6 +80,8 @@
     </tr>
     <tr class="disabled-row">
       <td>Total</td>
+      <td *ngFor="let val of totalOfLocation">{{val}}</td>
+      <!-- <td></td>
       <td></td>
       <td></td>
       <td></td>
@@ -87,9 +89,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td></td> -->
     </tr>
     <tr>
       <td>

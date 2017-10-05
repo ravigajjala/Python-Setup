@@ -18,6 +18,8 @@ export class ShipToOtherStationsComponent implements OnInit {
   private isSorted = false;
   public active = 4;
   public disabledColumns = [];
+  public totalOfLocation = [,,,,0,0,0,0,0];
+  public locationNames = ['Chicago','Minneapolis','Des Moines','Milwaukee','St.Louis'];
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
@@ -69,6 +71,13 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
   cancelShip(item){
     this.disabledColumns[item]=false;
+  }
+
+  getTotalOfColumn(key){
+    this.totalOfLocation[key+4] = this.commonData.plantData.reduce(function(a,b){
+       return a + parseInt(b.shipToData.locationValues[key] || 0);
+    },0);
+    console.log(this.totalOfLocation);
   }
 
 }

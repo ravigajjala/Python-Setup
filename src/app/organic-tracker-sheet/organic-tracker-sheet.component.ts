@@ -5,7 +5,7 @@ import { LoginService } from '../login/login.service';
 import {FormControl} from '@angular/forms';
 import {CommonDataService} from '../providers/services/common-data.service';
 import {ApiService} from '../providers/services/api.service';
-import { PlantInfo, PlugTrayInfo, PlantingInfo, ReceivingInfo, SalableInfo, AppStoreDelivery } from './../providers/classes/plantInfo.class';
+import { PlantInfo, PlugTrayInfo, PlantingInfo, ReceivingInfo, SalableInfo, AppStoreDelivery, ShipToInfo } from './../providers/classes/plantInfo.class';
 
 import { Router } from '@angular/router';
 
@@ -42,6 +42,8 @@ export class OrganicTrackerSheetComponent implements OnInit {
       this.commonData.plantList[index].receivingData = new ReceivingInfo();
       this.commonData.plantList[index].totalSalable = new SalableInfo();
       this.commonData.plantList[index].storeDeliveryData = new AppStoreDelivery();
+      this.commonData.plantList[index].shipToData = new ShipToInfo();
+      this.commonData.plantList[index].shipToData.locationValues = [];
       this.commonData.plantList[index].storeDeliveryData.routeNumberSale =[];
       this.commonData.plantList[index]['nameHtml'] = sz.bypassSecurityTrustHtml(
         `<svg class="icon st${i}"><use xlink:href="../../assets/sprites/icon-sprite-sheet.svg#${d.icon}"/></svg>`
