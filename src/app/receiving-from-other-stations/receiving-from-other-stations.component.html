@@ -81,7 +81,7 @@
       <td class="select-field">
         <md-select placeholder="" #select="mdSelect" [(ngModel)]="item.receivingData.reasonCode">
           <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>
-          <md-option *ngFor="let rc of reasonCodes" [value]="rc.code" [disabled]="!item.received">{{ rc.code }} ({{rc.reason}})</md-option>
+          <md-option *ngFor="let rc of commonData.reasonCodes" [value]="rc.code" [disabled]="!item.received">{{ rc.code }} ({{rc.reason}})</md-option>
         </md-select>
       </td>
       <td>

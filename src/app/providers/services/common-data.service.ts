@@ -8,13 +8,7 @@ export class CommonDataService {
 	private stageUrls = [];
   public  plantData = [];
   public plantList =[];
-  public reasonCodes = [];
-  private plant_varieties = [];
-
-  constructor() { 
-  	this.currentStage = 0;
-  	this.stageUrls = ['app-plug-tray-information','app-planting-information','app-receiving-from-other-stations','app-ship-to-other-stations','app-total-salable','app-store-delivery','app-master-view'];
-    this.reasonCodes == [
+  public reasonCodes = [
       {'code':'A','reason':'Poor germ'},
       {'code':'B','reason':'Pest issue'},
       {'code':'C','reason':'irrigation problems'},
@@ -22,8 +16,8 @@ export class CommonDataService {
       {'code':'E','reason':'Excess'},
       {'code':'F','reason':'Fell/Dropped'},
       {'code':'G','reason':'Other/Act Of God'},
-    ];
-    this.plant_varieties = [{
+    ];;
+  private plant_varieties = [{
         'name': 'Better Boy Tomato',
         'icon': 'tomato-bboy'
     }, {
@@ -83,7 +77,11 @@ export class CommonDataService {
     }, {
         'name': 'Egg Plant',
         'icon': 'eggplant'
-    }];
+    }];;
+
+  constructor() { 
+  	this.currentStage = 0;
+  	this.stageUrls = ['app-plug-tray-information','app-planting-information','app-receiving-from-other-stations','app-ship-to-other-stations','app-total-salable','app-store-delivery','app-master-view'];
   }
 
   setStage(value:number){
