@@ -17,6 +17,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   public mergeClickBool = false;
   private isSorted = false;
   public active = 4;
+  public disabledColumns = [];
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
@@ -63,11 +64,11 @@ export class ShipToOtherStationsComponent implements OnInit {
     this.commonData.plantData = this.commonData.plantData.reverse();
   }
 
-  shipPlant(item){
-    item.shipped = true;
+  shipColumn(item){
+    this.disabledColumns[item]=true;
   }
   cancelShip(item){
-    item.shipped=false;
+    this.disabledColumns[item]=false;
   }
 
 }
