@@ -1,7 +1,6 @@
 import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
 import { Component, OnInit, AfterViewInit, Renderer2, ElementRef,Inject, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA, MdAutocompleteTrigger } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -20,7 +19,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
-    private sz: DomSanitizer,
     public dialog: MdDialog,
     public commonData: CommonDataService,
     public router:Router
@@ -29,48 +27,25 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
     let i = 0;
-    this.data1 = this.commonData.plantData;
     i = 0;
     this.optionsData = Object.assign([],this.commonData.plantList);
   }
-  public title = 'Bonnie App';
-  public locationId = '';
   public locations = [];
   public list = [];
   public heads = [];
-  public reasonCodes = [];
-  public data1 = DUMMY_DATA1;
-  public data2 = DUMMY_DATA1;
   public optionsData = [];
   public myControl: FormControl;
+  public varietyControl: FormControl;
   public mergeClickBool = false;
   private isSorted = false;
   public active = 1;
   public filteredOptions: Observable<any[]>;
-  public totalFlatsToSale = 0;
+  // public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
-  public varietyControl: FormControl;
   public varietyOptions: any[];
-
-  public options = [
-    {
-      name: 'Hot Banana Pepper'
-    },
-    {
-      name: 'Green Bell Pepper'
-    },
-    {
-      name: 'Jalapeno Pepper'
-    },
-    {
-      name: 'Serrano Pepper'
-    }
-  ];
-
-  public options1 = DUMMY_DATA2;
   private newPlant: any;
 
-  @ViewChild(MdAutocompleteTrigger) trigger;
+  @ViewChild(MdAutocompleteTrigger) trigger;  //get the autocomplete cancel trigger
 
 
 
@@ -81,31 +56,20 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
 
-  getTotalOfColumn(array,key){
-    let total = array.reduce(function(a,b){
-      return a + b[key]
-    },0);
-    return total;
-  }
+
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
 
   ngOnInit() {
+
+    //redirect to parent route on reload
     if(this.commonData.getStage()==0){
       this.router.navigate(["/"]);
     }else{
       console.error('Something went wrong with routing/redirecting');
     }
-
-    this.locations = [
-      {id: 1, name: 'Milton, WI'}
-    ];
-
-    this.list = [
-      'Plug Tray Information'
-    ];
 
     this.heads = [
       'Plug Flats Received',
@@ -116,15 +80,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       'Seed Lot Number'
     ];
 
-    this.reasonCodes = [
-      {'code':'A','reason':'Poor germ'},
-      {'code':'B','reason':'Pest issue'},
-      {'code':'C','reason':'irrigation problems'},
-      {'code':'D','reason':'Disease'},
-      {'code':'E','reason':'Excess'},
-      {'code':'F','reason':'Fell/Dropped'},
-      {'code':'G','reason':'Other/Act Of God'},
-    ];
+    
 
     this.filteredOptions = this.myControl.valueChanges
       .startWith(null)
@@ -136,11 +92,13 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
           setTimeout(() => {this.varietyOptions = val ? this.filterVariety(val) : this.commonData.plantData}, 0);
       });
 
+
+
     this.PlugTrayForm = new FormGroup({
       dateReceived: new FormControl(null, Validators.required)
     });
 
-    this.totalFlatsToSale = this.getTotalOfColumn(this.data1,'pfd');
+    // this.totalFlatsToSale = this.commonData.getTotalOfColumn(this.commonData.plantData,'pfd');
   }
 
   sort() {
