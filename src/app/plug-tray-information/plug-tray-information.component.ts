@@ -93,8 +93,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('plug tray - child 1 init');
-    console.log('currentStage' + this.commonData.getStage());
     if(this.commonData.getStage()==0){
       this.router.navigate(["/"]);
     }else{
@@ -185,7 +183,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
             ...this.varietyOptions,
             tempNewPlant
         ];
-        console.log(this.varietyOptions);
     }
     this.trigger.closePanel();
   }
