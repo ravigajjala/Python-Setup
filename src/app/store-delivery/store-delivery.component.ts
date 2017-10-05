@@ -1,4 +1,3 @@
-import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
 import { Component, OnInit } from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
@@ -18,9 +17,6 @@ export class StoreDeliveryComponent implements OnInit {
               public dialog: MdDialog) {}
 
   public heads6 = [];
-  public reasonCodes = [];
-  public data1 = DUMMY_DATA1;
-  public data2 = DUMMY_DATA1;
   public mergeClickBool = false;
   private isSorted = false;
   public active = 6;
@@ -71,15 +67,6 @@ export class StoreDeliveryComponent implements OnInit {
       'Check'
     ];
 
-    this.reasonCodes = [
-      {'code':'A','reason':'Poor germ'},
-      {'code':'B','reason':'Pest issue'},
-      {'code':'C','reason':'irrigation problems'},
-      {'code':'D','reason':'Disease'},
-      {'code':'E','reason':'Excess'},
-      {'code':'F','reason':'Fell/Dropped'},
-      {'code':'G','reason':'Other/Act Of God'},
-    ];
   }
 
 
@@ -93,20 +80,20 @@ export class StoreDeliveryComponent implements OnInit {
 
   sort() {
     if ( !this.isSorted ) {
-      this.data1 = this.data1.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
+      this.commonData.plantData = this.commonData.plantData.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
       this.isSorted = true;
     }
-    this.data1 = this.data1.reverse();
+    this.commonData.plantData = this.commonData.plantData.reverse();
   }
 
   updateRouteTotal(index){
     console.log(this.routeTotal, index);
     this.routeTotal[index] = 0;
-    for(let i=0; i<this.data2.length;i++){
-      if(this.data2[i].routeValue[index]){
-        this.routeTotal[index] += parseInt(this.data2[i].routeValue[index]);
+    for(let i=0; i<this.commonData.plantData.length;i++){
+      if(this.commonData.plantData[i].storeDeliveryData.routeNumberSale[index]){
+        this.routeTotal[index] += parseInt(this.commonData.plantData[i].storeDeliveryData.routeNumberSale[index]);
       }
-      this.deliveredTotal[i] = this.data2[i].routeValue.reduce(function(sum,value){
+      this.deliveredTotal[i] = this.commonData.plantData[i].storeDeliveryData.routeNumberSale.reduce(function(sum,value){
         if(value){
           return sum + parseInt(value); 
         }
