@@ -11,8 +11,6 @@ import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, Md
 
 import { HttpModule } from '@angular/http';
 
-import { PlantingInformationService } from './planting-information/planting-information.service';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { OrganicTrackerSheetComponent } from './organic-tracker-sheet/organic-tracker-sheet.component';
@@ -95,6 +93,6 @@ const appRoutes: Routes = [
   entryComponents: [
     IconDialogComponent,
   ],
-  providers: [PlantingInformationService, CommonDataService, ApiService]
+  providers: [CommonDataService, ApiService]
 })
 export class AppModule { }

@@ -9,6 +9,7 @@ export class CommonDataService {
   public  plantData = [];
   public plantList =[];
   public reasonCodes = [];
+  private plant_varieties = [];
 
   constructor() { 
   	this.currentStage = 0;
@@ -22,6 +23,67 @@ export class CommonDataService {
       {'code':'F','reason':'Fell/Dropped'},
       {'code':'G','reason':'Other/Act Of God'},
     ];
+    this.plant_varieties = [{
+        'name': 'Better Boy Tomato',
+        'icon': 'tomato-bboy'
+    }, {
+        'name': 'Husky Cherry Red Tomato',
+        'icon': 'tomato-hcr'
+    }, {
+        'name': 'Red Beefsteak Tomato',
+        'icon': 'tomato-rb'
+    }, {
+        'name': 'Green Bell Pepper',
+        'icon': 'tomato-rb'
+    }, {
+        'name': 'Hot Banana Pepper',
+        'icon': 'pepper-banana-hot',
+    }, {
+        'name': 'Jalapeno Pepper',
+        'icon': 'pepper-jalapeno'
+    }, {
+        'name': 'Sweet Banana Pepper',
+        'icon': 'pepper-banana-sweet',
+    }, {
+        'name': 'Broccoli',
+        'icon': 'broccoli'
+    }, {
+        'name': 'Cucumber',
+        'icon': 'cucumber-traditional'
+    }, {
+        'name': 'EggPlant',
+        'icon': 'eggplant'
+    }, {
+        'name': 'Better Boy Tomato',
+        'icon': 'tomato-bboy'
+    }, {
+        'name': 'Husky Cherry Red Tomato',
+        'icon': 'tomato-hcr'
+    }, {
+        'name': 'Red Pepper Bell',
+        'icon': 'pepper-bell-red'
+    }, {
+        'name': 'Kale',
+        'icon': 'kale'
+    }, {
+        'name': 'Hot Banana Pepper',
+        'icon': 'pepper-banana-hot'
+    }, {
+        'name': 'Basil',
+        'icon': 'basil'
+    }, {
+        'name': 'Hot Banana Pepper',
+        'icon': 'pepper-banana-hot'
+    }, {
+        'name': 'Cilantro',
+        'icon': 'cilantro'
+    }, {
+        'name': 'Jalapeno Pepper',
+        'icon': 'pepper-jalapeno'
+    }, {
+        'name': 'Egg Plant',
+        'icon': 'eggplant'
+    }];
   }
 
   setStage(value:number){
