@@ -55,8 +55,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
     });
   }
 
-  
-
   public title = 'Bonnie App';
   public locationId = '';
   public locations = [];
