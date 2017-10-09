@@ -24,6 +24,9 @@ import { ReceivingFromOtherStationsComponent } from './receiving-from-other-stat
 import { ShipToOtherStationsComponent } from './ship-to-other-stations/ship-to-other-stations.component';
 import { CommonDataService} from './providers/services/common-data.service';
 import { ApiService } from './providers/services/api.service';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
+import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
 
 const appRoutes: Routes = [
   {
@@ -64,7 +67,10 @@ const appRoutes: Routes = [
     StoreDeliveryComponent,
     MasterViewComponent,
     ReceivingFromOtherStationsComponent,
-    ShipToOtherStationsComponent
+    ShipToOtherStationsComponent,
+    ManageUsersComponent,
+    ManageGreenHouseComponent,
+    ManagePlugCatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +98,9 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent],
   entryComponents: [
     IconDialogComponent,
+    ManageUsersComponent,
+    ManageGreenHouseComponent,
+    ManagePlugCatalogComponent
   ],
   providers: [CommonDataService, ApiService]
 })

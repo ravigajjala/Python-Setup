@@ -4,7 +4,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { LoginService } from '../login/login.service';
 import {FormControl} from '@angular/forms';
 import {CommonDataService} from '../providers/services/common-data.service';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import {ApiService} from '../providers/services/api.service';
+import {ManageUsersComponent} from '../manage-users/manage-users.component';
+import {ManageGreenHouseComponent} from '../manage-green-house/manage-green-house.component';
+import {ManagePlugCatalogComponent} from '../manage-plug-catalog/manage-plug-catalog.component';
 import { PlantInfo, PlugTrayInfo, PlantingInfo, ReceivingInfo, SalableInfo, AppStoreDelivery, ShipToInfo } from './../providers/classes/plantInfo.class';
 
 import { Router } from '@angular/router';
@@ -26,6 +30,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
     private sz: DomSanitizer,
     private commonData: CommonDataService,
     private apiService: ApiService,
+    public dialog: MdDialog,
     public router:Router
   ) {
 
@@ -90,6 +95,24 @@ export class OrganicTrackerSheetComponent implements OnInit {
           ];
       }
     );
+  }
+
+  openManageUserDialog(currentUsers): void {
+    let dialogRef = this.dialog.open(ManageUsersComponent, {
+      data: currentUsers,
+    });
+  }
+
+  openManageGreenHouseDialog(currentGreenHouse): void {
+    let dialogRef = this.dialog.open(ManageGreenHouseComponent, {
+      data: currentGreenHouse,
+    });
+  }
+
+  openManagePlugCatalogDialog(currentPlugCatalog): void {
+    let dialogRef = this.dialog.open(ManagePlugCatalogComponent, {
+      data: currentPlugCatalog,
+    });
   }
   
 }
