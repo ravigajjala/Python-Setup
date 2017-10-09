@@ -85,11 +85,12 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
     this.apiService.getLocations().subscribe(
       res => {
-        this.locations = res;
+        // this.locations = res;
+        this.commonData.locations = res;
       },
       err => {
          console.error('Error occured while retrieving locations');
-         this.locations = [
+         this.commonData.locations = [
             {id: 1, city: 'Milton', state:' WI'},
             {id: 2, city: 'Houston', state:' TX'},
           ];

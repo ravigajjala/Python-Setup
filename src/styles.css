@@ -84,6 +84,14 @@ table tbody td md-select .mat-select-trigger .mat-select-placeholder {
   font-size: 12px;
 }
 
+.loc-input .mat-select-value-text{
+    font-size:12px !important;
+}
+
+.loc-input .mat-select-underline{
+  display: none;
+}
+
 /* .st0{fill:#A03C3C;}
 .st1{fill:#466432;}
 .st2{fill:#A09632;}

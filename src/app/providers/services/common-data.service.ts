@@ -8,6 +8,7 @@ export class CommonDataService {
 	private stageUrls = [];
   public  plantData = [];
   public plantList =[];
+  public locations =[];
   public reasonCodes = [
       {'code':'A','reason':'Poor germ'},
       {'code':'B','reason':'Pest issue'},
