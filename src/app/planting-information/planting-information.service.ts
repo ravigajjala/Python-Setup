@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
-import { DUMMY_DATA1, DUMMY_DATA2 } from './../../dummy';
-import { PlantInfo, PlugTrayInfo, PlantingInfo } from './../classes/plantInfo.class';
+import { Router } from '@angular/router';
+import { Http, RequestOptions, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+
+
+import { Plant } from './plant';
 
 @Injectable()
-export class CommonDataService {
-	private currentStage;
-	private stageUrls = [];
-  public  plantData = [];
-  public plantList =[];
-  public locations =[];
-  public reasonCodes = [
-      {'code':'A','reason':'Poor germ'},
-      {'code':'B','reason':'Pest issue'},
-      {'code':'C','reason':'irrigation problems'},
-      {'code':'D','reason':'Disease'},
-      {'code':'E','reason':'Excess'},
-      {'code':'F','reason':'Fell/Dropped'},
-      {'code':'G','reason':'Other/Act Of God'},
-    ];;
-  private plant_varieties = [{
+export class PlantingInformationService {
+    private headers = new Headers({ 'Content-Type': 'application/json' });
+    private options = new RequestOptions({ headers: this.headers });
+    private plant_varieties = [{
         'name': 'Better Boy Tomato',
         'icon': 'tomato-bboy'
     }, {
@@ -78,36 +72,27 @@ export class CommonDataService {
     }, {
         'name': 'Egg Plant',
         'icon': 'eggplant'
-    }];;
+    }];
 
-  constructor() { 
-  	this.currentStage = 0;
-  	this.stageUrls = ['app-plug-tray-information','app-planting-information','app-receiving-from-other-stations','app-ship-to-other-stations','app-total-salable','app-store-delivery','app-master-view'];
-  }
+    constructor(private http: Http, public router: Router) {
+    }
 
-  setStage(value:number){
-  	this.currentStage = value;
-  }
+    createPlants(): Observable<Plant[]> {
+        return this.http.post('/plants/create', this.plant_varieties, this.options)
+            .map(res => {
+            })
+            .catch(err => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
 
-  getStage():number{
-  	return this.currentStage;
-  }
-
-  getStageUrls(){
-  	return this.stageUrls;
-  }
-
-  /**
-   * [getTotalOfColumn - return total of the given key for input object array]
-   * @param {[type]} array [the array for which the key is present]
-   * @param {[type]} key   [the key for which the totak is to be calculated]
-   */
-  getTotalOfColumn(array,key){
-    let total = array.reduce(function(a,b){
-      return a + b[key]
-    },0);
-    return total;
-  }
-
-
+    getPlants(): Observable<Plant[]> {
+        return this.http.get('/plants/get')
+            .map(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
 }

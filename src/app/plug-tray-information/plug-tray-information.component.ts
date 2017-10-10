@@ -1,11 +1,10 @@
-import { DUMMY_DATA1, DUMMY_DATA2 } from './../dummy';
-import { Component, OnInit, AfterViewInit, Renderer2, ElementRef,Inject, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA, MdAutocompleteTrigger } from '@angular/material';
+import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, Inject, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { MdAutocompleteTrigger } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
-import {CommonDataService} from '../providers/services/common-data.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { AppSharedService } from '../providers/services/app-shared.service';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
@@ -15,61 +14,62 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./plug-tray-information.component.scss']
 })
 export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
-
-  constructor(
-    private renderer: Renderer2,
-    private el: ElementRef,
-    public dialog: MdDialog,
-    public commonData: CommonDataService,
-    public router:Router
-  ) { 
-
-    this.myControl = new FormControl();
-    this.varietyControl = new FormControl();
-    let i = 0;
-    i = 0;
-    this.optionsData = Object.assign([],this.commonData.plantList);
-  }
-  public locations = [];
   public list = [];
   public heads = [];
+  public reasonCodes = [];
   public optionsData = [];
   public myControl: FormControl;
-  public varietyControl: FormControl;
   public mergeClickBool = false;
-  private isSorted = false;
   public active = 1;
-  public filteredOptions: Observable<any[]>;
-  // public totalFlatsToSale = 0;
+  public greenHousePlants: any[];
+  public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
-  public varietyOptions: any[];
+  public varietyControl: FormControl;
+
+  public options = [
+    {
+      name: 'Hot Banana Pepper'
+    },
+    {
+      name: 'Green Bell Pepper'
+    },
+    {
+      name: 'Jalapeno Pepper'
+    },
+    {
+      name: 'Serrano Pepper'
+    }
+  ];
   private newPlant: any;
-
-  @ViewChild(MdAutocompleteTrigger) trigger;  //get the autocomplete cancel trigger
-
-
-
-  openDialog(currentItem): void {
-    let dialogRef = this.dialog.open(IconDialogComponent, {
-      data: currentItem,
-    });
+  constructor(
+    private appSharedService: AppSharedService,
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private sz: DomSanitizer,
+    public router: Router
+  ) {
+    this.appSharedService.varietyOptions = this.appSharedService.varietyOptions || [];
+    this.myControl = new FormControl();
+    this.varietyControl = new FormControl();
   }
 
+  @ViewChild(MdAutocompleteTrigger) trigger;
 
-
+  getTotalOfColumn(array, key) {
+   const total = array.reduce(function (a, b) {
+      return a + b[key];
+    }, 0);
+    return total;
+  }
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
 
   ngOnInit() {
-
-    //redirect to parent route on reload
-    if(this.commonData.getStage()==0){
-      this.router.navigate(["/"]);
-    }else{
-      console.error('Something went wrong with routing/redirecting');
-    }
+    this.list = [
+      'Plug Tray Information'
+    ];
 
     this.heads = [
       'Plug Flats Received',
@@ -80,76 +80,51 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       'Seed Lot Number'
     ];
 
-    
+    this.reasonCodes = [
+      { 'code': 'A', 'reason': 'Poor germ' },
+      { 'code': 'B', 'reason': 'Pest issue' },
+      { 'code': 'C', 'reason': 'irrigation problems' },
+      { 'code': 'D', 'reason': 'Disease' },
+      { 'code': 'E', 'reason': 'Excess' },
+      { 'code': 'F', 'reason': 'Fell/Dropped' },
+      { 'code': 'G', 'reason': 'Other/Act Of God' },
+    ];
 
-    this.filteredOptions = this.myControl.valueChanges
-      .startWith(null)
-      .map(val => val ? this.filterAddPlant(val) : this.optionsData.slice());
-
-    this.varietyControl.valueChanges
-      .subscribe(
-        val=> {
-          setTimeout(() => {this.varietyOptions = val ? this.filterVariety(val) : this.commonData.plantData}, 0);
-      });
-
+    this.greenHousePlants = this.appSharedService.plants;
 
 
     this.PlugTrayForm = new FormGroup({
       dateReceived: new FormControl(null, Validators.required)
     });
-
-    // this.totalFlatsToSale = this.commonData.getTotalOfColumn(this.commonData.plantData,'pfd');
   }
-
-  sort() {
-    if ( !this.isSorted ) {
-      this.varietyOptions = this.varietyOptions.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
-      this.isSorted = true;
-    }
-    this.varietyOptions = this.varietyOptions.reverse();
-  }
-
-  filter(val: any): any[] {
-    return this.optionsData.filter(option =>
-      option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
-  }
-
 
   displayFn(order): string {
-      this.newPlant = {...order};
-      return null;
+    this.newPlant = { ...order };
+    return null;
   }
 
-/**
- * [addPlant description]
- */
-  addPlant(event,newPlant) {
+  /**
+   * [addPlant description]
+   */
+  addPlant(event, newPlant) {
     if (newPlant) {
-        // newPlant = { ...newPlant, id: this.commonData.plantData.length + 1 };
-        newPlant.id = this.commonData.plantData.length +1;
-        let tempNewPlant = Object.assign({},newPlant);
-        tempNewPlant.plugTray = Object.assign({},newPlant.plugTray);
-        tempNewPlant.plantingInfo = Object.assign({},newPlant.plantingInfo);
-        tempNewPlant.receivingData = Object.assign({},newPlant.receivingData);
-        tempNewPlant.totalSalable = Object.assign({},newPlant.totalSalable);
-        tempNewPlant.shipToData = Object.assign({},newPlant.shipToData);
-        tempNewPlant.shipToData.locationValues = Object.assign([],newPlant.shipToData.locationValues);
-        tempNewPlant.storeDeliveryData = Object.assign({},newPlant.storeDeliveryData);
-        this.commonData.plantData = [
-            ...this.commonData.plantData,
-            tempNewPlant
-        ];
-        this.varietyOptions = [
-            ...this.varietyOptions,
-            tempNewPlant
-        ];
+      const tempNewPlant = Object.assign({}, newPlant);
+      tempNewPlant.plugTray = Object.assign({}, newPlant.plugTray);
+      tempNewPlant.plantingInfo = Object.assign({}, newPlant.plantingInfo);
+      tempNewPlant.receivingData = Object.assign({}, newPlant.receivingData);
+      tempNewPlant.totalSalable = Object.assign({}, newPlant.totalSalable);
+      tempNewPlant.storeDeliveryData = Object.assign({}, newPlant.storeDeliveryData);
+      this.appSharedService.varietyOptions = [
+        ...this.appSharedService.varietyOptions,
+        tempNewPlant
+      ];
     }
     this.trigger.closePanel();
   }
 
   ngAfterViewInit() {
     const scrollElement = this.el.nativeElement.querySelector('.right-scroll');
-    const theadElement =  this.el.nativeElement.querySelector('table thead');
+    const theadElement = this.el.nativeElement.querySelector('table thead');
     if (scrollElement) {
       this.renderer.listen(scrollElement, 'scroll', (evt) => {
       });
@@ -160,22 +135,19 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * [filter values for variety inpiut]
    * @param  {any}   val [user input value]
    */
-    filterVariety(val:any):any[] {
-      return this.commonData.plantData.filter(option =>
-        option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
-    }
-  
+  filterVariety(val: any): any[] {
+    return this.appSharedService.varietyOptions.filter(option =>
+      option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
+  }
 
   /**
  * [filter values for add plant autocomplete]
  * @param  {any}   val [user input value]
  */
   filterAddPlant(val: any): any[] {
-    if(val && typeof val === 'string'){
+    if (val && typeof val === 'string') {
       return this.optionsData.filter(option =>
-      option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
+        option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
     }
   }
 }
-
-

@@ -12,3 +12,11 @@ class Plants(ndb.Model):
 class Locations(ndb.Model):
     city = ndb.StringProperty()
     state = ndb.StringProperty()
+
+class Users(ndb.Model):
+    name = ndb.StringProperty()
+    city = ndb.StringProperty()
+    state = ndb.StringProperty()
+    email = ndb.StringProperty()
+    code = ndb.StringProperty()
+

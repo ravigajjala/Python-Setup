@@ -9,6 +9,9 @@ handlers:
 - url: /locations/.*
   script: bonnie_locations.app
 
+- url: /users/.*
+  script: bonnie_users.app
+
 - url: /favicon.ico
   static_files: dist/favicon.ico
   upload: dist/assets/favicon.ico

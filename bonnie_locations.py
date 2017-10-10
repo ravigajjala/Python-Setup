@@ -29,6 +29,19 @@ class GetLocations(APIRequest):
         except Exception as e:
             logging.info(e)
 
+class CreateLocationsDatabase(APIRequest):
+    def post(self):
+        try:
+            locations = json.loads(self.request.body)
+            for location in locations:
+                logging.info(location)
+                final_locations = models.Locations(
+                    city=location['city'], state=location['state'])
+                final_locations.put()
+        except Exception as e:
+            logging.error(e)
+
 app = webapp2.WSGIApplication([
-    ('/locations/get', GetLocations)
+    ('/locations/get', GetLocations),
+    ('/locations/create', CreateLocationsDatabase)
 ], debug=True)

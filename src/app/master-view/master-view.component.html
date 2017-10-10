@@ -1,7 +1,7 @@
 <div class="right-scroll">
   
   <!-- START: Master View -->
-  <table *ngIf="active == 7" class="table_six table-width">
+  <table class="table_six table-width">
     <thead>
     <tr>
       <td>
@@ -17,7 +17,7 @@
             <md-button-toggle value="left">
               Type <i class="material-icons">arrow_drop_down</i>
             </md-button-toggle>
-            <md-button-toggle value="center" (click)="sort()">
+            <md-button-toggle value="center" (click)="appSharedService.sort()">
               A-Z <i class="material-icons">arrow_drop_down</i>
             </md-button-toggle>
             <md-button-toggle value="right">
@@ -52,9 +52,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of commonData.plantData" class="form-input-model">
+    <tr *ngFor="let item of appSharedService.varietyOptions" class="form-input-model">
       <td>
-        <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
+        <div [innerHTML]="item['nameHtml']" (click)="appSharedService.openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>
       </td>
       <td class="store-delivery-table-margin">

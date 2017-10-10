@@ -20,30 +20,30 @@ from google.appengine.ext import ndb
 import logging
 import models
 
-class GetPlants(APIRequest):
+class GetUsers(APIRequest):
     def get(self):
         try:
-            plants = models.Plants.query().fetch()
-            plant_varieties = self.to_json(plants)
+            users = models.Users.query().fetch()
+            users = self.to_json(users)
             self.response.headers['Content-Type'] = 'application/json'
-            self.response.out.write(json.dumps(plant_varieties))
+            self.response.out.write(json.dumps(users))
         except Exception as e:
             logging.info(e)
 
-class CreatePlantsDatabase(APIRequest):
+class CreateUser(APIRequest):
     def post(self):
         try:
-            plant_varieties = json.loads(self.request.body)
-            for plant_variety in plant_varieties:
-                logging.info(plant_variety)
-                plants = models.Plants(
-                    name=plant_variety['name'], icon=plant_variety['icon'])
-                plants.put()
+            users = json.loads(self.request.body)
+            for user in users:
+                logging.info(user)
+                final_users = models.Users(
+                    name=user['name'], city=user['city'], state=user['state'], email=user['email'], code=user['code'])
+                logging.info(final_users)
+                final_users.put()
         except Exception as e:
             logging.error(e)
 
-
 app = webapp2.WSGIApplication([
-    ('/plants/get', GetPlants),
-    ('/plants/create', CreatePlantsDatabase)
+    ('/users/get', GetUsers),
+    ('/users/create', CreateUser)
 ], debug=True)

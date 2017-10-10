@@ -7,7 +7,6 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Roboto', 'sans-serif';
-  outline: none;
 }
 .mat-select-underline {
     background-color: rgba(0, 0, 0, 0.14);
@@ -82,14 +81,6 @@ table tbody td md-select .mat-select-trigger {
 
 table tbody td md-select .mat-select-trigger .mat-select-placeholder {
   font-size: 12px;
-}
-
-.loc-input .mat-select-value-text{
-    font-size:12px !important;
-}
-
-.loc-input .mat-select-underline{
-  display: none;
 }
 
 /* .st0{fill:#A03C3C;}

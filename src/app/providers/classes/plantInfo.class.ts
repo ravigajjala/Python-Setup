@@ -1,41 +1,40 @@
-export class PlantInfo{
-	'id':string;
-	'name':string;
-	'icon':string;
-	'plugTray': PlugTrayInfo;
-	'plantingInformation' : PlantingInfo;
-	'shipToData': ShipToInfo;
+export class PlantInfo {
+	id: string;
+	name: string;
+	icon: string;
+	plugTray: PlugTrayInfo;
+	plantingInformation: PlantingInfo;
 }
 
-export class PlugTrayInfo{
-	'plugFlatsReceived': number;
-	'dateReceived': Date;
-	'plugFlatsPlotted': number;
-	'plugFlatsDiscarded': number;
-	'reasonsCode': string;
-	'seedLotNumber': number;
+export class PlugTrayInfo {
+	plugFlatsReceived: number;
+	dateReceived: Date;
+	plugFlatsPlotted: number;
+	plugFlatsDiscarded: number;
+	reasonsCode: string;
+	seedLotNumber: number;
 }
 
-export class PlantingInfo{
-	'seedLotNumber': number;
-	'plugFlatsPlotted': number;
-	'finishedTrays': string;
-	'locatorNumber': number;
-	'pottedDate': Date;
-	'houseBay': string;
+export class PlantingInfo {
+	seedLotNumber: number;
+	plugFlatsPlotted: number;
+	finishedTrays: string;
+	locatorNumber: number;
+	pottedDate: Date;
+	houseBay: string;
 }
 
-export class ReceivingInfo{
-	'houseBay':string;
-	'quantity': number;
-	'locator': string;
-	'discarded': number;
-	'reasonCode':string;
+export class ReceivingInfo {
+	houseBay: string;
+	quantity: number;
+	locator: string;
+	discarded: number;
+	reasonCode: string;
 }
 
 export class SalableInfo {
-	'discarded': number;
-	'reasonCode': string;
+	discarded: number;
+	reasonCode: string;
 }
 
 export class AppStoreDelivery {
@@ -46,12 +45,23 @@ export class AppStoreDelivery {
     'check':boolean;
 }
 
-export class ShipToInfo {
-	'locationValues':any[];
-}
 
 export class Location {
-    id: string;
-    city: string;
-    state: string;
+	id: string;
+	city: string;
+	state: string;
+}
+
+export class Plant {
+	id: string;
+	name: string;
+	icon: string;
+}
+
+export class User {
+	id: string;
+	name: string;
+	city: string;
+	state: string;
+	email: string;
 }

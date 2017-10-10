@@ -1,64 +1,64 @@
 <div class="left-panel">
   <div class="top-section">
-  <div>
-    <h4 class="pg-title inline-blk">Bonnie Audit Trail</h4>
+    <div>
+      <h4 class="pg-title inline-blk">Bonnie Audit Trail</h4>
 
 
-    <span md-button [mdMenuTriggerFor]="menu" class="setting-icon"><i class="material-icons valign_middle">settings</i></span>
-    <md-menu #menu="mdMenu">
-      <button md-menu-item class="setting-menu-item logged-in-user"><div>Logged In as <br>(..@scotts.com)</div></button>
-      <button md-menu-item class="setting-menu-item" (click)="openManageUserDialog(null)">Manage Users</button>
-      <button md-menu-item class="setting-menu-item" (click)="openManageGreenHouseDialog(null)">Manage Greenhouse/Stations</button>
-      <button md-menu-item class="setting-menu-item" (click)="openManagePlugCatalogDialog(null)">Manage Plug Catalog</button>
-      <button md-menu-item class="setting-menu-item" (click)="loginService.logout()">Logout</button>
-    </md-menu>
+      <span md-button [mdMenuTriggerFor]="menu" class="setting-icon"><i class="material-icons valign_middle">settings</i></span>
+      <md-menu #menu="mdMenu">
+        <button md-menu-item class="setting-menu-item logged-in-user"><div>Logged In as <br>(..@scotts.com)</div></button>
+        <button md-menu-item class="setting-menu-item">Manage Users</button>
+        <button md-menu-item class="setting-menu-item">Manage Greenhouse/Stations</button>
+        <button md-menu-item class="setting-menu-item">Manage Plug Catalog</button>
+        <button md-menu-item class="setting-menu-item" (click)="loginService.logout()">Logout</button>
+      </md-menu>
 
     </div>
     <md-select placeholder="Location" [(ngModel)]="locationId" name="location" class="input-white sec1-select">
-      <md-option *ngFor="let location of commonData.locations" [value]="location">
+      <md-option *ngFor="let location of locations" [value]="location">
         {{location.city}}, {{location.state}}
       </md-option>
     </md-select>
   </div>
   <md-list>
-    <div [ngClass]="{'active':active==1}">
-      <md-list-item style="cursor: pointer;" (click)="updateStage(1)">
+    <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }" [routerLink]="['/app-organic-tracker-sheet/app-plug-tray-information']">
+      <md-list-item style="cursor: pointer;">
         <p md-line class="menu-item">Plug tray information</p>
       </md-list-item>
       <md-divider></md-divider>
     </div>
-    <div [ngClass]="{'active':active=='2'}">
-      <md-list-item style="cursor: pointer;" (click)="updateStage(2)">
+    <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-planting-information' }" [routerLink]="['/app-organic-tracker-sheet/app-planting-information']">
+      <md-list-item style="cursor: pointer;">
         <p md-line class="menu-item">Planting information</p>
       </md-list-item>
       <md-divider></md-divider>
     </div>
-    <div [ngClass]="{'active':active=='3'}">
-      <md-list-item style="cursor: pointer;" (click)="updateStage(3)">
+    <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-receiving-from-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-receiving-from-other-stations']">
+      <md-list-item style="cursor: pointer;">
         <p md-line class="menu-item">Receiving</p>
       </md-list-item>
       <md-divider></md-divider>
     </div>
-    <div [ngClass]="{'active':active=='4'}">
-      <md-list-item style="cursor: pointer;" (click)="updateStage(4)">
+    <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-ship-to-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-ship-to-other-stations']">
+      <md-list-item style="cursor: pointer;">
         <p md-line class="menu-item">Ship to</p>
       </md-list-item>
       <md-divider></md-divider>
     </div>
-    <div [ngClass]="{'active':active=='5'}">
-      <md-list-item style="cursor: pointer;" (click)="updateStage(5)">
+    <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-total-salable' }" [routerLink]="['/app-organic-tracker-sheet/app-total-salable']">
+      <md-list-item style="cursor: pointer;">
         <p md-line class="menu-item">Total salable</p>
       </md-list-item>
       <md-divider></md-divider>
     </div>
-    <div [ngClass]="{'active':active=='6'}">
-      <md-list-item style="cursor: pointer;" (click)="updateStage(6)">
+    <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-store-delivery' }" [routerLink]="['/app-organic-tracker-sheet/app-store-delivery']">
+      <md-list-item style="cursor: pointer;">
         <p md-line class="menu-item">To store delivery/balance</p>
       </md-list-item>
       <md-divider></md-divider>
     </div>
-    <div [ngClass]="{'active':active=='7'}">
-      <md-list-item style="cursor: pointer;" (click)="updateStage(7)">
+    <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-master-view' }" [routerLink]="['/app-organic-tracker-sheet/app-master-view']">
+      <md-list-item style="cursor: pointer;">
         <p md-line class="menu-item">Master view</p>
       </md-list-item>
       <md-divider></md-divider>
@@ -75,4 +75,3 @@
 </div>
 
 <router-outlet></router-outlet>
-  

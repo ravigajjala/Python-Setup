@@ -23,7 +23,7 @@
             <md-button-toggle value="left">
               Type <i class="material-icons">arrow_drop_down</i>
             </md-button-toggle>
-            <md-button-toggle value="center" (click)="sort()">
+            <md-button-toggle value="center" (click)="appSharedService.sort()">
               A-Z <i class="material-icons">arrow_drop_down</i>
             </md-button-toggle>
             <md-button-toggle value="right">
@@ -40,9 +40,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of commonData.plantData" class="form-input-model">
+    <tr *ngFor="let item of appSharedService.varietyOptions" class="form-input-model" [ngClass]="{'disabled-row':item.shipped}">
       <td>
-        <div [innerHTML]="item['nameHtml']" (click)="openDialog(item)" class="icon-box"></div>
+        <div [innerHTML]="item['nameHtml']" (click)="appSharedService.openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>
       </td>
       <td>
@@ -57,31 +57,29 @@
       <td>
         <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
-      <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+5]}">
-        <input mdInput name="stchi" [(ngModel)]="item.shipToData.locationValues[ind]" [disabled]="disabledColumns[ind+5]" (blur)="getTotalOfColumn(ind)">
+      <td>
+        <input mdInput name="stchi" [(ngModel)]="item.stchi" [disabled]="item.shipped">
       </td>
-      <!-- <td [ngClass]="{'disabled-row':disabledColumns[6]}">
-        <input mdInput name="stmin" [(ngModel)]="item.stmin" [disabled]="disabledColumns[6]">
+      <td>
+        <input mdInput name="stmin" [(ngModel)]="item.stmin" [disabled]="item.shipped">
       </td>
-      <td [ngClass]="{'disabled-row':disabledColumns[7]}">
-        <input mdInput name="stdes" [(ngModel)]="item.stdes" [disabled]="disabledColumns[7]">
+      <td>
+        <input mdInput name="stdes" [(ngModel)]="item.stdes" [disabled]="item.shipped">
       </td>
-      <td [ngClass]="{'disabled-row':disabledColumns[8]}">
-        <input mdInput name="stmil" [(ngModel)]="item.stmil" [disabled]="disabledColumns[8]">
+      <td>
+        <input mdInput name="stmil" [(ngModel)]="item.stmil" [disabled]="item.shipped">
       </td>
-      <td [ngClass]="{'disabled-row':disabledColumns[9]}">
-        <input mdInput name="ststl" [(ngModel)]="item.ststl" [disabled]="disabledColumns[9]">
-      </td> -->
+      <td>
+        <input mdInput name="ststl" [(ngModel)]="item.ststl" [disabled]="item.shipped">
+      </td>
       <td></td>
-      <!-- <td class="add-neg-ship">
+      <td class="add-neg-ship">
         <button md-raised-button color="primary" *ngIf="!item.shipped" (click)="shipPlant(item)">SHIP</button>
         <button md-raised-button color="basic" *ngIf="item.shipped" (click)="cancelShip(item)">CANCEL SHIP</button>
-      </td> -->
+      </td>
     </tr>
-    <tr class="disabled-row">
+    <tr>
       <td>Total</td>
-      <td *ngFor="let val of totalOfLocation">{{val}}</td>
-      <!-- <td></td>
       <td></td>
       <td></td>
       <td></td>
@@ -89,7 +87,9 @@
       <td></td>
       <td></td>
       <td></td>
-      <td></td> -->
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>
@@ -106,11 +106,21 @@
       <td>
 
       </td>
-      <td *ngFor="let shipbtn of [5,6,7,8,9]">
-        <button md-raised-button color="primary" *ngIf="!disabledColumns[shipbtn]" (click)="shipColumn(shipbtn)">Ship</button>
-        <button md-raised-button color="basic" *ngIf="disabledColumns[shipbtn]" (click)="cancelShip(shipbtn)">CANCEL SHIP</button>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
       </td>
-      
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary">Ship</button>
+      </td>
     </tr>
     </tbody>
   </table>

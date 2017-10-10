@@ -11,6 +11,8 @@ import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, Md
 
 import { HttpModule } from '@angular/http';
 
+import { PlantingInformationService } from './planting-information/planting-information.service';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { OrganicTrackerSheetComponent } from './organic-tracker-sheet/organic-tracker-sheet.component';
@@ -22,11 +24,7 @@ import { StoreDeliveryComponent } from './store-delivery/store-delivery.componen
 import { MasterViewComponent } from './master-view/master-view.component';
 import { ReceivingFromOtherStationsComponent } from './receiving-from-other-stations/receiving-from-other-stations.component';
 import { ShipToOtherStationsComponent } from './ship-to-other-stations/ship-to-other-stations.component';
-import { CommonDataService} from './providers/services/common-data.service';
-import { ApiService } from './providers/services/api.service';
-import { ManageUsersComponent } from './manage-users/manage-users.component';
-import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
-import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
+import { AppSharedService } from './providers/services/app-shared.service';
 
 const appRoutes: Routes = [
   {
@@ -67,10 +65,7 @@ const appRoutes: Routes = [
     StoreDeliveryComponent,
     MasterViewComponent,
     ReceivingFromOtherStationsComponent,
-    ShipToOtherStationsComponent,
-    ManageUsersComponent,
-    ManageGreenHouseComponent,
-    ManagePlugCatalogComponent
+    ShipToOtherStationsComponent
   ],
   imports: [
     BrowserModule,
@@ -98,10 +93,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent],
   entryComponents: [
     IconDialogComponent,
-    ManageUsersComponent,
-    ManageGreenHouseComponent,
-    ManagePlugCatalogComponent
   ],
-  providers: [CommonDataService, ApiService]
+  providers: [PlantingInformationService, AppSharedService]
 })
 export class AppModule { }
