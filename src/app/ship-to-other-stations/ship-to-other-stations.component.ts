@@ -63,6 +63,11 @@ export class ShipToOtherStationsComponent implements OnInit {
     this.showAC = false;
   }
 
+  removeShipToLoc(index) {
+    this.locationNames.splice(index, 1);
+    this.totalOfLocation.splice(index + 5, 1);
+  }
+
   openACPanel() {
     this.showAC = true;
     this.trigger.openPanel();

@@ -37,12 +37,12 @@
         <!-- <span *ngIf="head.icon=='cross'"><i class="material-icons valign_middle">clear</i>{{head.name}}</span>
         <span *ngIf="head.icon=='add'"><i class="material-icons valign_middle">add_circle</i>{{head.name}}</span> -->
       </td>
-      <td *ngFor="let head of locationNames">
-        <span><i class="material-icons valign_middle">clear</i>{{head}}</span>
+      <td *ngFor="let head of locationNames;let ind= index">
+        <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)">clear</i>{{head}}</span>
       </td>
       <td>
-        <span *ngIf="!showAC" (click)="openACPanel()"><i class="material-icons valign_middle">add_circle</i>Ship TO</span>
-        <div *ngIf="showAC">
+        <span (click)="openACPanel()"><i class="material-icons valign_middle">add_circle</i>Ship TO</span>
+        <div *ngIf="showAC" class="auto-comp-cont">
           <md-form-field>
             <input #locAC type="text" mdInput [(ngModel)]="newCity" placeholder="Enter location" [mdAutocomplete]="plant">
             {{locAC.focus()}}
