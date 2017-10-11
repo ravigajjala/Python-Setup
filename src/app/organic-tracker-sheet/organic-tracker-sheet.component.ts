@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { AppSharedService } from '../providers/services/app-shared.service';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {ManageUsersComponent} from '../manage-users/manage-users.component';
+import {ManageGreenHouseComponent} from '../manage-green-house/manage-green-house.component';
+import {ManagePlugCatalogComponent} from '../manage-plug-catalog/manage-plug-catalog.component';
+
 
 import { Router } from '@angular/router';
 
@@ -21,6 +26,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   constructor(
     public loginService: LoginService,
     private appSharedService: AppSharedService,
+    public dialog: MdDialog,
     public router: Router
   ) {
   }
@@ -53,6 +59,24 @@ export class OrganicTrackerSheetComponent implements OnInit {
         console.log('Unable to retrive green house users list');
       }
     );
+  }
+
+  openManageUserDialog(currentUsers): void {
+    let dialogRef = this.dialog.open(ManageUsersComponent, {
+      data: currentUsers,
+    });
+  }
+
+  openManageGreenHouseDialog(currentGreenHouse): void {
+    let dialogRef = this.dialog.open(ManageGreenHouseComponent, {
+      data: currentGreenHouse,
+    });
+  }
+
+  openManagePlugCatalogDialog(currentPlugCatalog): void {
+    let dialogRef = this.dialog.open(ManagePlugCatalogComponent, {
+      data: currentPlugCatalog,
+    });
   }
 }
 

@@ -1,7 +1,7 @@
 <div class="right-scroll">
 
   <!-- START: Ship To -->
-  <table *ngIf="active == 4" class="table_four table-width">
+  <table class="table_four table-width">
     <thead>
     <tr>
       <td>
@@ -40,7 +40,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of appSharedService.varietyOptions" class="form-input-model" [ngClass]="{'disabled-row':item.shipped}">
+    <tr *ngFor="let item of appSharedService.varietyOptions" class="form-input-model">
       <td>
         <div [innerHTML]="item['nameHtml']" (click)="appSharedService.openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>
@@ -57,39 +57,14 @@
       <td>
         <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
-      <td>
-        <input mdInput name="stchi" [(ngModel)]="item.stchi" [disabled]="item.shipped">
-      </td>
-      <td>
-        <input mdInput name="stmin" [(ngModel)]="item.stmin" [disabled]="item.shipped">
-      </td>
-      <td>
-        <input mdInput name="stdes" [(ngModel)]="item.stdes" [disabled]="item.shipped">
-      </td>
-      <td>
-        <input mdInput name="stmil" [(ngModel)]="item.stmil" [disabled]="item.shipped">
-      </td>
-      <td>
-        <input mdInput name="ststl" [(ngModel)]="item.ststl" [disabled]="item.shipped">
+      <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+5]}">
+        <input mdInput name="stchi" [(ngModel)]="item.shipToData.locationValues[ind]" [disabled]="disabledColumns[ind+5]" (blur)="getTotalOfColumn(ind)">
       </td>
       <td></td>
-      <td class="add-neg-ship">
-        <button md-raised-button color="primary" *ngIf="!item.shipped" (click)="shipPlant(item)">SHIP</button>
-        <button md-raised-button color="basic" *ngIf="item.shipped" (click)="cancelShip(item)">CANCEL SHIP</button>
-      </td>
     </tr>
-    <tr>
+    <tr class="disabled-row">
       <td>Total</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td *ngFor="let val of totalOfLocation">{{val}}</td>     
     </tr>
     <tr>
       <td>
@@ -106,24 +81,13 @@
       <td>
 
       </td>
-      <td>
-        <button md-raised-button color="primary">Ship</button>
-      </td>
-      <td>
-        <button md-raised-button color="primary">Ship</button>
-      </td>
-      <td>
-        <button md-raised-button color="primary">Ship</button>
-      </td>
-      <td>
-        <button md-raised-button color="primary">Ship</button>
-      </td>
-      <td>
-        <button md-raised-button color="primary">Ship</button>
+      <td *ngFor="let shipbtn of [5,6,7,8,9]">
+        <button md-raised-button color="primary" *ngIf="!disabledColumns[shipbtn]" (click)="shipColumn(shipbtn)">Ship</button>
+        <button md-raised-button color="basic" *ngIf="disabledColumns[shipbtn]" (click)="cancelShip(shipbtn)">CANCEL SHIP</button>
       </td>
     </tr>
     </tbody>
   </table>
   <!-- END: Ship To -->
   
-  </div>
+</div>

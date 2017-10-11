@@ -25,6 +25,10 @@ import { MasterViewComponent } from './master-view/master-view.component';
 import { ReceivingFromOtherStationsComponent } from './receiving-from-other-stations/receiving-from-other-stations.component';
 import { ShipToOtherStationsComponent } from './ship-to-other-stations/ship-to-other-stations.component';
 import { AppSharedService } from './providers/services/app-shared.service';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
+import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
+
 
 const appRoutes: Routes = [
   {
@@ -65,7 +69,10 @@ const appRoutes: Routes = [
     StoreDeliveryComponent,
     MasterViewComponent,
     ReceivingFromOtherStationsComponent,
-    ShipToOtherStationsComponent
+    ShipToOtherStationsComponent,
+    ManageUsersComponent,
+    ManageGreenHouseComponent,
+    ManagePlugCatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +100,9 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent],
   entryComponents: [
     IconDialogComponent,
+    ManageUsersComponent,
+    ManageGreenHouseComponent,
+    ManagePlugCatalogComponent
   ],
   providers: [PlantingInformationService, AppSharedService]
 })
