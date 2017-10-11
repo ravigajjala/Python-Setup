@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MatAutocompleteTrigger } from '@angular/material';
 import { IconDialogComponent } from '../icon-dialog/icon-dialog.component';
 import { CommonDataService } from '../providers/services/common-data.service';
 import { NgZone } from '@angular/core';
@@ -21,6 +21,10 @@ export class ShipToOtherStationsComponent implements OnInit {
   public disabledColumns = [];
   public totalOfLocation = [, , , , 0, 0, 0, 0, 0];
   public locationNames = ['Chicago', 'Minneapolis', 'Des Moines', 'Milwaukee', 'St.Louis'];
+  public showAC = false;
+  public newCity = '';
+
+  @ViewChild(MatAutocompleteTrigger) trigger: MatAutocompleteTrigger;
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
@@ -45,17 +49,23 @@ export class ShipToOtherStationsComponent implements OnInit {
 
 
 
-
-
   openDialog(currentItem): void {
     const dialogRef = this.dialog.open(IconDialogComponent, {
       data: currentItem,
     });
   }
 
-  addShipToLoc(newlocation) {
-    this.locationNames.push(newlocation);
+  addShipToLoc(event, newlocation) {
+    this.locationNames.push(newlocation.city);
     this.totalOfLocation.push(0);
+    this.newCity = '';
+    this.trigger.closePanel();
+    this.showAC = false;
+  }
+
+  openACPanel() {
+    this.showAC = true;
+    this.trigger.openPanel();
   }
 
   sort() {

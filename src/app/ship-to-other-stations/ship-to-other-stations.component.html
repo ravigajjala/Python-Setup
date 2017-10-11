@@ -41,7 +41,18 @@
         <span><i class="material-icons valign_middle">clear</i>{{head}}</span>
       </td>
       <td>
-        <span (click)="addShipToLoc('Chicago')"><i class="material-icons valign_middle">add_circle</i>Ship To</span>
+        <span *ngIf="!showAC" (click)="openACPanel()"><i class="material-icons valign_middle">add_circle</i>Ship TO</span>
+        <div *ngIf="showAC">
+          <md-form-field>
+            <input #locAC type="text" mdInput [(ngModel)]="newCity" placeholder="Enter location" [mdAutocomplete]="plant">
+            {{locAC.focus()}}
+          </md-form-field>
+          <md-autocomplete #plant="mdAutocomplete" [displayWith]="displayFn">
+            <md-option *ngFor="let option of commonData.locations" [value]="option.city" (onSelectionChange)="addShipToLoc($event, option)">
+              {{ option.city }}
+            </md-option>
+          </md-autocomplete>
+        </div>
       </td>
     </tr>
     </thead>
