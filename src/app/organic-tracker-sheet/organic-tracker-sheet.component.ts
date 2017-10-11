@@ -9,7 +9,8 @@ import {ApiService} from '../providers/services/api.service';
 import {ManageUsersComponent} from '../manage-users/manage-users.component';
 import {ManageGreenHouseComponent} from '../manage-green-house/manage-green-house.component';
 import {ManagePlugCatalogComponent} from '../manage-plug-catalog/manage-plug-catalog.component';
-import { PlantInfo, PlugTrayInfo, PlantingInfo, ReceivingInfo, SalableInfo, AppStoreDelivery, ShipToInfo } from './../providers/classes/plantInfo.class';
+import { PlantInfo, PlugTrayInfo, PlantingInfo,
+   ReceivingInfo, SalableInfo, AppStoreDelivery, ShipToInfo } from './../providers/classes/plantInfo.class';
 
 import { Router } from '@angular/router';
 
@@ -31,13 +32,13 @@ export class OrganicTrackerSheetComponent implements OnInit {
     private commonData: CommonDataService,
     private apiService: ApiService,
     public dialog: MdDialog,
-    public router:Router
+    public router: Router
   ) {
 
     this.myControl = new FormControl();
     let i = 0;
     this.data2 = DUMMY_DATA1.map((d,index) => {
-      //create each plantInfo Object
+      // create each plantInfo Object
       this.commonData.plantList[index] = new PlantInfo();
       this.commonData.plantList[index].name = d.name;
       this.commonData.plantList[index].id = d.id;

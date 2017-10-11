@@ -33,9 +33,15 @@
         </div>
       </td>
       <td *ngFor="let head of heads4">
-        <span *ngIf="head.icon=='down'"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
-        <span *ngIf="head.icon=='cross'"><i class="material-icons valign_middle">clear</i>{{head.name}}</span>
-        <span *ngIf="head.icon=='add'"><i class="material-icons valign_middle">add_circle</i>{{head.name}}</span>
+        <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
+        <!-- <span *ngIf="head.icon=='cross'"><i class="material-icons valign_middle">clear</i>{{head.name}}</span>
+        <span *ngIf="head.icon=='add'"><i class="material-icons valign_middle">add_circle</i>{{head.name}}</span> -->
+      </td>
+      <td *ngFor="let head of locationNames">
+        <span><i class="material-icons valign_middle">clear</i>{{head}}</span>
+      </td>
+      <td>
+        <span (click)="addShipToLoc('Chicago')"><i class="material-icons valign_middle">add_circle</i>Ship To</span>
       </td>
     </tr>
     </thead>
@@ -106,9 +112,9 @@
       <td>
 
       </td>
-      <td *ngFor="let shipbtn of [5,6,7,8,9]">
-        <button md-raised-button color="primary" *ngIf="!disabledColumns[shipbtn]" (click)="shipColumn(shipbtn)">Ship</button>
-        <button md-raised-button color="basic" *ngIf="disabledColumns[shipbtn]" (click)="cancelShip(shipbtn)">CANCEL SHIP</button>
+      <td *ngFor="let shipbtn of locationNames;let i=index">
+        <button md-raised-button color="primary" *ngIf="!disabledColumns[i+5]" (click)="shipColumn(shipbtn)">Ship</button>
+        <button md-raised-button color="basic" *ngIf="disabledColumns[i+5]" (click)="cancelShip(shipbtn)">CANCEL SHIP</button>
       </td>
       
     </tr>

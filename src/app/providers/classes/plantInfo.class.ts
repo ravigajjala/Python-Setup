@@ -1,13 +1,14 @@
-export class PlantInfo{
-	'id':string;
-	'name':string;
-	'icon':string;
+export class PlantInfo {
+	'id': string;
+	'name': string;
+	'icon': string;
 	'plugTray': PlugTrayInfo;
-	'plantingInformation' : PlantingInfo;
+	'plantingInformation': PlantingInfo;
 	'shipToData': ShipToInfo;
+	'temp': string;
 }
 
-export class PlugTrayInfo{
+export class PlugTrayInfo {
 	'plugFlatsReceived': number;
 	'dateReceived': Date;
 	'plugFlatsPlotted': number;
@@ -16,7 +17,7 @@ export class PlugTrayInfo{
 	'seedLotNumber': number;
 }
 
-export class PlantingInfo{
+export class PlantingInfo {
 	'seedLotNumber': number;
 	'plugFlatsPlotted': number;
 	'finishedTrays': string;
@@ -25,12 +26,12 @@ export class PlantingInfo{
 	'houseBay': string;
 }
 
-export class ReceivingInfo{
-	'houseBay':string;
+export class ReceivingInfo {
+	'houseBay': string;
 	'quantity': number;
 	'locator': string;
 	'discarded': number;
-	'reasonCode':string;
+	'reasonCode': string;
 }
 
 export class SalableInfo {
@@ -39,19 +40,19 @@ export class SalableInfo {
 }
 
 export class AppStoreDelivery {
-    'totalFlatstoSale':number;
-    'routeNumberSale':number[];
-    'discarded':number;
-    'reasonCode':string;
-    'check':boolean;
+	'totalFlatstoSale': number;
+	'routeNumberSale': number[];
+	'discarded': number;
+	'reasonCode': string;
+	'check': boolean;
 }
 
 export class ShipToInfo {
-	'locationValues':any[];
+	'locationValues': any[];
 }
 
 export class Location {
-    id: string;
-    city: string;
-    state: string;
+	id: string;
+	city: string;
+	state: string;
 }
