@@ -12,6 +12,7 @@ import { Location, Plant, User } from '../classes/plantInfo.class';
 
 @Injectable()
 export class AppSharedService {
+    private currentStage;
     public users: User[];
     public locations: Location[];
     public plants: Plant[];
@@ -672,5 +673,21 @@ export class AppSharedService {
         const dialogRef = this.dialog.open(IconDialogComponent, {
             data: currentItem
         });
+    }
+
+    getStage(): number {
+        return this.currentStage;
+    }
+
+    /**
+     * [getTotalOfColumn - return total of the given key for input object array]
+     * @param {[type]} array [the array for which the key is present]
+     * @param {[type]} key   [the key for which the totak is to be calculated]
+     */
+    getTotalOfColumn(array, key) {
+        let total = array.reduce(function (a, b) {
+            return a + b[key]
+        }, 0);
+        return total;
     }
 }
