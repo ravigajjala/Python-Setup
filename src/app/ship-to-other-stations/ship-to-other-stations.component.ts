@@ -19,8 +19,8 @@ export class ShipToOtherStationsComponent implements OnInit {
   private isSorted = false;
   public active = 4;
   public disabledColumns = [];
-  public totalOfLocation = [, , , , 0, 0, 0, 0, 0];
-  public locationNames = ['Chicago', 'Minneapolis', 'Des Moines', 'Milwaukee', 'St.Louis'];
+  public totalOfLocation = [, , , ,];
+  public locationNames = [];
   public showAC = false;
   public newCity = '';
 
