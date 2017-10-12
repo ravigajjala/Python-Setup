@@ -6,7 +6,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, MdAutocompleteModule, MdDatepickerModule, MdListModule, MdInputModule, MdNativeDateModule, MdCheckboxModule} from '@angular/material';
+import {
+  MdButtonModule,
+  MatMenuModule,
+  MdButtonToggleModule,
+  MdSelectModule, MdAutocompleteModule,
+  MdDatepickerModule,
+  MdListModule,
+  MdInputModule,
+  MdNativeDateModule,
+  MdCheckboxModule
+} from '@angular/material';
 
 
 import { HttpModule } from '@angular/http';
@@ -28,6 +38,7 @@ import { AppSharedService } from './providers/services/app-shared.service';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
 import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
+import { APIROOT } from './providers/constants';
 
 
 const appRoutes: Routes = [
@@ -37,17 +48,18 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'app-login', component: LoginComponent },
-  { path: 'app-organic-tracker-sheet', component: OrganicTrackerSheetComponent ,
-    children:[
+  {
+    path: 'app-organic-tracker-sheet', component: OrganicTrackerSheetComponent,
+    children: [
       { path: 'app-plug-tray-information', component: PlugTrayInformationComponent },
       { path: 'app-planting-information', component: PlantingInformationComponent },
       { path: 'app-receiving-from-other-stations', component: ReceivingFromOtherStationsComponent },
       { path: 'app-ship-to-other-stations', component: ShipToOtherStationsComponent },
       { path: 'app-total-salable', component: TotalSalableComponent },
-      { path: 'app-store-delivery', component: StoreDeliveryComponent},
+      { path: 'app-store-delivery', component: StoreDeliveryComponent },
       { path: 'app-master-view', component: MasterViewComponent }
     ]
-   }
+  }
   // {
   //   //redirect default - should always be at last
   //   path: '**',
@@ -104,6 +116,6 @@ const appRoutes: Routes = [
     ManageGreenHouseComponent,
     ManagePlugCatalogComponent
   ],
-  providers: [PlantingInformationService, AppSharedService]
+  providers: [PlantingInformationService, AppSharedService, APIROOT]
 })
 export class AppModule { }

@@ -11,8 +11,8 @@ export class ShipToOtherStationsComponent implements OnInit {
   public heads4 = [];
   public mergeClickBool = false;
   public disabledColumns = [];
-  public totalOfLocation = [,,,,0,0,0,0,0];
-  public locationNames = ['Chicago','Minneapolis','Des Moines','Milwaukee','St.Louis'];
+  public totalOfLocation = [, , , , 0, 0, 0, 0, 0];
+  public locationNames = ['Chicago', 'Minneapolis', 'Des Moines', 'Milwaukee', 'St.Louis'];
 
   constructor(private appSharedService: AppSharedService, private router: Router) { }
 
@@ -36,17 +36,17 @@ export class ShipToOtherStationsComponent implements OnInit {
     ];
   }
 
-  shipColumn(item){
-    this.disabledColumns[item]=true;
+  shipColumn(item) {
+    this.disabledColumns[item] = true;
   }
-  cancelShip(item){
-    this.disabledColumns[item]=false;
+  cancelShip(item) {
+    this.disabledColumns[item] = false;
   }
 
-  getTotalOfColumn(key){
-    this.totalOfLocation[key+4] = this.appSharedService.varietyOptions.reduce(function(a,b){
-       return a + parseInt(b.shipToData.locationValues[key] || 0);
-    },0);
+  getTotalOfColumn(key) {
+    this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
+      return a + parseInt(b.shipToData.locationValues[key] || 0);
+    }, 0);
     console.log(this.totalOfLocation);
   }
 }
