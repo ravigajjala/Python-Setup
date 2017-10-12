@@ -39,7 +39,7 @@
         <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>Ship to {{head}}</span>
       </td>
       <td>
-        <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship TO</span>
+        <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship To</span>
         <div class="auto-comp-cont" *ngIf="shipToClicked">
           <md-form-field>
             <input type="text" mdInput [(ngModel)]="newCity" placeholder="Enter location" [mdAutocomplete]="plant">

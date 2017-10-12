@@ -69,7 +69,8 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   removeShipToLoc(index) {
     this.locationNames.splice(index, 1);
-    this.totalOfLocation.splice(index + 5, 1);
+    this.totalOfLocation.splice(index + 4, 1);
+
   }
 
   shipColumn(item) {
