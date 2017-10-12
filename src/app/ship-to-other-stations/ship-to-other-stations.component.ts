@@ -34,12 +34,6 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.appSharedService.getStage() === 0) {
-      this.router.navigate(['/']);
-    } else {
-      console.error('Something went wrong with routing/redirecting');
-    }
-
     this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;
