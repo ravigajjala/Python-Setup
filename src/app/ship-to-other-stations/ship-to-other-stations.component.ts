@@ -4,6 +4,8 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { IconDialogComponent } from '../icon-dialog/icon-dialog.component';
 import { NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdAutocompleteTrigger } from '@angular/material';
+
 
 @Component({
   selector: 'app-ship-to-other-stations',
@@ -26,6 +28,8 @@ export class ShipToOtherStationsComponent implements OnInit {
   public showAC = false;
   public newCity = '';
   private shipToClicked: boolean;
+
+  @ViewChild(MdAutocompleteTrigger) trigger;
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
@@ -65,12 +69,12 @@ export class ShipToOtherStationsComponent implements OnInit {
     this.totalOfLocation.push(0);
     this.newCity = '';
     this.shipToClicked = false;
+    this.trigger.closePanel();
   }
 
   removeShipToLoc(index) {
     this.locationNames.splice(index, 1);
     this.totalOfLocation.splice(index + 4, 1);
-
   }
 
   shipColumn(item) {
@@ -81,7 +85,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   getTotalOfColumn(key) {
-    this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
+    this.totalOfLocation[key + 4] = this.appSharedService.plantsData.reduce(function (a, b) {
       return a + parseInt(b.shipToData.locationValues[key] || 0);
     }, 0);
   }

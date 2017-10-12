@@ -96,8 +96,8 @@
 
       </td>
       <td *ngFor="let shipbtn of locationNames;let i=index">
-        <button md-raised-button color="primary" *ngIf="!disabledColumns[i+5]" (click)="shipColumn(shipbtn)">Ship</button>
-        <button md-raised-button color="basic" *ngIf="disabledColumns[i+5]" (click)="cancelShip(shipbtn)">CANCEL SHIP</button>
+        <button md-raised-button color="primary" *ngIf="!disabledColumns[i+4]" (click)="shipColumn(i)">Ship</button>
+        <button md-raised-button color="basic" *ngIf="disabledColumns[i+4]" (click)="cancelShip(i)">CANCEL SHIP</button>
       </td>
       
     </tr>
