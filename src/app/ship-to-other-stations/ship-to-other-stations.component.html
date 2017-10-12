@@ -33,9 +33,24 @@
         </div>
       </td>
       <td *ngFor="let head of heads4">
-        <span *ngIf="head.icon=='down'"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
-        <span *ngIf="head.icon=='cross'"><i class="material-icons valign_middle">clear</i>{{head.name}}</span>
-        <span *ngIf="head.icon=='add'"><i class="material-icons valign_middle">add_circle</i>{{head.name}}</span>
+        <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
+      </td>
+      <td *ngFor="let head of locationNames;let ind= index">
+        <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)">clear</i>{{head}}</span>
+      </td>
+      <td>
+        <span (click)="openACPanel()"><i class="material-icons valign_middle">add_circle</i>Ship TO</span>
+        <div *ngIf="showAC" class="auto-comp-cont">
+          <md-form-field>
+            <input #locAC type="text" mdInput [(ngModel)]="newCity" placeholder="Enter location" [mdAutocomplete]="plant">
+            {{locAC.focus()}}
+          </md-form-field>
+          <md-autocomplete #plant="mdAutocomplete" [displayWith]="displayFn">
+            <md-option *ngFor="let location of locations" [value]="location" (onSelectionChange)="addShipToLoc($event, location)">
+              {{location.city}}, {{location.state}}
+            </md-option>
+          </md-autocomplete>
+        </div>
       </td>
     </tr>
     </thead>
@@ -64,7 +79,7 @@
     </tr>
     <tr class="disabled-row">
       <td>Total</td>
-      <td *ngFor="let val of totalOfLocation">{{val}}</td>     
+      <td *ngFor="let val of totalOfLocation">{{val}}</td>
     </tr>
     <tr>
       <td>
@@ -81,10 +96,11 @@
       <td>
 
       </td>
-      <td *ngFor="let shipbtn of [5,6,7,8,9]">
-        <button md-raised-button color="primary" *ngIf="!disabledColumns[shipbtn]" (click)="shipColumn(shipbtn)">Ship</button>
-        <button md-raised-button color="basic" *ngIf="disabledColumns[shipbtn]" (click)="cancelShip(shipbtn)">CANCEL SHIP</button>
+      <td *ngFor="let shipbtn of locationNames;let i=index">
+        <button md-raised-button color="primary" *ngIf="!disabledColumns[i+5]" (click)="shipColumn(shipbtn)">Ship</button>
+        <button md-raised-button color="basic" *ngIf="disabledColumns[i+5]" (click)="cancelShip(shipbtn)">CANCEL SHIP</button>
       </td>
+      
     </tr>
     </tbody>
   </table>
