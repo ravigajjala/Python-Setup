@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MatAutocompleteTrigger } from '@angular/material';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { IconDialogComponent } from '../icon-dialog/icon-dialog.component';
 import { NgZone } from '@angular/core';
 import { Router } from '@angular/router';
@@ -25,15 +25,14 @@ export class ShipToOtherStationsComponent implements OnInit {
   public locations = [];
   public showAC = false;
   public newCity = '';
-
-  @ViewChild(MatAutocompleteTrigger) trigger: MatAutocompleteTrigger;
+  private shipToClicked: boolean;
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
 
   ngOnInit() {
-
+    
     this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;
@@ -65,18 +64,12 @@ export class ShipToOtherStationsComponent implements OnInit {
     this.locationNames.push(newlocation.city);
     this.totalOfLocation.push(0);
     this.newCity = '';
-    this.trigger.closePanel();
-    this.showAC = false;
+    this.shipToClicked = false;
   }
 
   removeShipToLoc(index) {
     this.locationNames.splice(index, 1);
     this.totalOfLocation.splice(index + 5, 1);
-  }
-
-  openACPanel() {
-    this.showAC = true;
-    this.trigger.openPanel();
   }
 
   shipColumn(item) {
@@ -90,8 +83,10 @@ export class ShipToOtherStationsComponent implements OnInit {
     this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
       return a + parseInt(b.shipToData.locationValues[key] || 0);
     }, 0);
-    console.log(this.totalOfLocation);
   }
 
+  enableAutoCompleteSearch() {
+    this.shipToClicked = true;
+  }
 }
 

@@ -36,17 +36,16 @@
         <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
       </td>
       <td *ngFor="let head of locationNames;let ind= index">
-        <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)">clear</i>{{head}}</span>
+        <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>{{head}}</span>
       </td>
       <td>
-        <span (click)="openACPanel()"><i class="material-icons valign_middle">add_circle</i>Ship TO</span>
-        <div *ngIf="showAC" class="auto-comp-cont">
+        <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship TO</span>
+        <div class="auto-comp-cont" *ngIf="shipToClicked">
           <md-form-field>
-            <input #locAC type="text" mdInput [(ngModel)]="newCity" placeholder="Enter location" [mdAutocomplete]="plant">
-            {{locAC.focus()}}
+            <input type="text" mdInput [(ngModel)]="newCity" placeholder="Enter location" [mdAutocomplete]="plant">
           </md-form-field>
           <md-autocomplete #plant="mdAutocomplete" [displayWith]="displayFn">
-            <md-option *ngFor="let location of locations" [value]="location" (onSelectionChange)="addShipToLoc($event, location)">
+            <md-option *ngFor="let location of locations" [value]="location.city" (onSelectionChange)="addShipToLoc($event, location)">
               {{location.city}}, {{location.state}}
             </md-option>
           </md-autocomplete>
@@ -73,7 +72,7 @@
         <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
       <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+5]}">
-        <input mdInput name="stchi" [(ngModel)]="item.shipToData.locationValues[ind]" [disabled]="disabledColumns[ind+5]" (blur)="getTotalOfColumn(ind)">
+        <input mdInput name="stchi" (blur)="getTotalOfColumn(ind)">
       </td>
       <td></td>
     </tr>
