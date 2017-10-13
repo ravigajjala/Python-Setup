@@ -4,7 +4,6 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
 import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
-import {APIROOT} from '../constants';
 import { User, Plant, Location } from '../classes/plantInfo.class';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -592,9 +591,7 @@ export class AppSharedService {
         }
     ];
 
-    constructor(private dialog: MdDialog, private http: Http, public router: Router, private apiroot: APIROOT) { 
-        // this.rootApiLink = this.apiroot.getRelativeLink();
-    }
+    constructor(private dialog: MdDialog, private http: Http, public router: Router) {}
 
     // To get greenhouse locations from datastore
     getLocations(): Observable<Location[]> {

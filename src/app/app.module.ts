@@ -38,8 +38,6 @@ import { AppSharedService } from './providers/services/app-shared.service';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
 import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
-import { APIROOT } from './providers/constants';
-
 
 const appRoutes: Routes = [
   {
@@ -116,6 +114,6 @@ const appRoutes: Routes = [
     ManageGreenHouseComponent,
     ManagePlugCatalogComponent
   ],
-  providers: [PlantingInformationService, AppSharedService, APIROOT]
+  providers: [PlantingInformationService, AppSharedService]
 })
 export class AppModule { }
