@@ -77,7 +77,7 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   getTotalOfColumn(key) {
     this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
-      return a + parseInt(b.shipToData.locationValues[key] || 0);
+      return a + parseInt(b.shipTo.locationValues[key] || 0);
     }, 0);
   }
 
