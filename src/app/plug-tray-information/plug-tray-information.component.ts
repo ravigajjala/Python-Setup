@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { AppSharedService } from '../providers/services/app-shared.service';
+import { ShipTo } from '../providers/classes/plantInfo.class';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
@@ -114,6 +115,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       tempNewPlant.receivingData = Object.assign({}, newPlant.receivingData);
       tempNewPlant.totalSalable = Object.assign({}, newPlant.totalSalable);
       tempNewPlant.storeDeliveryData = Object.assign({}, newPlant.storeDeliveryData);
+      tempNewPlant.shipTo = new ShipTo();
+      tempNewPlant.shipTo.locationValues = [];
       this.appSharedService.varietyOptions = [
         ...this.appSharedService.varietyOptions,
         tempNewPlant

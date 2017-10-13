@@ -22,7 +22,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   public active = 4;
   public disabledColumns = [];
 
-  public totalOfLocation = [, , , ,];
+  public totalOfLocation = [, , , , ];
   public locationNames = [];
   public locations = [];
   public showAC = false;
@@ -36,7 +36,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
     this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;
@@ -85,8 +85,8 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   getTotalOfColumn(key) {
-    this.totalOfLocation[key + 4] = this.appSharedService.plantsData.reduce(function (a, b) {
-      return a + parseInt(b.shipToData.locationValues[key] || 0);
+    this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
+      return a + parseInt(b.shipTo.locationValues[key] || 0);
     }, 0);
   }
 

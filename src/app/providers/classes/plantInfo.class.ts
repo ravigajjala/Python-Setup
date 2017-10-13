@@ -4,6 +4,7 @@ export class PlantInfo {
 	icon: string;
 	plugTray: PlugTrayInfo;
 	plantingInformation: PlantingInfo;
+	shipTo: ShipTo;
 }
 
 export class PlugTrayInfo {
@@ -38,11 +39,15 @@ export class SalableInfo {
 }
 
 export class AppStoreDelivery {
-    'totalFlatstoSale':number;
-    'routeNumberSale':number[];
-    'discarded':number;
-    'reasonCode':string;
-    'check':boolean;
+	'totalFlatstoSale': number;
+	'routeNumberSale': number[];
+	'discarded': number;
+	'reasonCode': string;
+	'check': boolean;
+}
+
+export class ShipTo {
+	'locationValues': number[];
 }
 
 
