@@ -22,7 +22,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   public active = 4;
   public disabledColumns = [];
 
-  public totalOfLocation = [, , , , ];
+  public totalOfLocation = [, , , ,];
   public locationNames = [];
   public locations = [];
   public showAC = false;
@@ -36,7 +36,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;
