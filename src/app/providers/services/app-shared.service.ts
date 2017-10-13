@@ -8,8 +8,6 @@ import {APIROOT} from '../constants';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Location, Plant, User } from '../classes/plantInfo.class';
-
 
 @Injectable()
 export class AppSharedService {

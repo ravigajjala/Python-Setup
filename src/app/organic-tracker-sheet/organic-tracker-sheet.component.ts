@@ -5,6 +5,7 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import {ManageUsersComponent} from '../manage-users/manage-users.component';
 import {ManageGreenHouseComponent} from '../manage-green-house/manage-green-house.component';
 import {ManagePlugCatalogComponent} from '../manage-plug-catalog/manage-plug-catalog.component';
+import {User, Plant, Location } from '../providers/classes/plantInfo.class';
 
 
 import { Router } from '@angular/router';
@@ -62,19 +63,19 @@ export class OrganicTrackerSheetComponent implements OnInit {
     );
   }
 
-  openManageUserDialog(currentUsers): void {
+  openManageUserDialog(currentUsers: User): void {
     let dialogRef = this.dialog.open(ManageUsersComponent, {
       data: currentUsers,
     });
   }
 
-  openManageGreenHouseDialog(currentGreenHouse): void {
+  openManageGreenHouseDialog(currentGreenHouse: Location): void {
     let dialogRef = this.dialog.open(ManageGreenHouseComponent, {
       data: currentGreenHouse,
     });
   }
 
-  openManagePlugCatalogDialog(currentPlugCatalog): void {
+  openManagePlugCatalogDialog(currentPlugCatalog: Plant): void {
     let dialogRef = this.dialog.open(ManagePlugCatalogComponent, {
       data: currentPlugCatalog,
     });
