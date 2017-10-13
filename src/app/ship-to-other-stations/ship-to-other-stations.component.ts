@@ -6,7 +6,6 @@ import { NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdAutocompleteTrigger } from '@angular/material';
 
-
 @Component({
   selector: 'app-ship-to-other-stations',
   templateUrl: './ship-to-other-stations.component.html',
@@ -21,8 +20,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   private isSorted = false;
   public active = 4;
   public disabledColumns = [];
-
-  public totalOfLocation = [, , , , ];
+  public totalOfLocation = [, , , ,];
   public locationNames = [];
   public locations = [];
   public showAC = false;
@@ -36,16 +34,9 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    this.appSharedService.getLocations().subscribe(
-      locations => {
-        this.appSharedService.locations = locations;
-        this.locations = locations;
-      },
-      err => {
-        console.log('Unable to retrive green house locations list');
-      }
-    );
+
+    // Retrieving Locations
+    this.locations = this.appSharedService.locations;
 
 
     this.heads4 = [
@@ -86,7 +77,7 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   getTotalOfColumn(key) {
     this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
-      return a + parseInt(b.shipTo.locationValues[key] || 0);
+      return a + parseInt(b.shipToData.locationValues[key] || 0);
     }, 0);
   }
 
