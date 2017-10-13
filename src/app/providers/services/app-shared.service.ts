@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
 import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
 import {APIROOT} from '../constants';
+import { User, Plant, Location } from '../classes/plantInfo.class';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 

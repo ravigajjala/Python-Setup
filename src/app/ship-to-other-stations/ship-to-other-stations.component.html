@@ -71,7 +71,7 @@
       <td>
         <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
-      <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+5]}">
+      <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+4]}">
         <input mdInput name="stchi" (blur)="getTotalOfColumn(ind)" [(ngModel)]="item.shipTo.locationValues[ind]">
       </td>
       <td></td>
@@ -96,8 +96,8 @@
 
       </td>
       <td *ngFor="let shipbtn of locationNames;let i=index">
-        <button md-raised-button color="primary" *ngIf="!disabledColumns[i+4]" (click)="shipColumn(i)">Ship</button>
-        <button md-raised-button color="basic" *ngIf="disabledColumns[i+4]" (click)="cancelShip(i)">CANCEL SHIP</button>
+        <button md-raised-button color="primary" *ngIf="!disabledColumns[i+4]" (click)="shipColumn(i+4)">Ship</button>
+        <button md-raised-button color="basic" *ngIf="disabledColumns[i+4]" (click)="cancelShip(i+4)">CANCEL SHIP</button>
       </td>
       
     </tr>
