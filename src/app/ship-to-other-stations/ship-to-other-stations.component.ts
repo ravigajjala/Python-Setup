@@ -91,7 +91,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   enableAutoCompleteSearch() {
-    this.shipToClicked = true;
+    this.shipToClicked = !this.shipToClicked;
   }
 }
 
