@@ -72,7 +72,7 @@
         <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
       </td>
       <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+4]}">
-        <input mdInput name="stchi" (blur)="getTotalOfColumn(ind)" [(ngModel)]="item.shipTo.locationValues[ind]">
+        <input mdInput name="stchi" (blur)="getTotalOfColumn(ind)" [(ngModel)]="item.shipTo.locationValues[ind]" [disabled]="disabledColumns[ind+4]">
       </td>
       <td></td>
     </tr>
