@@ -52,7 +52,7 @@ export class ShipTo {
 
 
 export class Location {
-	id: string;
+	datastore_id: string;
 	city: string;
 	state: string;
 }

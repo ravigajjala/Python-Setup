@@ -22,7 +22,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   public active = 4;
   public disabledColumns = [];
 
-  public totalOfLocation = [, , , , ];
+  public totalOfLocation = [, , , ,];
   public locationNames = [];
   public locations = [];
   public showAC = false;
@@ -36,16 +36,18 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    this.appSharedService.getLocations().subscribe(
-      locations => {
-        this.appSharedService.locations = locations;
-        this.locations = locations;
-      },
-      err => {
-        console.log('Unable to retrive green house locations list');
-      }
-    );
+
+    // this.appSharedService.getLocations().subscribe(
+    //   locations => {
+    //     this.appSharedService.locations = locations;
+    //     this.locations = locations;
+    //   },
+    //   err => {
+    //     console.log('Unable to retrive green house locations list');
+    //   }
+    // );
+
+    this.locations = Object.assign([], this.appSharedService.locations);
 
 
     this.heads4 = [
@@ -65,14 +67,22 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   addShipToLoc(event, newlocation) {
-    this.locationNames.push(newlocation.city);
+    this.locationNames.push(newlocation);
+    this.locations.splice(newlocation, 1);
     this.totalOfLocation.push(0);
     this.newCity = '';
     this.shipToClicked = false;
     this.trigger.closePanel();
+    console.log(this.appSharedService.locations);
   }
 
   removeShipToLoc(index) {
+    console.log(this.appSharedService.locations);
+    this.appSharedService.locations.map((val) => {
+      if (val.datastore_id === this.locationNames[index].datastore_id) {
+        this.locations.push(val);
+      }
+    });
     this.locationNames.splice(index, 1);
     this.totalOfLocation.splice(index + 4, 1);
   }
