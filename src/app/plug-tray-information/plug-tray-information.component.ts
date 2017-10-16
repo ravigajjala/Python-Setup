@@ -1,13 +1,18 @@
-import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, Inject, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild
+} from '@angular/core';
 import { MdAutocompleteTrigger } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { AppSharedService } from '../providers/services/app-shared.service';
-import { ShipTo } from '../providers/classes/plantInfo.class';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
+
+
+import { AppSharedService } from '../providers/services/app-shared.service';
+import { PlugToDeliver } from '../providers/classes/plantInfo.class';
+import { ShipTo } from '../providers/classes/plantInfo.class';
 
 @Component({
   selector: 'app-plug-tray-information',
@@ -20,12 +25,12 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public reasonCodes = [];
   public optionsData = [];
   public myControl: FormControl;
+  public varietyControl: FormControl;
   public mergeClickBool = false;
-  public active = 1;
   public greenHousePlants: any[];
   public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
-  public varietyControl: FormControl;
+  public weekNumber: number;
 
   public options = [
     {
@@ -57,7 +62,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   @ViewChild(MdAutocompleteTrigger) trigger;
 
   getTotalOfColumn(array, key) {
-   const total = array.reduce(function (a, b) {
+    const total = array.reduce(function (a, b) {
       return a + b[key];
     }, 0);
     return total;
@@ -93,10 +98,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
     this.greenHousePlants = this.appSharedService.plants;
 
-
     this.PlugTrayForm = new FormGroup({
       dateReceived: new FormControl(null, Validators.required)
     });
+    this.getPlugToDeliverData();
   }
 
   displayFn(order): string {
@@ -105,22 +110,21 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * [addPlant description]
+   * [When user selects a variety from typeahed it creates a new object entry in the Kind]
+   * [Here preparing new object with all screens properties]
+   * [Then calling createPlugToDeliverData function by passing prepared new object]
    */
   addPlant(event, newPlant) {
     if (newPlant) {
       const tempNewPlant = Object.assign({}, newPlant);
       tempNewPlant.plugTray = Object.assign({}, newPlant.plugTray);
       tempNewPlant.plantingInfo = Object.assign({}, newPlant.plantingInfo);
-      tempNewPlant.receivingData = Object.assign({}, newPlant.receivingData);
+      tempNewPlant.receivingInfo = Object.assign({}, newPlant.receivingInfo);
       tempNewPlant.totalSalable = Object.assign({}, newPlant.totalSalable);
       tempNewPlant.storeDeliveryData = Object.assign({}, newPlant.storeDeliveryData);
       tempNewPlant.shipTo = new ShipTo();
       tempNewPlant.shipTo.locationValues = [];
-      this.appSharedService.varietyOptions = [
-        ...this.appSharedService.varietyOptions,
-        tempNewPlant
-      ];
+      this.createPlugToDeliverData(tempNewPlant);
     }
     this.trigger.closePanel();
   }
@@ -135,7 +139,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * [filter values for variety inpiut]
+   * [filter values for variety input]
    * @param  {any}   val [user input value]
    */
   filterVariety(val: any): any[] {
@@ -144,13 +148,69 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
   /**
- * [filter values for add plant autocomplete]
- * @param  {any}   val [user input value]
- */
+   * [filter values for add plant autocomplete]
+   * @param  {any}   val [user input value]
+   */
   filterAddPlant(val: any): any[] {
     if (val && typeof val === 'string') {
       return this.optionsData.filter(option =>
         option.name.toLowerCase().indexOf(val.toLowerCase()) === 0);
     }
+  }
+
+  /**
+   * [Invoking from addPlant() function]
+   * [It adds plugToDeliver object to plugToDeliver Kind]
+   * [After adding it to kind it retrives plugToDeliver data to display the added plug in the ui]
+   * @param  {PlugToDeliver}   plugToDeliverData [user selects the variety from the auto complete]
+   * @return it returns all varities from plugToDeliver Kind
+   */
+  createPlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+    this.appSharedService.createPlugToDeliverData(plugToDeliverData)
+      .subscribe(res => {
+        this.getPlugToDeliverData();
+      },
+      err => {
+        console.log('Create error');
+      });
+  }
+
+  /**
+  * [Retriving all plugToDeliver objects from plugToDeliver Kind]
+  * @return it returns all varities from plugToDeliver Kind
+  */
+  // TODO:: Make shared function
+  getPlugToDeliverData() {
+    return this.appSharedService.getPlugToDeliverData().subscribe(
+      res => {
+        this.appSharedService.varietyOptions = res;
+      },
+      err => {
+        console.log('Plug to deliver data retrive error');
+      }
+    );
+  }
+
+  /**
+   * [Updates plugToDeliver object to plugToDeliver Kind]
+   * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
+   */
+  // TODO:: Make shared function
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+    this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
+      .subscribe(res => { },
+      err => {
+        console.log('Update error');
+      });
+  }
+
+  /**
+   * [Updates plugToDeliver object to plugToDeliver kind]
+   * @param  {Date}   date [user input date from datepicker]
+   * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object]
+   */
+  calculateWeekNumber(date: Date, plugToDeliverData: PlugToDeliver) {
+    const weekNumber = moment(date).week();
+    plugToDeliverData.weekNumber = weekNumber;
   }
 }

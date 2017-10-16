@@ -6,13 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, MdAutocompleteModule, MdDatepickerModule, MdListModule, MdInputModule, MdNativeDateModule, MdCheckboxModule} from '@angular/material';
+import { MdButtonModule, MatMenuModule, MdButtonToggleModule, MdSelectModule, MdAutocompleteModule, MdDatepickerModule, MdListModule, MdInputModule, MdNativeDateModule, MdCheckboxModule } from '@angular/material';
 
 
 import { HttpModule } from '@angular/http';
 
-import { PlantingInformationService } from './planting-information/planting-information.service';
-
+// Import components here
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { OrganicTrackerSheetComponent } from './organic-tracker-sheet/organic-tracker-sheet.component';
@@ -24,11 +23,16 @@ import { StoreDeliveryComponent } from './store-delivery/store-delivery.componen
 import { MasterViewComponent } from './master-view/master-view.component';
 import { ReceivingFromOtherStationsComponent } from './receiving-from-other-stations/receiving-from-other-stations.component';
 import { ShipToOtherStationsComponent } from './ship-to-other-stations/ship-to-other-stations.component';
+
+// Import Services here
 import { AppSharedService } from './providers/services/app-shared.service';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
 import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
 
+
+// Import Pipes here
+import { SearchVarietiesPipe } from './pipes/varieties.pipe';
 
 const appRoutes: Routes = [
   {
@@ -37,17 +41,18 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'app-login', component: LoginComponent },
-  { path: 'app-organic-tracker-sheet', component: OrganicTrackerSheetComponent ,
-    children:[
+  {
+    path: 'app-organic-tracker-sheet', component: OrganicTrackerSheetComponent,
+    children: [
       { path: 'app-plug-tray-information', component: PlugTrayInformationComponent },
       { path: 'app-planting-information', component: PlantingInformationComponent },
       { path: 'app-receiving-from-other-stations', component: ReceivingFromOtherStationsComponent },
       { path: 'app-ship-to-other-stations', component: ShipToOtherStationsComponent },
       { path: 'app-total-salable', component: TotalSalableComponent },
-      { path: 'app-store-delivery', component: StoreDeliveryComponent},
+      { path: 'app-store-delivery', component: StoreDeliveryComponent },
       { path: 'app-master-view', component: MasterViewComponent }
     ]
-   }
+  }
   // {
   //   //redirect default - should always be at last
   //   path: '**',
@@ -60,19 +65,20 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    OrganicTrackerSheetComponent,
     IconDialogComponent,
-    PlugTrayInformationComponent,
-    PlantingInformationComponent,
-    TotalSalableComponent,
-    StoreDeliveryComponent,
+    LoginComponent,
     MasterViewComponent,
-    ReceivingFromOtherStationsComponent,
-    ShipToOtherStationsComponent,
     ManageUsersComponent,
     ManageGreenHouseComponent,
-    ManagePlugCatalogComponent
+    ManagePlugCatalogComponent,
+    OrganicTrackerSheetComponent,
+    PlugTrayInformationComponent,
+    PlantingInformationComponent,
+    ReceivingFromOtherStationsComponent,
+    StoreDeliveryComponent,
+    ShipToOtherStationsComponent,
+    SearchVarietiesPipe,
+    TotalSalableComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +110,6 @@ const appRoutes: Routes = [
     ManageGreenHouseComponent,
     ManagePlugCatalogComponent
   ],
-  providers: [PlantingInformationService, AppSharedService]
+  providers: [AppSharedService]
 })
 export class AppModule { }

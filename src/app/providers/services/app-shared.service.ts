@@ -7,7 +7,7 @@ import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Location, Plant, User } from '../classes/plantInfo.class';
+import { Location, Plant, User, PlugToDeliver } from '../classes/plantInfo.class';
 
 
 @Injectable()
@@ -17,9 +17,10 @@ export class AppSharedService {
     public locations: Location[];
     public plants: Plant[];
     public varietyOptions: any[];
-    private isSorted = false;
+    private isPlantNameSorted: boolean = false;
+    private isWeekNumberSorted: boolean = false;
+    public searchFieldValue: any = undefined;
     public shippedNumber = 0;
-
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
     public plantsData = [{
@@ -663,13 +664,25 @@ export class AppSharedService {
             });
     }
 
-    sort() {
-        if (!this.isSorted) {
+    varietiesSort(): void {
+        if (!this.isPlantNameSorted) {
             this.varietyOptions = this.varietyOptions
                 .sort((a, b) =>
-                    (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).reverse();
-            this.isSorted = true;
+                    (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0));
+            this.isPlantNameSorted = true;
         }
+        this.isWeekNumberSorted = false;
+        this.varietyOptions = this.varietyOptions.reverse();
+    }
+
+    weekSort(): void {
+        if (!this.isWeekNumberSorted) {
+            this.varietyOptions = this.varietyOptions
+                .sort((a, b) =>
+                    (a.weekNumber > b.weekNumber) ? -1 : ((b.weekNumber > a.weekNumber) ? 1 : 0));
+            this.isWeekNumberSorted = true;
+        }
+        this.isPlantNameSorted = false;
         this.varietyOptions = this.varietyOptions.reverse();
     }
 
@@ -677,6 +690,40 @@ export class AppSharedService {
         const dialogRef = this.dialog.open(IconDialogComponent, {
             data: currentItem
         });
+    }
+
+    getPlugToDeliverData(): Observable<PlugToDeliver[]> {
+        return this.http.get('/plug-to-deliver/get')
+            .map(res => {
+                console.log(res);
+                console.log('JSON');
+                console.log(res.json());
+                return res.json();
+            })
+            .catch(err => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
+    createPlugToDeliverData(plugToDeliver: PlugToDeliver): Observable<PlugToDeliver[]> {
+        return this.http.post('/plug-to-deliver/create', plugToDeliver, this.options)
+            .map(res => {
+                return res;
+            })
+            .catch(err => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
+    updatePlugToDeliverData(plugToDeliver: PlugToDeliver): Observable<PlugToDeliver[]> {
+        console.log(plugToDeliver);
+        return this.http.put('/plug-to-deliver/put', plugToDeliver, this.options)
+            .map(res => {
+                return res;
+            })
+            .catch(err => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
     }
 
     getStage(): number {
@@ -689,7 +736,7 @@ export class AppSharedService {
      * @param {[type]} key   [the key for which the totak is to be calculated]
      */
     getTotalOfColumn(array, key) {
-        let total = array.reduce(function (a, b) {
+        const total = array.reduce(function (a, b) {
             return a + b[key]
         }, 0);
         return total;

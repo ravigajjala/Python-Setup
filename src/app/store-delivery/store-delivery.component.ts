@@ -9,20 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./store-delivery.component.scss']
 })
 export class StoreDeliveryComponent implements OnInit {
-
-  constructor(private appSharedService: AppSharedService,
-    public router: Router) { }
-
   public heads6 = [];
   public reasonCodes = [];
-  public mergeClickBool = false;
-  public routeTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  public deliveredTotal = [];
-  public sumPlantsDelivered = 0;
-
-  mergeClick(e: any, mergeText: string) {
-    mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
-  }
+  constructor(private appSharedService: AppSharedService,
+    public router: Router) { }
 
   ngOnInit() {
     this.heads6 = [
@@ -63,22 +53,4 @@ export class StoreDeliveryComponent implements OnInit {
       { 'code': 'G', 'reason': 'Other/Act Of God' },
     ];
   }
-
-  // updateRouteTotal(index) {
-  //   console.log(this.routeTotal, index);
-  //   this.routeTotal[index] = 0;
-  //   for (let i = 0; i < this.data2.length; i++) {
-  //     if (this.data2[i].routeValue[index]) {
-  //       this.routeTotal[index] += parseInt(this.data2[i].routeValue[index]);
-  //     }
-  //     this.deliveredTotal[i] = this.data2[i].routeValue.reduce(function (sum, value) {
-  //       if (value) {
-  //         return sum + parseInt(value);
-  //       }
-  //     }, 0)
-  //     this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
-  //       return sum + value;
-  //     }, 0)
-  //   }
-  // }
 }
