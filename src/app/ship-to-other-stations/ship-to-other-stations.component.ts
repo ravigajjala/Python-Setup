@@ -73,6 +73,10 @@ export class ShipToOtherStationsComponent implements OnInit {
     });
     this.locationNames.splice(index, 1);
     this.totalOfLocation.splice(index + 4, 1);
+    if (this.disabledColumns[index + 4]) {
+      this.appSharedService.shippedNumber--;
+      this.disabledColumns.splice(index + 4, 1);
+    }
   }
 
   shipColumn(item) {
