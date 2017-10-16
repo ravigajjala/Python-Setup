@@ -64,19 +64,19 @@ export class OrganicTrackerSheetComponent implements OnInit {
   }
 
   openManageUserDialog(currentUsers: User): void {
-    let dialogRef = this.dialog.open(ManageUsersComponent, {
+    const dialogRef = this.dialog.open(ManageUsersComponent, {
       data: currentUsers,
     });
   }
 
   openManageGreenHouseDialog(currentGreenHouse: Location): void {
-    let dialogRef = this.dialog.open(ManageGreenHouseComponent, {
+    const dialogRef = this.dialog.open(ManageGreenHouseComponent, {
       data: currentGreenHouse,
     });
   }
 
   openManagePlugCatalogDialog(currentPlugCatalog: Plant): void {
-    let dialogRef = this.dialog.open(ManagePlugCatalogComponent, {
+    const dialogRef = this.dialog.open(ManagePlugCatalogComponent, {
       data: currentPlugCatalog,
     });
   }
