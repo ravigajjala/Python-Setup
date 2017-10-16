@@ -4,9 +4,10 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
 import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
-import { User, Plant, Location } from '../classes/plantInfo.class';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+
+import { Location, Plant, User } from '../classes/plantInfo.class';
 
 
 @Injectable()
@@ -17,7 +18,6 @@ export class AppSharedService {
     public plants: Plant[];
     public varietyOptions: any[];
     private isSorted = false;
-    private rootApiLink = '/';
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
@@ -591,11 +591,11 @@ export class AppSharedService {
         }
     ];
 
-    constructor(private dialog: MdDialog, private http: Http, public router: Router) {}
+    constructor(private dialog: MdDialog, private http: Http, public router: Router) { }
 
     // To get greenhouse locations from datastore
     getLocations(): Observable<Location[]> {
-        return this.http.get(this.rootApiLink + 'locations/get')
+        return this.http.get('/locations/get')
             .map(res => {
                 return res.json();
             })
@@ -606,7 +606,7 @@ export class AppSharedService {
 
     // To get plant varieties from datastore
     getPlantVarieties(): Observable<Plant[]> {
-        return this.http.get(this.rootApiLink + 'plants/get')
+        return this.http.get('/plants/get')
             .map(res => {
                 return res.json();
             })
@@ -617,7 +617,7 @@ export class AppSharedService {
 
     // To get users list from datastore
     getUsers(): Observable<User[]> {
-        return this.http.get(this.rootApiLink + 'users/get')
+        return this.http.get('/users/get')
             .map(res => {
                 return res.json();
             })
@@ -627,7 +627,7 @@ export class AppSharedService {
     }
 
     addUser(): Observable<User[]> {
-        return this.http.post(this.rootApiLink + 'users/create', this.data, this.options)
+        return this.http.post('/users/create', this.data, this.options)
             .map(res => {
                 return res.json();
             })
@@ -637,8 +637,11 @@ export class AppSharedService {
     }
 
     addLocation(): Observable<Location[]> {
-        return this.http.post(this.rootApiLink + 'locations/create', [{
-            "city": "Dublin",
+        return this.http.post('/locations/create', [{
+            "city": "Fremont",
+            "state": "OH"
+        },{
+            "city": "San Ramon",
             "state": "OH"
         }], this.options)
             .map(res => {
@@ -650,7 +653,7 @@ export class AppSharedService {
     }
 
     addPlants(): Observable<Location[]> {
-        return this.http.post(this.rootApiLink + 'plants/create', this.plantsData, this.options)
+        return this.http.post('/plants/create', this.plantsData, this.options)
             .map(res => {
                 return res.json();
             })
