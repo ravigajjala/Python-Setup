@@ -36,7 +36,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   ngOnInit() {
 
     // Retrieving Locations
-    this.locations = this.appSharedService.locations;
+    this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
 
 
     this.heads4 = [
@@ -57,12 +57,11 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   addShipToLoc(event, newlocation) {
     this.locationNames.push(newlocation);
-    this.locations.splice(newlocation, 1);
+    this.locations.splice(this.locations.indexOf(newlocation), 1);
     this.totalOfLocation.push(0);
     this.newCity = '';
     this.shipToClicked = false;
     this.trigger.closePanel();
-    console.log(this.appSharedService.locations);
   }
 
   removeShipToLoc(index) {
