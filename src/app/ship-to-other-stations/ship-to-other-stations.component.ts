@@ -78,9 +78,11 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   shipColumn(item) {
     this.disabledColumns[item] = true;
+    this.appSharedService.shippedNumber++;
   }
   cancelShip(item) {
     this.disabledColumns[item] = false;
+    this.appSharedService.shippedNumber--;
   }
 
   getTotalOfColumn(key) {

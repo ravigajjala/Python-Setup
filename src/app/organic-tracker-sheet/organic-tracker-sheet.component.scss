@@ -35,6 +35,22 @@ $purple: #4339AD;
     md-list {
         background-color: #FFF;
     }
+    .notif-number {
+        display:none;
+        background-color: #423aad;
+        color:#fff;
+        width: 40px;
+        padding: 10px 3px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 12px;
+        i{  
+            font-size: 16px;
+        }
+    }
+    .active .notif-number{
+        display:inline-block;
+    }
 }
 
 

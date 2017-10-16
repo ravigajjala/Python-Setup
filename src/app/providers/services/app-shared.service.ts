@@ -18,6 +18,7 @@ export class AppSharedService {
     public plants: Plant[];
     public varietyOptions: any[];
     private isSorted = false;
+    public shippedNumber = 0;
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
