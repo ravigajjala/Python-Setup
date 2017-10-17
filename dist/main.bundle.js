@@ -80,22 +80,22 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__planting_information_planting_information_service__ = __webpack_require__("../../../../../src/app/planting-information/planting-information.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__organic_tracker_sheet_organic_tracker_sheet_component__ = __webpack_require__("../../../../../src/app/organic-tracker-sheet/organic-tracker-sheet.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__icon_dialog_icon_dialog_component__ = __webpack_require__("../../../../../src/app/icon-dialog/icon-dialog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__plug_tray_information_plug_tray_information_component__ = __webpack_require__("../../../../../src/app/plug-tray-information/plug-tray-information.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__planting_information_planting_information_component__ = __webpack_require__("../../../../../src/app/planting-information/planting-information.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__total_salable_total_salable_component__ = __webpack_require__("../../../../../src/app/total-salable/total-salable.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__store_delivery_store_delivery_component__ = __webpack_require__("../../../../../src/app/store-delivery/store-delivery.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__master_view_master_view_component__ = __webpack_require__("../../../../../src/app/master-view/master-view.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__receiving_from_other_stations_receiving_from_other_stations_component__ = __webpack_require__("../../../../../src/app/receiving-from-other-stations/receiving-from-other-stations.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ship_to_other_stations_ship_to_other_stations_component__ = __webpack_require__("../../../../../src/app/ship-to-other-stations/ship-to-other-stations.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_services_app_shared_service__ = __webpack_require__("../../../../../src/app/providers/services/app-shared.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__manage_users_manage_users_component__ = __webpack_require__("../../../../../src/app/manage-users/manage-users.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__manage_green_house_manage_green_house_component__ = __webpack_require__("../../../../../src/app/manage-green-house/manage-green-house.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__manage_plug_catalog_manage_plug_catalog_component__ = __webpack_require__("../../../../../src/app/manage-plug-catalog/manage-plug-catalog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__organic_tracker_sheet_organic_tracker_sheet_component__ = __webpack_require__("../../../../../src/app/organic-tracker-sheet/organic-tracker-sheet.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__icon_dialog_icon_dialog_component__ = __webpack_require__("../../../../../src/app/icon-dialog/icon-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__plug_tray_information_plug_tray_information_component__ = __webpack_require__("../../../../../src/app/plug-tray-information/plug-tray-information.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__planting_information_planting_information_component__ = __webpack_require__("../../../../../src/app/planting-information/planting-information.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__total_salable_total_salable_component__ = __webpack_require__("../../../../../src/app/total-salable/total-salable.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__store_delivery_store_delivery_component__ = __webpack_require__("../../../../../src/app/store-delivery/store-delivery.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__master_view_master_view_component__ = __webpack_require__("../../../../../src/app/master-view/master-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__receiving_from_other_stations_receiving_from_other_stations_component__ = __webpack_require__("../../../../../src/app/receiving-from-other-stations/receiving-from-other-stations.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ship_to_other_stations_ship_to_other_stations_component__ = __webpack_require__("../../../../../src/app/ship-to-other-stations/ship-to-other-stations.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_services_app_shared_service__ = __webpack_require__("../../../../../src/app/providers/services/app-shared.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__manage_users_manage_users_component__ = __webpack_require__("../../../../../src/app/manage-users/manage-users.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__manage_green_house_manage_green_house_component__ = __webpack_require__("../../../../../src/app/manage-green-house/manage-green-house.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__manage_plug_catalog_manage_plug_catalog_component__ = __webpack_require__("../../../../../src/app/manage-plug-catalog/manage-plug-catalog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pipes_varieties_pipe__ = __webpack_require__("../../../../../src/app/pipes/varieties.pipe.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -110,6 +110,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// Import components here
 
 
 
@@ -121,10 +122,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// Import Services here
 
 
 
 
+// Import Pipes here
 
 var appRoutes = [
     {
@@ -132,16 +135,17 @@ var appRoutes = [
         redirectTo: '/app-organic-tracker-sheet',
         pathMatch: 'full'
     },
-    { path: 'app-login', component: __WEBPACK_IMPORTED_MODULE_9__login_login_component__["a" /* LoginComponent */] },
-    { path: 'app-organic-tracker-sheet', component: __WEBPACK_IMPORTED_MODULE_10__organic_tracker_sheet_organic_tracker_sheet_component__["a" /* OrganicTrackerSheetComponent */],
+    { path: 'app-login', component: __WEBPACK_IMPORTED_MODULE_8__login_login_component__["a" /* LoginComponent */] },
+    {
+        path: 'app-organic-tracker-sheet', component: __WEBPACK_IMPORTED_MODULE_9__organic_tracker_sheet_organic_tracker_sheet_component__["a" /* OrganicTrackerSheetComponent */],
         children: [
-            { path: 'app-plug-tray-information', component: __WEBPACK_IMPORTED_MODULE_12__plug_tray_information_plug_tray_information_component__["a" /* PlugTrayInformationComponent */] },
-            { path: 'app-planting-information', component: __WEBPACK_IMPORTED_MODULE_13__planting_information_planting_information_component__["a" /* PlantingInformationComponent */] },
-            { path: 'app-receiving-from-other-stations', component: __WEBPACK_IMPORTED_MODULE_17__receiving_from_other_stations_receiving_from_other_stations_component__["a" /* ReceivingFromOtherStationsComponent */] },
-            { path: 'app-ship-to-other-stations', component: __WEBPACK_IMPORTED_MODULE_18__ship_to_other_stations_ship_to_other_stations_component__["a" /* ShipToOtherStationsComponent */] },
-            { path: 'app-total-salable', component: __WEBPACK_IMPORTED_MODULE_14__total_salable_total_salable_component__["a" /* TotalSalableComponent */] },
-            { path: 'app-store-delivery', component: __WEBPACK_IMPORTED_MODULE_15__store_delivery_store_delivery_component__["a" /* StoreDeliveryComponent */] },
-            { path: 'app-master-view', component: __WEBPACK_IMPORTED_MODULE_16__master_view_master_view_component__["a" /* MasterViewComponent */] }
+            { path: 'app-plug-tray-information', component: __WEBPACK_IMPORTED_MODULE_11__plug_tray_information_plug_tray_information_component__["a" /* PlugTrayInformationComponent */] },
+            { path: 'app-planting-information', component: __WEBPACK_IMPORTED_MODULE_12__planting_information_planting_information_component__["a" /* PlantingInformationComponent */] },
+            { path: 'app-receiving-from-other-stations', component: __WEBPACK_IMPORTED_MODULE_16__receiving_from_other_stations_receiving_from_other_stations_component__["a" /* ReceivingFromOtherStationsComponent */] },
+            { path: 'app-ship-to-other-stations', component: __WEBPACK_IMPORTED_MODULE_17__ship_to_other_stations_ship_to_other_stations_component__["a" /* ShipToOtherStationsComponent */] },
+            { path: 'app-total-salable', component: __WEBPACK_IMPORTED_MODULE_13__total_salable_total_salable_component__["a" /* TotalSalableComponent */] },
+            { path: 'app-store-delivery', component: __WEBPACK_IMPORTED_MODULE_14__store_delivery_store_delivery_component__["a" /* StoreDeliveryComponent */] },
+            { path: 'app-master-view', component: __WEBPACK_IMPORTED_MODULE_15__master_view_master_view_component__["a" /* MasterViewComponent */] }
         ]
     }
     // {
@@ -159,20 +163,21 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__login_login_component__["a" /* LoginComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__organic_tracker_sheet_organic_tracker_sheet_component__["a" /* OrganicTrackerSheetComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__icon_dialog_icon_dialog_component__["a" /* IconDialogComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__plug_tray_information_plug_tray_information_component__["a" /* PlugTrayInformationComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__planting_information_planting_information_component__["a" /* PlantingInformationComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__total_salable_total_salable_component__["a" /* TotalSalableComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__store_delivery_store_delivery_component__["a" /* StoreDeliveryComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__master_view_master_view_component__["a" /* MasterViewComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__receiving_from_other_stations_receiving_from_other_stations_component__["a" /* ReceivingFromOtherStationsComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__ship_to_other_stations_ship_to_other_stations_component__["a" /* ShipToOtherStationsComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__manage_users_manage_users_component__["a" /* ManageUsersComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__manage_green_house_manage_green_house_component__["a" /* ManageGreenHouseComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__manage_plug_catalog_manage_plug_catalog_component__["a" /* ManagePlugCatalogComponent */]
+            __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__icon_dialog_icon_dialog_component__["a" /* IconDialogComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__login_login_component__["a" /* LoginComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__master_view_master_view_component__["a" /* MasterViewComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__manage_users_manage_users_component__["a" /* ManageUsersComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__manage_green_house_manage_green_house_component__["a" /* ManageGreenHouseComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__manage_plug_catalog_manage_plug_catalog_component__["a" /* ManagePlugCatalogComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__organic_tracker_sheet_organic_tracker_sheet_component__["a" /* OrganicTrackerSheetComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__plug_tray_information_plug_tray_information_component__["a" /* PlugTrayInformationComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__planting_information_planting_information_component__["a" /* PlantingInformationComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__receiving_from_other_stations_receiving_from_other_stations_component__["a" /* ReceivingFromOtherStationsComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__store_delivery_store_delivery_component__["a" /* StoreDeliveryComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__ship_to_other_stations_ship_to_other_stations_component__["a" /* ShipToOtherStationsComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__pipes_varieties_pipe__["a" /* SearchVarietiesPipe */],
+            __WEBPACK_IMPORTED_MODULE_13__total_salable_total_salable_component__["a" /* TotalSalableComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -196,14 +201,14 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__angular_material__["k" /* MdInputModule */]
             // NgxDatatableModule
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_11__icon_dialog_icon_dialog_component__["a" /* IconDialogComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__manage_users_manage_users_component__["a" /* ManageUsersComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__manage_green_house_manage_green_house_component__["a" /* ManageGreenHouseComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__manage_plug_catalog_manage_plug_catalog_component__["a" /* ManagePlugCatalogComponent */]
+            __WEBPACK_IMPORTED_MODULE_10__icon_dialog_icon_dialog_component__["a" /* IconDialogComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__manage_users_manage_users_component__["a" /* ManageUsersComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__manage_green_house_manage_green_house_component__["a" /* ManageGreenHouseComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__manage_plug_catalog_manage_plug_catalog_component__["a" /* ManagePlugCatalogComponent */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_7__planting_information_planting_information_service__["a" /* PlantingInformationService */], __WEBPACK_IMPORTED_MODULE_19__providers_services_app_shared_service__["a" /* AppSharedService */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_18__providers_services_app_shared_service__["a" /* AppSharedService */]]
     })
 ], AppModule);
 
@@ -214,7 +219,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/icon-dialog/icon-dialog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dialog-container\" id=\"dialog_container\">\n\t<div class=\"dialog-header\">\n\t\t<div class=\"icon-logo\">\n\t\t\t<svg class=\"icon\" [ngClass]=\"'st'+iconClassNumber\"><use attr.xlink:href=\"../../assets/sprites/icon-sprite-sheet.svg#{{currentPlant.icon}}\"/></svg>\n\t\t</div>\n\t\t<h2 class=\"dialog-title inline-blk\">{{currentPlant.name}}</h2>\n\t\t<span>Wk21</span>\n\t</div>\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">PLUG TRAY INFORMATION</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Plug Flats Received</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.plugFlatsReceived || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Date received</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.dateReceived | date:'shortDate' || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Plug Flats Plotted</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.plugFlatsPlotted || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Plug Flats Discarded</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.plugFlatsDiscarded || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Reasons Code</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.reasonsCode || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Seed Lot Number</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.seedLotNumber || '-'}}</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">PLANTING INFORMATION</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Finished Trays</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.finishedTrays || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Locator Number</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.locatorNumber || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Potted Date</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.pottedDate | date:'shortDate'|| '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">House#/Bay#</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.houseBay || '-'}}</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">Receiving</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">House#/Bay#</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.receivingData.houseBay}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Quantity</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.receivingData.quantity}}</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">Ship To</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Ship to Chicago</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Ship to Minneapolis</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">TOTAL SALABLE</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">#Discarded</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Reason Code</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Total Flats to Sale</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">TOTAL SALABLE</h3>\n\t\t<div class=\"light-text\">In Progress</div>\n\t</div>\n\n\t<button md-button color=\"primary\" class=\"close-button\" (click)=\"closeDialog()\" tabindex=\"-1\">\n\t\tCLOSE\n\t</button>\n</div>"
+module.exports = "<div class=\"dialog-container\" id=\"dialog_container\">\n\t<div class=\"dialog-header\">\n\t\t<div class=\"icon-logo\">\n\t\t\t<svg class=\"icon\" [ngClass]=\"'st'+iconClassNumber\"><use attr.xlink:href=\"../../assets/sprites/icon-sprite-sheet.svg#{{currentPlant.icon}}\"/></svg>\n\t\t</div>\n\t\t<h2 class=\"dialog-title inline-blk\">{{currentPlant.name}}</h2>\n\t\t<span>Wk21</span>\n\t</div>\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">PLUG TRAY INFORMATION</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Plug Flats Received</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.plugFlatsReceived || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Date received</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.dateReceived | date:'shortDate' || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Plug Flats Plotted</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.plugFlatsPlotted || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Plug Flats Discarded</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.plugFlatsDiscarded || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Reasons Code</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.reasonsCode || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Seed Lot Number</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plugTray.seedLotNumber || '-'}}</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">PLANTING INFORMATION</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Finished Trays</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.finishedTrays || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Locator Number</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.locatorNumber || '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Potted Date</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.pottedDate | date:'shortDate'|| '-'}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">House#/Bay#</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.plantingInfo.houseBay || '-'}}</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">Receiving</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">House#/Bay#</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.receivingInfo.houseBay}}</div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Quantity</div>\n\t\t\t<div class=\"inline-blk entry-count-field\">{{currentPlant.receivingInfo.quantity}}</div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">Ship To</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Ship to Chicago</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Ship to Minneapolis</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">TOTAL SALABLE</h3>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">#Discarded</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Reason Code</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t\t<div class=\"entry-field\">\n\t\t\t<div class=\"inline-blk entry-name-field\">Total Flats to Sale</div>\n\t\t\t<div class=\"inline-blk entry-count-field\"></div>\n\t\t</div>\n\t</div>\n\n\t<div class=\"dialog-section\">\n\t\t<h3 class=\"section-title\">TOTAL SALABLE</h3>\n\t\t<div class=\"light-text\">In Progress</div>\n\t</div>\n\n\t<button md-button color=\"primary\" class=\"close-button\" (click)=\"closeDialog()\" tabindex=\"-1\">\n\t\tCLOSE\n\t</button>\n</div>"
 
 /***/ }),
 
@@ -564,7 +569,7 @@ ManagePlugCatalogComponent = __decorate([
 /***/ "../../../../../src/app/manage-users/manage-users.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dialog-main-cont\">\n    <h2>Manage Users</h2>\n    <div class=\"user-table-cont head-title\">\n        <div class=\"user-col\">USER</div>\n        <div class=\"user-col\">USER EMAIL</div>\n        <div class=\"user-col\">GREENHOUSE ASSIGNMENT</div>\n        <div class=\"user-col-del\"></div>\n    </div>\n    <div class=\"user-table-cont\">\n        <div class=\"user-col\">Ravi</div>\n        <div class=\"user-col\">ravi.gajjela@scotts.com</div>\n        <div class=\"user-col\">\n            <md-select [(ngModel)]=\"locationId\" name=\"location\" class=\"loc-input\">\n                <md-option *ngFor=\"let location of locations\" [value]=\"location\">\n                    {{location.city}}, {{location.state}}\n                </md-option>\n            </md-select>\n        </div>\n        <div class=\"user-col-del\">\n            <div><i class=\"material-icons valign_middle\">delete</i></div>\n        </div>\n    </div>\n    <div class=\"user-table-cont\" *ngIf=\"showEditBox\">\n        <div class=\"user-col\">\n            <md-form-field class=\"example-full-width\">\n                <input mdInput> \n           </md-form-field>\n        </div>\n        <div class=\"user-col\">\n        \t<md-form-field class=\"example-full-width\">\n                <input mdInput> \n           </md-form-field>\n        </div>\n        <div class=\"user-col\">\n            <md-select [(ngModel)]=\"locationId\" name=\"location\" class=\"loc-input\">\n                <md-option *ngFor=\"let location of locations\" [value]=\"location\">\n                    {{location.city}}, {{location.state}}\n                </md-option>\n            </md-select>\n        </div>\n        <div class=\"user-col-del\">\n            <!-- <div><i class=\"material-icons valign_middle\">delete</i></div> -->\n        </div>\n    </div>\n    <div class=\"add-user\" (click)=\"addUser(true)\" *ngIf=\"!showEditBox\"><i class=\"material-icons valign_middle\">add_circle</i> New User</div>\n    <!-- <div class=\"add-user\" (click)=\"addUser(false)\" *ngIf=\"showEditBox\">Cancel</div> -->\n</div>"
+module.exports = "<div class=\"dialog-main-cont\">\n    <h2>Manage Users</h2>\n    <div class=\"user-table-cont head-title\">\n        <div class=\"user-col\">USER</div>\n        <div class=\"user-col\">USER EMAIL</div>\n        <div class=\"user-col\">GREENHOUSE ASSIGNMENT</div>\n        <div class=\"user-col-del\"></div>\n    </div>\n    <div class=\"user-table-cont\">\n        <div class=\"user-col\">Ravi</div>\n        <div class=\"user-col\">ravi.gajjela@scotts.com</div>\n        <div class=\"user-col\">\n            <md-select [(ngModel)]=\"locationId\" name=\"location\" class=\"loc-input\">\n                <md-option *ngFor=\"let location of appSharedService.locations\" [value]=\"location\">\n                    {{location.city}}, {{location.state}}\n                </md-option>\n            </md-select>\n        </div>\n        <div class=\"user-col-del\">\n            <div><i class=\"material-icons valign_middle\">delete</i></div>\n        </div>\n    </div>\n    <div class=\"user-table-cont\" *ngIf=\"showEditBox\">\n        <div class=\"user-col\">\n            <md-form-field class=\"example-full-width\">\n                <input mdInput> \n           </md-form-field>\n        </div>\n        <div class=\"user-col\">\n        \t<md-form-field class=\"example-full-width\">\n                <input mdInput> \n           </md-form-field>\n        </div>\n        <div class=\"user-col\">\n            <md-select [(ngModel)]=\"locationId\" name=\"location\" class=\"loc-input\">\n                <md-option *ngFor=\"let location of appSharedService.locations\" [value]=\"location\">\n                    {{location.city}}, {{location.state}}\n                </md-option>\n            </md-select>\n        </div>\n        <div class=\"user-col-del\">\n            <!-- <div><i class=\"material-icons valign_middle\">delete</i></div> -->\n        </div>\n    </div>\n    <div class=\"add-user\" (click)=\"addUser(true)\" *ngIf=\"!showEditBox\"><i class=\"material-icons valign_middle\">add_circle</i> New User</div>\n    <!-- <div class=\"add-user\" (click)=\"addUser(false)\" *ngIf=\"showEditBox\">Cancel</div> -->\n</div>"
 
 /***/ }),
 
@@ -610,15 +615,6 @@ var ManageUsersComponent = (function () {
         this.locations = [];
         this.showEditBox = false;
     }
-    ManageUsersComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.appSharedService.getLocations().subscribe(function (locations) {
-            _this.appSharedService.locations = locations;
-            _this.locations = locations;
-        }, function (err) {
-            console.log('Unable to retrive green house locations list');
-        });
-    };
     ManageUsersComponent.prototype.addUser = function (condition) {
         this.showEditBox = condition;
     };
@@ -641,7 +637,7 @@ var _a;
 /***/ "../../../../../src/app/master-view/master-view.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"right-scroll\">\n  \n  <!-- START: Master View -->\n  <table class=\"table_six table-width\">\n    <thead>\n    <tr>\n      <td>\n       <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\"> \n          <div>\n            <md-form-field class=\"full-width\">\n              <input mdInput placeholder=\"Plant\">\n            </md-form-field>\n          </div>\n        </div>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n          <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n            <md-button-toggle value=\"left\">\n              Type <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"center\" (click)=\"appSharedService.sort()\">\n              A-Z <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"right\">\n              Wk# <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n          </md-button-toggle-group>\n        </div>\n      </td>\n      <td *ngFor=\"let head of heads6;let i=index\" [colSpan]=\"i==4?16: (i==6?2:1)\" [ngClass]=\"{'merge-cell-style':i==4 || i==6}\">\n        <span [ngClass]=\"{'store-left':i==0}\" *ngIf=\"i!=4 || i!=6\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n        <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"16\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Route Number</td>\n            </tr>\n            <tr>\n              <td *ngFor=\"let trow of head\" class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{trow}}</span></td>\n            </tr>\n          </table>\n        </span>\n        <span *ngIf=\"i==6\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"2\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Returned</td>\n            </tr>\n            <tr>\n              <td *ngFor=\"let trow of head\" class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{trow}}</span></td>\n            </tr>\n          </table>\n        </span>\n      </td>\n    </tr>\n    </thead>\n    <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions\" class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td class=\"store-delivery-table-margin\">\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.lot_no\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.rl_no\">\n      </td>\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.b_no\">\n      </td>\n      <td>\n        <span>{{item.q - item.ts_d}}</span>\n      </td>\n            <td>\n        <input mdInput name=\"sixtyeight\" [(ngModel)]=\"item.sixtyeight\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_one\" [(ngModel)]=\"item.sixtyeight_one\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_two\" [(ngModel)]=\"item.sixtyeight_two\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_three\" [(ngModel)]=\"item.sixtyeight_three\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_four\" [(ngModel)]=\"item.sixtyeight_four\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_five\" [(ngModel)]=\"item.sixtyeight_five\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_six\" [(ngModel)]=\"item.sixtyeight_six\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_seven\" [(ngModel)]=\"item.sixtyeight_seven\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_eight\" [(ngModel)]=\"item.sixtyeight_eight\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_nine\" [(ngModel)]=\"item.sixtyeight_nine\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_ten\" [(ngModel)]=\"item.sixtyeight_ten\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_eleven\" [(ngModel)]=\"item.sixtyeight_eleven\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_twelve\" [(ngModel)]=\"item.sixtyeight_twelve\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_thirteen\" [(ngModel)]=\"item.sixtyeight_thirteen\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_fourteen\" [(ngModel)]=\"item.sixtyeight_fourteen\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_fifteen\" [(ngModel)]=\"item.sixtyeight_fifteen\">\n      </td>\n      <td>\n        <span>{{item.q - item.ts_d}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"discarded\" [(ngModel)]=\"item.discarded\">\n      </td>\n      <td>\n        <md-select placeholder=\"\" #select=\"mdSelect\">\n          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <span>{{item.q - item.ts_d - item.discarded}}</span>\n      </td>\n      <td></td>\n    </tr>\n    <tr>\n      <td>Total</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>{{totalFlatsToSale}}</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td>\n        <button md-raised-button color=\"primary\">Export</button>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <!-- END: Master View-->\n\n</div>"
+module.exports = "<div class=\"right-scroll\">\n  \n  <!-- START: Master View -->\n  <table class=\"table_six table-width\">\n    <thead>\n    <tr>\n      <td>\n       <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"appSharedService.searchFieldValue\">\n              </md-form-field>\n            </div>\n          </div>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n          <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n            <md-button-toggle value=\"left\">\n              Type <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"center\" (click)=\"appSharedService.varietiesSort()\">\n              A-Z <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"right\" (click)=\"appSharedService.weekSort()\">\n              Wk# <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n          </md-button-toggle-group>\n        </div>\n      </td>\n      <td *ngFor=\"let head of heads6;let i=index\" [colSpan]=\"i==4?16: (i==6?2:1)\" [ngClass]=\"{'merge-cell-style':i==4 || i==6}\">\n        <span [ngClass]=\"{'store-left':i==0}\" *ngIf=\"i!=4 || i!=6\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n        <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"16\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Route Number</td>\n            </tr>\n            <tr>\n              <td *ngFor=\"let trow of head\" class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{trow}}</span></td>\n            </tr>\n          </table>\n        </span>\n        <span *ngIf=\"i==6\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"2\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Returned</td>\n            </tr>\n            <tr>\n              <td *ngFor=\"let trow of head\" class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{trow}}</span></td>\n            </tr>\n          </table>\n        </span>\n      </td>\n    </tr>\n    </thead>\n    <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions\" class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td class=\"store-delivery-table-margin\">\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.lot_no\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.rl_no\">\n      </td>\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.b_no\">\n      </td>\n      <td>\n        <span>{{item.q - item.ts_d}}</span>\n      </td>\n            <td>\n        <input mdInput name=\"sixtyeight\" [(ngModel)]=\"item.sixtyeight\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_one\" [(ngModel)]=\"item.sixtyeight_one\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_two\" [(ngModel)]=\"item.sixtyeight_two\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_three\" [(ngModel)]=\"item.sixtyeight_three\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_four\" [(ngModel)]=\"item.sixtyeight_four\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_five\" [(ngModel)]=\"item.sixtyeight_five\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_six\" [(ngModel)]=\"item.sixtyeight_six\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_seven\" [(ngModel)]=\"item.sixtyeight_seven\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_eight\" [(ngModel)]=\"item.sixtyeight_eight\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_nine\" [(ngModel)]=\"item.sixtyeight_nine\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_ten\" [(ngModel)]=\"item.sixtyeight_ten\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_eleven\" [(ngModel)]=\"item.sixtyeight_eleven\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_twelve\" [(ngModel)]=\"item.sixtyeight_twelve\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_thirteen\" [(ngModel)]=\"item.sixtyeight_thirteen\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_fourteen\" [(ngModel)]=\"item.sixtyeight_fourteen\">\n      </td>\n      <td>\n        <input mdInput name=\"sixtyeight_fifteen\" [(ngModel)]=\"item.sixtyeight_fifteen\">\n      </td>\n      <td>\n        <span>{{item.q - item.ts_d}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"discarded\" [(ngModel)]=\"item.discarded\">\n      </td>\n      <td>\n        <md-select placeholder=\"\" #select=\"mdSelect\">\n          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <span>{{item.q - item.ts_d - item.discarded}}</span>\n      </td>\n      <td></td>\n    </tr>\n    <tr>\n      <td>Total</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td>{{totalFlatsToSale}}</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td></td>\n    </tr>\n    <tr>\n      <td>\n        <button md-raised-button color=\"primary\">Export</button>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <!-- END: Master View-->\n\n</div>"
 
 /***/ }),
 
@@ -738,7 +734,7 @@ var _a, _b;
 /***/ "../../../../../src/app/organic-tracker-sheet/organic-tracker-sheet.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"left-panel\">\n  <div class=\"top-section\">\n    <div>\n      <h4 class=\"pg-title inline-blk\">Bonnie Audit Trail</h4>\n\n\n      <span md-button [mdMenuTriggerFor]=\"menu\" class=\"setting-icon\"><i class=\"material-icons valign_middle\">settings</i></span>\n      <md-menu #menu=\"mdMenu\">\n        <button md-menu-item class=\"setting-menu-item logged-in-user\"><div>Logged In as <br>(..@scotts.com)</div></button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"openManageUserDialog(null)\">Manage Users</button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"openManageGreenHouseDialog(null)\">Manage Greenhouse/Stations</button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"openManagePlugCatalogDialog(null)\">Manage Plug Catalog</button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"loginService.logout()\">Logout</button>\n      </md-menu>\n\n    </div>\n    <md-select placeholder=\"Location\" [(ngModel)]=\"locationId\" name=\"location\" class=\"input-white sec1-select\">\n      <md-option *ngFor=\"let location of locations\" [value]=\"location\">\n        {{location.city}}, {{location.state}}\n      </md-option>\n    </md-select>\n  </div>\n  <md-list>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-plug-tray-information']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Plug tray information</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-planting-information' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-planting-information']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Planting information</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-receiving-from-other-stations' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-receiving-from-other-stations']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Receiving</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-ship-to-other-stations' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-ship-to-other-stations']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Ship to</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-total-salable' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-total-salable']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Total salable</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-store-delivery' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-store-delivery']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">To store delivery/balance</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-master-view' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-master-view']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Master view</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <!-- <md-list-item class=\"grey-bg\">\n      <p md-line class=\"menu-item\">Master View</p>\n    </md-list-item>\n    <md-divider></md-divider> -->\n    <!-- <md-list-item style=\"cursor: pointer;\" (click)=\"loginService.logout()\">\n      <p md-line class=\"menu-item\">Logout</p>\n    </md-list-item>\n    <md-divider></md-divider> -->\n  </md-list>\n</div>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<div class=\"left-panel\">\n  <div class=\"top-section\">\n    <div>\n      <h4 class=\"pg-title inline-blk\">Bonnie Audit Trail</h4>\n\n\n      <span md-button [mdMenuTriggerFor]=\"menu\" class=\"setting-icon\"><i class=\"material-icons valign_middle\">settings</i></span>\n      <md-menu #menu=\"mdMenu\">\n        <button md-menu-item class=\"setting-menu-item logged-in-user\"><div>Logged In as <br>(..@scotts.com)</div></button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"openManageUserDialog(null)\">Manage Users</button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"openManageGreenHouseDialog(null)\">Manage Greenhouse/Stations</button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"openManagePlugCatalogDialog(null)\">Manage Plug Catalog</button>\n        <button md-menu-item class=\"setting-menu-item\" (click)=\"loginService.logout()\">Logout</button>\n      </md-menu>\n\n    </div>\n    <md-select placeholder=\"Location\" [(ngModel)]=\"locationId\" name=\"location\" class=\"input-white sec1-select\">\n      <md-option *ngFor=\"let location of locations\" [value]=\"location\">\n        {{location.city}}, {{location.state}}\n      </md-option>\n    </md-select>\n  </div>\n  <md-list>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-plug-tray-information']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Plug tray information</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-planting-information' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-planting-information']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Planting information</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-receiving-from-other-stations' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-receiving-from-other-stations']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Receiving</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-ship-to-other-stations' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-ship-to-other-stations']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Ship to</p>\n        <div class=\"notif-number\">\n          <i class=\"material-icons valign_middle\">arrow_forward</i>\n          {{appSharedService.shippedNumber}}\n        </div>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-total-salable' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-total-salable']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Total salable</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-store-delivery' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-store-delivery']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">To store delivery/balance</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <div [ngClass]=\"{'active': router.url === '/app-organic-tracker-sheet/app-master-view' }\" [routerLink]=\"['/app-organic-tracker-sheet/app-master-view']\">\n      <md-list-item style=\"cursor: pointer;\">\n        <p md-line class=\"menu-item\">Master view</p>\n      </md-list-item>\n      <md-divider></md-divider>\n    </div>\n    <!-- <md-list-item class=\"grey-bg\">\n      <p md-line class=\"menu-item\">Master View</p>\n    </md-list-item>\n    <md-divider></md-divider> -->\n    <!-- <md-list-item style=\"cursor: pointer;\" (click)=\"loginService.logout()\">\n      <p md-line class=\"menu-item\">Logout</p>\n    </md-list-item>\n    <md-divider></md-divider> -->\n  </md-list>\n</div>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -750,7 +746,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".left-panel {\n  width: 250px;\n  height: 100rem;\n  position: fixed;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  box-shadow: 3px 0px 5px #CCC;\n  background-color: #e5e5e5; }\n  .left-panel .pg-title {\n    font-weight: 300; }\n  .left-panel .top-section {\n    float: left;\n    width: 100%;\n    color: #FFF;\n    background-color: #3949ab;\n    padding: 0 20px 20px;\n    box-sizing: border-box; }\n  .left-panel .menu-item {\n    font-size: 12px;\n    font-weight: 600; }\n  .left-panel .sec1-select {\n    margin: 11px 0; }\n  .left-panel md-list {\n    background-color: #FFF; }\n\n.inline-blk {\n  display: inline-block; }\n\n.setting-icon {\n  margin-left: 50px;\n  cursor: pointer; }\n\n.setting-menu-item {\n  font-size: 12px; }\n\n.logged-in-user {\n  height: 50px;\n  line-height: 15px;\n  background-color: #e5e5e5;\n  margin-top: -8px;\n  cursor: default; }\n\n.sec1-select {\n  margin: 11px 0; }\n", ""]);
+exports.push([module.i, ".left-panel {\n  width: 250px;\n  height: 100rem;\n  position: fixed;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  box-shadow: 3px 0px 5px #CCC;\n  background-color: #e5e5e5; }\n  .left-panel .pg-title {\n    font-weight: 300; }\n  .left-panel .top-section {\n    float: left;\n    width: 100%;\n    color: #FFF;\n    background-color: #3949ab;\n    padding: 0 20px 20px;\n    box-sizing: border-box; }\n  .left-panel .menu-item {\n    font-size: 12px;\n    font-weight: 600; }\n  .left-panel .sec1-select {\n    margin: 11px 0; }\n  .left-panel md-list {\n    background-color: #FFF; }\n  .left-panel .notif-number {\n    display: none;\n    background-color: #423aad;\n    color: #fff;\n    width: 40px;\n    padding: 10px 3px;\n    border-radius: 50%;\n    text-align: center;\n    font-size: 12px; }\n    .left-panel .notif-number i {\n      font-size: 16px; }\n  .left-panel .active .notif-number {\n    display: inline-block; }\n\n.inline-blk {\n  display: inline-block; }\n\n.setting-icon {\n  margin-left: 50px;\n  cursor: pointer; }\n\n.setting-menu-item {\n  font-size: 12px; }\n\n.logged-in-user {\n  height: 50px;\n  line-height: 15px;\n  background-color: #e5e5e5;\n  margin-top: -8px;\n  cursor: default; }\n\n.sec1-select {\n  margin: 11px 0; }\n", ""]);
 
 // exports
 
@@ -859,10 +855,47 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
+/***/ "../../../../../src/app/pipes/varieties.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchVarietiesPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SearchVarietiesPipe = (function () {
+    function SearchVarietiesPipe() {
+    }
+    SearchVarietiesPipe.prototype.transform = function (allVarieties, inputValue) {
+        if (!allVarieties) {
+            return [];
+        }
+        if (!inputValue) {
+            return allVarieties;
+        }
+        return allVarieties.filter(function (varietyObj) {
+            return varietyObj.name.toLowerCase().indexOf(inputValue.toLowerCase()) > -1;
+        });
+    };
+    return SearchVarietiesPipe;
+}());
+SearchVarietiesPipe = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["X" /* Pipe */])({ name: 'SearchVarieties' })
+], SearchVarietiesPipe);
+
+//# sourceMappingURL=varieties.pipe.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/planting-information/planting-information.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"right-scroll\">\n\n  <!-- START: Planting Information -->\n  <table *ngIf=\"active == 2\" class=\"table_two table-width\">\n    <thead>\n    <tr>\n      <td>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\"> \n          <div>\n            <md-form-field class=\"full-width\">\n              <input mdInput placeholder=\"Variety\">\n            </md-form-field>\n          </div>\n        </div>\n        <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n          <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n          <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n          <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n        </div>\n        <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n          <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n            <md-button-toggle value=\"left\">\n              Type <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"center\" (click)=\"appSharedService.sort()\">\n              A-Z <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"right\">\n              Wk# <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n          </md-button-toggle-group>\n        </div>\n      </td>\n      <td *ngFor=\"let head of heads2\">\n        <span><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n      </td>\n    </tr>\n    </thead>\n    <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions\" class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" class=\"icon-box\" (click)=\"appSharedService.openDialog(item)\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"seedLotNumber\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"plugFlatsPlotted\" [(ngModel)]=\"item.plugTray.plugFlatsPlotted\">\n      </td>\n      <td>\n        <input mdInput name=\"finishedTrays\" [(ngModel)]=\"item.plantingInfo.finishedTrays\">\n      </td>\n      <td>\n        <input mdInput name=\"locatorNumber\" [(ngModel)]=\"item.plantingInfo.locatorNumber\">\n      </td>\n      <td>\n        <!-- <input mdInput name=\"pottedDate\" [(ngModel)]=\"item.plantingInfo.pottedDate\"> -->\n        <md-form-field [formGroup]=\"plantingInfoForm\">\n          <input mdInput [mdDatepicker]=\"picker\" (click)=\"picker.open()\" (focus)=\"picker.open()\" [(ngModel)]=\"item.plantingInfo.pottedDate\" formControlName=\"datePotted\">\n          <!-- <md-datepicker-toggle mdSuffix [for]=\"picker\"></md-datepicker-toggle> -->\n          <md-datepicker #picker></md-datepicker>\n        </md-form-field>\n      </td>\n      <td>\n        <input mdInput name=\"houseBay\" [(ngModel)]=\"item.plantingInfo.houseBay\">\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <!-- END: Planting Information -->\n\n</div>"
+module.exports = "<div class=\"right-scroll\">\n\n  <!-- START: Planting Information -->\n  <table class=\"table_two table-width\">\n    <thead>\n      <tr>\n        <td>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"appSharedService.searchFieldValue\">\n              </md-form-field>\n            </div>\n          </div>\n          <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n            <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n            <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n            <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n          </div>\n          <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n              <md-button-toggle value=\"left\">\n                Type <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"center\" (click)=\"appSharedService.varietiesSort()\">\n                A-Z <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"right\" (click)=\"appSharedService.weekSort()\">\n                Wk# <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n            </md-button-toggle-group>\n          </div>\n        </td>\n        <td *ngFor=\"let head of heads2\">\n          <span><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n        </td>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue\" class=\"form-input-model\">\n        <td>\n          <div [innerHTML]=\"item['nameHtml']\" class=\"icon-box\" (click)=\"appSharedService.openDialog(item)\"></div>\n          <span>{{item.name}}</span>\n        </td>\n        <td>\n          <input mdInput name=\"seedLotNumber\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n        </td>\n        <td>\n          <input mdInput name=\"plugFlatsPlotted\" [(ngModel)]=\"item.plugTray.plugFlatsPlotted\">\n        </td>\n        <td>\n          <input mdInput type=\"number\" name=\"finishedTrays\" [(ngModel)]=\"item.plantingInfo.finishedTrays\" (blur)=\"updatePlugToDeliverData(item)\">\n        </td>\n        <td>\n          <input mdInput type=\"text\" name=\"locatorNumber\" [(ngModel)]=\"item.plantingInfo.locatorNumber\" (blur)=\"updatePlugToDeliverData(item)\">\n        </td>\n        <td>\n          <!-- <input mdInput name=\"pottedDate\" [(ngModel)]=\"item.plantingInfo.pottedDate\"> -->\n          <md-form-field [formGroup]=\"plantingInfoForm\">\n            <input mdInput [mdDatepicker]=\"picker\" (click)=\"picker.open()\" (focus)=\"picker.open()\" [(ngModel)]=\"item.plantingInfo.pottedDate\"\n              formControlName=\"datePotted\">\n            <!-- <md-datepicker-toggle mdSuffix [for]=\"picker\"></md-datepicker-toggle> -->\n            <md-datepicker #picker></md-datepicker>\n          </md-form-field>\n        </td>\n        <td>\n          <input mdInput type=\"number\" name=\"houseBay\" [(ngModel)]=\"item.plantingInfo.houseBay\" (blur)=\"updatePlugToDeliverData(item)\">\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <!-- END: Planting Information -->\n\n</div>\n"
 
 /***/ }),
 
@@ -890,10 +923,9 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlantingInformationComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__planting_information_service__ = __webpack_require__("../../../../../src/app/planting-information/planting-information.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_services_app_shared_service__ = __webpack_require__("../../../../../src/app/providers/services/app-shared.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -907,11 +939,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var PlantingInformationComponent = (function () {
-    function PlantingInformationComponent(appSharedService, plantingInformationService, renderer, el, router) {
+    function PlantingInformationComponent(appSharedService, renderer, el, router) {
         this.appSharedService = appSharedService;
-        this.plantingInformationService = plantingInformationService;
         this.renderer = renderer;
         this.el = el;
         this.router = router;
@@ -920,18 +950,8 @@ var PlantingInformationComponent = (function () {
         this.optionsData = [];
         this.mergeClickBool = false;
         this.isSorted = false;
-        this.active = 2;
         this.totalFlatsToSale = 0;
     }
-    PlantingInformationComponent.prototype.getTotalOfColumn = function (array, key) {
-        var total = array.reduce(function (a, b) {
-            return a + b[key];
-        }, 0);
-        return total;
-    };
-    PlantingInformationComponent.prototype.mergeClick = function (e, mergeText) {
-        mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
-    };
     PlantingInformationComponent.prototype.ngOnInit = function () {
         this.list = [
             'Planting Information'
@@ -944,8 +964,33 @@ var PlantingInformationComponent = (function () {
             'Potted Date',
             'House#/Bay#'
         ];
-        this.plantingInfoForm = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormGroup */]({
-            datePotted: new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormControl */](null, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["k" /* Validators */].required)
+        this.plantingInfoForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormGroup */]({
+            datePotted: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */](null, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["k" /* Validators */].required)
+        });
+        this.getPlugToDeliverData();
+    };
+    /**
+     * [Retriving all plugToDeliver objects from plugToDeliver Kind]
+     * @return it returns all varities from plugToDeliver Kind
+     */
+    // TODO:: Make shared function
+    PlantingInformationComponent.prototype.getPlugToDeliverData = function () {
+        var _this = this;
+        return this.appSharedService.getPlugToDeliverData().subscribe(function (res) {
+            _this.appSharedService.varietyOptions = res;
+        }, function (err) {
+            console.log('Plug to deliver data retrive error');
+        });
+    };
+    /**
+     * [Updates plugToDeliver object to plugToDeliver Kind]
+     * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
+     */
+    // TODO:: Make shared function
+    PlantingInformationComponent.prototype.updatePlugToDeliverData = function (plugToDeliverData) {
+        this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
+            .subscribe(function (res) { }, function (err) {
+            console.log('Update error');
         });
     };
     PlantingInformationComponent.prototype.ngAfterViewInit = function () {
@@ -962,147 +1007,20 @@ PlantingInformationComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-planting-information',
         template: __webpack_require__("../../../../../src/app/planting-information/planting-information.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/planting-information/planting-information.component.scss")],
-        providers: [__WEBPACK_IMPORTED_MODULE_1__planting_information_service__["a" /* PlantingInformationService */]]
+        styles: [__webpack_require__("../../../../../src/app/planting-information/planting-information.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_services_app_shared_service__["a" /* AppSharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_services_app_shared_service__["a" /* AppSharedService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__planting_information_service__["a" /* PlantingInformationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__planting_information_service__["a" /* PlantingInformationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_services_app_shared_service__["a" /* AppSharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_services_app_shared_service__["a" /* AppSharedService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _d || Object])
 ], PlantingInformationComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d;
 //# sourceMappingURL=planting-information.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/planting-information/planting-information.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlantingInformationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var PlantingInformationService = (function () {
-    function PlantingInformationService(http, router) {
-        this.http = http;
-        this.router = router;
-        this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
-        this.options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: this.headers });
-        this.plant_varieties = [{
-                'name': 'Better Boy Tomato',
-                'icon': 'tomato-bboy'
-            }, {
-                'name': 'Husky Cherry Red Tomato',
-                'icon': 'tomato-hcr'
-            }, {
-                'name': 'Red Beefsteak Tomato',
-                'icon': 'tomato-rb'
-            }, {
-                'name': 'Green Bell Pepper',
-                'icon': 'tomato-rb'
-            }, {
-                'name': 'Hot Banana Pepper',
-                'icon': 'pepper-banana-hot',
-            }, {
-                'name': 'Jalapeno Pepper',
-                'icon': 'pepper-jalapeno'
-            }, {
-                'name': 'Sweet Banana Pepper',
-                'icon': 'pepper-banana-sweet',
-            }, {
-                'name': 'Broccoli',
-                'icon': 'broccoli'
-            }, {
-                'name': 'Cucumber',
-                'icon': 'cucumber-traditional'
-            }, {
-                'name': 'EggPlant',
-                'icon': 'eggplant'
-            }, {
-                'name': 'Better Boy Tomato',
-                'icon': 'tomato-bboy'
-            }, {
-                'name': 'Husky Cherry Red Tomato',
-                'icon': 'tomato-hcr'
-            }, {
-                'name': 'Red Pepper Bell',
-                'icon': 'pepper-bell-red'
-            }, {
-                'name': 'Kale',
-                'icon': 'kale'
-            }, {
-                'name': 'Hot Banana Pepper',
-                'icon': 'pepper-banana-hot'
-            }, {
-                'name': 'Basil',
-                'icon': 'basil'
-            }, {
-                'name': 'Hot Banana Pepper',
-                'icon': 'pepper-banana-hot'
-            }, {
-                'name': 'Cilantro',
-                'icon': 'cilantro'
-            }, {
-                'name': 'Jalapeno Pepper',
-                'icon': 'pepper-jalapeno'
-            }, {
-                'name': 'Egg Plant',
-                'icon': 'eggplant'
-            }];
-    }
-    PlantingInformationService.prototype.createPlants = function () {
-        return this.http.post('/plants/create', this.plant_varieties, this.options)
-            .map(function (res) {
-        })
-            .catch(function (err) {
-            return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err.json().error || 'Server error');
-        });
-    };
-    PlantingInformationService.prototype.getPlants = function () {
-        return this.http.get('/plants/get')
-            .map(function (res) {
-            return res.json();
-        })
-            .catch(function (err) {
-            return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err.json().error || 'Server error');
-        });
-    };
-    return PlantingInformationService;
-}());
-PlantingInformationService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object])
-], PlantingInformationService);
-
-var _a, _b;
-//# sourceMappingURL=planting-information.service.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/plug-tray-information/plug-tray-information.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"right-scroll\">\n  <!-- START: Plug Tray Information -->\n  <table *ngIf=\"active == 1\" class=\"table_one table-width\">\n    <thead>\n      <tr>\n        <td>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"varietyName\" [formControl]=\"varietyControl\">\n              </md-form-field>\n            </div>\n          </div>\n          <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n            <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n            <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n            <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n          </div>\n          <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n              <md-button-toggle value=\"left\">\n                Type <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"center\" (click)=\"appSharedService.sort()\">\n                A-Z <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"right\">\n                Wk# <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n            </md-button-toggle-group>\n          </div>\n        </td>\n        <td *ngFor=\"let head of heads\">\n          <span><i class=\"material-icons rotate_90 valign_middle color-grey\">arrow_drop_down</i>{{head}}</span>\n        </td>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of appSharedService.varietyOptions\" class=\"form-input-model\">\n        <td>\n          <div [innerHTML]=\"item['nameHtml']\" class=\"icon-box\"></div>\n          <span>{{item.name}}</span>\n        </td>\n        <td>\n          <input mdInput name=\"pfr\" [(ngModel)]=\"item.plugTray.plugFlatsReceived\">\n        </td>\n        <td>\n          <!-- <input mdInput name=\"date_received\" > -->\n          <md-form-field [formGroup]=\"PlugTrayForm\">\n            <input mdInput [mdDatepicker]=\"picker\" (click)=\"picker.open()\" (focus)=\"picker.open()\" [(ngModel)]=\"item.plugTray.dateReceived\"\n              formControlName=\"dateReceived\">\n            <!-- <md-datepicker-toggle mdSuffix [for]=\"picker\"></md-datepicker-toggle> -->\n            <md-datepicker #picker></md-datepicker>\n          </md-form-field>\n        </td>\n        <td>\n          <input mdInput name=\"pfp\" [(ngModel)]=\"item.plugTray.plugFlatsPlotted\">\n        </td>\n        <td>\n          <input mdInput name=\"pfd\" [(ngModel)]=\"item.plugTray.plugFlatsDiscarded\">\n        </td>\n        <td>\n          <!-- <input mdInput name=\"reason_code\" [(ngModel)]=\"item.reason_code\"> -->\n          <md-select placeholder=\"\" #select=\"mdSelect\" [disabled]=\"!item.plugTray.plugFlatsDiscarded\" [(ngModel)]=\"item.plugTray.reasonsCode\">\n            <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n            <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n          </md-select>\n        </td>\n        <td>\n          <input mdInput name=\"lot_no\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n        </td>\n      </tr>\n\n\n      <div class=\"flex-display add-plant\" [class.flex-center]=\"mergeClickBool\" *ngIf=\"mergeClickBool == false\">\n        <button md-button><i class=\"material-icons rotate_90\" style=\"pointer-events: none\">add_circle</i></button>\n        <md-form-field>\n          <input type=\"text\" mdInput [formControl]=\"myControl\" [(ngModel)]=\"newPlant\" placeholder=\"New Plug\" [mdAutocomplete]=\"plant\">\n        </md-form-field>\n        <md-autocomplete #plant=\"mdAutocomplete\" [displayWith]=\"displayFn\">\n          <md-option *ngFor=\"let plant of greenHousePlants\" [value]=\"plant\" data-id=\"plant.id\" (onSelectionChange)=\"addPlant($event, plant)\">\n            {{ plant.name }}\n          </md-option>\n        </md-autocomplete>\n      </div>\n    </tbody>\n  </table>\n  <!-- END: Plug Tray Information -->\n</div>\n"
+module.exports = "<div class=\"right-scroll\">\n  <!-- START: Plug Tray Information -->\n  <table class=\"table_one table-width\">\n    <thead>\n      <tr>\n        <td>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"appSharedService.searchFieldValue\" [formControl]=\"varietyControl\">\n              </md-form-field>\n            </div>\n          </div>\n          <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n            <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n            <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n            <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n          </div>\n          <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n              <md-button-toggle value=\"left\">\n                Type <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"center\" (click)=\"appSharedService.varietiesSort()\">\n                A-Z <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"right\" (click)=\"appSharedService.weekSort()\">\n                Wk# <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n            </md-button-toggle-group>\n          </div>\n        </td>\n        <td *ngFor=\"let head of heads\">\n          <span><i class=\"material-icons rotate_90 valign_middle color-grey\">arrow_drop_down</i>{{head}}</span>\n        </td>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue\" class=\"form-input-model\">\n        <td>\n          <div [innerHTML]=\"item['nameHtml']\" class=\"icon-box\"></div>\n          <span>{{item.name}}</span><span>{{ item.weekNumber ? '  week' + item.weekNumber : ''}}</span>\n        </td>\n        <td>\n          <input mdInput name=\"pfr\" type=\"number\" [(ngModel)]=\"item.plugTray.plugFlatsReceived\" (blur)=\"updatePlugToDeliverData(item)\">\n        </td>\n        <td>\n          <!-- <input mdInput name=\"date_received\" > -->\n          <md-form-field [formGroup]=\"PlugTrayForm\">\n            <input mdInput [mdDatepicker]=\"picker\" (click)=\"picker.open()\" (focus)=\"picker.open()\" [(ngModel)]=\"item.plugTray.dateReceived\"\n              formControlName=\"dateReceived\" (ngModelChange)=\"calculateWeekNumber($event, item)\">\n            <!-- <md-datepicker-toggle mdSuffix [for]=\"picker\"></md-datepicker-toggle> -->\n            <md-datepicker #picker></md-datepicker>\n          </md-form-field>\n        </td>\n        <td>\n          <input mdInput name=\"pfp\" type=\"number\" [(ngModel)]=\"item.plugTray.plugFlatsPlotted\" (blur)=\"updatePlugToDeliverData(item)\">\n        </td>\n        <td>\n          <input mdInput name=\"pfd\" type=\"number\" [(ngModel)]=\"item.plugTray.plugFlatsDiscarded\" (blur)=\"updatePlugToDeliverData(item)\">\n        </td>\n        <td>\n          <!-- <input mdInput name=\"reason_code\" [(ngModel)]=\"item.reason_code\"> -->\n          <md-select placeholder=\"\" #select=\"mdSelect\" [disabled]=\"!item.plugTray.plugFlatsDiscarded\" [(ngModel)]=\"item.plugTray.reasonsCode\"\n            (ngModelChange)=\"updatePlugToDeliverData(item)\">\n            <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n            <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n          </md-select>\n        </td>\n        <td>\n          <input mdInput name=\"lot_no\" type=\"text\" [(ngModel)]=\"item.plugTray.seedLotNumber\" (blur)=\"updatePlugToDeliverData(item)\">\n        </td>\n      </tr>\n\n\n      <div class=\"flex-display add-plant\" [class.flex-center]=\"mergeClickBool\" *ngIf=\"mergeClickBool == false\">\n        <button md-button><i class=\"material-icons rotate_90\" style=\"pointer-events: none\">add_circle</i></button>\n        <md-form-field>\n          <input type=\"text\" mdInput [formControl]=\"myControl\" [(ngModel)]=\"newPlant\" placeholder=\"New Plug\" [mdAutocomplete]=\"plant\">\n        </md-form-field>\n        <md-autocomplete #plant=\"mdAutocomplete\" [displayWith]=\"displayFn\">\n          <md-option *ngFor=\"let plant of greenHousePlants\" [value]=\"plant\" data-id=\"plant.id\" (onSelectionChange)=\"addPlant($event, plant)\">\n            {{ plant.name }}\n          </md-option>\n        </md-autocomplete>\n      </div>\n    </tbody>\n  </table>\n  <!-- END: Plug Tray Information -->\n</div>\n"
 
 /***/ }),
 
@@ -1134,12 +1052,12 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_services_app_shared_service__ = __webpack_require__("../../../../../src/app/providers/services/app-shared.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_classes_plantInfo_class__ = __webpack_require__("../../../../../src/app/providers/classes/plantInfo.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_startWith__ = __webpack_require__("../../../../rxjs/add/operator/startWith.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_startWith___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_startWith__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_startWith__ = __webpack_require__("../../../../rxjs/add/operator/startWith.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_startWith___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_startWith__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_services_app_shared_service__ = __webpack_require__("../../../../../src/app/providers/services/app-shared.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_classes_plantInfo_class__ = __webpack_require__("../../../../../src/app/providers/classes/plantInfo.class.ts");
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -1178,7 +1096,6 @@ var PlugTrayInformationComponent = (function () {
         this.reasonCodes = [];
         this.optionsData = [];
         this.mergeClickBool = false;
-        this.active = 1;
         this.totalFlatsToSale = 0;
         this.options = [
             {
@@ -1232,27 +1149,28 @@ var PlugTrayInformationComponent = (function () {
         this.PlugTrayForm = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormGroup */]({
             dateReceived: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormControl */](null, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["k" /* Validators */].required)
         });
+        this.getPlugToDeliverData();
     };
     PlugTrayInformationComponent.prototype.displayFn = function (order) {
         this.newPlant = __assign({}, order);
         return null;
     };
     /**
-     * [addPlant description]
+     * [When user selects a variety from typeahed it creates a new object entry in the Kind]
+     * [Here preparing new object with all screens properties]
+     * [Then calling createPlugToDeliverData function by passing prepared new object]
      */
     PlugTrayInformationComponent.prototype.addPlant = function (event, newPlant) {
         if (newPlant) {
             var tempNewPlant = Object.assign({}, newPlant);
             tempNewPlant.plugTray = Object.assign({}, newPlant.plugTray);
             tempNewPlant.plantingInfo = Object.assign({}, newPlant.plantingInfo);
-            tempNewPlant.receivingData = Object.assign({}, newPlant.receivingData);
+            tempNewPlant.receivingInfo = Object.assign({}, newPlant.receivingInfo);
             tempNewPlant.totalSalable = Object.assign({}, newPlant.totalSalable);
             tempNewPlant.storeDeliveryData = Object.assign({}, newPlant.storeDeliveryData);
-            tempNewPlant.shipTo = new __WEBPACK_IMPORTED_MODULE_6__providers_classes_plantInfo_class__["a" /* ShipTo */]();
+            tempNewPlant.shipTo = new __WEBPACK_IMPORTED_MODULE_8__providers_classes_plantInfo_class__["a" /* ShipTo */]();
             tempNewPlant.shipTo.locationValues = [];
-            this.appSharedService.varietyOptions = this.appSharedService.varietyOptions.concat([
-                tempNewPlant
-            ]);
+            this.createPlugToDeliverData(tempNewPlant);
         }
         this.trigger.closePanel();
     };
@@ -1265,7 +1183,7 @@ var PlugTrayInformationComponent = (function () {
         }
     };
     /**
-     * [filter values for variety inpiut]
+     * [filter values for variety input]
      * @param  {any}   val [user input value]
      */
     PlugTrayInformationComponent.prototype.filterVariety = function (val) {
@@ -1274,15 +1192,64 @@ var PlugTrayInformationComponent = (function () {
         });
     };
     /**
-   * [filter values for add plant autocomplete]
-   * @param  {any}   val [user input value]
-   */
+     * [filter values for add plant autocomplete]
+     * @param  {any}   val [user input value]
+     */
     PlugTrayInformationComponent.prototype.filterAddPlant = function (val) {
         if (val && typeof val === 'string') {
             return this.optionsData.filter(function (option) {
                 return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0;
             });
         }
+    };
+    /**
+     * [Invoking from addPlant() function]
+     * [It adds plugToDeliver object to plugToDeliver Kind]
+     * [After adding it to kind it retrives plugToDeliver data to display the added plug in the ui]
+     * @param  {PlugToDeliver}   plugToDeliverData [user selects the variety from the auto complete]
+     * @return it returns all varities from plugToDeliver Kind
+     */
+    PlugTrayInformationComponent.prototype.createPlugToDeliverData = function (plugToDeliverData) {
+        var _this = this;
+        this.appSharedService.createPlugToDeliverData(plugToDeliverData)
+            .subscribe(function (res) {
+            _this.getPlugToDeliverData();
+        }, function (err) {
+            console.log('Create error');
+        });
+    };
+    /**
+    * [Retriving all plugToDeliver objects from plugToDeliver Kind]
+    * @return it returns all varities from plugToDeliver Kind
+    */
+    // TODO:: Make shared function
+    PlugTrayInformationComponent.prototype.getPlugToDeliverData = function () {
+        var _this = this;
+        return this.appSharedService.getPlugToDeliverData().subscribe(function (res) {
+            _this.appSharedService.varietyOptions = res;
+        }, function (err) {
+            console.log('Plug to deliver data retrive error');
+        });
+    };
+    /**
+     * [Updates plugToDeliver object to plugToDeliver Kind]
+     * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
+     */
+    // TODO:: Make shared function
+    PlugTrayInformationComponent.prototype.updatePlugToDeliverData = function (plugToDeliverData) {
+        this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
+            .subscribe(function (res) { }, function (err) {
+            console.log('Update error');
+        });
+    };
+    /**
+     * [Updates plugToDeliver object to plugToDeliver kind]
+     * @param  {Date}   date [user input date from datepicker]
+     * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object]
+     */
+    PlugTrayInformationComponent.prototype.calculateWeekNumber = function (date, plugToDeliverData) {
+        var weekNumber = moment(date).week();
+        plugToDeliverData.weekNumber = weekNumber;
     };
     return PlugTrayInformationComponent;
 }());
@@ -1296,7 +1263,7 @@ PlugTrayInformationComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/plug-tray-information/plug-tray-information.component.html"),
         styles: [__webpack_require__("../../../../../src/app/plug-tray-information/plug-tray-information.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__providers_services_app_shared_service__["a" /* AppSharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_services_app_shared_service__["a" /* AppSharedService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__providers_services_app_shared_service__["a" /* AppSharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_services_app_shared_service__["a" /* AppSharedService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Renderer2 */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _e || Object])
 ], PlugTrayInformationComponent);
 
 var _a, _b, _c, _d, _e;
@@ -1308,8 +1275,6 @@ var _a, _b, _c, _d, _e;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export PlantInfo */
-/* unused harmony export PlugTrayInfo */
 /* unused harmony export PlantingInfo */
 /* unused harmony export ReceivingInfo */
 /* unused harmony export SalableInfo */
@@ -1318,18 +1283,9 @@ var _a, _b, _c, _d, _e;
 /* unused harmony export Location */
 /* unused harmony export Plant */
 /* unused harmony export User */
-var PlantInfo = (function () {
-    function PlantInfo() {
-    }
-    return PlantInfo;
-}());
-
-var PlugTrayInfo = (function () {
-    function PlugTrayInfo() {
-    }
-    return PlugTrayInfo;
-}());
-
+/* unused harmony export PlugToDeliver */
+/* unused harmony export PlugTray */
+/* unused harmony export ShipToInfo */
 var PlantingInfo = (function () {
     function PlantingInfo() {
     }
@@ -1378,6 +1334,24 @@ var User = (function () {
     return User;
 }());
 
+var PlugToDeliver = (function () {
+    function PlugToDeliver() {
+    }
+    return PlugToDeliver;
+}());
+
+var PlugTray = (function () {
+    function PlugTray() {
+    }
+    return PlugTray;
+}());
+
+var ShipToInfo = (function () {
+    function ShipToInfo() {
+    }
+    return ShipToInfo;
+}());
+
 //# sourceMappingURL=plantInfo.class.js.map
 
 /***/ }),
@@ -1420,7 +1394,10 @@ var AppSharedService = (function () {
         this.dialog = dialog;
         this.http = http;
         this.router = router;
-        this.isSorted = false;
+        this.isPlantNameSorted = false;
+        this.isWeekNumberSorted = false;
+        this.searchFieldValue = undefined;
+        this.shippedNumber = 0;
         this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: this.headers });
         this.plantsData = [{
@@ -2056,19 +2033,62 @@ var AppSharedService = (function () {
             return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err.json().error || 'Server error');
         });
     };
-    AppSharedService.prototype.sort = function () {
-        if (!this.isSorted) {
+    AppSharedService.prototype.varietiesSort = function () {
+        if (!this.isPlantNameSorted) {
             this.varietyOptions = this.varietyOptions
                 .sort(function (a, b) {
-                return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
-            }).reverse();
-            this.isSorted = true;
+                return (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0);
+            });
+            this.isPlantNameSorted = true;
         }
+        this.isWeekNumberSorted = false;
+        this.varietyOptions = this.varietyOptions.reverse();
+    };
+    AppSharedService.prototype.weekSort = function () {
+        if (!this.isWeekNumberSorted) {
+            this.varietyOptions = this.varietyOptions
+                .sort(function (a, b) {
+                return (a.weekNumber > b.weekNumber) ? -1 : ((b.weekNumber > a.weekNumber) ? 1 : 0);
+            });
+            this.isWeekNumberSorted = true;
+        }
+        this.isPlantNameSorted = false;
         this.varietyOptions = this.varietyOptions.reverse();
     };
     AppSharedService.prototype.openDialog = function (currentItem) {
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__icon_dialog_icon_dialog_component__["a" /* IconDialogComponent */], {
             data: currentItem
+        });
+    };
+    AppSharedService.prototype.getPlugToDeliverData = function () {
+        return this.http.get('/plug-to-deliver/get')
+            .map(function (res) {
+            console.log(res);
+            console.log('JSON');
+            console.log(res.json());
+            return res.json();
+        })
+            .catch(function (err) {
+            return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err.json().error || 'Server error');
+        });
+    };
+    AppSharedService.prototype.createPlugToDeliverData = function (plugToDeliver) {
+        return this.http.post('/plug-to-deliver/create', plugToDeliver, this.options)
+            .map(function (res) {
+            return res;
+        })
+            .catch(function (err) {
+            return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err.json().error || 'Server error');
+        });
+    };
+    AppSharedService.prototype.updatePlugToDeliverData = function (plugToDeliver) {
+        console.log(plugToDeliver);
+        return this.http.put('/plug-to-deliver/put', plugToDeliver, this.options)
+            .map(function (res) {
+            return res;
+        })
+            .catch(function (err) {
+            return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err.json().error || 'Server error');
         });
     };
     AppSharedService.prototype.getStage = function () {
@@ -2100,7 +2120,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/receiving-from-other-stations/receiving-from-other-stations.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"right-scroll\">\n\n    <!-- START: Receiving -->\n  <table class=\"table_three table-width\">\n    <thead>\n    <tr>\n      <td>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\"> \n          <div>\n            <md-form-field class=\"full-width\">\n              <input mdInput placeholder=\"Variety\">\n            </md-form-field>\n          </div>\n        </div>\n        <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n          <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n          <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n          <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n        </div>\n        <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n          <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n            <md-button-toggle value=\"left\">\n              Type <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"center\" (click)=\"appSharedService.sort()\">\n              A-Z <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"right\">\n              Wk# <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n          </md-button-toggle-group>\n        </div>\n      </td>\n      <td *ngFor=\"let head of heads3;let i=index\" [ngClass]=\"{'display-no':i>4,'merge-cell-style':i==4}\" [colSpan]=\"i==4?4:1\">\n        <span [ngClass]=\"{'store-left':i==0}\" *ngIf=\"i<4\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n        <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"4\" class=\"top-row\">Received from other station</td>\n            </tr>\n            <tr>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Quantity</span></td>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Locator#</span></td>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>#Discarded</span></td>\n              <td class=\"bottom-row select-title\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Reason Code</span></td>\n            </tr>\n          </table>\n        </span>\n      </td>\n    </tr>\n    </thead>\n    <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions\" class=\"form-input-model\" [ngClass]=\"{'disabled-row':!item.received}\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.plugTray.seedLotNumber\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"ft\" [(ngModel)]=\"item.plantingInfo.finishedTrays\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"l_no\" [(ngModel)]=\"item.plantingInfo.locatorNumber\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.receivingData.houseBay\" [disabled]=\"!item.received\">\n      </td>\n      \n      <td>\n        <input mdInput name=\"q\" [(ngModel)]=\"item.receivingData.quantity\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.receivingData.locator\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"r_d\" [(ngModel)]=\"item.receivingData.discarded\" [disabled]=\"!item.received\">\n      </td>\n      <td class=\"select-field\">\n        <md-select placeholder=\"\" #select=\"mdSelect\" [(ngModel)]=\"item.receivingData.reasonCode\">\n          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\" [disabled]=\"!item.received\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <button md-raised-button color=\"primary\" *ngIf=\"!item.received\" (click)=\"receivePlant(item)\">Received</button>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <!-- END: Receiving -->\n\n</div>\n"
+module.exports = "<div class=\"right-scroll\">\n  <!-- START: Receiving -->\n  <table class=\"table_three table-width\">\n    <thead>\n      <tr>\n        <td>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"appSharedService.searchFieldValue\">\n              </md-form-field>\n            </div>\n          </div>\n          <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n            <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n            <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n            <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n          </div>\n          <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n              <md-button-toggle value=\"left\">\n                Type <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"center\" (click)=\"appSharedService.varietiesSort()\">\n                A-Z <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"right\" (click)=\"appSharedService.weekSort()\">\n                Wk# <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n            </md-button-toggle-group>\n          </div>\n        </td>\n        <td *ngFor=\"let head of heads3;let i=index\" [ngClass]=\"{'display-no':i>4,'merge-cell-style':i==4}\" [colSpan]=\"i==4?4:1\">\n          <span [ngClass]=\"{'store-left':i==0}\" *ngIf=\"i<4\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n          <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"4\" class=\"top-row\">Received from other station</td>\n            </tr>\n            <tr>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Quantity</span></td>\n        <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Locator#</span></td>\n        <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>#Discarded</span></td>\n        <td class=\"bottom-row select-title\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Reason Code</span></td>\n      </tr>\n  </table>\n  </span>\n  </td>\n  </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue\" class=\"form-input-model\"\n      [ngClass]=\"{'disabled-row':!item.received}\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.plugTray.seedLotNumber\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"ft\" [(ngModel)]=\"item.plantingInfo.finishedTrays\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"l_no\" [(ngModel)]=\"item.plantingInfo.locatorNumber\" [disabled]=\"!item.received\">\n      </td>\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.receivingInfo.houseBay\" (blur)=\"updatePlugToDeliverData(item)\">\n      </td>\n\n      <td>\n        <input mdInput type=\"number\" name=\"q\" [(ngModel)]=\"item.receivingInfo.quantity\" (blur)=\"updatePlugToDeliverData(item)\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.receivingInfo.locator\" (blur)=\"updatePlugToDeliverData(item)\">\n      </td>\n      <td>\n        <input mdInput type=\"number\" name=\"r_d\" [(ngModel)]=\"item.receivingInfo.discarded\" (blur)=\"updatePlugToDeliverData(item)\">\n      </td>\n      <td class=\"select-field\">\n        <md-select placeholder=\"\" #select=\"mdSelect\" [(ngModel)]=\"item.receivingInfo.reasonCode\" (ngModelChange)=\"updatePlugToDeliverData(item)\">\n          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <button md-raised-button color=\"primary\" (click)=\"receivePlant(item)\">Received</button>\n      </td>\n    </tr>\n  </tbody>\n  </table>\n  <!-- END: Receiving -->\n\n</div>\n"
 
 /***/ }),
 
@@ -2178,9 +2198,31 @@ var ReceivingFromOtherStationsComponent = (function () {
             { 'code': 'F', 'reason': 'Fell/Dropped' },
             { 'code': 'G', 'reason': 'Other/Act Of God' },
         ];
+        this.getPlugToDeliverData();
     };
-    ReceivingFromOtherStationsComponent.prototype.receivePlant = function (item) {
-        item.received = true;
+    /**
+     * [Retriving all plugToDeliver objects from plugToDeliver Kind]
+     * @return it returns all varities from plugToDeliver Kind
+     */
+    // TODO:: Make shared function
+    ReceivingFromOtherStationsComponent.prototype.getPlugToDeliverData = function () {
+        var _this = this;
+        return this.appSharedService.getPlugToDeliverData().subscribe(function (res) {
+            _this.appSharedService.varietyOptions = res;
+        }, function (err) {
+            console.log('Plug to deliver data retrive error');
+        });
+    };
+    /**
+     * [Updates plugToDeliver object to plugToDeliver Kind]
+     * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
+     */
+    // TODO:: Make shared function
+    ReceivingFromOtherStationsComponent.prototype.updatePlugToDeliverData = function (plugToDeliverData) {
+        this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
+            .subscribe(function (res) { }, function (err) {
+            console.log('Update error');
+        });
     };
     return ReceivingFromOtherStationsComponent;
 }());
@@ -2201,7 +2243,7 @@ var _a, _b;
 /***/ "../../../../../src/app/ship-to-other-stations/ship-to-other-stations.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"right-scroll\">\n\n  <!-- START: Ship To -->\n  <table class=\"table_four table-width\">\n    <thead>\n    <tr>\n      <td>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\"> \n          <div>\n            <md-form-field class=\"full-width\">\n              <input mdInput placeholder=\"Variety\">\n            </md-form-field>\n          </div>\n        </div>\n        <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n          <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n          <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n          <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n        </div>\n        <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n          <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n            <md-button-toggle value=\"left\">\n              Type <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"center\" (click)=\"appSharedService.sort()\">\n              A-Z <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"right\">\n              Wk# <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n          </md-button-toggle-group>\n        </div>\n      </td>\n      <td *ngFor=\"let head of heads4\">\n        <span><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head.name}}</span>\n      </td>\n      <td *ngFor=\"let head of locationNames;let ind= index\">\n        <span><i class=\"material-icons valign_middle\" (click)=\"removeShipToLoc(ind)\" style=\"cursor: pointer;\">clear</i>Ship to {{head}}</span>\n      </td>\n      <td>\n        <span (click)=\"enableAutoCompleteSearch()\"><i class=\"material-icons valign_middle\" style=\"cursor: pointer;\">add_circle</i>Ship TO</span>\n        <div class=\"auto-comp-cont\" *ngIf=\"shipToClicked\">\n          <md-form-field>\n            <input type=\"text\" mdInput [(ngModel)]=\"newCity\" placeholder=\"Enter Shipping location\" [mdAutocomplete]=\"plant\">\n          </md-form-field>\n          <md-autocomplete #plant=\"mdAutocomplete\" [displayWith]=\"displayFn\">\n            <md-option *ngFor=\"let location of locations\" [value]=\"location.city\" (onSelectionChange)=\"addShipToLoc($event, location)\">\n              {{location.city}}, {{location.state}}\n            </md-option>\n          </md-autocomplete>\n        </div>\n      </td>\n    </tr>\n    </thead>\n    <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions\" class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"seedLotNumber\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"ft\" [(ngModel)]=\"item.plantingInfo.finishedTrays\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.plantingInfo.locatorNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.receivingData.houseBay\">\n      </td>\n      <td *ngFor=\"let loc of locationNames;let ind = index\" [ngClass]=\"{'disabled-row':disabledColumns[ind+4]}\">\n        <input mdInput name=\"stchi\" (blur)=\"getTotalOfColumn(ind)\" [(ngModel)]=\"item.shipTo.locationValues[ind]\" [disabled]=\"disabledColumns[ind+4]\">\n      </td>\n      <td></td>\n    </tr>\n    <tr class=\"disabled-row\">\n      <td>Total</td>\n      <td *ngFor=\"let val of totalOfLocation\">{{val}}</td>\n    </tr>\n    <tr>\n      <td>\n      </td>\n      <td>\n        \n      </td>\n      <td>\n\n      </td>\n      <td>\n\n      </td>\n      <td>\n\n      </td>\n      <td *ngFor=\"let shipbtn of locationNames;let i=index\">\n        <button md-raised-button color=\"primary\" *ngIf=\"!disabledColumns[i+4]\" (click)=\"shipColumn(i+4)\">Ship</button>\n        <button md-raised-button color=\"basic\" *ngIf=\"disabledColumns[i+4]\" (click)=\"cancelShip(i+4)\">CANCEL SHIP</button>\n      </td>\n      \n    </tr>\n    </tbody>\n  </table>\n  <!-- END: Ship To -->\n  \n</div>\n"
+module.exports = "<div class=\"right-scroll\">\n\n  <!-- START: Ship To -->\n  <table class=\"table_four table-width\">\n    <thead>\n      <tr>\n        <td>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"appSharedService.searchFieldValue\">\n              </md-form-field>\n            </div>\n          </div>\n          <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n            <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n            <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n            <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n          </div>\n          <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n              <md-button-toggle value=\"left\">\n                Type <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"center\" (click)=\"appSharedService.varietiesSort()\">\n                A-Z <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"right\" (click)=\"appSharedService.weekSort()\">\n                Wk# <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n            </md-button-toggle-group>\n          </div>\n        </td>\n        <td *ngFor=\"let head of heads4\">\n          <span><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head.name}}</span>\n        </td>\n        <td *ngFor=\"let head of locationNames;let ind= index\">\n          <span><i class=\"material-icons valign_middle\" (click)=\"removeShipToLoc(ind)\" style=\"cursor: pointer;\">clear</i>Ship To {{head.city}}</span>\n        </td>\n        <td>\n          <span (click)=\"enableAutoCompleteSearch()\"><i class=\"material-icons valign_middle\" style=\"cursor: pointer;\">add_circle</i>Ship To</span>\n          <div class=\"auto-comp-cont\" *ngIf=\"shipToClicked\">\n            <md-form-field>\n              <input type=\"text\" mdInput [(ngModel)]=\"newCity\" placeholder=\"Enter Shipping location\" [mdAutocomplete]=\"plant\">\n            </md-form-field>\n            <md-autocomplete #plant=\"mdAutocomplete\" [displayWith]=\"displayFn\">\n              <md-option *ngFor=\"let location of locations\" [value]=\"location.city\" (onSelectionChange)=\"addShipToLoc($event, location)\">\n                {{location.city}}, {{location.state}}\n              </md-option>\n            </md-autocomplete>\n          </div>\n        </td>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue\" class=\"form-input-model\">\n        <td>\n          <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n          <span>{{item.name}}</span>\n        </td>\n        <td>\n          <input mdInput name=\"seedLotNumber\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n        </td>\n        <td>\n          <input mdInput name=\"ft\" [(ngModel)]=\"item.plantingInfo.finishedTrays\">\n        </td>\n        <td>\n          <input mdInput name=\"rl_no\" [(ngModel)]=\"item.plantingInfo.locatorNumber\">\n        </td>\n        <td>\n          <input mdInput name=\"b_no\" [(ngModel)]=\"item.receivingData.houseBay\">\n        </td>\n        <td *ngFor=\"let loc of locationNames;let ind = index\" [ngClass]=\"{'disabled-row':disabledColumns[ind+4]}\">\n          <input mdInput name=\"stchi\" (blur)=\"getTotalOfColumn(ind)\" [(ngModel)]=\"item.shipTo.locationValues[ind]\" [disabled]=\"disabledColumns[ind+4]\">\n        </td>\n        <td></td>\n      </tr>\n      <tr class=\"disabled-row\">\n        <td>Total</td>\n        <td *ngFor=\"let val of totalOfLocation\">{{val}}</td>\n      </tr>\n      <tr>\n        <td>\n        </td>\n        <td>\n        </td>\n        <td>\n        </td>\n        <td>\n        </td>\n        <td>\n        </td>\n        <td *ngFor=\"let shipbtn of locationNames;let i=index\">\n          <button md-raised-button color=\"primary\" *ngIf=\"!disabledColumns[i+4]\" (click)=\"shipColumn(i+4)\">Ship</button>\n          <button md-raised-button color=\"basic\" *ngIf=\"disabledColumns[i+4]\" (click)=\"cancelShip(i+4)\">CANCEL SHIP</button>\n        </td>\n\n      </tr>\n    </tbody>\n  </table>\n  <!-- END: Ship To -->\n</div>\n"
 
 /***/ }),
 
@@ -2270,13 +2312,8 @@ var ShipToOtherStationsComponent = (function () {
         mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
     };
     ShipToOtherStationsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.appSharedService.getLocations().subscribe(function (locations) {
-            _this.appSharedService.locations = locations;
-            _this.locations = locations;
-        }, function (err) {
-            console.log('Unable to retrive green house locations list');
-        });
+        // Retrieving Locations
+        this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
         this.heads4 = [
             { 'name': 'Seed Lot Number', 'icon': 'down' },
             { 'name': 'Finished Trays', 'icon': 'down' },
@@ -2290,25 +2327,39 @@ var ShipToOtherStationsComponent = (function () {
         });
     };
     ShipToOtherStationsComponent.prototype.addShipToLoc = function (event, newlocation) {
-        this.locationNames.push(newlocation.city);
+        this.locationNames.push(newlocation);
+        this.locations.splice(this.locations.indexOf(newlocation), 1);
         this.totalOfLocation.push(0);
         this.newCity = '';
         this.shipToClicked = false;
         this.trigger.closePanel();
     };
     ShipToOtherStationsComponent.prototype.removeShipToLoc = function (index) {
+        var _this = this;
+        console.log(this.appSharedService.locations);
+        this.appSharedService.locations.map(function (val) {
+            if (val.datastore_id === _this.locationNames[index].datastore_id) {
+                _this.locations.push(val);
+            }
+        });
         this.locationNames.splice(index, 1);
         this.totalOfLocation.splice(index + 4, 1);
+        if (this.disabledColumns[index + 4]) {
+            this.appSharedService.shippedNumber--;
+            this.disabledColumns.splice(index + 4, 1);
+        }
     };
     ShipToOtherStationsComponent.prototype.shipColumn = function (item) {
         this.disabledColumns[item] = true;
+        this.appSharedService.shippedNumber++;
     };
     ShipToOtherStationsComponent.prototype.cancelShip = function (item) {
         this.disabledColumns[item] = false;
+        this.appSharedService.shippedNumber--;
     };
     ShipToOtherStationsComponent.prototype.getTotalOfColumn = function (key) {
         this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
-            return a + parseInt(b.shipToData.locationValues[key] || 0);
+            return a + parseInt(b.shipTo.locationValues[key] || 0);
         }, 0);
     };
     ShipToOtherStationsComponent.prototype.enableAutoCompleteSearch = function () {
@@ -2337,7 +2388,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/store-delivery/store-delivery.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"right-scroll\">\n  \n<!-- START: To Store Delivery/Balance -->\n  <table class=\"table_six table-width\">\n    <thead>\n    <tr>\n      <td>\n       <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\"> \n          <div>\n            <md-form-field class=\"full-width\">\n              <input mdInput placeholder=\"Variety\">\n            </md-form-field>\n          </div>\n        </div>\n        <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n          <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n          <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n          <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n        </div>\n        <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n          <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n            <md-button-toggle value=\"left\">\n              Type <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"center\" (click)=\"appSharedService.sort()\">\n              A-Z <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"right\">\n              Wk# <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n          </md-button-toggle-group>\n        </div>\n\n      </td>\n      <td *ngFor=\"let head of heads6;let i=index\" [colSpan]=\"i==4?16: (i==6?2:1)\" [ngClass]=\"{'merge-cell-style':i==4 || i==6}\">\n        <span [ngClass]=\"{'store-left':i==0}\" *ngIf=\"i!=4 || i!=6\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n        <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"16\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Route Number <i class=\"material-icons print-icon valign_middle\">print</i></td>\n            </tr>\n            <tr>\n              <td *ngFor=\"let trow of head\" class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{trow}} <i class=\"material-icons rotate_90 print-icon valign_middle\">print</i></span></td>\n            </tr>\n          </table>\n        </span>\n        <span *ngIf=\"i==6\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"2\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Returned</td>\n            </tr>\n            <tr>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>#Discarded</span></td>\n              <td class=\"bottom-row\" style=\"width:57%\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Reason Code</span></td>\n            </tr>\n          </table>  \n        </span>\n      </td>\n    </tr>\n    </thead>\n    <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions;let i=index;\" class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td class=\"store-delivery-table-margin\">\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.plantingInfo.locatorNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.plantingInfo.houseBay\">\n      </td>\n      <td>\n        <span>{{item.receivingData.quantity - item.totalSalable.discarded || 0}}</span>\n      </td>\n      <td *ngFor=\"let route of heads6[4];let in = index;\">\n        <input mdInput name=\"sixtyeight\" [(ngModel)]=\"item.storeDeliveryData.routeNumberSale[in]\" (blur)=\"updateRouteTotal(in)\">\n      </td>\n      <td>\n        <span>{{deliveredTotal[i]}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"discarded\" [(ngModel)]=\"item.storeDeliveryData.discarded\">\n      </td>\n      <td>\n        <md-select placeholder=\"\" #select=\"mdSelect\" [(ngModel)]=\"item.storeDeliveryData.reasonCode\">\n          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <span>{{item.q - item.ts_d - item.discarded}}</span>\n      </td>\n      <td>\n        <md-checkbox class=\"example-margin\" [(ngModel)]=\"item.storeDeliveryData.check\"></md-checkbox>\n      </td>\n    </tr>\n    <tr>\n      <td>Total</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td *ngFor=\"let totalVal of routeTotal\">{{totalVal}}</td>\n      <td>{{sumPlantsDelivered}}</td>\n    </tr>\n    </tbody>\n  </table>\n  <!-- END: To Store Delivery/Balance -->\n\n\n</div>"
+module.exports = "<div class=\"right-scroll\">\n  <!-- START: To Store Delivery/Balance -->\n  <table class=\"table_six table-width\">\n    <thead>\n      <tr>\n        <td>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"appSharedService.searchFieldValue\">\n              </md-form-field>\n            </div>\n          </div>\n          <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n            <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n            <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n            <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n          </div>\n          <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n              <md-button-toggle value=\"left\">\n                Type <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"center\" (click)=\"appSharedService.varietiesSort()\">\n                A-Z <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"right\" (click)=\"appSharedService.weekSort()\">\n                Wk# <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n            </md-button-toggle-group>\n          </div>\n\n        </td>\n        <td *ngFor=\"let head of heads6;let i=index\" [colSpan]=\"i==4?16: (i==6?2:1)\" [ngClass]=\"{'merge-cell-style':i==4 || i==6}\">\n          <span [ngClass]=\"{'store-left':i==0}\" *ngIf=\"i!=4 || i!=6\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n          <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"16\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Route Number <i class=\"material-icons print-icon valign_middle\">print</i></td>\n            </tr>\n            <tr>\n              <td *ngFor=\"let trow of head\" class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{trow}} <i class=\"material-icons rotate_90 print-icon valign_middle\">print</i></span></td>\n      </tr>\n  </table>\n  </span>\n  <span *ngIf=\"i==6\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"2\" class=\"top-row\" style=\"text-align:left !important;padding-left: 10px !important\">Returned</td>\n            </tr>\n            <tr>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>#Discarded</span></td>\n  <td class=\"bottom-row\" style=\"width:57%\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Reason Code</span></td>\n  </tr>\n  </table>\n  </span>\n  </td>\n  </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i=index;\"\n      class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td class=\"store-delivery-table-margin\">\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.plantingInfo.locatorNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.plantingInfo.houseBay\">\n      </td>\n      <td>\n        <span></span>\n      </td>\n      <td *ngFor=\"let route of heads6[4];let in = index;\">\n        <input mdInput name=\"sixtyeight\" (blur)=\"updateRouteTotal(in)\">\n      </td>\n      <td>\n        <span></span>\n      </td>\n      <td>\n        <input mdInput name=\"discarded\">\n      </td>\n      <td>\n        <md-select placeholder=\"\" #select=\"mdSelect\">\n          <md-select-trigger></md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <span></span>\n      </td>\n      <td>\n        <md-checkbox class=\"example-margin\"></md-checkbox>\n      </td>\n    </tr>\n    <tr>\n      <td>Total</td>\n      <td></td>\n      <td></td>\n      <td></td>\n      <td *ngFor=\"let totalVal of routeTotal\"></td>\n      <td></td>\n    </tr>\n  </tbody>\n  </table>\n  <!-- END: To Store Delivery/Balance -->\n\n\n</div>\n"
 
 /***/ }),
 
@@ -2385,14 +2436,7 @@ var StoreDeliveryComponent = (function () {
         this.router = router;
         this.heads6 = [];
         this.reasonCodes = [];
-        this.mergeClickBool = false;
-        this.routeTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        this.deliveredTotal = [];
-        this.sumPlantsDelivered = 0;
     }
-    StoreDeliveryComponent.prototype.mergeClick = function (e, mergeText) {
-        mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
-    };
     StoreDeliveryComponent.prototype.ngOnInit = function () {
         this.heads6 = [
             'Seed Lot Number',
@@ -2450,7 +2494,7 @@ var _a, _b;
 /***/ "../../../../../src/app/total-salable/total-salable.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"right-scroll\">\n  \n  <!-- START: Total Salable -->\n  <table class=\"table_five table-width\">\n    <thead>\n    <tr>\n      <td>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\"> \n          <div>\n            <md-form-field class=\"full-width\">\n              <input mdInput placeholder=\"Variety\">\n            </md-form-field>\n          </div>\n        </div>\n        <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n          <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n          <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n          <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n        </div>\n        <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n        <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n          <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n            <md-button-toggle value=\"left\">\n              Type <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"center\" (click)=\"appSharedService.sort()\">\n              A-Z <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n            <md-button-toggle value=\"right\">\n              Wk# <i class=\"material-icons\">arrow_drop_down</i>\n            </md-button-toggle>\n          </md-button-toggle-group>\n        </div>\n      </td>\n\n\n     <!--  <td *ngFor=\"let head of heads5;let i=index\">\n        <span><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n      </td> -->\n\n\n      <td *ngFor=\"let head of heads5;let i=index\" [ngClass]=\"{'merge-cell-style':i==4}\" [colSpan]=\"i==4?2:1\">\n        <span *ngIf=\"i!=4\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n        <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"2\" class=\"top-row\">Discarded at GH</td>\n            </tr>\n            <tr>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>#Discarded</span></td>\n              <td class=\"bottom-row select-title\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Reason Code</span></td>\n            </tr>\n          </table>\n        </span>\n      </td>\n    </tr>\n    </thead>\n    \n    <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions\" class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"q\" [(ngModel)]=\"item.receivingData.quantity\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.receivingData.locator\">\n      </td>\n      \n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.receivingData.houseBay\">\n      </td>\n      <td>\n        <input mdInput name=\"ts_d\" [(ngModel)]=\"item.totalSalable.discarded\">\n      </td>\n      <td>\n        <md-select placeholder=\"\" #select=\"mdSelect\">\n          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <span>{{item.receivingData.quantity - item.totalSalable.discarded || 0}}</span>\n      </td>\n    </tr>\n    </tbody>\n  </table>\n  <!-- END: Total Salable -->\n</div>\n"
+module.exports = "<div class=\"right-scroll\">\n\n  <!-- START: Total Salable -->\n  <table class=\"table_five table-width\">\n    <thead>\n      <tr>\n        <td>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <div>\n              <md-form-field class=\"full-width\">\n                <input mdInput placeholder=\"Variety\" [(ngModel)]=\"appSharedService.searchFieldValue\">\n              </md-form-field>\n            </div>\n          </div>\n          <div class=\"flex-display\" [class.flex-center]=\"mergeClickBool\">\n            <button md-button *ngIf=\"mergeClickBool == false\" (click)=\"mergeClick($event, 'start_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> MERGE</button>\n            <button md-button *ngIf=\"mergeClickBool == false\"><i class=\"material-icons rotate_90\">call_split</i> SPLIT</button>\n            <button md-button *ngIf=\"mergeClickBool == true\" (click)=\"mergeClick($event, 'cancel_merge')\"><i class=\"material-icons rotate_90\">merge_type</i> CANCEL MERGE</button>\n          </div>\n          <div class=\"select-plant-text\" *ngIf=\"mergeClickBool == true\">Select a plant to merge</div>\n          <div class=\"toggle-button-css\" *ngIf=\"mergeClickBool == false\">\n            <md-button-toggle-group #group=\"mdButtonToggleGroup\">\n              <md-button-toggle value=\"left\">\n                Type <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"center\" (click)=\"appSharedService.varietiesSort()\">\n                A-Z <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n              <md-button-toggle value=\"right\" (click)=\"appSharedService.weekSort()\">\n                Wk# <i class=\"material-icons\">arrow_drop_down</i>\n              </md-button-toggle>\n            </md-button-toggle-group>\n          </div>\n        </td>\n\n\n        <!--  <td *ngFor=\"let head of heads5;let i=index\">\n        <span><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n      </td> -->\n\n\n        <td *ngFor=\"let head of heads5;let i=index\" [ngClass]=\"{'merge-cell-style':i==4}\" [colSpan]=\"i==4?2:1\">\n          <span *ngIf=\"i!=4\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>{{head}}</span>\n          <span *ngIf=\"i==4\" class=\"sub-table-cont\">\n          <table>\n            <tr>\n              <td colspan=\"2\" class=\"top-row\">Discarded at GH</td>\n            </tr>\n            <tr>\n              <td class=\"bottom-row\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>#Discarded</span></td>\n        <td class=\"bottom-row select-title\"><span class=\"rotate-text\"><i class=\"material-icons rotate_90 valign_middle\">arrow_drop_down</i>Reason Code</span></td>\n      </tr>\n  </table>\n  </span>\n  </td>\n  </tr>\n  </thead>\n\n  <tbody>\n    <tr *ngFor=\"let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue\" class=\"form-input-model\">\n      <td>\n        <div [innerHTML]=\"item['nameHtml']\" (click)=\"appSharedService.openDialog(item)\" class=\"icon-box\"></div>\n        <span>{{item.name}}</span>\n      </td>\n      <td>\n        <input mdInput name=\"lot_no\" [(ngModel)]=\"item.plugTray.seedLotNumber\">\n      </td>\n      <td>\n        <input mdInput name=\"q\" [(ngModel)]=\"item.receivingInfo.quantity\">\n      </td>\n      <td>\n        <input mdInput name=\"rl_no\" [(ngModel)]=\"item.receivingInfo.locator\">\n      </td>\n\n      <td>\n        <input mdInput name=\"b_no\" [(ngModel)]=\"item.receivingInfo.houseBay\">\n      </td>\n      <td>\n        <input mdInput name=\"ts_d\">\n      </td>\n      <td>\n        <md-select placeholder=\"\" #select=\"mdSelect\">\n          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>\n          <md-option *ngFor=\"let rc of reasonCodes\" [value]=\"rc.code\">{{ rc.code }} ({{rc.reason}})</md-option>\n        </md-select>\n      </td>\n      <td>\n        <span>{{item.receivingInfo.quantity || 0}}</span>\n      </td>\n    </tr>\n  </tbody>\n  </table>\n  <!-- END: Total Salable -->\n</div>\n"
 
 /***/ }),
 

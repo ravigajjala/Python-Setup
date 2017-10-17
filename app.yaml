@@ -12,6 +12,9 @@ handlers:
 - url: /users/.*
   script: bonnie_users.app
 
+- url: /plug-to-deliver/.*
+  script: bonnie_plug_to_deliver.app
+
 - url: /favicon.ico
   static_files: dist/favicon.ico
   upload: dist/assets/favicon.ico

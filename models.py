@@ -20,3 +20,29 @@ class Users(ndb.Model):
     email = ndb.StringProperty()
     code = ndb.StringProperty()
 
+class PlugTray(ndb.Model):
+    plugFlatsReceived = ndb.IntegerProperty()
+    dateReceived = ndb.StringProperty()
+    plugFlatsPlotted = ndb.IntegerProperty()
+    plugFlatsDiscarded = ndb.IntegerProperty()
+    reasonsCode = ndb.StringProperty()
+    seedLotNumber = ndb.StringProperty()
+
+class PlantingInfo(ndb.Model):
+    finishedTrays = ndb.IntegerProperty()
+    locatorNumber = ndb.StringProperty()
+    pottedDate = ndb.DateProperty()
+    houseBay = ndb.IntegerProperty()
+
+class ReceivingInfo(ndb.Model):
+    houseBay = ndb.StringProperty()
+    quantity = ndb.IntegerProperty()
+    locator = ndb.StringProperty()
+    discarded = ndb.IntegerProperty()
+    reasonCode = ndb.StringProperty()
+
+class PlugToDeliver(ndb.Model):
+    name = ndb.StringProperty()
+    plugTray = ndb.StructuredProperty(PlugTray)
+    plantingInfo = ndb.StructuredProperty(PlantingInfo)
+    receivingInfo = ndb.StructuredProperty(ReceivingInfo)

@@ -34,7 +34,6 @@ class CreateLocationsDatabase(APIRequest):
         try:
             locations = json.loads(self.request.body)
             for location in locations:
-                logging.info(location)
                 final_locations = models.Locations(
                     city=location['city'], state=location['state'])
                 final_locations.put()

@@ -35,7 +35,6 @@ class CreatePlantsDatabase(APIRequest):
         try:
             plant_varieties = json.loads(self.request.body)
             for plant_variety in plant_varieties:
-                logging.info(plant_variety)
                 plants = models.Plants(
                     name=plant_variety['name'], icon=plant_variety['icon'])
                 plants.put()

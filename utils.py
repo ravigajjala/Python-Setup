@@ -9,10 +9,8 @@ class APIRequest(webapp2.RequestHandler):
     def to_json(self, o):
         if isinstance(o, list):
             print o
-            print 'list'
             return [self.to_json(l) for l in o]
         if isinstance(o, dict):
-            print 'dict'
             x = {}
             for l in o:
                 x[l] = self.to_json(o[l])
@@ -22,7 +20,6 @@ class APIRequest(webapp2.RequestHandler):
         if isinstance(o, ndb.Key):
             return o.urlsafe()
         if isinstance(o, ndb.Model):
-            print 'model'
             dct = o.to_dict()
             dct['datastore_id'] = o.key.id()
             return self.to_json(dct)

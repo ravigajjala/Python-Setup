@@ -35,10 +35,8 @@ class CreateUser(APIRequest):
         try:
             users = json.loads(self.request.body)
             for user in users:
-                logging.info(user)
                 final_users = models.Users(
                     name=user['name'], city=user['city'], state=user['state'], email=user['email'], code=user['code'])
-                logging.info(final_users)
                 final_users.put()
         except Exception as e:
             logging.error(e)
