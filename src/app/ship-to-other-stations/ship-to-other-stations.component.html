@@ -69,7 +69,7 @@
           <input mdInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
         </td>
         <td>
-          <input mdInput name="b_no" [(ngModel)]="item.receivingData.houseBay">
+          <input mdInput name="b_no" [(ngModel)]="item.receivingInfo.houseBay">
         </td>
         <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+4]}">
           <input mdInput name="stchi" (blur)="getTotalOfColumn(ind)" [(ngModel)]="item.shipTo.locationValues[ind]" [disabled]="disabledColumns[ind+4]">
