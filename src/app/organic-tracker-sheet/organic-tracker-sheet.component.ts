@@ -35,7 +35,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
   // Retrieving Location, Users, Plants data
   // Keeping Users and Plants data in shared service
   ngOnInit() {
-    
     this.appSharedService.getUsers().subscribe(
       users => {
         this.appSharedService.users = users;

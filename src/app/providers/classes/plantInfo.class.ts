@@ -1,23 +1,4 @@
-export class PlantInfo {
-	id: string;
-	name: string;
-	icon: string;
-	plugTray: PlugTrayInfo;
-	plantingInformation: PlantingInfo;
-}
-
-export class PlugTrayInfo {
-	plugFlatsReceived: number;
-	dateReceived: Date;
-	plugFlatsPlotted: number;
-	plugFlatsDiscarded: number;
-	reasonsCode: string;
-	seedLotNumber: number;
-}
-
 export class PlantingInfo {
-	seedLotNumber: number;
-	plugFlatsPlotted: number;
 	finishedTrays: string;
 	locatorNumber: number;
 	pottedDate: Date;
@@ -38,17 +19,16 @@ export class SalableInfo {
 }
 
 export class AppStoreDelivery {
-    'totalFlatstoSale': number;
-	'routeNumberSale': number[];
-	'discarded': number;
-	'reasonCode': string;
-	'check': boolean;
+	totalFlatstoSale: number;
+	routeNumberSale: number[];
+	discarded: number;
+	reasonCode: string;
+	check: boolean;
 }
 
 export class ShipTo {
-	'locationValues': number[];
+	locationValues: number[];
 }
-
 
 export class Location {
 	datastore_id: string;
@@ -68,4 +48,27 @@ export class User {
 	city: string;
 	state: string;
 	email: string;
+}
+
+export class PlugToDeliver {
+	weekNumber: number;
+	name: string;
+	plugTray: PlugTray;
+	plantingInfo: PlantingInfo;
+	receivingInfo: ReceivingInfo;
+	shipToInfo: ShipToInfo;
+	salableInfo: SalableInfo;
+}
+
+export class PlugTray {
+	plugFlatsReceived: number;
+	dateReceived: Date;
+	plugFlatsPlotted: number;
+	plugFlatsDiscarded: number;
+	reasonsCode: string;
+	seedLotNumber: string;
+}
+
+export class ShipToInfo {
+	[name: string]: number;
 }
