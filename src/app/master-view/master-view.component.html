@@ -5,22 +5,22 @@
     <thead>
     <tr>
       <td>
-       <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <div>
-              <md-form-field class="full-width">
-                <input mdInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
-              </md-form-field>
-            </div>
+       <div class="toggle-button-css" *ngIf="mergeClickBool == false"> 
+          <div>
+            <md-form-field class="full-width">
+              <input mdInput placeholder="Plant">
+            </md-form-field>
           </div>
+        </div>
         <div class="toggle-button-css" *ngIf="mergeClickBool == false">
           <md-button-toggle-group #group="mdButtonToggleGroup">
             <md-button-toggle value="left">
               Type <i class="material-icons">arrow_drop_down</i>
             </md-button-toggle>
-            <md-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+            <md-button-toggle value="center" (click)="appSharedService.sort()">
               A-Z <i class="material-icons">arrow_drop_down</i>
             </md-button-toggle>
-            <md-button-toggle value="right" (click)="appSharedService.weekSort()">
+            <md-button-toggle value="right">
               Wk# <i class="material-icons">arrow_drop_down</i>
             </md-button-toggle>
           </md-button-toggle-group>

@@ -1,14 +1,16 @@
 import { Component, OnInit, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
+import { PlantingInformationService } from './planting-information.service';
+import { Plant } from './plant';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { AppSharedService } from '../providers/services/app-shared.service';
 import { Router } from '@angular/router';
 
-import { PlugToDeliver, Plant } from '../providers/classes/plantInfo.class';
-import { AppSharedService } from '../providers/services/app-shared.service';
+
 @Component({
   selector: 'app-planting-information',
   templateUrl: './planting-information.component.html',
-  styleUrls: ['./planting-information.component.scss']
+  styleUrls: ['./planting-information.component.scss'],
+  providers: [PlantingInformationService]
 })
 export class PlantingInformationComponent implements OnInit, AfterViewInit {
   public plants: Plant[];
@@ -18,15 +20,29 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
   public myControl: FormControl;
   public mergeClickBool = false;
   private isSorted = false;
+  public active = 2;
   public totalFlatsToSale = 0;
   public plantingInfoForm: FormGroup;
   constructor(
     private appSharedService: AppSharedService,
+    private plantingInformationService: PlantingInformationService,
     private renderer: Renderer2,
     private el: ElementRef,
     public router: Router
   ) {
   }
+
+  getTotalOfColumn(array, key) {
+    const total = array.reduce(function (a, b) {
+      return a + b[key];
+    }, 0);
+    return total;
+  }
+
+  mergeClick(e: any, mergeText: string) {
+    mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
+  }
+
 
   ngOnInit() {
     this.list = [
@@ -44,37 +60,6 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
     this.plantingInfoForm = new FormGroup({
       datePotted: new FormControl(null, Validators.required)
     });
-
-   this.getPlugToDeliverData();
-  }
-
-  /**
-   * [Retriving all plugToDeliver objects from plugToDeliver Kind]
-   * @return it returns all varities from plugToDeliver Kind
-   */
-  // TODO:: Make shared function
-  getPlugToDeliverData() {
-    return this.appSharedService.getPlugToDeliverData().subscribe(
-      res => {
-        this.appSharedService.varietyOptions = res;
-      },
-      err => {
-        console.log('Plug to deliver data retrive error');
-      }
-    );
-  }
-
-  /**
-   * [Updates plugToDeliver object to plugToDeliver Kind]
-   * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
-   */
-  // TODO:: Make shared function
-  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
-    this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
-      .subscribe(res => { },
-      err => {
-        console.log('Update error');
-      });
   }
 
   ngAfterViewInit() {

@@ -1,66 +1,66 @@
 <div class="right-scroll">
-  <!-- START: To Store Delivery/Balance -->
+  
+<!-- START: To Store Delivery/Balance -->
   <table class="table_six table-width">
     <thead>
-      <tr>
-        <td>
-          <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <div>
-              <md-form-field class="full-width">
-                <input mdInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
-              </md-form-field>
-            </div>
+    <tr>
+      <td>
+       <div class="toggle-button-css" *ngIf="mergeClickBool == false"> 
+          <div>
+            <md-form-field class="full-width">
+              <input mdInput placeholder="Variety">
+            </md-form-field>
           </div>
-          <div class="flex-display" [class.flex-center]="mergeClickBool">
-            <button md-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
-            <button md-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
-            <button md-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
-          </div>
-          <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
-          <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <md-button-toggle-group #group="mdButtonToggleGroup">
-              <md-button-toggle value="left">
-                Type <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-              <md-button-toggle value="center" (click)="appSharedService.varietiesSort()">
-                A-Z <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-              <md-button-toggle value="right" (click)="appSharedService.weekSort()">
-                Wk# <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-            </md-button-toggle-group>
-          </div>
+        </div>
+        <div class="flex-display" [class.flex-center]="mergeClickBool">
+          <button md-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+          <button md-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+          <button md-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+        </div>
+        <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
+        <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+          <md-button-toggle-group #group="mdButtonToggleGroup">
+            <md-button-toggle value="left">
+              Type <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="center" (click)="appSharedService.sort()">
+              A-Z <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+            <md-button-toggle value="right">
+              Wk# <i class="material-icons">arrow_drop_down</i>
+            </md-button-toggle>
+          </md-button-toggle-group>
+        </div>
 
-        </td>
-        <td *ngFor="let head of heads6;let i=index" [colSpan]="i==4?16: (i==6?2:1)" [ngClass]="{'merge-cell-style':i==4 || i==6}">
-          <span [ngClass]="{'store-left':i==0}" *ngIf="i!=4 || i!=6"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head}}</span>
-          <span *ngIf="i==4" class="sub-table-cont">
+      </td>
+      <td *ngFor="let head of heads6;let i=index" [colSpan]="i==4?16: (i==6?2:1)" [ngClass]="{'merge-cell-style':i==4 || i==6}">
+        <span [ngClass]="{'store-left':i==0}" *ngIf="i!=4 || i!=6"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head}}</span>
+        <span *ngIf="i==4" class="sub-table-cont">
           <table>
             <tr>
               <td colspan="16" class="top-row" style="text-align:left !important;padding-left: 10px !important">Route Number <i class="material-icons print-icon valign_middle">print</i></td>
             </tr>
             <tr>
               <td *ngFor="let trow of head" class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{trow}} <i class="material-icons rotate_90 print-icon valign_middle">print</i></span></td>
-      </tr>
-  </table>
-  </span>
-  <span *ngIf="i==6" class="sub-table-cont">
+            </tr>
+          </table>
+        </span>
+        <span *ngIf="i==6" class="sub-table-cont">
           <table>
             <tr>
               <td colspan="2" class="top-row" style="text-align:left !important;padding-left: 10px !important">Returned</td>
             </tr>
             <tr>
               <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>#Discarded</span></td>
-  <td class="bottom-row" style="width:57%"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>Reason Code</span></td>
-  </tr>
-  </table>
-  </span>
-  </td>
-  </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i=index;"
-      class="form-input-model">
+              <td class="bottom-row" style="width:57%"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>Reason Code</span></td>
+            </tr>
+          </table>  
+        </span>
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of appSharedService.varietyOptions;let i=index;" class="form-input-model">
       <td>
         <div [innerHTML]="item['nameHtml']" (click)="appSharedService.openDialog(item)" class="icon-box"></div>
         <span>{{item.name}}</span>
@@ -75,28 +75,28 @@
         <input mdInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay">
       </td>
       <td>
-        <span></span>
+        <span>{{item.receivingData.quantity - item.totalSalable.discarded || 0}}</span>
       </td>
       <td *ngFor="let route of heads6[4];let in = index;">
-        <input mdInput name="sixtyeight" (blur)="updateRouteTotal(in)">
+        <input mdInput name="sixtyeight" [(ngModel)]="item.storeDeliveryData.routeNumberSale[in]" (blur)="updateRouteTotal(in)">
       </td>
       <td>
-        <span></span>
+        <span>{{deliveredTotal[i]}}</span>
       </td>
       <td>
-        <input mdInput name="discarded">
+        <input mdInput name="discarded" [(ngModel)]="item.storeDeliveryData.discarded">
       </td>
       <td>
-        <md-select placeholder="" #select="mdSelect">
-          <md-select-trigger></md-select-trigger>
+        <md-select placeholder="" #select="mdSelect" [(ngModel)]="item.storeDeliveryData.reasonCode">
+          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>
           <md-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</md-option>
         </md-select>
       </td>
       <td>
-        <span></span>
+        <span>{{item.q - item.ts_d - item.discarded}}</span>
       </td>
       <td>
-        <md-checkbox class="example-margin"></md-checkbox>
+        <md-checkbox class="example-margin" [(ngModel)]="item.storeDeliveryData.check"></md-checkbox>
       </td>
     </tr>
     <tr>
@@ -104,10 +104,10 @@
       <td></td>
       <td></td>
       <td></td>
-      <td *ngFor="let totalVal of routeTotal"></td>
-      <td></td>
+      <td *ngFor="let totalVal of routeTotal">{{totalVal}}</td>
+      <td>{{sumPlantsDelivered}}</td>
     </tr>
-  </tbody>
+    </tbody>
   </table>
   <!-- END: To Store Delivery/Balance -->
 

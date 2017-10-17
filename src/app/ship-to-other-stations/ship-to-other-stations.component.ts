@@ -20,7 +20,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   private isSorted = false;
   public active = 4;
   public disabledColumns = [];
-  public totalOfLocation = [, , , , ];
+  public totalOfLocation = [, , , ,];
   public locationNames = [];
   public locations = [];
   public showAC = false;
@@ -46,6 +46,8 @@ export class ShipToOtherStationsComponent implements OnInit {
       { 'name': 'House#/Bay#', 'icon': 'down' },
     ];
   }
+
+
 
   openDialog(currentItem): void {
     const dialogRef = this.dialog.open(IconDialogComponent, {

@@ -13,7 +13,7 @@ export class ManageUsersComponent {
 	public locations = [];
 	public showEditBox = false;
 
-  constructor(public appSharedService: AppSharedService) { }
+  constructor(public appSharedService:AppSharedService) { }
 
 
   addUser(condition) {
