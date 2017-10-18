@@ -18,25 +18,30 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-import models
+from models import PlugToDeliver, PlugTray, ReceivingInfo, PlantingInfo
 
 class GetPlugToDeliver(APIRequest):
     def get(self):
         try:
-            plug_to_deliver_data = models.PlugToDeliver.query().fetch()
+            # retriving the request parameters to get the requesed user id
+            params = self.request.params
+
+            # querying by user id
+            plug_to_deliver_data = PlugToDeliver.query(PlugToDeliver.userId == params.get('userId')).fetch()
             plug_to_deliver_data = self.to_json(plug_to_deliver_data)
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(plug_to_deliver_data))
         except Exception as e:
-            logging.info(e)
+            logging.error(e)
 
 class CreatePlugToDeliver(APIRequest):
     def post(self):
         try:
             plug_to_deliver = json.loads(self.request.body)
-            final_plug_to_deliver_data = models.PlugToDeliver(
+            final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
-                plugTray=models.PlugTray(
+                userId=plug_to_deliver['userId'],
+                plugTray=PlugTray(
                     plugFlatsReceived=plug_to_deliver['plugTray'].get('plugFlatsReceived', None),
                     dateReceived=plug_to_deliver['plugTray'].get('dateReceived', None),
                     plugFlatsPlotted=plug_to_deliver['plugTray'].get('plugFlatsPlotted', None),
@@ -44,13 +49,13 @@ class CreatePlugToDeliver(APIRequest):
                     reasonsCode=plug_to_deliver['plugTray'].get('reasonsCode', None),
                     seedLotNumber=plug_to_deliver['plugTray'].get('seedLotNumber', None)
                 ),
-                plantingInfo=models.PlantingInfo(
+                plantingInfo=PlantingInfo(
                     finishedTrays=plug_to_deliver['plantingInfo'].get('finishedTrays', None),
                     locatorNumber=plug_to_deliver['plantingInfo'].get('locatorNumber', None),
                     pottedDate=plug_to_deliver['plantingInfo'].get('pottedDate', None),
                     houseBay=plug_to_deliver['plantingInfo'].get('houseBay', None)
                 ),
-                receivingInfo=models.ReceivingInfo(
+                receivingInfo=ReceivingInfo(
                     houseBay=plug_to_deliver['receivingInfo'].get('houseBay', None),
                     quantity=plug_to_deliver['receivingInfo'].get('quantity', None),
                     locator=plug_to_deliver['receivingInfo'].get('locator', None),
@@ -67,12 +72,14 @@ class UpdatePlugToDeliver(APIRequest):
         body = json.loads(self.request.body)
         try:
             # Retriving the entity using datastore_id
-            plug_to_deliver = models.PlugToDeliver.get_by_id(body['datastore_id'])
+            plug_to_deliver = PlugToDeliver.get_by_id(body['datastore_id'])
             plug_to_deliver.name = body['name']
+            plug_to_deliver.userId = body['userId']
             plug_to_deliver.plugTray = body['plugTray']
-            # Converting string date obj to date obj
-            # if plug_to_deliver['plugTray']['dateReceived'] is not None:
-            #     plug_to_deliver['plugTray']['dateReceived'] = datetime.strftime(plug_to_deliver['plugTray']['dateReceived'])
+            # TODO: Converting string date obj to date obj
+            # if plug_to_deliver.plugTray.dateReceived is not None:
+            #     print  plug_to_deliver.plugTray.dateReceived
+            #     plug_to_deliver.plugTray.dateReceived = datetime.strftime(plug_to_deliver.plugTray.dateReceived, '%m/%d/%Y')
             plug_to_deliver.plantingInfo = body['plantingInfo']
             plug_to_deliver.receivingInfo = body['receivingInfo']
             plug_to_deliver.put()

@@ -32,7 +32,6 @@ export class ShipToOtherStationsComponent implements OnInit {
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
-
   ngOnInit() {
 
     // Retrieving Locations
@@ -45,6 +44,10 @@ export class ShipToOtherStationsComponent implements OnInit {
       { 'name': 'Locator Number', 'icon': 'down' },
       { 'name': 'House#/Bay#', 'icon': 'down' },
     ];
+    this.appSharedService.sendUserRelatedInfo().subscribe(
+      res => { },
+      err => console.log(err)
+    );
   }
 
   openDialog(currentItem): void {

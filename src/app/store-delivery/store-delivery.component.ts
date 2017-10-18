@@ -52,5 +52,9 @@ export class StoreDeliveryComponent implements OnInit {
       { 'code': 'F', 'reason': 'Fell/Dropped' },
       { 'code': 'G', 'reason': 'Other/Act Of God' },
     ];
+    this.appSharedService.sendUserRelatedInfo().subscribe(
+      res => { },
+      err => console.log(err)
+    );
   }
 }

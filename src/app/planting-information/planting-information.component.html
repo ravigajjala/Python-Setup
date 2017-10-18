@@ -59,7 +59,7 @@
           <!-- <input mdInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate"> -->
           <md-form-field [formGroup]="plantingInfoForm">
             <input mdInput [mdDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
-              formControlName="datePotted">
+              (dateChange)="updatePlugToDeliverData(item)" formControlName="datePotted">
             <!-- <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle> -->
             <md-datepicker #picker></md-datepicker>
           </md-form-field>

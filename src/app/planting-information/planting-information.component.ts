@@ -45,6 +45,11 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
       datePotted: new FormControl(null, Validators.required)
     });
 
+    this.appSharedService.sendUserRelatedInfo().subscribe(
+      res => { },
+      err => console.log(err)
+    );
+
    this.getPlugToDeliverData();
   }
 

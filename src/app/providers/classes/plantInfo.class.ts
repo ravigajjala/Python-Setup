@@ -31,7 +31,7 @@ export class ShipTo {
 }
 
 export class Location {
-	datastore_id: string;
+	datastore_id
 	city: string;
 	state: string;
 }
@@ -71,4 +71,10 @@ export class PlugTray {
 
 export class ShipToInfo {
 	[name: string]: number;
+}
+
+export class UserRelatedInfo {
+	lastRoute: string;
+	id: string;
+	datastore_id: string;
 }

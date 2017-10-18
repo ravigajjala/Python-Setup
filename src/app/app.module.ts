@@ -37,7 +37,7 @@ import { SearchVarietiesPipe } from './pipes/varieties.pipe';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/app-organic-tracker-sheet',
+    redirectTo: '/app-organic-tracker-sheet/app-plug-tray-information',
     pathMatch: 'full'
   },
   { path: 'app-login', component: LoginComponent },

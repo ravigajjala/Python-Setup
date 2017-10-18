@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { MdAutocompleteTrigger } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -47,6 +47,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     }
   ];
   private newPlant: any;
+  public locations = [];
+  private loader: boolean;
   constructor(
     private appSharedService: AppSharedService,
     private renderer: Renderer2,
@@ -57,6 +59,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.appSharedService.varietyOptions = this.appSharedService.varietyOptions || [];
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
+    this.loader = true;
   }
 
   @ViewChild(MdAutocompleteTrigger) trigger;
@@ -73,6 +76,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.appSharedService.sendUserRelatedInfo().subscribe(
+      res => { },
+      err => console.log(err)
+    );
     this.list = [
       'Plug Tray Information'
     ];
@@ -95,18 +102,28 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       { 'code': 'F', 'reason': 'Fell/Dropped' },
       { 'code': 'G', 'reason': 'Other/Act Of God' },
     ];
-
-    this.greenHousePlants = this.appSharedService.plants;
-
     this.PlugTrayForm = new FormGroup({
       dateReceived: new FormControl(null, Validators.required)
     });
     this.getPlugToDeliverData();
+    this.getGreenHouseVarities();
   }
 
   displayFn(order): string {
     this.newPlant = { ...order };
     return null;
+  }
+
+  getGreenHouseVarities() {
+    return this.appSharedService.getPlantVarieties().subscribe(
+      plants => {
+        this.appSharedService.plants = plants;
+        this.greenHousePlants = this.appSharedService.plants;
+        this.loader = false;
+      },
+      err => {
+        console.log('Unable to retrive green house plants list');
+      });
   }
 
   /**
@@ -117,12 +134,13 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   addPlant(event, newPlant) {
     if (newPlant) {
       const tempNewPlant = Object.assign({}, newPlant);
+      tempNewPlant.userId = this.appSharedService.userId;
       tempNewPlant.plugTray = Object.assign({}, newPlant.plugTray);
       tempNewPlant.plantingInfo = Object.assign({}, newPlant.plantingInfo);
       tempNewPlant.receivingInfo = Object.assign({}, newPlant.receivingInfo);
       tempNewPlant.totalSalable = Object.assign({}, newPlant.totalSalable);
       tempNewPlant.storeDeliveryData = Object.assign({}, newPlant.storeDeliveryData);
-      tempNewPlant.shipTo = new ShipTo();
+      tempNewPlant.shipTo = Object.assign({}, newPlant.shipTo);
       tempNewPlant.shipTo.locationValues = [];
       this.createPlugToDeliverData(tempNewPlant);
     }
@@ -210,7 +228,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object]
    */
   calculateWeekNumber(date: Date, plugToDeliverData: PlugToDeliver) {
-    const weekNumber = this.appSharedService.getWeekNumber(date);
+    const weekNumber = moment(date).week();
     plugToDeliverData.weekNumber = weekNumber;
   }
 }

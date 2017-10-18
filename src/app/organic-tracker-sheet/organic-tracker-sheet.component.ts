@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { AppSharedService } from '../providers/services/app-shared.service';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
-import {ManageUsersComponent} from '../manage-users/manage-users.component';
-import {ManageGreenHouseComponent} from '../manage-green-house/manage-green-house.component';
-import {ManagePlugCatalogComponent} from '../manage-plug-catalog/manage-plug-catalog.component';
-import {User, Plant, Location } from '../providers/classes/plantInfo.class';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { ManageUsersComponent } from '../manage-users/manage-users.component';
+import { ManageGreenHouseComponent } from '../manage-green-house/manage-green-house.component';
+import { ManagePlugCatalogComponent } from '../manage-plug-catalog/manage-plug-catalog.component';
+import { User, Plant, Location } from '../providers/classes/plantInfo.class';
 
 
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -32,32 +32,26 @@ export class OrganicTrackerSheetComponent implements OnInit {
   ) {
   }
 
-  // Retrieving Location, Users, Plants data
-  // Keeping Users and Plants data in shared service
   ngOnInit() {
-    this.appSharedService.getUsers().subscribe(
-      users => {
-        this.appSharedService.users = users;
-        this.appSharedService.getPlantVarieties().subscribe(
-          plants => {
-            this.appSharedService.plants = plants;
-            this.appSharedService.getLocations().subscribe(
-              locations => {
-                this.appSharedService.locations = locations;
-                this.locations = locations;
-              },
-              err => {
-                console.log('Unable to retrive green house locations list');
-              }
-            );
+    return this.appSharedService.getLocations().subscribe(
+      locations => {
+        this.appSharedService.locations = locations;
+        // TODO:: check first time login or reoccuring login then route
+        this.appSharedService.getUserPreviousRoute(this.appSharedService.userId).subscribe(
+          userInfoArray => {
+            // TODO:: Make observable filter
+            let newRoute;
+            userInfoArray = userInfoArray.filter(response => response.datastore_id === this.appSharedService.userId);
+            if (userInfoArray.length > 0) {
+              newRoute = userInfoArray[0].lastRoute;
+              this.router.navigate([newRoute]);
+            }
           },
-          err => {
-            console.log('Unable to retrive green house plants list');
-          }
+          err => console.log(err)
         );
       },
       err => {
-        console.log('Unable to retrive green house users list');
+        console.log(err);
       }
     );
   }

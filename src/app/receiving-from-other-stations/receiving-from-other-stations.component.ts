@@ -55,6 +55,11 @@ export class ReceivingFromOtherStationsComponent implements OnInit {
       { 'code': 'G', 'reason': 'Other/Act Of God' },
     ];
 
+    this.appSharedService.sendUserRelatedInfo().subscribe(
+      res => { },
+      err => console.log(err)
+    );
+
     this.getPlugToDeliverData();
   }
 

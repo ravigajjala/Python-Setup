@@ -15,7 +15,7 @@
 
     </div>
     <md-select placeholder="Location" [(ngModel)]="locationId" name="location" class="input-white sec1-select">
-      <md-option *ngFor="let location of locations" [value]="location">
+      <md-option *ngFor="let location of appSharedService.locations" [value]="location">
         {{location.city}}, {{location.state}}
       </md-option>
     </md-select>
@@ -27,7 +27,7 @@
         <div class="notif-number">
           <i class="material-icons valign_middle">arrow_downward</i>
           0
-        </div>
+        </div>      
       </md-list-item>
       <md-divider></md-divider>
     </div>

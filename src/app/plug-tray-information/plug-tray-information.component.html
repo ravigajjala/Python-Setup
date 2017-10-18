@@ -49,7 +49,7 @@
           <!-- <input mdInput name="date_received" > -->
           <md-form-field [formGroup]="PlugTrayForm">
             <input mdInput [mdDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plugTray.dateReceived"
-              formControlName="dateReceived" (ngModelChange)="calculateWeekNumber($event, item)">
+              formControlName="dateReceived" (dateChange)="calculateWeekNumber($event, item); updatePlugToDeliverData(item)">
             <!-- <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle> -->
             <md-datepicker #picker></md-datepicker>
           </md-form-field>
@@ -80,7 +80,7 @@
           <input type="text" mdInput [formControl]="myControl" [(ngModel)]="newPlant" placeholder="New Plug" [mdAutocomplete]="plant">
         </md-form-field>
         <md-autocomplete #plant="mdAutocomplete" [displayWith]="displayFn">
-          <md-option *ngFor="let plant of appSharedService.plants" [value]="plant" data-id="plant.id" (onSelectionChange)="addPlant($event, plant)">
+          <md-option *ngFor="let plant of greenHousePlants" [value]="plant" data-id="plant.id" (onSelectionChange)="addPlant($event, plant)">
             {{ plant.name }}
           </md-option>
         </md-autocomplete>

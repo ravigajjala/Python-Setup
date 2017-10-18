@@ -11,7 +11,7 @@ export class LoginService {
         domain: 'sainathgande.auth0.com',
         responseType: 'token id_token',
         audience: 'https://sainathgande.auth0.com/userinfo',
-        redirectUri: 'https://bonnie-organic-tracker.appspot.com/app-organic-tracker-sheet',
+        redirectUri: 'https://bonnie-organic-tracker.appspot.com/app-organic-tracker-sheet/app-plug-tray-information',
         scope: 'openid'
     });
 

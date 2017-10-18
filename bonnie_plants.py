@@ -18,24 +18,24 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-import models
+from models import Plants
 
 class GetPlants(APIRequest):
     def get(self):
         try:
-            plants = models.Plants.query().fetch()
+            plants = Plants.query().fetch()
             plant_varieties = self.to_json(plants)
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(plant_varieties))
         except Exception as e:
-            logging.info(e)
+            logging.error(e)
 
 class CreatePlantsDatabase(APIRequest):
     def post(self):
         try:
             plant_varieties = json.loads(self.request.body)
             for plant_variety in plant_varieties:
-                plants = models.Plants(
+                plants = Plants(
                     name=plant_variety['name'], icon=plant_variety['icon'])
                 plants.put()
         except Exception as e:
