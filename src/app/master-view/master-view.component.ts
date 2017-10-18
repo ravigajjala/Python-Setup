@@ -43,5 +43,9 @@ export class MasterViewComponent implements OnInit {
       'Total Balance',
       'Check'
     ];
+    this.appSharedService.sendUserRelatedInfo().subscribe(
+      res => { },
+      err => console.log(err)
+    );
   }
 }

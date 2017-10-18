@@ -18,31 +18,36 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-from models import Plants
+from models import UserSetting
 
-class GetPlants(APIRequest):
+class GetUserInfo(APIRequest):
     def get(self):
         try:
-            plants = Plants.query().fetch()
-            plant_varieties = self.to_json(plants)
+            userData = UserSetting.query().fetch()
+            userData = self.to_json(userData)
             self.response.headers['Content-Type'] = 'application/json'
-            self.response.out.write(json.dumps(plant_varieties))
+            self.response.out.write(json.dumps(userData))
         except Exception as e:
             logging.error(e)
 
-class CreatePlantsDatabase(APIRequest):
+class CreateUserInfo(APIRequest):
     def post(self):
+        body = json.loads(self.request.body)
         try:
-            plant_varieties = json.loads(self.request.body)
-            for plant_variety in plant_varieties:
-                plants = Plants(
-                    name=plant_variety['name'], icon=plant_variety['icon'])
-                plants.put()
+            userData = UserSetting.get_by_id(body['user_id'])
+            if userData is None:
+                userData = UserSetting(
+                    id=body['user_id'],
+                    lastRoute=body['lastRoute']
+                )
+                userData.put()
+            else:
+                userData.lastRoute = body['lastRoute']
+                userData.put()
         except Exception as e:
             logging.error(e)
-
 
 app = webapp2.WSGIApplication([
-    ('/plants/get', GetPlants),
-    ('/plants/create', CreatePlantsDatabase)
+    ('/user/get', GetUserInfo),
+    ('/user/post', CreateUserInfo)
 ], debug=True)

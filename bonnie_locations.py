@@ -17,24 +17,24 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-import models
+from models import Locations
 
 class GetLocations(APIRequest):
     def get(self):
         try:
-            locations = models.Locations.query().fetch()
+            locations = Locations.query().fetch()
             locations = self.to_json(locations)
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(locations))
         except Exception as e:
-            logging.info(e)
+            logging.error(e)
 
 class CreateLocationsDatabase(APIRequest):
     def post(self):
         try:
             locations = json.loads(self.request.body)
             for location in locations:
-                final_locations = models.Locations(
+                final_locations = Locations(
                     city=location['city'], state=location['state'])
                 final_locations.put()
         except Exception as e:

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, RequestOptions, Headers } from '@angular/http';
+import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
 import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Location, Plant, User, PlugToDeliver } from '../classes/plantInfo.class';
+import { Location, Plant, PlugToDeliver, User, UserRelatedInfo } from '../classes/plantInfo.class';
 
 
 @Injectable()
@@ -21,6 +21,8 @@ export class AppSharedService {
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
     public shippedNumber = 0;
+    public userId: string = 'sainath8090';
+
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
     public plantsData = [{
@@ -598,10 +600,10 @@ export class AppSharedService {
     // To get greenhouse locations from datastore
     getLocations(): Observable<Location[]> {
         return this.http.get('/locations/get')
-            .map(res => {
+            .map((res: Response) => {
                 return res.json();
             })
-            .catch(err => {
+            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
@@ -609,10 +611,10 @@ export class AppSharedService {
     // To get plant varieties from datastore
     getPlantVarieties(): Observable<Plant[]> {
         return this.http.get('/plants/get')
-            .map(res => {
+            .map((res: Response) => {
                 return res.json();
             })
-            .catch(err => {
+            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
@@ -620,20 +622,20 @@ export class AppSharedService {
     // To get users list from datastore
     getUsers(): Observable<User[]> {
         return this.http.get('/users/get')
-            .map(res => {
+            .map((res: Response) => {
                 return res.json();
             })
-            .catch(err => {
+            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
 
     addUser(): Observable<User[]> {
         return this.http.post('/users/create', this.data, this.options)
-            .map(res => {
+            .map((res: Response) => {
                 return res.json();
             })
-            .catch(err => {
+            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
@@ -646,20 +648,20 @@ export class AppSharedService {
             "city": "San Ramon",
             "state": "OH"
         }], this.options)
-            .map(res => {
+            .map((res: Response) => {
                 return res.json();
             })
-            .catch(err => {
+            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
 
     addPlants(): Observable<Location[]> {
         return this.http.post('/plants/create', this.plantsData, this.options)
-            .map(res => {
+            .map((res: Response) => {
                 return res.json();
             })
-            .catch(err => {
+            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
@@ -693,11 +695,8 @@ export class AppSharedService {
     }
 
     getPlugToDeliverData(): Observable<PlugToDeliver[]> {
-        return this.http.get('/plug-to-deliver/get')
+        return this.http.get('/plug-to-deliver/get' + '?userId=' + this.userId)
             .map(res => {
-                console.log(res);
-                console.log('JSON');
-                console.log(res.json());
                 return res.json();
             })
             .catch(err => {
@@ -716,12 +715,21 @@ export class AppSharedService {
     }
 
     updatePlugToDeliverData(plugToDeliver: PlugToDeliver): Observable<PlugToDeliver[]> {
-        console.log(plugToDeliver);
         return this.http.put('/plug-to-deliver/put', plugToDeliver, this.options)
             .map(res => {
                 return res;
             })
             .catch(err => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
+    getUserPreviousRoute(userId: string): Observable<UserRelatedInfo[]> {
+        return this.http.get('/user/get')
+            .map((res: Response) => {
+                return res.json();
+            })
+            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
@@ -740,5 +748,15 @@ export class AppSharedService {
             return a + b[key]
         }, 0);
         return total;
+    }
+
+    sendUserRelatedInfo(): Observable<UserRelatedInfo[]> {
+        return this.http.post('/user/post', { "user_id": this.userId, "lastRoute": this.router.url }, this.options)
+            .map((res: Response) => {
+                return res;
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
     }
 }

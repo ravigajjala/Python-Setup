@@ -31,7 +31,7 @@ class PlugTray(ndb.Model):
 class PlantingInfo(ndb.Model):
     finishedTrays = ndb.IntegerProperty()
     locatorNumber = ndb.StringProperty()
-    pottedDate = ndb.DateProperty()
+    pottedDate = ndb.StringProperty()
     houseBay = ndb.IntegerProperty()
 
 class ReceivingInfo(ndb.Model):
@@ -43,6 +43,10 @@ class ReceivingInfo(ndb.Model):
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
+    userId = ndb.StringProperty()
     plugTray = ndb.StructuredProperty(PlugTray)
     plantingInfo = ndb.StructuredProperty(PlantingInfo)
     receivingInfo = ndb.StructuredProperty(ReceivingInfo)
+
+class UserSetting(ndb.Model):
+    lastRoute = ndb.StringProperty()

@@ -18,24 +18,24 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-import models
+from  models import Users
 
 class GetUsers(APIRequest):
     def get(self):
         try:
-            users = models.Users.query().fetch()
+            users = Users.query().fetch()
             users = self.to_json(users)
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(users))
         except Exception as e:
-            logging.info(e)
+            logging.error(e)
 
 class CreateUser(APIRequest):
     def post(self):
         try:
             users = json.loads(self.request.body)
             for user in users:
-                final_users = models.Users(
+                final_users = Users(
                     name=user['name'], city=user['city'], state=user['state'], email=user['email'], code=user['code'])
                 final_users.put()
         except Exception as e:

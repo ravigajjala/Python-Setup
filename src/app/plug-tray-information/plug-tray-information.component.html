@@ -49,7 +49,7 @@
           <!-- <input mdInput name="date_received" > -->
           <md-form-field [formGroup]="PlugTrayForm">
             <input mdInput [mdDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plugTray.dateReceived"
-              formControlName="dateReceived" (ngModelChange)="calculateWeekNumber($event, item)">
+              formControlName="dateReceived" (dateChange)="calculateWeekNumber($event, item); updatePlugToDeliverData(item)">
             <!-- <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle> -->
             <md-datepicker #picker></md-datepicker>
           </md-form-field>
