@@ -1,0 +1,50 @@
+.dialog-main-cont {
+    height: 600px;
+    width: 600px;
+    padding: 10px;
+    h2 {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .user-table-cont {
+        font-size: 12px;
+        padding: 3px;
+        border-bottom: 1px solid #ddd;
+        .user-col {
+            width: 26%;
+            display: inline-block;
+        }
+        .user-col-del {
+            width: 5%;
+            display: inline-block;
+            text-align: right;
+        }
+        .user-col-email{
+            width: 38%;
+            display: inline-block;
+        }
+    }
+    .head-title {
+        padding: 6px 3px;
+        border-bottom: 0px;
+        div {
+            font-weight: 600;
+            color: #666;
+        }
+    }
+    .add-user {
+        cursor: pointer;
+        font-size: 12px;
+        padding: 8px;
+    }
+    .mat-form-field {
+        width: 145px;
+    }
+.btn-cont {
+    margin-top:30px;
+    padding-left:60%;
+    button {
+        margin:5px;
+    }
+}
+}
