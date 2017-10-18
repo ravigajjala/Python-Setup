@@ -7,7 +7,7 @@
       <span md-button [mdMenuTriggerFor]="menu" class="setting-icon"><i class="material-icons valign_middle">settings</i></span>
       <md-menu #menu="mdMenu">
         <button md-menu-item class="setting-menu-item logged-in-user"><div>Logged In as <br>(..@scotts.com)</div></button>
-        <button md-menu-item class="setting-menu-item" (click)="openManageUserDialog(null)">Manage Users</button>
+        <button md-menu-item class="setting-menu-item" (click)="openManageUserDialog(appSharedService.users)">Manage Users</button>
         <button md-menu-item class="setting-menu-item" (click)="openManageGreenHouseDialog(null)">Manage Greenhouse/Stations</button>
         <button md-menu-item class="setting-menu-item" (click)="openManagePlugCatalogDialog(null)">Manage Plug Catalog</button>
         <button md-menu-item class="setting-menu-item" (click)="loginService.logout()">Logout</button>

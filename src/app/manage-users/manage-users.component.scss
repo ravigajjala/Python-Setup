@@ -11,13 +11,17 @@
         padding: 3px;
         border-bottom: 1px solid #ddd;
         .user-col {
-            width: 28%;
+            width: 26%;
             display: inline-block;
         }
         .user-col-del {
-            width: 10%;
+            width: 5%;
             display: inline-block;
             text-align: right;
+        }
+        .user-col-email{
+            width: 38%;
+            display: inline-block;
         }
     }
     .head-title {
@@ -36,4 +40,11 @@
     .mat-form-field {
         width: 145px;
     }
+.btn-cont {
+    margin-top:30px;
+    padding-left:60%;
+    button {
+        margin:5px;
+    }
+}
 }
