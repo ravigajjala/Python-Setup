@@ -8,7 +8,7 @@ import { User } from '../providers/classes/plantInfo.class';
   templateUrl: './manage-green-house.component.html',
   styleUrls: ['./manage-green-house.component.scss']
 })
-export class ManageGreenHouseComponent implements OnInit {
+export class ManageGreenHouseComponent {
 
 
 
@@ -20,7 +20,7 @@ export class ManageGreenHouseComponent implements OnInit {
   public editLocationId;
 
   constructor(public appSharedService: AppSharedService,
-    public dialogRef: MdDialogRef<ManageUsersComponent>,
+    public dialogRef: MdDialogRef<ManageGreenHouseComponent>,
     @Inject(MD_DIALOG_DATA) public currentUsers: any) { }
 
 
