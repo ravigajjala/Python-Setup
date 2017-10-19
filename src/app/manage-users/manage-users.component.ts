@@ -10,7 +10,7 @@ import { User } from '../providers/classes/plantInfo.class';
 })
 export class ManageUsersComponent {
 
-
+  public currentUsers: User[];
   public locationId;
   public locations = [];
   public showEditBox = false;
@@ -19,8 +19,9 @@ export class ManageUsersComponent {
   public editLocationId;
 
   constructor(public appSharedService: AppSharedService,
-    public dialogRef: MdDialogRef<ManageUsersComponent>,
-    @Inject(MD_DIALOG_DATA) public currentUsers: any) { }
+    public dialogRef: MdDialogRef<ManageUsersComponent>) {
+    this.currentUsers = this.appSharedService.users;
+  }
 
 
   addUser(condition) {

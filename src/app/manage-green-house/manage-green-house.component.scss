@@ -11,17 +11,13 @@
         padding: 3px;
         border-bottom: 1px solid #ddd;
         .user-col {
-            width: 26%;
+            width: 45%;
             display: inline-block;
         }
         .user-col-del {
             width: 5%;
             display: inline-block;
             text-align: right;
-        }
-        .user-col-email{
-            width: 38%;
-            display: inline-block;
         }
     }
     .head-title {
@@ -42,7 +38,7 @@
     }
 .btn-cont {
     margin-top:30px;
-    padding-left:60%;
+    padding-left:40%;
     button {
         margin:5px;
     }

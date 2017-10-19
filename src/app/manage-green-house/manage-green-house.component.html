@@ -5,22 +5,24 @@
         <div class="user-col">LOCATOR NUMBER</div>
         <div class="user-col-del"></div>
     </div>
-    <div class="user-table-cont" *ngFor="let user of currentUsers;let i = index;">
-        <div class="user-col">{{user.name}}</div>
-        <div class="user-col">{{user.email}}</div>
+    <div class="user-table-cont" *ngFor="let gh of currentGreenHouses;let i = index;">
+        <div class="user-col">{{gh.location.city}},{{gh.location.state}}</div>
+        <div class="user-col">{{gh.locatorNumber}}</div>
         <div class="user-col-del">
             <div (click)="deleteUser(i)"><i class="material-icons valign_middle">delete</i></div>
         </div>
     </div>
     <div class="user-table-cont" *ngIf="showEditBox">
         <div class="user-col">
-            <md-form-field class="example-full-width">
-                <input mdInput [(ngModel)]="editUserName"> 
-           </md-form-field>
+            <md-select [(ngModel)]="editLocation" name="location" class="loc-input">
+                <md-option *ngFor="let location of appSharedService.locations" [value]="location">
+                    {{location.city}}, {{location.state}}
+                </md-option>
+            </md-select>
         </div>
         <div class="user-col">
         	<md-form-field class="example-full-width">
-                <input mdInput [(ngModel)]="editUserEmail">  
+                <input mdInput [(ngModel)]="editLocatorNumber">  
            </md-form-field>
         </div>
         <div class="user-col-del">

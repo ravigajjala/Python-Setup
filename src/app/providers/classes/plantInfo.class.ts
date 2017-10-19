@@ -37,13 +37,14 @@ export class Location {
 }
 
 export class Plant {
-	id: string;
+	id: number;
 	name: string;
 	icon: string;
+	organic: boolean;
 }
 
 export class User {
-	id: string;
+	id: number;
 	name: string;
 	city: string;
 	state: string;
@@ -77,4 +78,9 @@ export class UserRelatedInfo {
 	lastRoute: string;
 	id: string;
 	datastore_id: string;
+}
+
+export class GreenHouseInfo {
+	locatorNumber: number;
+	location: Location;
 }
