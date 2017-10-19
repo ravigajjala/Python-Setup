@@ -4,86 +4,76 @@
       <h4 class="pg-title inline-blk">Bonnie Audit Trail</h4>
 
 
-      <span md-button [mdMenuTriggerFor]="menu" class="setting-icon"><i class="material-icons valign_middle">settings</i></span>
-      <md-menu #menu="mdMenu">
-        <button md-menu-item class="setting-menu-item logged-in-user"><div>Logged In as <br>(..@scotts.com)</div></button>
-        <button md-menu-item class="setting-menu-item" (click)="openManageUserDialog()">Manage Users</button>
-        <button md-menu-item class="setting-menu-item" (click)="openManageGreenHouseDialog()">Manage Greenhouse/Stations</button>
-        <button md-menu-item class="setting-menu-item" (click)="openManagePlugCatalogDialog()">Manage Plug Catalog</button>
-        <button md-menu-item class="setting-menu-item" (click)="loginService.logout()">Logout</button>
-      </md-menu>
+      <span mat-button [matMenuTriggerFor]="menu" class="setting-icon"><i class="material-icons valign_middle">settings</i></span>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item class="setting-menu-item logged-in-user"><div>Logged In as <br>(..@scotts.com)</div></button>
+        <button mat-menu-item class="setting-menu-item" (click)="openManageUserDialog()">Manage Users</button>
+        <button mat-menu-item class="setting-menu-item" (click)="openManageGreenHouseDialog()">Manage Greenhouse/Stations</button>
+        <button mat-menu-item class="setting-menu-item" (click)="openManagePlugCatalogDialog()">Manage Plug Catalog</button>
+        <button mat-menu-item class="setting-menu-item" (click)="loginService.logout()">Logout</button>
+      </mat-menu>
 
     </div>
-    <md-select placeholder="Location" [(ngModel)]="locationId" name="location" class="input-white sec1-select">
-      <md-option *ngFor="let location of appSharedService.locations" [value]="location">
-        {{location.city}}, {{location.state}}
-      </md-option>
-    </md-select>
+    <mat-form-field>
+      <mat-select placeholder="Location" [(ngModel)]="locationId" name="location" class="input-white sec1-select">
+        <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
+          {{location.city}}, {{location.state}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <md-list>
+  <mat-list>
     <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }" [routerLink]="['/app-organic-tracker-sheet/app-plug-tray-information']">
-      <md-list-item style="cursor: pointer;">
-        <p md-line class="menu-item">Plug tray information</p>
-        <div class="notif-number">
-          <i class="material-icons valign_middle">arrow_downward</i>
-          0
-        </div>      
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item style="cursor: pointer;">
+        <p matLine class="menu-item">Plug tray information</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
     <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-planting-information' }" [routerLink]="['/app-organic-tracker-sheet/app-planting-information']">
-      <md-list-item style="cursor: pointer;">
-        <p md-line class="menu-item">Planting information</p>
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item style="cursor: pointer;">
+        <p matLine class="menu-item">Planting information</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
     <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-receiving-from-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-receiving-from-other-stations']">
-      <md-list-item style="cursor: pointer;">
-        <p md-line class="menu-item">Receiving</p>
-        <div class="notif-number">
-          <i class="material-icons valign_middle">arrow_downward</i>
-          1
-        </div>
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item style="cursor: pointer;">
+        <p matLine class="menu-item">Receiving</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
     <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-ship-to-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-ship-to-other-stations']">
-      <md-list-item style="cursor: pointer;">
-        <p md-line class="menu-item">Ship to</p>
-        <div class="notif-number">
-          <i class="material-icons valign_middle">arrow_forward</i>
-          {{appSharedService.shippedNumber}}
-        </div>
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item style="cursor: pointer;">
+        <p matLine class="menu-item">Ship to</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
     <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-total-salable' }" [routerLink]="['/app-organic-tracker-sheet/app-total-salable']">
-      <md-list-item style="cursor: pointer;">
-        <p md-line class="menu-item">Total salable</p>
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item style="cursor: pointer;">
+        <p matLine class="menu-item">Total salable</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
     <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-store-delivery' }" [routerLink]="['/app-organic-tracker-sheet/app-store-delivery']">
-      <md-list-item style="cursor: pointer;">
-        <p md-line class="menu-item">To store delivery/balance</p>
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item style="cursor: pointer;">
+        <p matLine class="menu-item">To store delivery/balance</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
     <div [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-master-view' }" [routerLink]="['/app-organic-tracker-sheet/app-master-view']">
-      <md-list-item style="cursor: pointer;">
-        <p md-line class="menu-item">Master view</p>
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item style="cursor: pointer;">
+        <p matLine class="menu-item">Master view</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
-    <!-- <md-list-item class="grey-bg">
-      <p md-line class="menu-item">Master View</p>
-    </md-list-item>
-    <md-divider></md-divider> -->
-    <!-- <md-list-item style="cursor: pointer;" (click)="loginService.logout()">
-      <p md-line class="menu-item">Logout</p>
-    </md-list-item>
-    <md-divider></md-divider> -->
-  </md-list>
+    <!-- <mat-list-item class="grey-bg">
+      <p matLine class="menu-item">Master View</p>
+    </mat-list-item>
+    <mat-divider></mat-divider> -->
+    <!-- <mat-list-item style="cursor: pointer;" (click)="loginService.logout()">
+      <p matLine class="menu-item">Logout</p>
+    </mat-list-item>
+    <mat-divider></mat-divider> -->
+  </mat-list>
 </div>
 
 <router-outlet></router-outlet>

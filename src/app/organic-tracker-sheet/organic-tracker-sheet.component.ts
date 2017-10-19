@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 import { AppSharedService } from '../providers/services/app-shared.service';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ManageUsersComponent } from '../manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from '../manage-green-house/manage-green-house.component';
 import { ManagePlugCatalogComponent } from '../manage-plug-catalog/manage-plug-catalog.component';
@@ -27,7 +27,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   constructor(
     public loginService: LoginService,
     private appSharedService: AppSharedService,
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     public router: Router
   ) {
   }

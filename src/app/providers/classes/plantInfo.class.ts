@@ -31,9 +31,13 @@ export class ShipTo {
 }
 
 export class Location {
-	datastore_id
+	id: string;
 	city: string;
 	state: string;
+	firstName: string;
+	lastName: string;
+	userEmail: string;
+	locatorNumber: number;
 }
 
 export class Plant {

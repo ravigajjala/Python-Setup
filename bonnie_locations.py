@@ -35,7 +35,12 @@ class CreateLocationsDatabase(APIRequest):
             locations = json.loads(self.request.body)
             for location in locations:
                 final_locations = Locations(
-                    city=location['city'], state=location['state'])
+                    city=location['city'],
+                    state=location['state'],
+                    firstName=location.get('firstName', None),
+                    lastName=location.get('lastName', None),
+                    userEmail=location.get('userEmail', None),
+                    locatorNumber=location.get('locatorNumber', None))
                 final_locations.put()
         except Exception as e:
             logging.error(e)

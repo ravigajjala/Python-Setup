@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -20,7 +20,6 @@ export class AppSharedService {
     private isPlantNameSorted: boolean = false;
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
-    public shippedNumber = 0;
     public userId: string = 'sainath8090';
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -595,7 +594,7 @@ export class AppSharedService {
         }
     ];
 
-    constructor(private dialog: MdDialog, private http: Http, public router: Router) { }
+    constructor(private dialog: MatDialog, private http: Http, public router: Router) { }
 
     // To get greenhouse locations from datastore
     getLocations(): Observable<Location[]> {
@@ -649,7 +648,7 @@ export class AppSharedService {
             "state": "OH"
         }], this.options)
             .map((res: Response) => {
-                return res.json();
+                return res;
             })
             .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');

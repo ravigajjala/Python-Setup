@@ -1,39 +1,39 @@
 <div class="dialog-main-cont">
-    <h2>Manage Users</h2>
-    <div class="user-table-cont head-title">
-        <div class="user-col">GREENHOUSE</div>
-        <div class="user-col">LOCATOR NUMBER</div>
-        <div class="user-col-del"></div>
-    </div>
-    <div class="user-table-cont" *ngFor="let gh of currentGreenHouses;let i = index;">
-        <div class="user-col">{{gh.location.city}},{{gh.location.state}}</div>
-        <div class="user-col">{{gh.locatorNumber}}</div>
-        <div class="user-col-del">
-            <div (click)="deleteUser(i)"><i class="material-icons valign_middle">delete</i></div>
-        </div>
-    </div>
-    <div class="user-table-cont" *ngIf="showEditBox">
-        <div class="user-col">
-            <md-select [(ngModel)]="editLocation" name="location" class="loc-input">
-                <md-option *ngFor="let location of appSharedService.locations" [value]="location">
-                    {{location.city}}, {{location.state}}
-                </md-option>
-            </md-select>
-        </div>
-        <div class="user-col">
-        	<md-form-field class="example-full-width">
-                <input mdInput [(ngModel)]="editLocatorNumber">  
-           </md-form-field>
-        </div>
-        <div class="user-col-del">
-            <!-- <div><i class="material-icons valign_middle">delete</i></div> -->
-        </div>
-    </div>
-    <div class="add-user" (click)="addUser(true)" *ngIf="!showEditBox"><i class="material-icons valign_middle">add_circle</i> New Greenhouse</div>
-    <!-- <div class="add-user" (click)="addUser(false)" *ngIf="showEditBox">Cancel</div> -->
+  <h2>Manage Greenhouses</h2>
+  <div class="user-table-cont head-title">
+      <div class="user-col">GREENHOUSE</div>
+      <div class="user-col">LOCATOR NUMBER</div>
+      <div class="user-col-del"></div>
+  </div>
+  <div class="user-table-cont" *ngFor="let gh of currentGreenHouses;let i = index;">
+      <div class="user-col">{{gh.location.city}},{{gh.location.state}}</div>
+      <div class="user-col">{{gh.locatorNumber}}</div>
+      <div class="user-col-del">
+          <div (click)="deleteUser(i)"><i class="material-icons valign_middle">delete</i></div>
+      </div>
+  </div>
+  <div class="user-table-cont" *ngIf="showEditBox">
+      <div class="user-col">
+          <mat-select [(ngModel)]="editLocation" name="location" class="loc-input">
+              <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
+                  {{location.city}}, {{location.state}}
+              </mat-option>
+          </mat-select>
+      </div>
+      <div class="user-col">
+        <mat-form-field class="example-full-width">
+              <input matInput [(ngModel)]="editLocatorNumber">  
+         </mat-form-field>
+      </div>
+      <div class="user-col-del">
+          <!-- <div><i class="material-icons valign_middle">delete</i></div> -->
+      </div>
+  </div>
+  <div class="add-user" (click)="addUser(true)" *ngIf="!showEditBox"><i class="material-icons valign_middle">add_circle</i> New Greenhouse</div>
+  <!-- <div class="add-user" (click)="addUser(false)" *ngIf="showEditBox">Cancel</div> -->
 
-    <div class="btn-cont">
-            <button md-button (click)="closeDialog()">CLOSE</button>
-            <button md-raised-button color="primary" (click)="saveUser()">SAVE</button>
-    </div>
+  <div class="btn-cont">
+          <button mat-button (click)="closeDialog()">CLOSE</button>
+          <button mat-raised-button color="primary" (click)="saveUser()">SAVE</button>
+  </div>
 </div>

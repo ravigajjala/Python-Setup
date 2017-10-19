@@ -28,12 +28,12 @@ $purple: #4339AD;
         font-weight: 600;
     }
     .sec1-select {
-        margin: 11px 0;
+        // margin: 11px 0;
     } // .grey-bg {
     //   background:#FFF;
     //   font-weight: bold;
     // }
-    md-list {
+    mat-list {
         background-color: #FFF;
     }
 }
@@ -43,7 +43,7 @@ $purple: #4339AD;
 /** CSS OVERRIDES WITH CLLASS HELP **/
 
 .toggle-button-css {
-    md-button-toggle-group {
+    mat-button-toggle-group {
         &.mat-button-toggle-group {
             box-shadow: none;
         }
@@ -150,11 +150,11 @@ $purple: #4339AD;
                     position:relative
                 }
 
-                md-select {
+                mat-select {
                     padding-top:0;
                 }
 
-                [md-raised-button] {
+                [mat-raised-button] {
                     font-size: 12px;
                     line-height: 25px;
                 }
@@ -300,7 +300,7 @@ $purple: #4339AD;
 }
 
 .toggle-button-css {
-    md-button-toggle-group {
+    mat-button-toggle-group {
         //display: flex;
         //justify-content: space-between;
     }
@@ -344,14 +344,14 @@ $purple: #4339AD;
         padding: 7px;
     }
 
-    md-form-field {
+    mat-form-field {
         flex: 1 1 0;
         padding-right: 20px;
         box-sizing: border-box;
     }
 }
 
-md-select-trigger {
+mat-select-trigger {
     font-size: 12px;
 }
 

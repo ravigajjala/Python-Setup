@@ -7,48 +7,48 @@
         <td>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
             <div>
-              <md-form-field class="full-width">
-                <input mdInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
-              </md-form-field>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
+              </mat-form-field>
             </div>
           </div>
           <div class="flex-display" [class.flex-center]="mergeClickBool">
-            <button md-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
-            <button md-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
-            <button md-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+            <button mat-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+            <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+            <button mat-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
           </div>
           <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <md-button-toggle-group #group="mdButtonToggleGroup">
-              <md-button-toggle value="left">
+            <mat-button-toggle-group #group="matButtonToggleGroup">
+              <mat-button-toggle value="left">
                 Type <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-              <md-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+              </mat-button-toggle>
+              <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
                 A-Z <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-              <md-button-toggle value="right" (click)="appSharedService.weekSort()">
+              </mat-button-toggle>
+              <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
                 Wk# <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-            </md-button-toggle-group>
+              </mat-button-toggle>
+            </mat-button-toggle-group>
           </div>
         </td>
         <td *ngFor="let head of heads4">
           <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
         </td>
         <td *ngFor="let head of locationNames;let ind= index">
-          <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>Ship to {{head.city}}</span>
+          <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>Ship to {{head}}</span>
         </td>
         <td>
-          <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship To</span>
+          <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship TO</span>
           <div class="auto-comp-cont" *ngIf="shipToClicked">
-            <md-form-field>
-              <input type="text" mdInput [(ngModel)]="newCity" placeholder="Enter Shipping location" [mdAutocomplete]="plant">
-            </md-form-field>
-            <md-autocomplete #plant="mdAutocomplete" [displayWith]="displayFn">
-              <md-option *ngFor="let location of locations" [value]="location.city" (onSelectionChange)="addShipToLoc($event, location)">
+            <mat-form-field>
+              <input type="text" matInput [(ngModel)]="newCity" placeholder="Enter Shipping location" [matAutocomplete]="plant">
+            </mat-form-field>
+            <mat-autocomplete #plant="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let location of locations" [value]="location.city" (onSelectionChange)="addShipToLoc($event, location)">
                 {{location.city}}, {{location.state}}
-              </md-option>
-            </md-autocomplete>
+              </mat-option>
+            </mat-autocomplete>
           </div>
         </td>
       </tr>
@@ -60,19 +60,19 @@
           <span>{{item.name}}</span>
         </td>
         <td>
-          <input mdInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber">
+          <input matInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber">
         </td>
         <td>
-          <input mdInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays">
+          <input matInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays">
         </td>
         <td>
-          <input mdInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
+          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
         </td>
         <td>
-          <input mdInput name="b_no" [(ngModel)]="item.receivingInfo.houseBay">
+          <input matInput name="b_no" [(ngModel)]="item.receivingInfo.houseBay">
         </td>
         <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+4]}">
-          <input mdInput name="stchi" (blur)="getTotalOfColumn(ind)" [(ngModel)]="item.shipTo.locationValues[ind]" [disabled]="disabledColumns[ind+4]">
+          <input matInput name="stchi" (blur)="getTotalOfColumn(ind)" [(ngModel)]="item.shipTo.locationValues[ind]" [disabled]="disabledColumns[ind+4]">
         </td>
         <td></td>
       </tr>
@@ -92,8 +92,8 @@
         <td>
         </td>
         <td *ngFor="let shipbtn of locationNames;let i=index">
-          <button md-raised-button color="primary" *ngIf="!disabledColumns[i+4]" (click)="shipColumn(i+4)">Ship</button>
-          <button md-raised-button color="basic" *ngIf="disabledColumns[i+4]" (click)="cancelShip(i+4)">CANCEL SHIP</button>
+          <button mat-raised-button color="primary" *ngIf="!disabledColumns[i+4]" (click)="shipColumn(i+4)">Ship</button>
+          <button mat-raised-button color="basic" *ngIf="disabledColumns[i+4]" (click)="cancelShip(i+4)">CANCEL SHIP</button>
         </td>
 
       </tr>

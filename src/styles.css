@@ -13,12 +13,12 @@ html, body {
     background-color: rgba(0, 0, 0, 0.14);
 }
 .input-white .mat-input-container .mat-input-placeholder,
-.input-white .mat-select-placeholder {
+.input-white + .mat-input-placeholder-wrapper .mat-input-placeholder {
   color: rgba(255,255,255,.9);
 }
 
 .input-white .mat-input-container .mat-focused .mat-input-placeholder,
-.input-white .mat-focused .mat-select-placeholder {
+.input-white[aria-activedescendant="mat-option-0"] + .mat-input-placeholder-wrapper .mat-input-placeholder {
   color: rgba(255,255,255,.5);
 }
 

@@ -7,29 +7,29 @@
         <td>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
             <div>
-              <md-form-field class="full-width">
-                <input mdInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
-              </md-form-field>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
+              </mat-form-field>
             </div>
           </div>
           <div class="flex-display" [class.flex-center]="mergeClickBool">
-            <button md-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
-            <button md-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
-            <button md-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+            <button mat-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+            <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+            <button mat-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
           </div>
           <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <md-button-toggle-group #group="mdButtonToggleGroup">
-              <md-button-toggle value="left">
+            <mat-button-toggle-group #group="matButtonToggleGroup">
+              <mat-button-toggle value="left">
                 Type <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-              <md-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+              </mat-button-toggle>
+              <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
                 A-Z <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-              <md-button-toggle value="right" (click)="appSharedService.weekSort()">
+              </mat-button-toggle>
+              <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
                 Wk# <i class="material-icons">arrow_drop_down</i>
-              </md-button-toggle>
-            </md-button-toggle-group>
+              </mat-button-toggle>
+            </mat-button-toggle-group>
           </div>
         </td>
         <td *ngFor="let head of heads2">
@@ -44,28 +44,28 @@
           <span>{{item.name}}</span>
         </td>
         <td>
-          <input mdInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber">
+          <input matInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber">
         </td>
         <td>
-          <input mdInput name="plugFlatsPlotted" [(ngModel)]="item.plugTray.plugFlatsPlotted">
+          <input matInput name="plugFlatsPlotted" [(ngModel)]="item.plugTray.plugFlatsPlotted">
         </td>
         <td>
-          <input mdInput type="number" name="finishedTrays" [(ngModel)]="item.plantingInfo.finishedTrays" (blur)="updatePlugToDeliverData(item)">
+          <input matInput type="number" name="finishedTrays" [(ngModel)]="item.plantingInfo.finishedTrays" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td>
-          <input mdInput type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)">
+          <input matInput type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td>
-          <!-- <input mdInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate"> -->
-          <md-form-field [formGroup]="plantingInfoForm">
-            <input mdInput [mdDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
+          <!-- <input matInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate"> -->
+          <mat-form-field [formGroup]="plantingInfoForm">
+            <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
               (dateChange)="updatePlugToDeliverData(item)" formControlName="datePotted">
-            <!-- <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle> -->
-            <md-datepicker #picker></md-datepicker>
-          </md-form-field>
+            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </td>
         <td>
-          <input mdInput type="number" name="houseBay" [(ngModel)]="item.plantingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
+          <input matInput type="number" name="houseBay" [(ngModel)]="item.plantingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
         </td>
       </tr>
     </tbody>

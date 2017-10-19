@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 @Component({
@@ -9,8 +9,8 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 })
 export class IconDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MdDialogRef<IconDialogComponent>,
-          @Inject(MD_DIALOG_DATA) public currentPlant: any) { }
+  constructor(public dialogRef: MatDialogRef<IconDialogComponent>,
+          @Inject(MAT_DIALOG_DATA) public currentPlant: any) { }
 
   public iconClassNumber = 0;
 

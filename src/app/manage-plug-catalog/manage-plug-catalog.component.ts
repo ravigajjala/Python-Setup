@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Plant } from '../providers/classes/plantInfo.class';
 
 @Component({
@@ -21,7 +21,7 @@ export class ManagePlugCatalogComponent {
   public editLocationId;
 
   constructor(public appSharedService: AppSharedService,
-    public dialogRef: MdDialogRef<ManagePlugCatalogComponent>) { }
+    public dialogRef: MatDialogRef<ManagePlugCatalogComponent>) { }
 
 
   addUser(condition) {

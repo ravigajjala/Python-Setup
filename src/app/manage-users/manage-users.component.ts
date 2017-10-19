@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../providers/classes/plantInfo.class';
 
 @Component({
@@ -11,21 +11,22 @@ import { User } from '../providers/classes/plantInfo.class';
 export class ManageUsersComponent {
 
   public currentUsers: User[];
-  public locationId;
-  public locations = [];
+	public locationId;
+	public locations = [];
   public showEditBox = false;
   public editUserName;
   public editUserEmail;
   public editLocationId;
 
+
   constructor(public appSharedService: AppSharedService,
-    public dialogRef: MdDialogRef<ManageUsersComponent>) {
-    this.currentUsers = this.appSharedService.users;
+    public dialogRef: MatDialogRef<ManageUsersComponent>) {
+    this.currentUsers = this.appSharedService.users; 
   }
 
 
   addUser(condition) {
-    this.showEditBox = condition;
+  	this.showEditBox = condition;
   }
 
   closeDialog(): void {

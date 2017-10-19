@@ -1,7 +1,7 @@
 import {
   Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild
 } from '@angular/core';
-import { MdAutocompleteTrigger } from '@angular/material';
+import { MatAutocompleteTrigger } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -62,7 +62,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.loader = true;
   }
 
-  @ViewChild(MdAutocompleteTrigger) trigger;
+  @ViewChild(MatAutocompleteTrigger) trigger;
 
   getTotalOfColumn(array, key) {
     const total = array.reduce(function (a, b) {

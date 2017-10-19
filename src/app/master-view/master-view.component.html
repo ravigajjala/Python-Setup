@@ -7,23 +7,23 @@
       <td>
        <div class="toggle-button-css" *ngIf="mergeClickBool == false">
             <div>
-              <md-form-field class="full-width">
-                <input mdInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
-              </md-form-field>
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
+              </mat-form-field>
             </div>
           </div>
         <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-          <md-button-toggle-group #group="mdButtonToggleGroup">
-            <md-button-toggle value="left">
+          <mat-button-toggle-group #group="matButtonToggleGroup">
+            <mat-button-toggle value="left">
               Type <i class="material-icons">arrow_drop_down</i>
-            </md-button-toggle>
-            <md-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+            </mat-button-toggle>
+            <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
               A-Z <i class="material-icons">arrow_drop_down</i>
-            </md-button-toggle>
-            <md-button-toggle value="right" (click)="appSharedService.weekSort()">
+            </mat-button-toggle>
+            <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
               Wk# <i class="material-icons">arrow_drop_down</i>
-            </md-button-toggle>
-          </md-button-toggle-group>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
         </div>
       </td>
       <td *ngFor="let head of heads6;let i=index" [colSpan]="i==4?16: (i==6?2:1)" [ngClass]="{'merge-cell-style':i==4 || i==6}">
@@ -58,76 +58,76 @@
         <span>{{item.name}}</span>
       </td>
       <td class="store-delivery-table-margin">
-        <input mdInput name="lot_no" [(ngModel)]="item.lot_no">
+        <input matInput name="lot_no" [(ngModel)]="item.lot_no">
       </td>
       <td>
-        <input mdInput name="rl_no" [(ngModel)]="item.rl_no">
+        <input matInput name="rl_no" [(ngModel)]="item.rl_no">
       </td>
       <td>
-        <input mdInput name="b_no" [(ngModel)]="item.b_no">
+        <input matInput name="b_no" [(ngModel)]="item.b_no">
       </td>
       <td>
         <span>{{item.q - item.ts_d}}</span>
       </td>
             <td>
-        <input mdInput name="sixtyeight" [(ngModel)]="item.sixtyeight">
+        <input matInput name="sixtyeight" [(ngModel)]="item.sixtyeight">
       </td>
       <td>
-        <input mdInput name="sixtyeight_one" [(ngModel)]="item.sixtyeight_one">
+        <input matInput name="sixtyeight_one" [(ngModel)]="item.sixtyeight_one">
       </td>
       <td>
-        <input mdInput name="sixtyeight_two" [(ngModel)]="item.sixtyeight_two">
+        <input matInput name="sixtyeight_two" [(ngModel)]="item.sixtyeight_two">
       </td>
       <td>
-        <input mdInput name="sixtyeight_three" [(ngModel)]="item.sixtyeight_three">
+        <input matInput name="sixtyeight_three" [(ngModel)]="item.sixtyeight_three">
       </td>
       <td>
-        <input mdInput name="sixtyeight_four" [(ngModel)]="item.sixtyeight_four">
+        <input matInput name="sixtyeight_four" [(ngModel)]="item.sixtyeight_four">
       </td>
       <td>
-        <input mdInput name="sixtyeight_five" [(ngModel)]="item.sixtyeight_five">
+        <input matInput name="sixtyeight_five" [(ngModel)]="item.sixtyeight_five">
       </td>
       <td>
-        <input mdInput name="sixtyeight_six" [(ngModel)]="item.sixtyeight_six">
+        <input matInput name="sixtyeight_six" [(ngModel)]="item.sixtyeight_six">
       </td>
       <td>
-        <input mdInput name="sixtyeight_seven" [(ngModel)]="item.sixtyeight_seven">
+        <input matInput name="sixtyeight_seven" [(ngModel)]="item.sixtyeight_seven">
       </td>
       <td>
-        <input mdInput name="sixtyeight_eight" [(ngModel)]="item.sixtyeight_eight">
+        <input matInput name="sixtyeight_eight" [(ngModel)]="item.sixtyeight_eight">
       </td>
       <td>
-        <input mdInput name="sixtyeight_nine" [(ngModel)]="item.sixtyeight_nine">
+        <input matInput name="sixtyeight_nine" [(ngModel)]="item.sixtyeight_nine">
       </td>
       <td>
-        <input mdInput name="sixtyeight_ten" [(ngModel)]="item.sixtyeight_ten">
+        <input matInput name="sixtyeight_ten" [(ngModel)]="item.sixtyeight_ten">
       </td>
       <td>
-        <input mdInput name="sixtyeight_eleven" [(ngModel)]="item.sixtyeight_eleven">
+        <input matInput name="sixtyeight_eleven" [(ngModel)]="item.sixtyeight_eleven">
       </td>
       <td>
-        <input mdInput name="sixtyeight_twelve" [(ngModel)]="item.sixtyeight_twelve">
+        <input matInput name="sixtyeight_twelve" [(ngModel)]="item.sixtyeight_twelve">
       </td>
       <td>
-        <input mdInput name="sixtyeight_thirteen" [(ngModel)]="item.sixtyeight_thirteen">
+        <input matInput name="sixtyeight_thirteen" [(ngModel)]="item.sixtyeight_thirteen">
       </td>
       <td>
-        <input mdInput name="sixtyeight_fourteen" [(ngModel)]="item.sixtyeight_fourteen">
+        <input matInput name="sixtyeight_fourteen" [(ngModel)]="item.sixtyeight_fourteen">
       </td>
       <td>
-        <input mdInput name="sixtyeight_fifteen" [(ngModel)]="item.sixtyeight_fifteen">
+        <input matInput name="sixtyeight_fifteen" [(ngModel)]="item.sixtyeight_fifteen">
       </td>
       <td>
         <span>{{item.q - item.ts_d}}</span>
       </td>
       <td>
-        <input mdInput name="discarded" [(ngModel)]="item.discarded">
+        <input matInput name="discarded" [(ngModel)]="item.discarded">
       </td>
       <td>
-        <md-select placeholder="" #select="mdSelect">
-          <md-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</md-select-trigger>
-          <md-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</md-option>
-        </md-select>
+        <mat-select placeholder="" #select="matSelect">
+          <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
+          <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
+        </mat-select>
       </td>
       <td>
         <span>{{item.q - item.ts_d - item.discarded}}</span>
@@ -163,7 +163,7 @@
     </tr>
     <tr>
       <td>
-        <button md-raised-button color="primary">Export</button>
+        <button mat-raised-button color="primary">Export</button>
       </td>
     </tr>
     </tbody>
