@@ -6,7 +6,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { MatButtonModule, MatMenuModule, MatButtonToggleModule, MatSelectModule, MatAutocompleteModule, MatDatepickerModule, MatListModule, MatInputModule, MatNativeDateModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule,
+  MatMenuModule,
+  MatButtonToggleModule,
+  MatSelectModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatListModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatCheckboxModule } from '@angular/material';
 
 
 import { HttpModule } from '@angular/http';
