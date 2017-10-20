@@ -7,7 +7,7 @@
       <span mat-button [matMenuTriggerFor]="menu" class="setting-icon"><i class="material-icons valign_middle">settings</i></span>
       <mat-menu #menu="matMenu">
         <button mat-menu-item class="setting-menu-item logged-in-user"><div>Logged In as <br>(..@scotts.com)</div></button>
-        <button mat-menu-item class="setting-menu-item" (click)="openManageUserDialog()">Manage Users</button>
+        <!-- <button mat-menu-item class="setting-menu-item" (click)="openManageUserDialog()">Manage Users</button> -->
         <button mat-menu-item class="setting-menu-item" (click)="openManageGreenHouseDialog()">Manage Greenhouse/Stations</button>
         <button mat-menu-item class="setting-menu-item" (click)="openManagePlugCatalogDialog()">Manage Plug Catalog</button>
         <button mat-menu-item class="setting-menu-item" (click)="loginService.logout()">Logout</button>

@@ -639,14 +639,8 @@ export class AppSharedService {
             });
     }
 
-    addLocation(): Observable<Location[]> {
-        return this.http.post('/locations/create', [{
-            "city": "Fremont",
-            "state": "OH"
-        }, {
-            "city": "San Ramon",
-            "state": "OH"
-        }], this.options)
+    addLocation(data): Observable<Location[]> {
+        return this.http.post('/locations/create', data, this.options)
             .map((res: Response) => {
                 return res;
             })
