@@ -441,3 +441,10 @@ table td span i {
 .icon-box{
   cursor:pointer;
 }
+.wk-select-box{
+    width:90px;
+    height:40px;
+    mat-select {
+        margin-top:5px;
+    }
+}

@@ -14,6 +14,9 @@ export class MasterViewComponent implements OnInit {
 
   public heads6 = [];
   public mergeClickBool = false;
+  public weekNumbers = [1, 2, 3, 4, 5];
+  public startWeek = 1;
+  public endWeek = 5;
 
   ngOnInit() {
     this.heads6 = [
