@@ -36,7 +36,7 @@
           <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
         </td>
         <td *ngFor="let head of locationNames;let ind= index">
-          <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>Ship to {{head}}</span>
+          <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>Ship to {{head.city}}</span>
         </td>
         <td>
           <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship TO</span>

@@ -35,7 +35,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   ngOnInit() {
 
     // Retrieving Locations
-    this.locations = this.appSharedService.locations;
+    this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
 
 
     this.heads4 = [
@@ -57,7 +57,8 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   addShipToLoc(event, newlocation) {
-    this.locationNames.push(newlocation.city);
+    this.locationNames.push(newlocation);
+    this.locations.splice(this.locations.indexOf(newlocation), 1);
     this.totalOfLocation.push(0);
     this.newCity = '';
     this.shipToClicked = false;
@@ -65,15 +66,27 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   removeShipToLoc(index) {
+    console.log(this.appSharedService.locations);
+    this.appSharedService.locations.map((val) => {
+      if (val.datastore_id === this.locationNames[index].datastore_id) {
+        this.locations.push(val);
+      }
+    });
     this.locationNames.splice(index, 1);
     this.totalOfLocation.splice(index + 4, 1);
+    if (this.disabledColumns[index + 4]) {
+      this.appSharedService.shippedNumber--;
+      this.disabledColumns.splice(index + 4, 1);
+    }
   }
 
   shipColumn(item) {
     this.disabledColumns[item] = true;
+    this.appSharedService.shippedNumber++;
   }
   cancelShip(item) {
     this.disabledColumns[item] = false;
+    this.appSharedService.shippedNumber--;
   }
 
   getTotalOfColumn(key) {
