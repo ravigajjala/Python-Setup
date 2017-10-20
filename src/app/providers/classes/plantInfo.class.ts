@@ -31,7 +31,7 @@ export class ShipTo {
 }
 
 export class Location {
-	id: string;
+	datastore_id
 	city: string;
 	state: string;
 	firstName: string;
