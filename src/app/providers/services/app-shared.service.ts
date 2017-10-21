@@ -21,6 +21,7 @@ export class AppSharedService {
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
     public shippedNumber = 0;
+    public totalNotif =0;
     public userId: string = 'sainath8090';
 
     private headers = new Headers({ 'Content-Type': 'application/json' });

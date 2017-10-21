@@ -31,6 +31,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
   public weekNumber: number;
+  private plugNotifStatus = [];
 
   public options = [
     {
@@ -60,6 +61,9 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
     this.loader = true;
+    this.appSharedService.varietyOptions.forEach((val, index) => {
+      this.setNotifStatus(val, index);
+    });
   }
 
   @ViewChild(MatAutocompleteTrigger) trigger;
@@ -69,6 +73,31 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       return a + b[key];
     }, 0);
     return total;
+  }
+
+
+  setNotifStatus(val, index) {
+    const currentStatus = this.plugNotifStatus[index];
+
+    // iterate through each key in object
+    for (const key in val.plugTray) {
+
+      if (val.plugTray.hasOwnProperty(key)) {
+        if (!val.plugTray[key]) {
+          this.plugNotifStatus[index] = false;
+          break;
+        } else {
+          this.plugNotifStatus[index] = true;
+        }
+      }
+    }
+
+    // if already true and value not present then decrement
+    if (currentStatus && !this.plugNotifStatus[index]) {
+      this.appSharedService.totalNotif--;
+    }else if (this.plugNotifStatus[index]) {
+      this.appSharedService.totalNotif++;
+    }
   }
 
   mergeClick(e: any, mergeText: string) {
@@ -214,7 +243,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
    */
   // TODO:: Make shared function
-  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index): any {
+    this.setNotifStatus(plugToDeliverData, index);
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
       err => {

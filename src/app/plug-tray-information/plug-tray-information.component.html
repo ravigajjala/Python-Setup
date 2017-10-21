@@ -37,39 +37,39 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model">
+      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i =index;" class="form-input-model">
         <td>
           <div [innerHTML]="item['nameHtml']" class="icon-box"></div>
           <span>{{item.name}}</span><span>{{ item.weekNumber ? '  week' + item.weekNumber : ''}}</span>
         </td>
         <td>
-          <input matInput name="pfr" type="number" [(ngModel)]="item.plugTray.plugFlatsReceived" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="pfr" type="number" [(ngModel)]="item.plugTray.plugFlatsReceived" (blur)="updatePlugToDeliverData(item, i)">
         </td>
         <td>
           <!-- <input matInput name="date_received" > -->
           <mat-form-field [formGroup]="PlugTrayForm">
             <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plugTray.dateReceived"
-              formControlName="dateReceived" (dateChange)="calculateWeekNumber($event, item); updatePlugToDeliverData(item)">
+              formControlName="dateReceived" (dateChange)="calculateWeekNumber($event, item); updatePlugToDeliverData(item, i)">
             <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>
         <td>
-          <input matInput name="pfp" type="number" [(ngModel)]="item.plugTray.plugFlatsPlotted" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="pfp" type="number" [(ngModel)]="item.plugTray.plugFlatsPlotted" (blur)="updatePlugToDeliverData(item, i)">
         </td>
         <td>
-          <input matInput name="pfd" type="number" [(ngModel)]="item.plugTray.plugFlatsDiscarded" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="pfd" type="number" [(ngModel)]="item.plugTray.plugFlatsDiscarded" (blur)="updatePlugToDeliverData(item, i)">
         </td>
         <td>
           <!-- <input matInput name="reason_code" [(ngModel)]="item.reason_code"> -->
           <mat-select placeholder="" #select="matSelect" [disabled]="!item.plugTray.plugFlatsDiscarded" [(ngModel)]="item.plugTray.reasonsCode"
-            (ngModelChange)="updatePlugToDeliverData(item)">
+            (ngModelChange)="updatePlugToDeliverData(item, i)">
             <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
             <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
           </mat-select>
         </td>
         <td>
-          <input matInput name="lot_no" type="text" [(ngModel)]="item.plugTray.seedLotNumber" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="lot_no" type="text" [(ngModel)]="item.plugTray.seedLotNumber" (blur)="updatePlugToDeliverData(item, i)">
         </td>
       </tr>
 

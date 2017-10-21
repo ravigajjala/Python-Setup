@@ -14,59 +14,55 @@ export class ManageGreenHouseComponent {
   public currentGreenHouses = [];
   public locationId;
   public locations = [];
+  public greenHouses = [];
   public showEditBox = false;
   public editFirstName;
   public editLastName;
   public editUserEmail;
   public editLocation;
   public editLocatorNumber;
+  public ghEditList = [];
 
   constructor(public appSharedService: AppSharedService,
-    public dialogRef: MatDialogRef<ManageGreenHouseComponent>) { }
+    public dialogRef: MatDialogRef<ManageGreenHouseComponent>) {
+    this.greenHouses = Object.assign([], this.appSharedService.locations);
+    for (let i = 0; i < this.greenHouses.length; i++) {
+      this.ghEditList[i] = false;
+    }
+  }
 
 
   addGreenHouse(condition) {
-    this.showEditBox = condition;
+    this.greenHouses.push(new Location());
   }
 
   saveGreenHouse() {
-    if (this.editFirstName) {
-      const newHouse = new Location();
-      newHouse.firstName = this.editFirstName;
-      newHouse.lastName = this.editLastName;
-      newHouse.city = this.editLocation.city;
-      newHouse.state = this.editLocation.state;
-      newHouse.locatorNumber = this.editLocatorNumber;
-      // post API call here
-      this.appSharedService.addLocation(newHouse).subscribe(
-        houseData => {
-          console.log(houseData);
-          this.appSharedService.locations.push(newHouse);
-          this.clearEditFields();
-        },
-        err => console.log(err)
-      );
-    }else {
-      console.error('Firstname not present');
-    }
+    // post API call here
+    this.appSharedService.addLocation(this.greenHouses).subscribe(
+      houseData => {
+        console.log(houseData);
+        this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
+        this.ghEditList = this.ghEditList.map(val => {
+          val = false;
+        });
+      },
+      err => console.log(err)
+    );
   }
 
   closeDialog(): void {
     this.dialogRef.close();
   }
 
-
-  clearEditFields() {
-    this.editFirstName = '';
-    this.editLastName = '';
-    this.editLocation = null;
-    this.editLocatorNumber = '';
-    this.editUserEmail = '';
-    this.showEditBox = false;
-  }
-
   deleteGreenHouse(i) {
-    this.appSharedService.locations.splice(i, 1);
+    this.greenHouses.splice(i, 1);
+    this.appSharedService.addLocation(this.greenHouses).subscribe(
+      houseData => {
+        console.log(houseData);
+        this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
+      },
+      err => console.log(err)
+    );
   }
 
 }

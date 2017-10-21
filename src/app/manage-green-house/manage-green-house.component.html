@@ -1,56 +1,79 @@
 <div class="dialog-main-cont">
     <h2>Manage Greenhouses</h2>
     <div class="user-table-cont head-title">
-        <div class="user-col">FIRST NAME</div>
-        <div class="user-col">LAST NAME</div>
-        <div class="user-col">USER EMAIL</div>
-        <div class="user-col">GREENHOUSE</div>
-        <div class="user-col">LOCATOR NUMBER</div>
+        <div class="user-col nameCol">FIRST NAME</div>
+        <div class="user-col nameCol">LAST NAME</div>
+        <div class="user-col-email">USER EMAIL</div>
+        <div class="user-col cityCol">CITY</div>
+        <div class="user-col stateCol">STATE</div>
+        <div class="user-col lcNumCol">LOCATOR NUMBER</div>
         <div class="user-col-del"></div>
     </div>
-    <div class="user-table-cont" *ngFor="let gh of appSharedService.locations;let i = index;">
+    <!-- <div class="user-table-cont" *ngFor="let gh of appSharedService.locations;let i = index;">
         <div class="user-col">{{gh.firstName}}</div>
         <div class="user-col">{{gh.lastName}}</div>
         <div class="user-col">{{gh.email}}</div>
-        <div class="user-col">{{gh.city}},{{gh.state}}</div>
+        <div class="user-col">{{gh.city}}</div>
+        <div class="user-col">{{gh.state}}</div>
         <div class="user-col">{{gh.locatorNumber}}</div>
         <div class="user-col-del">
             <div (click)="deleteGreenHouse(i)">
                 <i class="material-icons valign_middle">delete</i>
             </div>
         </div>
-    </div>
-    <div class="user-table-cont" *ngIf="showEditBox">
-        <div class="user-col">
-            <mat-form-field class="example-full-width">
-                <input matInput [(ngModel)]="editFirstName">
-            </mat-form-field>
+    </div> -->
+    <div class="user-table-cont" *ngFor="let gh of greenHouses;let i = index;">
+        <div *ngIf="!ghEditList[i]" (click)="ghEditList[i]=true">
+            <div class="user-col nameCol">{{gh.firstName}}</div>
+            <div class="user-col nameCol">{{gh.lastName}}</div>
+            <div class="user-col-email">{{gh.email}}</div>
+            <div class="user-col cityCol">{{gh.city}}</div>
+            <div class="user-col stateCol">{{gh.state}}</div>
+            <div class="user-col lcNumCol">{{gh.locatorNumber}}</div>
+            <div class="user-col-del">
+                <div (click)="deleteGreenHouse(i)">
+                    <i class="material-icons valign_middle">delete</i>
+                </div>
+            </div>
         </div>
-        <div class="user-col">
+        <div *ngIf="ghEditList[i]">
+            <div class="user-col nameCol">
                 <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="editLastName">
+                    <input matInput [(ngModel)]="gh.firstName">
                 </mat-form-field>
             </div>
-        <div class="user-col-email">
-            <mat-form-field class="example-full-width">
-                <input matInput [(ngModel)]="editUserEmail">
-            </mat-form-field>
+            <div class="user-col nameCol">
+                <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="gh.lastName">
+                </mat-form-field>
+            </div>
+            <div class="user-col-email">
+                <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="gh.email">
+                </mat-form-field>
+            </div>
+            <div class="user-col cityCol">
+                <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="gh.city">
+                </mat-form-field>
+            </div>
+            <div class="user-col stateCol">
+                <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="gh.state">
+                </mat-form-field>
+            </div>
+            <div class="user-col lcNumCol">
+                <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="gh.locatorNumber">
+                </mat-form-field>
+            </div>
+            <div class="user-col-del">
+                <div (click)="deleteGreenHouse(i)">
+                    <i class="material-icons valign_middle">delete</i>
+                </div>
+            </div>
         </div>
-        <div class="user-col">
-            <mat-select [(ngModel)]="editLocation" name="location" class="loc-input">
-                <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
-                    {{location.city}}, {{location.state}}
-                </mat-option>
-            </mat-select>
-        </div>
-        <div class="user-col">
-            <mat-form-field class="example-full-width">
-                <input matInput [(ngModel)]="editLocatorNumber">
-            </mat-form-field>
-        </div>
-        <div class="user-col-del">
-            <!-- <div><i class="material-icons valign_middle">delete</i></div> -->
-        </div>
+
     </div>
     <div class="add-user" (click)="addGreenHouse(true)" *ngIf="!showEditBox">
         <i class="material-icons valign_middle">add_circle</i> New Greenhouse</div>

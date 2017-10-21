@@ -15,13 +15,25 @@
             display: inline-block;
         }
         .user-col-del {
-            width: 5%;
+            width: 4%;
             display: inline-block;
             text-align: right;
         }
         .user-col-email {
-            width: 25%;
+            width: 23%;
             display: inline-block;
+        }
+        .nameCol {
+            width:15%;
+        }
+        .stateCol {
+            width:7%;
+        }
+        .cityCol {
+            width: 15%;
+        }
+        .lcNumCol {
+            width: 14%;
         }
     }
     .head-title {
@@ -38,7 +50,7 @@
         padding: 8px;
     }
     .mat-form-field {
-        width: 145px;
+        width: 80%;
     }
 .btn-cont {
     margin-top:30px;
