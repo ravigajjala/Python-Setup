@@ -15,7 +15,8 @@ import { MatButtonModule,
   MatListModule,
   MatInputModule,
   MatNativeDateModule,
-  MatCheckboxModule } from '@angular/material';
+  MatCheckboxModule,
+  MatTooltipModule } from '@angular/material';
 
 
 import { HttpModule } from '@angular/http';
@@ -109,7 +110,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatCheckboxModule,
     MatListModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule
     // NgxDatatableModule
   ],
   bootstrap: [AppComponent],
