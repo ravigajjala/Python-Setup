@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class StoreDeliveryComponent implements OnInit {
   public heads6 = [];
   public reasonCodes = [];
+  public mergeClickBool = false;
   constructor(private appSharedService: AppSharedService,
     public router: Router) { }
 
@@ -56,5 +57,9 @@ export class StoreDeliveryComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
+  }
+
+  mergeClick(e: any, mergeText: string) {
+    mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
 }
