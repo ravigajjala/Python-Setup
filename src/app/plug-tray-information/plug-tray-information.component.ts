@@ -81,7 +81,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
     // iterate through each key in object
     for (const key in val.plugTray) {
-
       if (val.plugTray.hasOwnProperty(key)) {
         if (!val.plugTray[key]) {
           this.plugNotifStatus[index] = false;
@@ -92,11 +91,14 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       }
     }
 
-    // if already true and value not present then decrement
-    if (currentStatus && !this.plugNotifStatus[index]) {
-      this.appSharedService.totalNotif--;
-    }else if (this.plugNotifStatus[index]) {
-      this.appSharedService.totalNotif++;
+    if (!currentStatus) {
+      if (this.plugNotifStatus[index]) {
+        this.appSharedService.totalNotif++;
+      }
+    } else {
+      if (!this.plugNotifStatus[index]) {
+        this.appSharedService.totalNotif--;
+      }
     }
   }
 
