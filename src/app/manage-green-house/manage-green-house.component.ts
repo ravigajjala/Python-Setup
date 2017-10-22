@@ -38,16 +38,16 @@ export class ManageGreenHouseComponent {
 
   saveGreenHouse() {
     // post API call here
-    this.appSharedService.addLocation(this.greenHouses).subscribe(
-      houseData => {
-        console.log(houseData);
+    // this.appSharedService.addLocation(this.greenHouses).subscribe(
+    //   houseData => {
+    //     console.log(houseData);
         this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
         this.ghEditList = this.ghEditList.map(val => {
           val = false;
         });
-      },
-      err => console.log(err)
-    );
+    //   },
+    //   err => console.log(err)
+    // );
   }
 
   closeDialog(): void {
