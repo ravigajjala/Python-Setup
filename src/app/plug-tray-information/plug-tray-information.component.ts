@@ -31,7 +31,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
   public weekNumber: number;
-  private plugNotifStatus = [];
 
   public options = [
     {
@@ -72,33 +71,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     return total;
   }
 
-
-  setNotifStatus(val, index) {
-    const currentStatus = this.plugNotifStatus[index];
-
-    // iterate through each key in object
-    for (const key in val.plugTray) {
-      if (val.plugTray.hasOwnProperty(key)) {
-        if (!val.plugTray[key]) {
-          this.plugNotifStatus[index] = false;
-          break;
-        } else {
-          this.plugNotifStatus[index] = true;
-        }
-      }
-    }
-
-    if (!currentStatus) {
-      if (this.plugNotifStatus[index]) {
-        this.appSharedService.totalNotif++;
-      }
-    } else {
-      if (!this.plugNotifStatus[index]) {
-        this.appSharedService.totalNotif--;
-      }
-    }
-  }
-
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
@@ -131,7 +103,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       { 'code': 'G', 'reason': 'Other/Act Of God' },
     ];
     this.PlugTrayForm = new FormGroup({
-      dateReceived: new FormControl()
+      dateReceived: new FormControl(null, Validators.required)
     });
     this.getPlugToDeliverData();
     this.getGreenHouseVarities();
@@ -230,10 +202,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;
-        this.appSharedService.totalNotif = 0;
-        this.appSharedService.varietyOptions.forEach((val, index) => {
-          this.setNotifStatus(val, index);
-        });
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -246,8 +214,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
    */
   // TODO:: Make shared function
-  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index): any {
-    this.setNotifStatus(plugToDeliverData, index);
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
       err => {

@@ -21,7 +21,6 @@ export class AppSharedService {
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
     public shippedNumber = 0;
-    public totalNotif =0;
     public userId: string = 'sainath8090';
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -641,8 +640,14 @@ export class AppSharedService {
             });
     }
 
-    addLocation(data): Observable<Location[]> {
-        return this.http.post('/locations/create', data, this.options)
+    addLocation(): Observable<Location[]> {
+        return this.http.post('/locations/create', [{
+            "city": "Fremont",
+            "state": "OH"
+        }, {
+            "city": "San Ramon",
+            "state": "OH"
+        }], this.options)
             .map((res: Response) => {
                 return res;
             })

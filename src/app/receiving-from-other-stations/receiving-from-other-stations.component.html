@@ -18,7 +18,6 @@
           </div>
           <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <mat-button-toggle-group #group="matButtonToggleGroup">
               <mat-button-toggle value="left">
                 Type <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
@@ -28,26 +27,17 @@
               <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
                 Wk# <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
-            </mat-button-toggle-group>
           </div>
         </td>
-        <td *ngFor="let head of heads3;let i=index" [ngClass]="{'display-no':i>4,'merge-cell-style':i==4}" [colSpan]="i==4?4:1">
-          <span [ngClass]="{'store-left':i==0}" *ngIf="i<4"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head}}</span>
-          <span *ngIf="i==4" class="sub-table-cont">
-          <table>
-            <tr>
-              <td colspan="4" class="top-row">Received from other station</td>
-            </tr>
-            <tr>
-              <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>Quantity</span></td>
-        <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>Locator#</span></td>
-        <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>#Discarded</span></td>
-        <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>Reason Code</span></td>
-      </tr>
-  </table>
-  </span>
-  </td>
-  </tr>
+        <ng-container *ngFor="let head of heads3;let i=index">
+            <td [ngClass]="{'display-no':i>4,'merge-cell-style':i==4}" [colSpan]="i==4?4:1" *ngIf="i<4">
+              <span [ngClass]="{'store-left':i==0}"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+            </td>
+        </ng-container>
+        <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Quantity</span></td>
+        <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>#Discarded</span></td>
+        <td class="bottom-row select-title"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span></td>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model"

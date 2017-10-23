@@ -1,4 +1,5 @@
 <div class="right-scroll">
+
   <!-- START: Ship To -->
   <table class="table_four table-width">
     <thead>
@@ -18,7 +19,6 @@
           </div>
           <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <mat-button-toggle-group #group="matButtonToggleGroup">
               <mat-button-toggle value="left">
                 Type <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
@@ -28,11 +28,10 @@
               <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
                 Wk# <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
-            </mat-button-toggle-group>
           </div>
         </td>
         <td *ngFor="let head of heads4">
-          <span><i class="material-icons rotate_90 valign_middle">arrow_drop_down</i>{{head.name}}</span>
+          <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head.name}}</span>
         </td>
         <td *ngFor="let head of locationNames;let ind= index">
           <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>Ship to {{head.city}}</span>

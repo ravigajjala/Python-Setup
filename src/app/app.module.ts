@@ -6,17 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { MatButtonModule,
-  MatMenuModule,
-  MatButtonToggleModule,
-  MatSelectModule,
-  MatAutocompleteModule,
-  MatDatepickerModule,
-  MatListModule,
-  MatInputModule,
-  MatNativeDateModule,
-  MatCheckboxModule,
-  MatTooltipModule } from '@angular/material';
+import { MatButtonModule, MatMenuModule, MatButtonToggleModule, MatSelectModule, MatAutocompleteModule, MatDatepickerModule, MatListModule, MatInputModule, MatNativeDateModule, MatCheckboxModule } from '@angular/material';
 
 
 import { HttpModule } from '@angular/http';
@@ -110,8 +100,7 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatCheckboxModule,
     MatListModule,
-    MatInputModule,
-    MatTooltipModule
+    MatInputModule
     // NgxDatatableModule
   ],
   bootstrap: [AppComponent],
