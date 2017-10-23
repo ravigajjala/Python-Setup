@@ -261,7 +261,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object]
    */
   calculateWeekNumber(date: Date, plugToDeliverData: PlugToDeliver) {
-    const weekNumber = moment(date).week();
+    const weekNumber = moment(plugToDeliverData.plugTray.dateReceived).week();
     plugToDeliverData.weekNumber = weekNumber;
   }
 }
