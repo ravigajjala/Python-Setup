@@ -54,7 +54,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>
-        <td [ngClass]="{'error-box':item.plugTray.plugFlatsPlotted > item.plugTray.plugFlatsReceived}" matTooltip="Plug flats plotted should be less than plug plans received">
+        <td [ngClass]="{'error-box':item.plugTray.plugFlatsPlotted > item.plugTray.plugFlatsReceived}" matTooltip="Plug flats plotted should be less than plug plans received" [matTooltipDisabled]="item.plugTray.plugFlatsPlotted <= item.plugTray.plugFlatsReceived">
           <input matInput name="pfp" type="number" [(ngModel)]="item.plugTray.plugFlatsPlotted" (blur)="updatePlugToDeliverData(item, i)">
           <!-- <div class="error-overlay">a</div> -->
         </td>
