@@ -61,9 +61,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
     this.loader = true;
-    this.appSharedService.varietyOptions.forEach((val, index) => {
-      this.setNotifStatus(val, index);
-    });
   }
 
   @ViewChild(MatAutocompleteTrigger) trigger;
@@ -134,7 +131,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       { 'code': 'G', 'reason': 'Other/Act Of God' },
     ];
     this.PlugTrayForm = new FormGroup({
-      dateReceived: new FormControl(null, Validators.required)
+      dateReceived: new FormControl()
     });
     this.getPlugToDeliverData();
     this.getGreenHouseVarities();
@@ -233,6 +230,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;
+        this.appSharedService.totalNotif = 0;
+        this.appSharedService.varietyOptions.forEach((val, index) => {
+          this.setNotifStatus(val, index);
+        });
       },
       err => {
         console.log('Plug to deliver data retrive error');

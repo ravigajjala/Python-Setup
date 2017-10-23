@@ -47,9 +47,9 @@
         </td>
         <td>
           <!-- <input matInput name="date_received" > -->
-          <mat-form-field [formGroup]="PlugTrayForm">
+          <mat-form-field>
             <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plugTray.dateReceived"
-              formControlName="dateReceived" (dateChange)="calculateWeekNumber($event, item); updatePlugToDeliverData(item, i)">
+              (dateChange)="calculateWeekNumber($event, item); updatePlugToDeliverData(item, i)">
             <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
