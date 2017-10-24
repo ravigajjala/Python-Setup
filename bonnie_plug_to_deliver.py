@@ -18,7 +18,7 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-from models import PlugToDeliver, PlugTray, ReceivingInfo, PlantingInfo
+from models import PlugToDeliver, PlugTray, ReceivingInfo, PlantingInfo, SalableInfo
 
 class GetPlugToDeliver(APIRequest):
     def get(self):
@@ -38,6 +38,7 @@ class CreatePlugToDeliver(APIRequest):
     def post(self):
         try:
             plug_to_deliver = json.loads(self.request.body)
+            print plug_to_deliver
             final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
                 userId=plug_to_deliver['userId'],
@@ -61,6 +62,9 @@ class CreatePlugToDeliver(APIRequest):
                     locator=plug_to_deliver['receivingInfo'].get('locator', None),
                     discarded=plug_to_deliver['receivingInfo'].get('discarded', None),
                     reasonCode=plug_to_deliver['receivingInfo'].get('reasonCode', None)
+                ),
+                salableInfo=SalableInfo(
+                    discarded=plug_to_deliver['salableInfo'].get('discarded', None)
                 )
             )
             final_plug_to_deliver_data.put()
@@ -76,6 +80,7 @@ class UpdatePlugToDeliver(APIRequest):
             plug_to_deliver.name = body['name']
             plug_to_deliver.userId = body['userId']
             plug_to_deliver.plugTray = body['plugTray']
+            plug_to_deliver.salableInfo = body['salableInfo']
             # TODO: Converting string date obj to date obj
             # if plug_to_deliver.plugTray.dateReceived is not None:
             #     print  plug_to_deliver.plugTray.dateReceived

@@ -45,12 +45,15 @@ class ReceivingInfo(ndb.Model):
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
 
+class SalableInfo(ndb.Model):
+    discarded = ndb.IntegerProperty()
+
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
     userId = ndb.StringProperty()
     plugTray = ndb.StructuredProperty(PlugTray)
     plantingInfo = ndb.StructuredProperty(PlantingInfo)
     receivingInfo = ndb.StructuredProperty(ReceivingInfo)
-
+    salableInfo = ndb.StructuredProperty(SalableInfo)
 class UserSetting(ndb.Model):
     lastRoute = ndb.StringProperty()
