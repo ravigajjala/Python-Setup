@@ -64,7 +64,8 @@ class CreatePlugToDeliver(APIRequest):
                     reasonCode=plug_to_deliver['receivingInfo'].get('reasonCode', None)
                 ),
                 salableInfo=SalableInfo(
-                    discarded=plug_to_deliver['salableInfo'].get('discarded', None)
+                    discarded=plug_to_deliver['salableInfo'].get('discarded', None),
+                    reasonCode=plug_to_deliver['salableInfo'].get('reasonCode', None)
                 )
             )
             final_plug_to_deliver_data.put()

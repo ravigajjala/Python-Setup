@@ -70,7 +70,7 @@
         <input matInput name="ts_d">
       </td>
       <td>
-        <mat-select placeholder="" #select="matSelect">
+        <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
           <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
           <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
         </mat-select>

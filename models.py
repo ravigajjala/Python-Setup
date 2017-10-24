@@ -47,6 +47,7 @@ class ReceivingInfo(ndb.Model):
 
 class SalableInfo(ndb.Model):
     discarded = ndb.IntegerProperty()
+    reasonCode = ndb.StringProperty()
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
