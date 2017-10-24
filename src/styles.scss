@@ -510,7 +510,8 @@ $purple: #4339AD;
                 td {
                     &:nth-child(2)::before,
                     &:nth-child(3)::before,
-                    &:nth-child(4)::before {
+                    &:nth-child(4)::before,
+                    &:nth-child(25)::before {
                         background-color: rgba(0,0,0,.04);
                     }
                     &:nth-child(5)::before,
@@ -524,8 +525,7 @@ $purple: #4339AD;
                     &:nth-child(2),
                     &:nth-child(3),
                     &:nth-child(4),
-                    &:nth-child(5),
-                    &:nth-child(22) {
+                    &:nth-child(25) {
                         background-color: rgba(0,0,0,.04);
                         pointer-events: none;
                     }

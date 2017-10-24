@@ -80,7 +80,7 @@
           </mat-select>
         </td>
         <td>
-          <span>{{item.receivingInfo.quantity || 0}}</span>
+          <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays">
         </td>
         <td>
           <mat-checkbox class="example-margin"></mat-checkbox>
