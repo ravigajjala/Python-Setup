@@ -498,7 +498,7 @@ $purple: #4339AD;
                         background-color: rgba(0,0,0,.04);
                         pointer-events: none;
                     }
-                    &:nth-child(8)::before {
+                    &:nth-child(8) {
                         background-color: #D6D4F0;
                         pointer-events: none;
                     }
@@ -529,8 +529,8 @@ $purple: #4339AD;
                         background-color: rgba(0,0,0,.04);
                         pointer-events: none;
                     }
-                    &:nth-child(5)::before,
-                    &:nth-child(22)::before {
+                    &:nth-child(5),
+                    &:nth-child(22) {
                         background-color: #D6D4F0;
                         pointer-events: none;
                     }
