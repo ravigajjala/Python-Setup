@@ -57,6 +57,7 @@ class AppStoreDelivery(ndb.Model):
     routeNumberSaleTwo = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
+    check = ndb.IntegerProperty()
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()

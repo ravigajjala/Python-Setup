@@ -74,8 +74,8 @@ class CreatePlugToDeliver(APIRequest):
                     routeNumberSaleOne=plug_to_deliver['appStoreDelivery'].get('routeNumberSaleOne', None),
                     routeNumberSaleTwo=plug_to_deliver['appStoreDelivery'].get('routeNumberSaleTwo', None),
                     discarded=plug_to_deliver['appStoreDelivery'].get('discarded', None),
-                    reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None)
-	                # check=plug_to_deliver['appStoreDelivery'].get('check', None)
+                    reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None),
+	                check=plug_to_deliver['appStoreDelivery'].get('check', None)
                 )
             )
             final_plug_to_deliver_data.put()
