@@ -12,6 +12,9 @@ export class StoreDeliveryComponent implements OnInit {
   public heads6 = [];
   public reasonCodes = [];
   public mergeClickBool = false;
+  public routeTotal = [];
+  public deliveredTotal = [];
+  public sumPlantsDelivered = [];
   constructor(private appSharedService: AppSharedService,
     public router: Router) { }
 
@@ -90,5 +93,23 @@ export class StoreDeliveryComponent implements OnInit {
       err => {
         console.log('Update error');
       });
+  }
+
+  updateRouteTotal(index) {
+    console.log(this.routeTotal, index);
+    this.routeTotal[index] = 0;
+    for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
+      if (this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.length > 0) {
+        this.routeTotal[index] += parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale[index]);
+      }
+      this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
+        if (value) {
+          return sum + parseInt(value);
+        }
+      }, 0);
+      this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
+        return sum + value;
+      }, 0);
+    }
   }
 }
