@@ -33,13 +33,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
   ngOnInit() {
 
-    this.appSharedService.addLocation().subscribe(
-      locations => {},
-      err => {
-        console.log('Unable to retrive green house locations list');
-      }
-    );
-
     return this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;
