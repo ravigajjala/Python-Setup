@@ -6,37 +6,40 @@
         <div class="user-col">GREENHOUSE ASSIGNMENT</div>
         <div class="user-col-del"></div>
     </div>
-    <div class="user-table-cont">
-        <div class="user-col">Ravi</div>
-        <div class="user-col">ravi.gajjela@scotts.com</div>
+    <div class="user-table-cont" *ngFor="let user of currentUsers;let i = index;">
+        <div class="user-col">{{user.name}}</div>
+        <div class="user-col">{{user.email}}</div>
         <div class="user-col">
-            <mat-select [(ngModel)]="locationId" name="location" class="loc-input">
+            <!-- <mat-select [(ngModel)]="locationId" name="location" class="loc-input">
                 <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
                     {{location.city}}, {{location.state}}
                 </mat-option>
-            </mat-select>
+            </mat-select> -->
+            {{user.city}},{{user.state}}
         </div>
         <div class="user-col-del">
-            <div><i class="material-icons valign_middle">delete</i></div>
+            <div (click)="deleteUser(i)"><i class="material-icons valign_middle">delete</i></div>
         </div>
     </div>
     <div class="user-table-cont" *ngIf="showEditBox">
         <div class="user-col">
             <mat-form-field class="example-full-width">
-                <input matInput> 
-           </mat-form-field>
+                <input matInput [(ngModel)]="editUserName">
+            </mat-form-field>
         </div>
         <div class="user-col">
-        	<mat-form-field class="example-full-width">
-                <input matInput> 
-           </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="editUserEmail">
+            </mat-form-field>
         </div>
         <div class="user-col">
-            <mat-select [(ngModel)]="locationId" name="location" class="loc-input">
-                <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
-                    {{location.city}}, {{location.state}}
-                </mat-option>
-            </mat-select>
+            <mat-form-field>
+                <mat-select [(ngModel)]="locationId" name="location" class="loc-input">
+                    <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
+                        {{location.city}}, {{location.state}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
         <div class="user-col-del">
             <!-- <div><i class="material-icons valign_middle">delete</i></div> -->
@@ -44,4 +47,9 @@
     </div>
     <div class="add-user" (click)="addUser(true)" *ngIf="!showEditBox"><i class="material-icons valign_middle">add_circle</i> New User</div>
     <!-- <div class="add-user" (click)="addUser(false)" *ngIf="showEditBox">Cancel</div> -->
+
+    <div class="btn-cont">
+        <button mat-button (click)="closeDialog()">CLOSE</button>
+        <button mat-raised-button color="primary" (click)="saveUser()">SAVE</button>
+    </div>
 </div>

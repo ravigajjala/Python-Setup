@@ -40,42 +40,46 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model"
+    <tr *ngFor="let item of appSharedService.varietyOptions | ReceivingInfoPipe" class="form-input-model"
       [ngClass]="{'disabled-row':!item.received}">
       <td>
-        <div [innerHTML]="item['nameHtml']" class="icon-box"></div>
-        <span>{{item.name}}</span>
+          <div class="icon-box" (click)="appSharedService.openDialog(item)">
+              <svg class="icon" [ngClass]="item.color_id">
+              <use [attr.href]="item.url" />
+              </svg>
+              </div>
+              <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
       </td>
       <td>
-        <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="!item.received">
+        <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
       </td>
       <td>
-        <input matInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays" [disabled]="!item.received">
+        <input matInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays" [disabled]="true">
       </td>
       <td>
-        <input matInput name="l_no" [(ngModel)]="item.plantingInfo.locatorNumber" [disabled]="!item.received">
+        <input matInput name="l_no" [(ngModel)]="item.plantingInfo.locatorNumber" [disabled]="true">
       </td>
       <td>
-        <input matInput name="b_no" [(ngModel)]="item.receivingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
+        <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" [disabled]="true">
       </td>
 
       <td>
-        <input matInput type="number" name="q" [(ngModel)]="item.receivingInfo.quantity" (blur)="updatePlugToDeliverData(item)">
+        <input matInput type="number" name="q" [(ngModel)]="item.receivingInfo.quantity" [disabled]="!item.receivingInfo.receivedButonClicked" (blur)="updatePlugToDeliverData(item)">
       </td>
       <td>
-        <input matInput name="rl_no" [(ngModel)]="item.receivingInfo.locator" (blur)="updatePlugToDeliverData(item)">
+        <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locator" [disabled]="!item.receivingInfo.receivedButonClicked" (blur)="updatePlugToDeliverData(item)">
       </td>
       <td>
-        <input matInput type="number" name="r_d" [(ngModel)]="item.receivingInfo.discarded" (blur)="updatePlugToDeliverData(item)">
+        <input matInput type="number" name="r_d" [(ngModel)]="item.receivingInfo.discarded" [disabled]="!item.receivingInfo.receivedButonClicked" (blur)="updatePlugToDeliverData(item)">
       </td>
       <td class="select-field">
-        <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.receivingInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
+        <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.receivingInfo.reasonCode" [disabled]="!item.receivingInfo.receivedButonClicked" (ngModelChange)="updatePlugToDeliverData(item)">
           <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
           <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
         </mat-select>
       </td>
       <td>
-        <button mat-raised-button color="primary" (click)="receivePlant(item)">Received</button>
+        <button mat-raised-button color="primary" (click)="receivePlant(item)" *ngIf="item.receivingInfo.showReceiveButton">Received</button>
       </td>
     </tr>
   </tbody>

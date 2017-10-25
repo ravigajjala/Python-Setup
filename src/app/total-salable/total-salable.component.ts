@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
 import { Router } from '@angular/router';
+
 import { PlugToDeliver } from '../providers/classes/plantInfo.class';
 
 @Component({
@@ -11,7 +12,8 @@ import { PlugToDeliver } from '../providers/classes/plantInfo.class';
 export class TotalSalableComponent implements OnInit {
 
   constructor(private appSharedService: AppSharedService,
-    public router: Router) { }
+    public router: Router) {
+     }
   public reasonCodes = [];
   public heads5 = [];
   public mergeClickBool = false;
@@ -23,7 +25,7 @@ export class TotalSalableComponent implements OnInit {
   ngOnInit() {
     this.heads5 = [
       'Seed Lot Number',
-      'Quantity',
+      'Finished trays',
       'Locator #',
       'House#/Bay#',
       ['#Discarded', 'Reason Code'],
@@ -43,7 +45,6 @@ export class TotalSalableComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-
     this.getPlugToDeliverData();
   }
 
@@ -75,5 +76,4 @@ export class TotalSalableComponent implements OnInit {
         console.log('Update error');
       });
   }
-
 }

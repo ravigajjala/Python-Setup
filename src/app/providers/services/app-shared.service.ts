@@ -21,587 +21,898 @@ export class AppSharedService {
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
     public shippedNumber = 0;
+    public totalNotif = 0;
     public userId: string = 'sainath8090';
+    public currentGreenHouseLocation: any;
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
     public plantsData = [{
-        'name': 'Better Boy Tomato',
-        'icon': 'tomato-bboy'
+        "name": "Better Boy Tomato",
+        "icon": "tomato-bboy",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-bboy"
+    },
+    {
+        "name": "Better Bush Tomato",
+        "icon": "tomato-bbush",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-bbush"
     }, {
-        'name': 'Husky Cherry Red Tomato',
-        'icon': 'tomato-hcr'
+        "name": "Husky Cherry Red Tomato",
+        "icon": "tomato-hcr",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-hcr"
     }, {
-        'name': 'Red Beefsteak Tomato',
-        'icon': 'tomato-rb'
+        "name": "Red Beefsteak Tomato",
+        "icon": "tomato-rb",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-rb"
+    },
+    {
+        "name": "Roma Tomato",
+        "icon": "tomato-roma",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-roma"
+    },
+    {
+        "name": "Sweet Million Tomato",
+        "icon": "tomato-sm",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-sm"
     }, {
-        'name': 'Green Bell Pepper',
-        'icon': 'tomato-rb'
+        "name": "Green Bell Pepper",
+        "icon": "pepper-bell-green",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-green"
     }, {
-        'name': 'Hot Banana Pepper',
-        'icon': 'pepper-banana-hot',
+        "name": "Hot Banana Pepper",
+        "icon": "pepper-banana-hot",
+        "color_id": "st2",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-hot"
     }, {
-        'name': 'Jalapeno Pepper',
-        'icon': 'pepper-jalapeno'
+        "name": "Jalapeno Pepper",
+        "icon": "pepper-jalapeno",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-jalapeno"
+    },
+    {
+        "name": "Poblano Pepper",
+        "icon": "pepper-poblano",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-poblano"
+    },
+    {
+        "name": "Red Bell Pepper",
+        "icon": "pepper-bell-red",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-red"
+    },
+    {
+        "name": "Serrano Pepper",
+        "icon": "pepper-serrano",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-serrano"
+    },
+    {
+        "name": "Sweet Banana Pepper",
+        "icon": "pepper-banana-sweet",
+        "color_id": "st2",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-sweet"
+    },
+    {
+        "name": "Yellow Bell Pepper",
+        "icon": "pepper-bell-yellow",
+        "color_id": "st2",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-yellow"
     }, {
-        'name': 'Sweet Banana Pepper',
-        'icon': 'pepper-banana-sweet',
+        "name": "Broccoli",
+        "icon": "broccoli",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#broccoli"
     }, {
-        'name': 'Broccoli',
-        'icon': 'broccoli'
-    }, {
-        'name': 'Cucumber',
-        'icon': 'cucumber-traditional'
+        "name": "Cucumber Bush",
+        "icon": "cucumber-bush",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cucumber-bush"
+    },
+    {
+        "name": "Cucumber Traditional",
+        "icon": "cucumber-traditional",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cucumber-traditional"
+    },
+    {
+        "name": "Eggplant",
+        "icon": "eggplant",
+        "color_id": "st3",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#eggplant"
+    },
+    {
+        "name": "Kale",
+        "icon": "kale",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#kale"
+    },
+    {
+        "name": "Romaine Lettuce",
+        "icon": "lettuce-romaine",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#lettuce-romaine"
+    },
+    {
+        "name": "Strawberries",
+        "icon": "strawberry",
+        "color_id": "st0",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#strawberry"
+    },
+    {
+        "name": "Zucchini",
+        "icon": "zucchini",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#zucchini"
+    },
+    {
+        "name": "Basil",
+        "icon": "basil",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#basil"
+    },
+    {
+        "name": "Chives",
+        "icon": "chives",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#chives"
+    },
+    {
+        "name": "Cilantro",
+        "icon": "cilantro",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cilantro"
+    },
+    {
+        "name": "Curled Parsley",
+        "icon": "parsley-curled",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#parsley-curled"
+    },
+    {
+        "name": "Flat Parsley",
+        "icon": "parsley-flat",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#parsley-flat"
+    },
+    {
+        "name": "Rosemary",
+        "icon": "rosemary",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#rosemary"
+    },
+    {
+        "name": "Sage",
+        "icon": "sage",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#sage"
+    },
+    {
+        "name": "Sweet Mint",
+        "icon": "mint-sweet",
+        "color_id": "st1",
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#mint-sweet"
     }];
-    private data = [
-        {
+
+    private ghLocationsData = [{
             "code": "010 Hub",
-            "name": "Trussell Tim",
+            "first_name": "Tim",
+            "last_name": "Trussell",
             "city": "Union Springs",
             "state": " AL",
-            "email": "tim.trussell@bonnieplants.com"
+            "email": "tim.trussell@bonnieplants.com",
+            "shipToLocations": [],
+            "routes": [60,61,62,63]
         },
         {
             "code": "010_Drop ",
-            "name": "Dawson Daniel",
+            "first_name": "Daniel",
+            "last_name": "Dawson",
             "city": "Rydal",
             "state": " GA",
-            "email": "rydalga@bonniesales.com"
+            "email": "rydalga@bonniesales.com",
+            "shipToLocations": [],
+            "routes": [71,72]
         },
         {
             "code": "010_Drop ",
-            "name": "Hawk Ben",
+            "first_name": "Ben",
+            "last_name": "Hawk",
             "city": "Alvaton",
             "state": " GA",
-            "email": "alvatonga@bonnieplants.com"
+            "email": "alvatonga@bonnieplants.com",
+            "shipToLocations": [],
+            "routes": [91,92,93]
         },
         {
             "code": "010_Drop ",
-            "name": "Jacobsen Don",
+            "first_name": "Don",
+            "last_name": "Jacobsen",
             "city": "Jasper",
             "state": " AL",
-            "email": "dj.bonniefarm@hotmail.com"
+            "email": "dj.bonniefarm@hotmail.com",
+            "shipToLocations": [],
+            "routes": [81]
         },
         {
             "code": "010_Drop ",
-            "name": "Moorer Jay",
+            "first_name": "Jay",
+            "last_name": "Moorer",
             "city": "Athens",
             "state": " AL",
-            "email": "athensal@bonniesales.com"
+            "email": "athensal@bonniesales.com",
+            "shipToLocations": [],
+            "routes": []
         },
         {
             "code": "30_Drop",
-            "name": "Adams Bradley",
+            "first_name": "Bradley",
+            "last_name": "Adams",
             "city": "Liverpool",
             "state": " TX",
-            "email": "houstontx@bonnieplants.com"
+            "email": "houstontx@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "30_Drop",
-            "name": "Cox Brandon",
+            "first_name": "Brandon",
+            "last_name": "Cox",
             "city": "Beeville",
             "state": " TX",
-            "email": "beevilletx@bonnieplants.com"
+            "email": "beevilletx@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "010_Drop ",
-            "name": "Railey Brant",
+            "first_name": "Brant",
+            "last_name": "Railey",
             "city": "Pearl",
             "state": " MS",
-            "email": "pearlms@bonnieplants.com"
+            "email": "pearlms@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "30_Drop",
-            "name": "Reeves Andrew",
+            "first_name": "Andrew",
+            "last_name": "Reeves",
             "city": "Donaldsonville",
             "state": "LA",
-            "email": "fosterreeves@gmail.com"
+            "email": "fosterreeves@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "37 Hub",
-            "name": "Rotton Shad",
+            "first_name": "Shad",
+            "last_name": "Rotton",
             "city": "Waverly",
             "state": " FL",
-            "email": "waverlyfl@bonnieplants.com"
+            "email": "waverlyfl@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "37_Drop",
-            "name": "Boyce Kyle",
+            "first_name": "Kyle",
+            "last_name": "Boyce",
             "city": "La Belle",
             "state": " FL",
-            "email": "southfl@bonnieplants.com"
+            "email": "southfl@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "010_Drop ",
-            "name": "Trussell Brad",
+            "first_name": "Brad",
+            "last_name": "Trussell",
             "city": "Lake city",
             "state": " FL",
-            "email": "BradTrussell@aol.com"
+            "email": "BradTrussell@aol.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Anderson Mark",
+            "first_name": "Mark",
+            "last_name": "Anderson",
             "city": "Pala",
             "state": " CA",
-            "email": "palaca@bonnieplants.com"
+            "email": "palaca@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Beasley Randy",
+            "first_name": "Randy",
+            "last_name": "Beasley",
             "city": "Linden",
             "state": " CA",
-            "email": "randy.beasley@bonnieplants.com"
+            "email": "randy.beasley@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "52 Hub",
-            "name": "Jackson Deke",
+            "first_name": "Deke",
+            "last_name": "Jackson",
             "city": "Watsonville",
             "state": " CA",
-            "email": "watsonvilleca@bonniesales.com"
+            "email": "watsonvilleca@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "47 Hub",
-            "name": "Marchiando Tim",
+            "first_name": "Tim",
+            "last_name": "Marchiando",
             "city": "Terra Bella",
             "state": " CA",
             "email": "marchiando@sbcglobal.net"
         },
         {
             "code": "1",
-            "name": "Zelensky Leilani",
+            "first_name": "Leilani",
+            "last_name": "Zelensky",
             "city": "Oxnard",
             "state": " CA",
-            "email": "losangeles@bonnieplants.com"
+            "email": "losangeles@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Golden Kenny",
+            "first_name": "Kenny",
+            "last_name": "Golden",
             "city": "Chino Valley",
             "state": " AZ",
             "email": "bpfchino@cableone.net"
         },
         {
             "code": "30 Hub",
-            "name": "Sherwood Tim",
+            "first_name": "Tim",
+            "last_name": "Sherwood",
             "city": "Jacksonville",
             "state": " TX",
-            "email": "tim.sherwood@bonniesales.com"
+            "email": "tim.sherwood@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Ucles Dennis",
+            "first_name": "Dennis",
+            "last_name": "Ucles",
             "city": "Midland",
             "state": " TX",
-            "email": "midlandtx@bonnieplants.com"
+            "email": "midlandtx@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "30_Drop",
-            "name": "Beam Shawn",
+            "first_name": "Shawn",
+            "last_name": "Beam",
             "city": "Whitesboro",
             "state": " TX",
-            "email": "whitesborotx@bonnieplans.com"
+            "email": "whitesborotx@bonnieplans.com",
+            "shipToLocations": []
         },
         {
             "code": "30_Drop",
-            "name": "Ellis Tom",
+            "first_name": "Tom",
+            "last_name": "Ellis",
             "city": "Lonoke",
             "state": " AR",
-            "email": "lonokear@bonnieplants.com"
+            "email": "lonokear@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "30_Drop",
-            "name": "Shepherd Mickey",
+            "first_name": "Mickey",
+            "last_name": "Shepherd",
             "city": "Howe",
             "state": " OK",
-            "email": "bpfok32@yahoo.com"
+            "email": "bpfok32@yahoo.com",
+            "shipToLocations": []
         },
         {
             "code": "39 Hub",
-            "name": "Alvarado Mark",
+            "first_name": "Mark",
+            "last_name": "Alvarado",
             "city": "McIntosh",
             "state": " NM",
-            "email": "mcintoshnm@bonnieplants.com"
+            "email": "mcintoshnm@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "30_Drop",
-            "name": "Rogers Will",
+            "first_name": "Will",
+            "last_name": "Rogers",
             "city": "Abilene",
             "state": " TX",
-            "email": "abilenetx@bonnieplants.com"
+            "email": "abilenetx@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "39_Drop",
-            "name": "Schiavone Nick",
+            "first_name": "Nick",
+            "last_name": "Schiavone",
             "city": "Muleshoe",
             "state": " TX",
-            "email": "nick.schiavone@bonniesales.com"
+            "email": "nick.schiavone@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Roten Chuck",
+            "first_name": "Chuck",
+            "last_name": "Roten",
             "city": "Elizabeth city",
             "state": " NC",
-            "email": "chuck.roten@bonniesales.com"
+            "email": "chuck.roten@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Brooks Richard",
+            "first_name": "Richard",
+            "last_name": "Brooks",
             "city": "Spartanburg",
             "state": " SC",
-            "email": "spartanburgsc@bonnieplants.com"
+            "email": "spartanburgsc@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Chapman Stephen",
+            "first_name": "Stephen",
+            "last_name": "Chapman",
             "city": "Manning",
             "state": " SC",
-            "email": "bonnieplants1@yahoo.com"
+            "email": "bonnieplants1@yahoo.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Phelps Steve",
+            "first_name": "Steve",
+            "last_name": "Phelps",
             "city": "Lexington",
             "state": " NC",
-            "email": "plantembonnie@yahoo.com"
+            "email": "plantembonnie@yahoo.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Watson Joe",
+            "first_name": "Joe",
+            "last_name": "Watson",
             "city": "Fayetteville",
             "state": " NC",
-            "email": "joewatbpfnc@gmail.com"
+            "email": "joewatbpfnc@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "67 Hub",
-            "name": "Terrell Chris",
+            "first_name": "Chris",
+            "last_name": "Terrell",
             "city": "Grantsville",
             "state": " UT",
-            "email": "grantsvilleutah67@bonnieplants.com"
+            "email": "grantsvilleutah67@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "52_Drop",
-            "name": "Clinkenbeard Andrew",
+            "first_name": "Andrew",
+            "last_name": "Clinkenbeard",
             "city": "Silver Springs",
             "state": " NV",
-            "email": "aclinken@gmail.com"
+            "email": "aclinken@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "47_Drop",
-            "name": "Perez Alfredo ",
+            "first_name": "Alfredo",
+            "last_name": "Perez",
             "city": "Henderson",
             "state": " NV",
-            "email": "alfredo.perez@bonniesales.com"
+            "email": "alfredo.perez@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "010_Drop ",
-            "name": "Alley Adam",
+            "first_name": "Adam",
+            "last_name": "Alley",
             "city": "Bells",
             "state": " TN",
-            "email": "acalley4@netzero.com"
+            "email": "acalley4@netzero.com",
+            "shipToLocations": []
         },
         {
             "code": "82_Drop",
-            "name": "Bozeman Paul",
+            "first_name": "Paul",
+            "last_name": "Bozeman",
             "city": "Charleston",
             "state": " WV",
-            "email": "charlestonwv@bonnieplants.com"
+            "email": "charlestonwv@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "010_Drop ",
-            "name": "Glover Josh",
+            "first_name": "Josh",
+            "last_name": "Glover",
             "city": "Knoxville",
             "state": " TN",
-            "email": "knoxvilletn@bonnieplants.com"
+            "email": "knoxvilletn@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Padgett Joey",
+            "first_name": "Joey",
+            "last_name": "Padgett",
             "city": "Springfield",
             "state": "KY",
             "email": "jpadgettbpf@bellsouth.net"
         },
         {
             "code": "101_Drop",
-            "name": "Sanders Chad",
+            "first_name": "Chad",
+            "last_name": "Sanders",
             "city": "Abingdon",
             "state": " VA",
-            "email": "abingdonva@bonnieplants.com"
+            "email": "abingdonva@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "16 Hub",
-            "name": "Cordle Al",
+            "first_name": "Al",
+            "last_name": "Cordle",
             "city": "Anabel",
             "state": " MO",
             "email": "showmebonnie@hughes.net"
         },
         {
             "code": "105 Hub",
-            "name": "Hancock Bo",
+            "first_name": "Bo",
+            "last_name": "Hancock",
             "city": "Walden",
             "state": " NY",
-            "email": "waldenny@bonnieplants.com"
+            "email": "waldenny@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "49 Hub",
-            "name": "Head Lavell",
+            "first_name": "Lavell",
+            "last_name": "Head",
             "city": "Castle Rock",
             "state": " WA",
-            "email": "lavell.head@bonnieplants.com"
+            "email": "lavell.head@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Jansen Casey",
+            "first_name": "Casey",
+            "last_name": "Jansen",
             "city": "Monroe Township",
             "state": " NJ",
-            "email": "casey@hollandgreenhousesinc.com"
+            "email": "casey@hollandgreenhousesinc.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Jansen Peter",
+            "first_name": "Peter",
+            "last_name": "Jansen",
             "city": "Phillipsburg",
             "state": " NJ",
-            "email": "Harmonynj@gmail.com"
+            "email": "Harmonynj@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Powell Jeremy",
+            "first_name": "Jeremy",
+            "last_name": "Powell",
             "city": "West Wyoming",
             "state": " PA",
-            "email": "westwyomingpa@bonnieplants.com"
+            "email": "westwyomingpa@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Armstrong Alex",
+            "first_name": "Alex",
+            "last_name": "Armstrong",
             "city": "Everett",
             "state": " WA",
-            "email": "everettwa@bonnieplants.com"
+            "email": "everettwa@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "51_Hub",
-            "name": "Schwisow Gary",
+            "first_name": "Gary",
+            "last_name": "Schwisow",
             "city": "Marsing",
             "state": " ID",
             "email": "schwisow@speedyquick.net"
         },
         {
             "code": "1",
-            "name": "Tuma Jesse",
+            "first_name": "Jesse",
+            "last_name": "Tuma",
             "city": "Plains",
             "state": " MT",
-            "email": "jessetumamtstation@gmail.com"
+            "email": "jessetumamtstation@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "51_Drop",
-            "name": "Hudson Dwight",
+            "first_name": "Dwight",
+            "last_name": "Hudson",
             "city": "Zillah",
             "state": " WA",
-            "email": "dwight.w.hudson@hotmail.com"
+            "email": "dwight.w.hudson@hotmail.com",
+            "shipToLocations": []
         },
         {
             "code": "49_Drop",
-            "name": "Kight Matt",
+            "first_name": "Matt",
+            "last_name": "Kight",
             "city": "Roseburg",
             "state": " OR",
-            "email": "roseburgor@bonnieplants.com"
+            "email": "roseburgor@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "105_Drop",
-            "name": "Trussell Randy",
+            "first_name": "Randy",
+            "last_name": "Trussell",
             "city": "Preston",
             "state": " CT",
-            "email": "randy.trussell@bonnieplants.com"
+            "email": "randy.trussell@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "29 Hub",
-            "name": "Montague Josh",
+            "first_name": "Josh",
+            "last_name": "Montague",
             "city": "Pierce",
             "state": " CO",
-            "email": "joshmontague69@yahoo.com"
+            "email": "joshmontague69@yahoo.com",
+            "shipToLocations": []
         },
         {
             "code": "29_Drop",
-            "name": "Cody Jamie",
+            "first_name": "Jamie",
+            "last_name": "Cody",
             "city": "LaJunta",
             "state": " CO",
-            "email": "jcody22173@aol.com"
+            "email": "jcody22173@aol.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Wilkerson Devon",
+            "first_name": "Devon",
+            "last_name": "Wilkerson",
             "city": "Plainville",
             "state": "KS",
-            "email": "bonnieplantskansas@yahoo.com"
+            "email": "bonnieplantskansas@yahoo.com",
+            "shipToLocations": []
         },
         {
             "code": "101 Hub",
-            "name": "Simpson Chris",
+            "first_name": "Chris",
+            "last_name": "Simpson",
             "city": "King George",
             "state": " VA",
-            "email": "chris.simpson@bonniesales.com"
+            "email": "chris.simpson@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Turner Lee",
+            "first_name": "Lee",
+            "last_name": "Turner",
             "city": "Rhoadesville",
             "state": " VA",
-            "email": "lee.turner@bonnieplants.com"
+            "email": "lee.turner@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "101_Drop",
-            "name": "Drury Dave",
+            "first_name": "Dave",
+            "last_name": "Drury",
             "city": "Kennedyville",
             "state": " MD",
-            "email": "david103@aol.com"
+            "email": "david103@aol.com",
+            "shipToLocations": []
         },
         {
             "code": "101_Drop",
-            "name": "Pennington Wesley",
+            "first_name": "Wesley",
+            "last_name": "Pennington",
             "city": "New Cumberland",
             "state": " PA",
-            "email": "wesley.pennington@bonniesales.com"
+            "email": "wesley.pennington@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Clouse Jim",
+            "first_name": "Jim",
+            "last_name": "Clouse",
             "city": "Ottawa",
             "state": " IL",
-            "email": "plantman2606@gmail.com"
+            "email": "plantman2606@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Ellis Walter",
+            "first_name": "Walter",
+            "last_name": "Ellis",
             "city": "Nora Springs",
             "state": " IA",
-            "email": "wellis06@aol.com"
+            "email": "wellis06@aol.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Finlayson Blake",
+            "first_name": "Blake",
+            "last_name": "Finlayson",
             "city": "Crawfordsville",
             "state": "IN",
-            "email": "crawfordsvillein@bonniesales.com"
+            "email": "crawfordsvillein@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Gaatz Josh",
+            "first_name": "Josh",
+            "last_name": "Gaatz",
             "city": "Wautoma",
             "state": " WI",
-            "email": "gaatzj@hotmail.com"
+            "email": "gaatzj@hotmail.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Hammonds Travis",
+            "first_name": "Travis",
+            "last_name": "Hammonds",
             "city": "St. Elmo",
             "state": " IL",
-            "email": "travis.hammonds@bonnieplants.com"
+            "email": "travis.hammonds@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Holder Rob",
+            "first_name": "Rob",
+            "last_name": "Holder",
             "city": "Milton",
             "state": " WI ",
-            "email": "bonnieplants68@hotmail.com"
+            "email": "bonnieplants68@hotmail.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Kruger BJ",
+            "first_name": "BJ",
+            "last_name": "Kruger",
             "city": "California",
             "state": " MO",
-            "email": "drplants@aol.com"
+            "email": "drplants@aol.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Brooks Casey",
+            "first_name": "Casey",
+            "last_name": "Brooks",
             "city": "Cygnet",
             "state": " OH",
-            "email": "bpfcygnet@gmail.com"
+            "email": "bpfcygnet@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "82 hub",
-            "name": "Green Matt",
+            "first_name": "Matt",
+            "last_name": "Green",
             "city": "Homer city",
             "state": " PA",
-            "email": "blairsvillepa@bonnieplants.com"
+            "email": "blairsvillepa@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Santee Ben",
+            "first_name": "Ben",
+            "last_name": "Santee",
             "city": "Homeworth",
             "state": " OH",
-            "email": "ben.santee@yahoo.com"
+            "email": "ben.santee@yahoo.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Sims Donnie",
+            "first_name": "Donnie",
+            "last_name": "Sims",
             "city": "Marysville",
             "state": " OH",
-            "email": "marysvilleoh@bonniesales.com"
+            "email": "marysvilleoh@bonniesales.com",
+            "shipToLocations": []
         },
         {
             "code": "1",
-            "name": "Daniels Mark",
+            "first_name": "Mark",
+            "last_name": "Daniels",
             "city": "Ithaca",
             "state": " MI",
             "email": "markdaniels@bonnieplantfarm.net"
         },
         {
             "code": "107 Hub",
-            "name": "Brett Vann",
+            "first_name": "Vann",
+            "last_name": "Brett",
             "city": "Niagra",
             "state": "Canada",
-            "email": "brett.vann@bonnieplants.com"
+            "email": "brett.vann@bonnieplants.com",
+            "shipToLocations": []
         },
         {
             "code": "16_drop",
-            "name": "Creed Pat",
+            "first_name": "Pat",
+            "last_name": "Creed",
             "city": "Moorehead",
             "state": " MN",
-            "email": "Pcreed57@gmail.com"
+            "email": "Pcreed57@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "16_Drop",
-            "name": "Does Phil",
+            "first_name": "Phil",
+            "last_name": "Does",
             "city": "Wakefield",
             "state": " NE",
-            "email": "wakefieldbonnie70@gmail.com"
+            "email": "wakefieldbonnie70@gmail.com",
+            "shipToLocations": []
         },
         {
             "code": "67_drop",
-            "name": "Viles Justin",
+            "first_name": "Justin",
+            "last_name": "Viles",
             "city": "Gillette",
             "state": " WY",
-            "email": "justinviles@hotmail.com"
+            "email": "justinviles@hotmail.com",
+            "shipToLocations": []
         },
         {
             "code": "105_Drop",
-            "name": "Mason Tom",
+            "first_name": "Tom",
+            "last_name": "Mason",
             "city": "Lempster",
             "state": " NH",
             "email": "bpflempster@verizon.net"
         },
         {
             "code": "105_Drop",
-            "name": "Cole Bobby",
+            "first_name": "Bobby",
+            "last_name": "Cole",
             "city": "New Berlin",
             "state": " NY",
             "email": "bpfnewberlin@frontiernet.net"
         },
         {
             "code": "105_Drop",
-            "name": "Simons Todd",
+            "first_name": "Todd",
+            "last_name": "Simons",
             "city": "Hancock",
             "state": " ME",
-            "email": "station69simons@yahoo.com"
-        }
-    ];
-
-    constructor(private dialog: MatDialog, private http: Http, public router: Router) { }
+            "email": "station69simons@yahoo.com",
+            "shipToLocations": []
+        }];
+    constructor(private dialog: MatDialog, private http: Http, public router: Router) {
+        this.currentGreenHouseLocation = {
+            city: "Dublin",
+            state: "OH"
+        };
+    }
 
     // To get greenhouse locations from datastore
     getLocations(): Observable<Location[]> {
         return this.http.get('/locations/get')
             .map((res: Response) => {
                 return res.json();
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
+    updateLocation(location: Location): Observable<Location[]> {
+        return this.http.put('/locations/put', location, this.options)
+            .map((res: Response) => {
+                return res;
             })
             .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
@@ -630,25 +941,10 @@ export class AppSharedService {
             });
     }
 
-    addUser(): Observable<User[]> {
-        return this.http.post('/users/create', this.data, this.options)
-            .map((res: Response) => {
-                return res.json();
-            })
-            .catch((err: Response) => {
-                return Observable.throw(err.json().error || 'Server error');
-            });
-    }
-
     addLocation(): Observable<Location[]> {
-        return this.http.post('/locations/create', [{
-            "city": "Fremont",
-            "state": "OH"
-        }, {
-            "city": "San Ramon",
-            "state": "OH"
-        }], this.options)
+        return this.http.post('/locations/create', this.ghLocationsData, this.options)
             .map((res: Response) => {
+                console.log(res);
                 return res;
             })
             .catch((err: Response) => {
@@ -656,7 +952,7 @@ export class AppSharedService {
             });
     }
 
-    addPlants(): Observable<Location[]> {
+    addPlants(): Observable<Plant[]> {
         return this.http.post('/plants/create', this.plantsData, this.options)
             .map((res: Response) => {
                 return res.json();
@@ -689,13 +985,15 @@ export class AppSharedService {
     }
 
     openDialog(currentItem): void {
+        console.log('called');
         const dialogRef = this.dialog.open(IconDialogComponent, {
             data: currentItem
         });
     }
 
     getPlugToDeliverData(): Observable<PlugToDeliver[]> {
-        return this.http.get('/plug-to-deliver/get' + '?userId=' + this.userId)
+        return this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
+            this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state)
             .map(res => {
                 return res.json();
             })

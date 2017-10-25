@@ -5,6 +5,7 @@ import { MatAutocompleteTrigger } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -12,7 +13,9 @@ import 'rxjs/add/operator/map';
 
 import { AppSharedService } from '../providers/services/app-shared.service';
 import { PlugToDeliver } from '../providers/classes/plantInfo.class';
-import { ShipTo } from '../providers/classes/plantInfo.class';
+import { ShipToInfo } from '../providers/classes/plantInfo.class';
+
+import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
 
 @Component({
   selector: 'app-plug-tray-information',
@@ -31,6 +34,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
   public weekNumber: number;
+  private plugNotifStatus = [];
 
   public options = [
     {
@@ -54,9 +58,12 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private el: ElementRef,
     private sz: DomSanitizer,
-    public router: Router
+    public router: Router,
+    public dialog: MatDialog
   ) {
     this.appSharedService.varietyOptions = this.appSharedService.varietyOptions || [];
+    console.log('Varieties');
+    console.log(this.appSharedService.varietyOptions);
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
     this.loader = true;
@@ -69,6 +76,33 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       return a + b[key];
     }, 0);
     return total;
+  }
+
+
+  setNotifStatus(val, index) {
+    const currentStatus = this.plugNotifStatus[index];
+
+    // iterate through each key in object
+    for (const key in val.plugTray) {
+      if (val.plugTray.hasOwnProperty(key)) {
+        if (!val.plugTray[key]) {
+          this.plugNotifStatus[index] = false;
+          break;
+        } else {
+          this.plugNotifStatus[index] = true;
+        }
+      }
+    }
+
+    if (!currentStatus) {
+      if (this.plugNotifStatus[index]) {
+        this.appSharedService.totalNotif++;
+      }
+    } else {
+      if (!this.plugNotifStatus[index]) {
+        this.appSharedService.totalNotif--;
+      }
+    }
   }
 
   mergeClick(e: any, mergeText: string) {
@@ -103,7 +137,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       { 'code': 'G', 'reason': 'Other/Act Of God' },
     ];
     this.PlugTrayForm = new FormGroup({
-      dateReceived: new FormControl(null, Validators.required)
+      dateReceived: new FormControl()
     });
     this.getPlugToDeliverData();
     this.getGreenHouseVarities();
@@ -117,6 +151,15 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   getGreenHouseVarities() {
     return this.appSharedService.getPlantVarieties().subscribe(
       plants => {
+        plants.sort((a, b) => {
+          if (a.name.toUpperCase() < b.name.toUpperCase()) {
+            return -1;
+          }
+          if (a.name.toUpperCase() > b.name.toUpperCase()) {
+            return 1;
+          }
+          return 0;
+        });
         this.appSharedService.plants = plants;
         this.greenHousePlants = this.appSharedService.plants;
         this.loader = false;
@@ -135,13 +178,15 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     if (newPlant) {
       const tempNewPlant = Object.assign({}, newPlant);
       tempNewPlant.userId = this.appSharedService.userId;
+      tempNewPlant.userGreenHouseLocation = this.appSharedService.currentGreenHouseLocation.city +
+        ', ' + this.appSharedService.currentGreenHouseLocation.state;
+      tempNewPlant.receivedInfoFromOtherStations = false;
       tempNewPlant.plugTray = Object.assign({}, newPlant.plugTray);
       tempNewPlant.plantingInfo = Object.assign({}, newPlant.plantingInfo);
       tempNewPlant.receivingInfo = Object.assign({}, newPlant.receivingInfo);
       tempNewPlant.salableInfo = Object.assign({}, newPlant.salableInfo);
       tempNewPlant.appStoreDelivery = Object.assign({}, newPlant.appStoreDelivery);
-      tempNewPlant.shipTo = Object.assign({}, newPlant.shipTo);
-      tempNewPlant.shipTo.locationValues = [];
+      tempNewPlant.shipToInfo = Object.assign({}, newPlant.shipToInfo);
       this.createPlugToDeliverData(tempNewPlant);
     }
     this.trigger.closePanel();
@@ -202,6 +247,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;
+        this.appSharedService.totalNotif = 0;
+        this.appSharedService.varietyOptions.forEach((val, index) => {
+          this.setNotifStatus(val, index);
+        });
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -214,7 +263,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
    */
   // TODO:: Make shared function
-  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index): any {
+    this.setNotifStatus(plugToDeliverData, index);
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
       err => {
@@ -228,7 +278,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object]
    */
   calculateWeekNumber(date: Date, plugToDeliverData: PlugToDeliver) {
-    const weekNumber = moment(plugToDeliverData.plugTray.dateReceived).week();
+    const weekNumber = moment(date).week();
     plugToDeliverData.weekNumber = weekNumber;
   }
 }

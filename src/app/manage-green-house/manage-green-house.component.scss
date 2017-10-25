@@ -1,0 +1,62 @@
+.dialog-main-cont {
+    height: 600px;
+    width: 800px;
+    padding: 10px;
+    h2 {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .user-table-cont {
+        font-size: 11px;
+        padding: 3px;
+        border-bottom: 1px solid #ddd;
+        .user-col {
+            width: 18%;
+            display: inline-block;
+        }
+        .user-col-del {
+            width: 4%;
+            display: inline-block;
+            text-align: right;
+        }
+        .user-col-email {
+            width: 23%;
+            display: inline-block;
+        }
+        .nameCol {
+            width:15%;
+        }
+        .stateCol {
+            width:7%;
+        }
+        .cityCol {
+            width: 15%;
+        }
+        .lcNumCol {
+            width: 14%;
+        }
+    }
+    .head-title {
+        padding: 6px 3px;
+        border-bottom: 0px;
+        div {
+            font-weight: 600;
+            color: #666;
+        }
+    }
+    .add-user {
+        cursor: pointer;
+        font-size: 12px;
+        padding: 8px;
+    }
+    .mat-form-field {
+        width: 80%;
+    }
+    .btn-cont {
+        margin-top:30px;
+        padding-left:60%;
+        button {
+        margin:5px;
+        }
+    }
+}

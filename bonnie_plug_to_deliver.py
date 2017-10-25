@@ -18,7 +18,7 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-from models import PlugToDeliver, PlugTray, ReceivingInfo, PlantingInfo, SalableInfo, AppStoreDelivery
+from models import PlugToDeliver, PlugTray, ReceivingInfo, PlantingInfo, ShipToInfo, SalableInfo, AppStoreDelivery
 
 class GetPlugToDeliver(APIRequest):
     def get(self):
@@ -27,7 +27,7 @@ class GetPlugToDeliver(APIRequest):
             params = self.request.params
 
             # querying by user id
-            plug_to_deliver_data = PlugToDeliver.query(PlugToDeliver.userId == params.get('userId')).fetch()
+            plug_to_deliver_data = PlugToDeliver.query(PlugToDeliver.userGreenHouseLocation == params.get('userGreenHouseLocation')).fetch()
             plug_to_deliver_data = self.to_json(plug_to_deliver_data)
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(plug_to_deliver_data))
@@ -42,6 +42,11 @@ class CreatePlugToDeliver(APIRequest):
             final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
                 userId=plug_to_deliver['userId'],
+                url=plug_to_deliver['url'],
+                color_id=plug_to_deliver['color_id'],
+                weekNumber=plug_to_deliver.get('weekNumber', None),
+                userGreenHouseLocation=plug_to_deliver['userGreenHouseLocation'],
+                receivedInfoFromOtherStations=plug_to_deliver.get('receivedInfoFromOtherStations', None),
                 plugTray=PlugTray(
                     plugFlatsReceived=plug_to_deliver['plugTray'].get('plugFlatsReceived', None),
                     dateReceived=plug_to_deliver['plugTray'].get('dateReceived', None),
@@ -63,6 +68,9 @@ class CreatePlugToDeliver(APIRequest):
                     discarded=plug_to_deliver['receivingInfo'].get('discarded', None),
                     reasonCode=plug_to_deliver['receivingInfo'].get('reasonCode', None)
                 ),
+                shipToInfo=ShipToInfo(
+                    locatorNumber=plug_to_deliver['shipToInfo'].get('locatorNumber', None)
+                ),
                 salableInfo=SalableInfo(
                     discarded=plug_to_deliver['salableInfo'].get('discarded', None),
                     reasonCode=plug_to_deliver['salableInfo'].get('reasonCode', None),
@@ -71,11 +79,9 @@ class CreatePlugToDeliver(APIRequest):
                 appStoreDelivery=AppStoreDelivery(
                     delivered=plug_to_deliver['appStoreDelivery'].get('delivered', None),
 	                routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale', None),
-                    routeNumberSaleOne=plug_to_deliver['appStoreDelivery'].get('routeNumberSaleOne', None),
-                    routeNumberSaleTwo=plug_to_deliver['appStoreDelivery'].get('routeNumberSaleTwo', None),
                     discarded=plug_to_deliver['appStoreDelivery'].get('discarded', None),
-                    reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None),
-	                check=plug_to_deliver['appStoreDelivery'].get('check', None)
+                    reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None)
+	                # check=plug_to_deliver['appStoreDelivery'].get('check', None)
                 )
             )
             final_plug_to_deliver_data.put()
@@ -89,17 +95,21 @@ class UpdatePlugToDeliver(APIRequest):
             # Retriving the entity using datastore_id
             plug_to_deliver = PlugToDeliver.get_by_id(body['datastore_id'])
             plug_to_deliver.name = body['name']
+            plug_to_deliver.color_id = body['color_id']
+            plug_to_deliver.url = body['url']
+            plug_to_deliver.weekNumber = body['weekNumber']
             plug_to_deliver.userId = body['userId']
+            plug_to_deliver.userGreenHouseLocation=body['userGreenHouseLocation']
             plug_to_deliver.plugTray = body['plugTray']
             plug_to_deliver.salableInfo = body['salableInfo']
             plug_to_deliver.appStoreDelivery = body['appStoreDelivery']
-
             # TODO: Converting string date obj to date obj
             # if plug_to_deliver.plugTray.dateReceived is not None:
             #     print  plug_to_deliver.plugTray.dateReceived
             #     plug_to_deliver.plugTray.dateReceived = datetime.strftime(plug_to_deliver.plugTray.dateReceived, '%m/%d/%Y')
             plug_to_deliver.plantingInfo = body['plantingInfo']
             plug_to_deliver.receivingInfo = body['receivingInfo']
+            plug_to_deliver.shipToInfo = body['shipToInfo']
             plug_to_deliver.put()
         except Exception as e:
             logging.error(e)

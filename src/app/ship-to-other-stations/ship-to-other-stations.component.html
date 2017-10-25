@@ -19,22 +19,22 @@
           </div>
           <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-              <mat-button-toggle value="left">
-                Type <i class="material-icons">arrow_drop_down</i>
-              </mat-button-toggle>
-              <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
-                A-Z <i class="material-icons">arrow_drop_down</i>
-              </mat-button-toggle>
-              <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
-                Wk# <i class="material-icons">arrow_drop_down</i>
-              </mat-button-toggle>
+            <mat-button-toggle value="left">
+              Type <i class="material-icons">arrow_drop_down</i>
+            </mat-button-toggle>
+            <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+              A-Z <i class="material-icons">arrow_drop_down</i>
+            </mat-button-toggle>
+            <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
+              Wk# <i class="material-icons">arrow_drop_down</i>
+            </mat-button-toggle>
           </div>
         </td>
         <td *ngFor="let head of heads4">
           <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head.name}}</span>
         </td>
-        <td *ngFor="let head of locationNames;let ind= index">
-          <span><i class="material-icons valign_middle" (click)="removeShipToLoc(ind)" style="cursor: pointer;">clear</i>Ship to {{head.city}}</span>
+        <td *ngFor="let location of appSharedService.currentGreenHouseLocation.shipToLocations;let i= index">
+          <span><i class="material-icons valign_middle" (click)="removeShipToLoc(location, i)" style="cursor: pointer;">clear</i>Ship to {{location}}</span>
         </td>
         <td>
           <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship TO</span>
@@ -54,29 +54,42 @@
     <tbody>
       <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model">
         <td>
-          <div [innerHTML]="item['nameHtml']" (click)="appSharedService.openDialog(item)" class="icon-box"></div>
-          <span>{{item.name}}</span>
+            <div class="icon-box" (click)="appSharedService.openDialog(item)">
+                <svg class="icon" [ngClass]="item.color_id">
+                <use [attr.href]="item.url" />
+                </svg>
+                </div>
+                <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
         </td>
         <td>
-          <input matInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber">
+          <input matInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
         </td>
         <td>
-          <input matInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays">
+          <input matInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays" [disabled]="true">
         </td>
         <td>
-          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
+          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" [disabled]="true">
         </td>
         <td>
-          <input matInput name="b_no" [(ngModel)]="item.receivingInfo.houseBay">
+          <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" [disabled]="true">
         </td>
-        <td *ngFor="let loc of locationNames;let ind = index" [ngClass]="{'disabled-row':disabledColumns[ind+4]}">
-          <input matInput name="stchi" (blur)="getTotalOfColumn(ind)" [(ngModel)]="item.shipTo.locationValues[ind]" [disabled]="disabledColumns[ind+4]">
+        <td *ngFor="let loc of appSharedService.currentGreenHouseLocation.shipToLocations;let ind = index">
+          <input matInput type="number" name="stchi" [(ngModel)]="item.shipToInfo[loc]" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td></td>
       </tr>
       <tr class="disabled-row">
         <td>Total</td>
-        <td *ngFor="let val of totalOfLocation">{{val}}</td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <!--<td *ngFor="let totalQtyObj of appSharedService.currentGreenHouseLocation.shipToTotalQty">{{totalQtyObj[]}}</td>-->
+        <td></td>
       </tr>
       <tr>
         <td>
@@ -89,11 +102,11 @@
         </td>
         <td>
         </td>
-        <td *ngFor="let shipbtn of locationNames;let i=index">
-          <button mat-raised-button color="primary" *ngIf="!disabledColumns[i+4]" (click)="shipColumn(i+4)">Ship</button>
-          <button mat-raised-button color="basic" *ngIf="disabledColumns[i+4]" (click)="cancelShip(i+4)">CANCEL SHIP</button>
+        <td *ngFor="let loc of appSharedService.currentGreenHouseLocation.shipToLocations;let i=index">
+          <button mat-raised-button color="primary" (click)="shipColumn(loc)">Ship</button>
+          <!--<button mat-raised-button color="basic" (click)="updateShip(loc)">Update</button>-->
         </td>
-
+        <td></td>
       </tr>
     </tbody>
   </table>

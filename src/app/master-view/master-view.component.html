@@ -77,8 +77,12 @@
     <tbody>
       <tr *ngFor="let item of appSharedService.varietyOptions" class="form-input-model">
         <td>
-          <div [innerHTML]="item['nameHtml']" (click)="appSharedService.openDialog(item)" class="icon-box"></div>
-          <span>{{item.name}}</span>
+            <div class="icon-box" (click)="appSharedService.openDialog(item)">
+                <svg class="icon" [ngClass]="item.color_id">
+                <use [attr.href]="item.url" />
+                </svg>
+                </div>
+                <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
         </td>
         <td class="store-delivery-table-margin">
           <input matInput name="lot_no" [(ngModel)]="item.lot_no">

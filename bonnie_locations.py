@@ -35,17 +35,40 @@ class CreateLocationsDatabase(APIRequest):
             locations = json.loads(self.request.body)
             for location in locations:
                 final_locations = Locations(
+                    code=location['code'],
                     city=location['city'],
                     state=location['state'],
-                    firstName=location.get('firstName', None),
-                    lastName=location.get('lastName', None),
-                    userEmail=location.get('userEmail', None),
-                    locatorNumber=location.get('locatorNumber', None))
+                    first_name=location.get('first_name', None),
+                    last_name=location.get('last_name', None),
+                    email=location.get('email', None),
+                    locatorNumber=location.get('locatorNumber', None),
+                    shipToLocations=location.get('shipToLocations', None),
+                    routes=location.get('routes', []))
                 final_locations.put()
+        except Exception as e:
+            logging.error(e)
+
+class UpdateLocationsDatabase(APIRequest):
+    def put(self):
+        body = json.loads(self.request.body)
+        try:
+            # Retriving the entity using datastore_id
+            location = Locations.get_by_id(body['datastore_id'])
+            location.code=body['code']
+            location.city = body['city']
+            location.state = body['state']
+            location.first_name = body['first_name']
+            location.last_name = body['last_name']
+            location.email = body['email']
+            location.locatorNumber = body['locatorNumber']
+            location.shipToLocations = body['shipToLocations']
+            location.routes = body['routes']
+            location.put()
         except Exception as e:
             logging.error(e)
 
 app = webapp2.WSGIApplication([
     ('/locations/get', GetLocations),
-    ('/locations/create', CreateLocationsDatabase)
+    ('/locations/create', CreateLocationsDatabase),
+    ('/locations/put', UpdateLocationsDatabase)
 ], debug=True)

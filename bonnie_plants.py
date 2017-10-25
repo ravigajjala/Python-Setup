@@ -36,7 +36,7 @@ class CreatePlantsDatabase(APIRequest):
             plant_varieties = json.loads(self.request.body)
             for plant_variety in plant_varieties:
                 plants = Plants(
-                    name=plant_variety['name'], icon=plant_variety['icon'])
+                    name=plant_variety['name'], icon=plant_variety['icon'], color_id=plant_variety['color_id'], url=plant_variety['url'])
                 plants.put()
         except Exception as e:
             logging.error(e)

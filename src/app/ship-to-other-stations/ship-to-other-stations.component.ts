@@ -5,6 +5,8 @@ import { IconDialogComponent } from '../icon-dialog/icon-dialog.component';
 import { NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatAutocompleteTrigger } from '@angular/material';
+import { ShipToInfo } from '../providers/classes/plantInfo.class';
+import { PlugToDeliver } from '../providers/classes/plantInfo.class';
 
 @Component({
   selector: 'app-ship-to-other-stations',
@@ -20,7 +22,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   private isSorted = false;
   public active = 4;
   public disabledColumns = [];
-  public totalOfLocation = [, , , , ];
+  public totalOfLocation = [, , , ,];
   public locationNames = [];
   public locations = [];
   public showAC = false;
@@ -56,47 +58,97 @@ export class ShipToOtherStationsComponent implements OnInit {
     });
   }
 
-  addShipToLoc(event, newlocation) {
-    this.locationNames.push(newlocation);
+  addShipToLoc(event, newlocation): void {
+    const locationName = newlocation.city + ', ' + newlocation.state;
+    this.appSharedService.currentGreenHouseLocation.shipToLocations.push(locationName);
+    // const totalQtyObj = { locationName: undefined };
+    // this.appSharedService.currentGreenHouseLocation.shipToTotalQty.push(totalQtyObj);
+    this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation)
+      .subscribe(
+      res => this.appSharedService.getLocations().subscribe(
+        locations => this.appSharedService.locations = locations,
+        err => console.log(err)
+      ),
+      err => console.log(err)
+      );
     this.locations.splice(this.locations.indexOf(newlocation), 1);
-    this.totalOfLocation.push(0);
-    this.newCity = '';
-    this.shipToClicked = false;
     this.trigger.closePanel();
-  }
-
-  removeShipToLoc(index) {
-    console.log(this.appSharedService.locations);
-    this.appSharedService.locations.map((val) => {
-      if (val.datastore_id === this.locationNames[index].datastore_id) {
-        this.locations.push(val);
-      }
+    this.appSharedService.varietyOptions.forEach(obj => {
+      obj.shipToInfo[locationName] = 0;
+      this.appSharedService.updatePlugToDeliverData(obj).subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
     });
-    this.locationNames.splice(index, 1);
-    this.totalOfLocation.splice(index + 4, 1);
-    if (this.disabledColumns[index + 4]) {
-      this.appSharedService.shippedNumber--;
-      this.disabledColumns.splice(index + 4, 1);
-    }
   }
 
-  shipColumn(item) {
-    this.disabledColumns[item] = true;
-    this.appSharedService.shippedNumber++;
+  removeShipToLoc(locationName: string, index: number): void {
+    this.appSharedService.currentGreenHouseLocation.shipToLocations.splice(index, 1);
+
+    this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation)
+      .subscribe(
+      res => this.appSharedService.getLocations().subscribe(
+        locations => this.appSharedService.locations = locations,
+        err => console.log(err)
+      ),
+      err => console.log(err)
+      );
+
+    this.appSharedService.varietyOptions.forEach(obj => {
+      delete obj.shipToInfo[locationName];
+      this.appSharedService.updatePlugToDeliverData(obj).subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
+    });
   }
+
+  shipColumn(locationName: string, event): void {
+    this.appSharedService.varietyOptions.forEach(
+      varietyObj => {
+        if (varietyObj.shipToInfo[locationName] !== undefined && varietyObj.shipToInfo[locationName] > 0) {
+          varietyObj.userGreenHouseLocation = locationName;
+          varietyObj.receivingInfo.quantity = varietyObj.shipToInfo[locationName];
+          varietyObj.receivingInfo.showReceiveButton = true;
+          varietyObj.receivingInfo.receivedInfoFromOtherStations = true;
+          varietyObj.receivedInfo.receivedFromLocation = this.appSharedService.currentGreenHouseLocation.city + ', ' +
+            this.appSharedService.currentGreenHouseLocation.state;
+          this.appSharedService.createPlugToDeliverData(varietyObj).subscribe(
+            res => console.log(res),
+            err => console.log(err)
+          );
+        }
+      }
+    );
+  }
+
   cancelShip(item) {
     this.disabledColumns[item] = false;
     this.appSharedService.shippedNumber--;
   }
 
-  getTotalOfColumn(key) {
-    this.totalOfLocation[key + 4] = this.appSharedService.varietyOptions.reduce(function (a, b) {
-      return a + parseInt(b.shipTo.locationValues[key] || 0);
-    }, 0);
+  getTotalOfColumn(locationName: string) {
+    this.appSharedService.currentGreenHouseLocation.shipToTotalQty[locationName] =
+      this.appSharedService.varietyOptions.reduce(function (a, b) {
+        return a + Number(b.shipToInfo[locationName] || 0);
+      }, 0);
   }
 
-  enableAutoCompleteSearch() {
+  enableAutoCompleteSearch(): void {
     this.shipToClicked = !this.shipToClicked;
+  }
+
+  /**
+   * [Updates plugToDeliver object to plugToDeliver Kind]
+   * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
+   */
+  // TODO:: Make shared function
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+    this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
+      .subscribe(res => { },
+      err => {
+        console.log('Update error');
+      });
   }
 }
 

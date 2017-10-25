@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
-import { MatButtonModule, MatMenuModule, MatButtonToggleModule, MatSelectModule, MatAutocompleteModule, MatDatepickerModule, MatListModule, MatInputModule, MatNativeDateModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatMenuModule, MatButtonToggleModule, MatSelectModule, MatAutocompleteModule, MatDatepickerModule, MatListModule, MatInputModule, MatNativeDateModule, MatCheckboxModule, MatTooltipModule } from '@angular/material';
 
 
 import { HttpModule } from '@angular/http';
@@ -33,6 +33,7 @@ import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-ca
 
 // Import Pipes here
 import { SearchVarietiesPipe } from './pipes/varieties.pipe';
+import { ReceivingInfoPipe } from './pipes/receiving-info.pipe';
 
 const appRoutes: Routes = [
   {
@@ -75,6 +76,7 @@ const appRoutes: Routes = [
     PlugTrayInformationComponent,
     PlantingInformationComponent,
     ReceivingFromOtherStationsComponent,
+    ReceivingInfoPipe,
     StoreDeliveryComponent,
     ShipToOtherStationsComponent,
     SearchVarietiesPipe,
@@ -100,7 +102,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatCheckboxModule,
     MatListModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule
     // NgxDatatableModule
   ],
   bootstrap: [AppComponent],

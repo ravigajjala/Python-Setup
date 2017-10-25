@@ -19,15 +19,15 @@
           <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
           <div class="toggle-button-css" *ngIf="mergeClickBool == false">
             <!-- <mat-button-toggle-group #group="matButtonToggleGroup"> -->
-              <mat-button-toggle value="left">
-                Type <i class="material-icons">arrow_drop_down</i>
-              </mat-button-toggle>
-              <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
-                A-Z <i class="material-icons">arrow_drop_down</i>
-              </mat-button-toggle>
-              <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
-                Wk# <i class="material-icons">arrow_drop_down</i>
-              </mat-button-toggle>
+            <mat-button-toggle value="left">
+              Type <i class="material-icons">arrow_drop_down</i>
+            </mat-button-toggle>
+            <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+              A-Z <i class="material-icons">arrow_drop_down</i>
+            </mat-button-toggle>
+            <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
+              Wk# <i class="material-icons">arrow_drop_down</i>
+            </mat-button-toggle>
             <!-- </mat-button-toggle-group> -->
           </div>
         </td>
@@ -37,42 +37,48 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model">
+      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i =index;"
+        class="form-input-model">
         <td>
-          <div [innerHTML]="item['nameHtml']" class="icon-box"></div>
+          <div class="icon-box" (click)="appSharedService.openDialog(item)">
+            <svg class="icon" [ngClass]="item.color_id">
+              <use [attr.href]="item.url" />
+            </svg>
+          </div>
           <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
         </td>
         <td>
-          <input matInput name="pfr" type="number" [(ngModel)]="item.plugTray.plugFlatsReceived" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="pfr" type="number" [(ngModel)]="item.plugTray.plugFlatsReceived" (blur)="updatePlugToDeliverData(item, i)">
         </td>
         <td>
           <!-- <input matInput name="date_received" > -->
-          <mat-form-field [formGroup]="PlugTrayForm">
+          <mat-form-field>
             <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plugTray.dateReceived"
-              formControlName="dateReceived" (dateChange)="calculateWeekNumber($event, item); updatePlugToDeliverData(item)">
+              (dateChange)="calculateWeekNumber(item.plugTray.dateReceived, item); updatePlugToDeliverData(item)">
             <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>
-        <td>
-          <input matInput name="pfp" type="number" [(ngModel)]="item.plugTray.plugFlatsPlotted" (blur)="updatePlugToDeliverData(item)">
+        <td [ngClass]="{'error-box':item.plugTray.plugFlatsPlotted > item.plugTray.plugFlatsReceived}" matTooltip="Given input should be less than or equal to plug flats received"
+          [matTooltipDisabled]="item.plugTray.plugFlatsPlotted <= item.plugTray.plugFlatsReceived">
+          <input matInput name="pfp" type="number" [(ngModel)]="item.plugTray.plugFlatsPlotted" (blur)="updatePlugToDeliverData(item, i)">
+          <!-- <div class="error-overlay">a</div> -->
         </td>
         <td>
-          <input matInput name="pfd" type="number" [(ngModel)]="item.plugTray.plugFlatsDiscarded" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="pfd" type="number" [(ngModel)]="item.plugTray.plugFlatsDiscarded" (blur)="updatePlugToDeliverData(item, i)">
         </td>
         <td>
           <!-- <input matInput name="reason_code" [(ngModel)]="item.reason_code"> -->
           <mat-select placeholder="" #select="matSelect" [disabled]="!item.plugTray.plugFlatsDiscarded" [(ngModel)]="item.plugTray.reasonsCode"
-            (ngModelChange)="updatePlugToDeliverData(item)">
+            (ngModelChange)="updatePlugToDeliverData(item, i)">
             <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
             <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
           </mat-select>
         </td>
         <td>
-          <input matInput name="lot_no" type="text" [(ngModel)]="item.plugTray.seedLotNumber" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="lot_no" type="text" [(ngModel)]="item.plugTray.seedLotNumber" (blur)="updatePlugToDeliverData(item, i)">
         </td>
       </tr>
-
 
       <div class="flex-display add-plant" [class.flex-center]="mergeClickBool" *ngIf="mergeClickBool == false">
         <button mat-button><i class="material-icons rotate_90" style="pointer-events: none">add_circle</i></button>

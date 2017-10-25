@@ -91,4 +91,10 @@ export class ReceivingFromOtherStationsComponent implements OnInit {
         console.log('Update error');
       });
   }
+
+  receivePlant(item): void {
+    item.receivingInfo.receivedButonClicked =  true;
+    item.receivingInfo.showReceiveButton = false;
+    this.updatePlugToDeliverData(item);
+  }
 }

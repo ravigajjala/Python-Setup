@@ -21,7 +21,6 @@ import 'rxjs/add/operator/map';
 })
 export class OrganicTrackerSheetComponent implements OnInit {
   public title = 'Bonnie App';
-  public locationId = '';
   public locations = [];
 
   constructor(
@@ -34,13 +33,13 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
   ngOnInit() {
 
-    this.appSharedService.addPlants().subscribe(
-      plants => {},
+    this.appSharedService.addLocation().subscribe(
+      locations => {},
       err => {
-        console.log('Unable to retrive green house plants list');
+        console.log('Unable to retrive green house locations list');
       }
     );
-    
+
     return this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;
@@ -64,22 +63,28 @@ export class OrganicTrackerSheetComponent implements OnInit {
     );
   }
 
-  openManageUserDialog(currentUsers: User): void {
-    const dialogRef = this.dialog.open(ManageUsersComponent, {
-      data: currentUsers,
-    });
+  openManageUserDialog(): void {
+    const dialogRef = this.dialog.open(ManageUsersComponent, {});
   }
 
-  openManageGreenHouseDialog(currentGreenHouse: Location): void {
-    const dialogRef = this.dialog.open(ManageGreenHouseComponent, {
-      data: currentGreenHouse,
-    });
+  openManageGreenHouseDialog(): void {
+    const dialogRef = this.dialog.open(ManageGreenHouseComponent, {});
   }
 
-  openManagePlugCatalogDialog(currentPlugCatalog: Plant): void {
-    const dialogRef = this.dialog.open(ManagePlugCatalogComponent, {
-      data: currentPlugCatalog,
-    });
+  openManagePlugCatalogDialog(): void {
+    const dialogRef = this.dialog.open(ManagePlugCatalogComponent, {});
+  }
+
+  /**
+  * [When user chnages the green house location from the dropdown this function will update the plug to deliver data]
+  */
+  locationChange(): void {
+    this.appSharedService.getPlugToDeliverData().subscribe(
+      res => {
+        this.appSharedService.varietyOptions = res;
+      },
+      err => console.log(err)
+    );
   }
 }
 
