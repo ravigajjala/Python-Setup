@@ -18,7 +18,7 @@ from utils import APIRequest
 import json
 from google.appengine.ext import ndb
 import logging
-from models import PlugToDeliver, PlugTray, ReceivingInfo, PlantingInfo, SalableInfo
+from models import PlugToDeliver, PlugTray, ReceivingInfo, PlantingInfo, SalableInfo, AppStoreDelivery
 
 class GetPlugToDeliver(APIRequest):
     def get(self):
@@ -66,6 +66,13 @@ class CreatePlugToDeliver(APIRequest):
                 salableInfo=SalableInfo(
                     discarded=plug_to_deliver['salableInfo'].get('discarded', None),
                     reasonCode=plug_to_deliver['salableInfo'].get('reasonCode', None)
+                ),
+                appStoreDelivery=AppStoreDelivery(
+                    delivered=plug_to_deliver['appStoreDelivery'].get('delivered', None),
+	                routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale', None),
+                    discarded=plug_to_deliver['appStoreDelivery'].get('discarded', None),
+                    reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None)
+	                # check=plug_to_deliver['appStoreDelivery'].get('check', None)
                 )
             )
             final_plug_to_deliver_data.put()
@@ -82,6 +89,8 @@ class UpdatePlugToDeliver(APIRequest):
             plug_to_deliver.userId = body['userId']
             plug_to_deliver.plugTray = body['plugTray']
             plug_to_deliver.salableInfo = body['salableInfo']
+            plug_to_deliver.appStoreDelivery = body['appStoreDelivery']
+
             # TODO: Converting string date obj to date obj
             # if plug_to_deliver.plugTray.dateReceived is not None:
             #     print  plug_to_deliver.plugTray.dateReceived

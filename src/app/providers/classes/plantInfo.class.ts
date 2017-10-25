@@ -20,10 +20,12 @@ export class SalableInfo {
 
 export class AppStoreDelivery {
 	totalFlatstoSale: number;
-	routeNumberSale: number[];
+	// routeNumberSale: number[];
+	routeNumberSale: number;
 	discarded: number;
 	reasonCode: string;
 	check: boolean;
+	delivered: number;
 }
 
 export class ShipTo {
@@ -62,6 +64,7 @@ export class PlugToDeliver {
 	receivingInfo: ReceivingInfo;
 	shipToInfo: ShipToInfo;
 	salableInfo: SalableInfo;
+	appStoreDelivery: AppStoreDelivery;
 }
 
 export class PlugTray {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
-import { AppStoreDelivery } from '../providers/classes/plantInfo.class';
 import { Router } from '@angular/router';
+import { PlugToDeliver } from '../providers/classes/plantInfo.class';
 
 @Component({
   selector: 'app-store-delivery',
@@ -57,9 +57,39 @@ export class StoreDeliveryComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
+    this.getPlugToDeliverData();
   }
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
+  }
+
+  /**
+   * [Retriving all plugToDeliver objects from plugToDeliver Kind]
+   * @return it returns all varities from plugToDeliver Kind
+   */
+  // TODO:: Make shared function
+  getPlugToDeliverData() {
+    return this.appSharedService.getPlugToDeliverData().subscribe(
+      res => {
+        this.appSharedService.varietyOptions = res;
+      },
+      err => {
+        console.log('Plug to deliver data retrive error');
+      }
+    );
+  }
+
+  /**
+   * [Updates plugToDeliver object to plugToDeliver Kind]
+   * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
+   */
+  // TODO:: Make shared function
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+    this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
+      .subscribe(res => { },
+      err => {
+        console.log('Update error');
+      });
   }
 }

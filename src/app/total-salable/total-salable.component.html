@@ -57,17 +57,17 @@
         <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber">
       </td>
       <td>
-        <input matInput name="q" [(ngModel)]="item.receivingInfo.quantity">
+        <input matInput name="q" [(ngModel)]="item.plantingInfo.finishedTrays">
       </td>
       <td>
         <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
       </td>
 
       <td>
-        <input matInput name="b_no" [(ngModel)]="item.receivingInfo.houseBay">
+        <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay">
       </td>
       <td>
-        <input matInput name="ts_d">
+        <input matInput type="number" name="ts_d" [(ngModel)]="item.salableInfo.discarded" (blur)="updatePlugToDeliverData(item)">
       </td>
       <td>
         <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
@@ -76,7 +76,7 @@
         </mat-select>
       </td>
       <td>
-        <span>{{item.receivingInfo.quantity || 0}}</span>
+        <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
       </td>
     </tr>
   </tbody>

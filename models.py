@@ -49,6 +49,12 @@ class SalableInfo(ndb.Model):
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
 
+class AppStoreDelivery(ndb.Model):
+    delivered = ndb.IntegerProperty()
+    routeNumberSale = ndb.IntegerProperty()
+    discarded = ndb.IntegerProperty()
+    reasonCode = ndb.StringProperty()
+
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
     userId = ndb.StringProperty()
@@ -56,5 +62,7 @@ class PlugToDeliver(ndb.Model):
     plantingInfo = ndb.StructuredProperty(PlantingInfo)
     receivingInfo = ndb.StructuredProperty(ReceivingInfo)
     salableInfo = ndb.StructuredProperty(SalableInfo)
+    appStoreDelivery = ndb.StructuredProperty(AppStoreDelivery)
+    
 class UserSetting(ndb.Model):
     lastRoute = ndb.StringProperty()

@@ -139,7 +139,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       tempNewPlant.plantingInfo = Object.assign({}, newPlant.plantingInfo);
       tempNewPlant.receivingInfo = Object.assign({}, newPlant.receivingInfo);
       tempNewPlant.salableInfo = Object.assign({}, newPlant.salableInfo);
-      tempNewPlant.storeDeliveryData = Object.assign({}, newPlant.storeDeliveryData);
+      tempNewPlant.appStoreDelivery = Object.assign({}, newPlant.appStoreDelivery);
       tempNewPlant.shipTo = Object.assign({}, newPlant.shipTo);
       tempNewPlant.shipTo.locationValues = [];
       this.createPlugToDeliverData(tempNewPlant);
