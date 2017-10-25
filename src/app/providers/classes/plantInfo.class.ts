@@ -20,8 +20,7 @@ export class SalableInfo {
 
 export class AppStoreDelivery {
 	totalFlatstoSale: number;
-	// routeNumberSale: number[];
-	routeNumberSale: number;
+	routes: number[];
 	discarded: number;
 	reasonCode: string;
 	check: boolean;
@@ -88,13 +87,4 @@ export class UserRelatedInfo {
 	lastRoute: string;
 	id: string;
 	datastore_id: string;
-}
-
-export class StoreDeliveryData {
-	delivered: number;
-	discarded: number;
-	reasonCode: string;
-	route: number;
-	routeone: number;
-	routetwo: number;
 }

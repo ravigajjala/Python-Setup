@@ -60,9 +60,10 @@ class SalableInfo(ndb.Model):
 
 class AppStoreDelivery(ndb.Model):
     delivered = ndb.IntegerProperty()
-    routeNumberSale = ndb.IntegerProperty()
+    routes = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
+    check = ndb.IntegerProperty()
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
