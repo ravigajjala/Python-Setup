@@ -78,7 +78,7 @@
           <input matInput type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td>
-          <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.appStoreDelivery.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
+          <mat-select placeholder="" #select="matSelect" [disabled]="!item.appStoreDelivery.discarded" [(ngModel)]="item.appStoreDelivery.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
             <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
             <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
           </mat-select>

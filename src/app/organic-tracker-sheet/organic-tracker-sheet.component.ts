@@ -32,7 +32,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
   }
 
   ngOnInit() {
-
     return this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;

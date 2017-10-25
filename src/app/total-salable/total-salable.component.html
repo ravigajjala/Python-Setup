@@ -70,11 +70,12 @@
       <td>
         <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay">
       </td>
-      <td>
+      <td [ngClass]="{'error-box':item.salableInfo.discarded > item.plantingInfo.finishedTrays}" matTooltip="Given input should be less than or equal to finishedTrays"
+          [matTooltipDisabled]="item.salableInfo.discarded <= item.plantingInfo.finishedTrays">
         <input matInput type="number" name="ts_d" [(ngModel)]="item.salableInfo.discarded" (blur)="updatePlugToDeliverData(item)">
       </td>
       <td>
-        <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
+        <mat-select placeholder="" #select="matSelect" [disabled]="!item.salableInfo.discarded" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
           <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
           <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
         </mat-select>

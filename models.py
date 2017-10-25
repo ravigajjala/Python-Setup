@@ -58,9 +58,8 @@ class SalableInfo(ndb.Model):
     reasonCode = ndb.StringProperty()
     totalFlatsToSale = ndb.StringProperty()
 
-class AppStoreDelivery(ndb.Model):
+class AppStoreDelivery(ndb.Expando):
     delivered = ndb.IntegerProperty()
-    routes = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
     check = ndb.IntegerProperty()
