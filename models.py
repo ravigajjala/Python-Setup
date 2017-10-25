@@ -48,6 +48,7 @@ class ReceivingInfo(ndb.Model):
 class SalableInfo(ndb.Model):
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
+    totalFlatsToSale = ndb.StringProperty()
 
 class AppStoreDelivery(ndb.Model):
     delivered = ndb.IntegerProperty()

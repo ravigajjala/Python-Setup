@@ -65,7 +65,8 @@ class CreatePlugToDeliver(APIRequest):
                 ),
                 salableInfo=SalableInfo(
                     discarded=plug_to_deliver['salableInfo'].get('discarded', None),
-                    reasonCode=plug_to_deliver['salableInfo'].get('reasonCode', None)
+                    reasonCode=plug_to_deliver['salableInfo'].get('reasonCode', None),
+                    totalFlatsToSale=plug_to_deliver['salableInfo'].get('reasonCode', None)
                 ),
                 appStoreDelivery=AppStoreDelivery(
                     delivered=plug_to_deliver['appStoreDelivery'].get('delivered', None),
