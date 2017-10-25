@@ -22,6 +22,8 @@ export class AppStoreDelivery {
 	totalFlatstoSale: number;
 	// routeNumberSale: number[];
 	routeNumberSale: number;
+	routeNumberSaleOne: number;
+	routeNumberSaleTwo: number;
 	discarded: number;
 	reasonCode: string;
 	check: boolean;

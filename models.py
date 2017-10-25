@@ -53,6 +53,8 @@ class SalableInfo(ndb.Model):
 class AppStoreDelivery(ndb.Model):
     delivered = ndb.IntegerProperty()
     routeNumberSale = ndb.IntegerProperty()
+    routeNumberSaleOne = ndb.IntegerProperty()
+    routeNumberSaleTwo = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
 
