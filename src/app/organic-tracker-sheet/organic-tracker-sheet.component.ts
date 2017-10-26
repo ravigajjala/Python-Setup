@@ -32,27 +32,31 @@ export class OrganicTrackerSheetComponent implements OnInit {
   }
 
   ngOnInit() {
-    return this.appSharedService.getLocations().subscribe(
-      locations => {
-        this.appSharedService.locations = locations;
-        // TODO:: check first time login or reoccuring login then route
-        this.appSharedService.getUserPreviousRoute(this.appSharedService.userId).subscribe(
-          userInfoArray => {
-            // TODO:: Make observable filter
-            let newRoute;
-            userInfoArray = userInfoArray.filter(response => response.datastore_id === this.appSharedService.userId);
-            if (userInfoArray.length > 0) {
-              newRoute = userInfoArray[0].lastRoute;
-              this.router.navigate([newRoute]);
-            }
+    // this.appSharedService.addLocation().subscribe(
+      // resp => {
+        this.appSharedService.getLocations().subscribe(
+          locations => {
+            this.appSharedService.locations = locations;
+            // TODO:: check first time login or reoccuring login then route
+            this.appSharedService.getUserPreviousRoute(this.appSharedService.userId).subscribe(
+              userInfoArray => {
+                // TODO:: Make observable filter
+                let newRoute;
+                userInfoArray = userInfoArray.filter(response => response.datastore_id === this.appSharedService.userId);
+                if (userInfoArray.length > 0) {
+                  newRoute = userInfoArray[0].lastRoute;
+                  this.router.navigate([newRoute]);
+                }
+              },
+              err => console.log(err)
+            );
           },
-          err => console.log(err)
+          err => {
+            console.log(err);
+          }
         );
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      // }
+    // );
   }
 
   openManageUserDialog(): void {
@@ -71,6 +75,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   * [When user chnages the green house location from the dropdown this function will update the plug to deliver data]
   */
   locationChange(): void {
+    this.appSharedService.routesToShow = this.appSharedService.currentGreenHouseLocation.routes;
     this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;

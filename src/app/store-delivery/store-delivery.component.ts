@@ -15,6 +15,7 @@ export class StoreDeliveryComponent implements OnInit {
   public routeTotal = [];
   public deliveredTotal = [];
   public sumPlantsDelivered = [];
+  public routesToShow = [];
   constructor(private appSharedService: AppSharedService,
     public router: Router) { }
 
