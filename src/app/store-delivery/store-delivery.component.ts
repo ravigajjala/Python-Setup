@@ -67,10 +67,10 @@ export class StoreDeliveryComponent implements OnInit {
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
-   /**
-   * [Retriving all plugToDeliver objects from plugToDeliver Kind]
-   * @return it returns all varities from plugToDeliver Kind
-   */
+  /**
+  * [Retriving all plugToDeliver objects from plugToDeliver Kind]
+  * @return it returns all varities from plugToDeliver Kind
+  */
   // TODO:: Make shared function
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
@@ -97,20 +97,22 @@ export class StoreDeliveryComponent implements OnInit {
   }
 
   updateRouteTotal(index) {
-    console.log(this.routeTotal, index);
-    this.routeTotal[index] = 0;
-    for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
-      if (this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.length > 0) {
-        this.routeTotal[index] += parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale[index]);
-      }
-      this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
-        if (value) {
-          return sum + parseInt(value);
-        }
-      }, 0);
-      this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
-        return sum + value;
-      }, 0);
-    }
+    // debugger;
+    // this.routeTotal[index] = 0;
+    // for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
+    //   if (this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.length > 0) {
+    //     this.routeTotal[index] += parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale[index]);
+    //   }
+    //   this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
+    //     if (value) {
+    //       return sum + parseInt(value);
+    //     }
+    //   }, 0);
+    //   this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
+    //     return sum + value;
+    //   }, 0);
+    // }
   }
+
+
 }

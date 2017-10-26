@@ -66,10 +66,11 @@
           <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
         </td>
         <td>
-          <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
+          <!-- <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span> -->
+          <span>{{item.salableInfo.totalFlatsToSale}}</span>
         </td>
         <td *ngFor="let route of appSharedService.routesToShow;let in = index;">
-          <input matInput name="sixtyeight" (blur)="updateRouteTotal(in)">
+          <input matInput name="sixtyeight" (ngModelChange)="updateRouteTotal(in)">
         </td>
         <td>
           <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
@@ -95,23 +96,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td *ngFor="let totalVal of routeTotal"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td *ngFor="let totalVal of routeTotal">{{totalVal}}</td>
         <td></td>
         <td></td>
         <td></td>

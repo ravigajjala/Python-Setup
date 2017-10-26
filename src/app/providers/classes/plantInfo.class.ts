@@ -1,5 +1,5 @@
 export class PlantingInfo {
-	finishedTrays: string;
+	finishedTrays: number;
 	locatorNumber: number;
 	pottedDate: Date;
 	houseBay: string;
@@ -16,10 +16,10 @@ export class ReceivingInfo {
 export class SalableInfo {
 	discarded: number;
 	reasonCode: string;
+	totalFlatsToSale: any;
 }
 
 export class AppStoreDelivery {
-	totalFlatstoSale: number;
 	route: number[];
 	discarded: number;
 	reasonCode: string;
