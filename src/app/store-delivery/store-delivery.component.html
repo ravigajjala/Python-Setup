@@ -30,12 +30,18 @@
             </div>
           </td>
           <ng-container *ngFor="let head of heads6;let i=index">
-              <td [ngClass]="{'merge-cell-style':i==4 || i==6}" *ngIf="!(i==4 || i==6)">
-                    <span [ngClass]="{'store-left':i==0}"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
-              </td>
+            <td [ngClass]="{'merge-cell-style':i==4 || i==6}" *ngIf="!(i==4 || i==6)">
+              <span [ngClass]="{'store-left':i==0}">
+                <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+            </td>
               <ng-container *ngIf="i==4">
                   <ng-container *ngFor="let trow of appSharedService.routesToShow">
-                      <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} <i class="material-icons rotate_45 print-icon valign_middle">print</i></span></td>
+                    <td class="bottom-row">
+                      <span class="rotate-text">
+                        <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} 
+                        <i class="material-icons rotate_45 print-icon valign_middle">print</i>
+                      </span>
+                    </td>
                   </ng-container>
               </ng-container>
               <ng-container *ngIf="i==6">
