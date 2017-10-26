@@ -52,7 +52,7 @@
               <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
           </td>
           <ng-container *ngIf="i==4">
-            <ng-container *ngFor="let trow of head">
+            <ng-container *ngFor="let trow of appSharedService.routesToShow">
               <td class="bottom-row">
                 <span class="rotate-text">
                   <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}}
@@ -96,8 +96,8 @@
         <td>
             <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
         </td>
-        <td *ngFor="let route of heads6[4];let in = index;">
-            <input matInput name="sixtyeight" (blur)="updateRouteTotal(in)">
+        <td *ngFor="let route of appSharedService.routesToShow;let in = index;">
+            <input matInput name="sixtyeight" (blur)="updateRouteTotal(in)" disabled>
         </td>
         <td>
             <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>

@@ -82,11 +82,11 @@
 		<h3 class="section-title">TOTAL SALABLE</h3>
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">#Discarded</div>
-			<div class="inline-blk entry-count-field"></div>
+			<div class="inline-blk entry-count-field">{{currentPlant.salableInfo.discarded || '-'}}</div>
 		</div>
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">Reason Code</div>
-			<div class="inline-blk entry-count-field"></div>
+			<div class="inline-blk entry-count-field">{{currentPlant.salableInfo.reasonCode || '-'}}</div>
 		</div>
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">Total Flats to Sale</div>
@@ -95,8 +95,23 @@
 	</div>
 
 	<div class="dialog-section">
-		<h3 class="section-title">TOTAL SALABLE</h3>
-		<div class="light-text">In Progress</div>
+		<h3 class="section-title">TO STORE DELIVERY/BALANCE</h3>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Delivered</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">#Discarded</div>
+			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.discarded || '-'}}</div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Reason Code</div>
+			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.reasonCode || '-'}}</div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Check</div>
+			<div class="inline-blk entry-count-field"></div>
+		</div>
 	</div>
 
 	<button mat-button color="primary" class="close-button" (click)="closeDialog()" tabindex="-1">
