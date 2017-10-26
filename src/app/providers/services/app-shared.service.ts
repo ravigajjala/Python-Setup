@@ -24,7 +24,7 @@ export class AppSharedService {
     public totalNotif = 0;
     public userId: string = 'sainath8090';
     public currentGreenHouseLocation: any;
-    public routesToShow = [60,61,62,63];
+    public routesToShow = [];
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
