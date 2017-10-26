@@ -57,13 +57,13 @@
             <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
         </td>
         <td class="store-delivery-table-margin">
-          <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber">
+          <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
         </td>
         <td>
-          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
+          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled> 
         </td>
         <td>
-          <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay">
+          <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
         </td>
         <td>
           <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
@@ -72,7 +72,7 @@
           <input matInput name="sixtyeight" (blur)="updateRouteTotal(in)">
         </td>
         <td>
-          <span>{{item.receivingInfo.quantity || 0}}</span>
+          <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
         </td>
         <td>
           <input matInput type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
@@ -84,7 +84,7 @@
           </mat-select>
         </td>
         <td>
-          <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays">
+          <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
         </td>
         <td>
           <mat-checkbox class="example-margin"></mat-checkbox>

@@ -58,17 +58,17 @@
               <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
       </td>
       <td>
-        <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber">
+        <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
       </td>
       <td>
-        <input matInput name="q" [(ngModel)]="item.plantingInfo.finishedTrays">
+        <input matInput name="q" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
       </td>
       <td>
-        <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber">
+        <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
       </td>
 
       <td>
-        <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay">
+        <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
       </td>
       <td [ngClass]="{'error-box':item.salableInfo.discarded > item.plantingInfo.finishedTrays}" matTooltip="Given input should be less than or equal to finishedTrays"
           [matTooltipDisabled]="item.salableInfo.discarded <= item.plantingInfo.finishedTrays">
