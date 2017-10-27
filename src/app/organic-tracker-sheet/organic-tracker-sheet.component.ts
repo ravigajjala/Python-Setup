@@ -76,6 +76,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   */
   locationChange(): void {
     this.appSharedService.routesToShow = this.appSharedService.currentGreenHouseLocation.routes;
+    this.appSharedService.updateRouteTotal();
     this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;

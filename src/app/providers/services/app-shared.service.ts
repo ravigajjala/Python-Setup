@@ -25,6 +25,7 @@ export class AppSharedService {
     public userId: string = 'sainath8090';
     public currentGreenHouseLocation: any;
     public routesToShow = [];
+    public routeTotal = [];
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
@@ -1057,6 +1058,16 @@ export class AppSharedService {
             return a + b[key]
         }, 0);
         return total;
+    }
+
+    updateRouteTotal () {
+        for (let i = 0; i < this.routesToShow.length; i++) {
+            this.routeTotal[i] = 0;
+            for(let j=0;j < this.varietyOptions.length;j++) {
+                this.routeTotal[i] += (this.varietyOptions[j].appStoreDelivery.deliveryQuantity[i] || 0);
+            }
+            // this.routeTotal[i] = 
+          }
     }
 
     sendUserRelatedInfo(): Observable<UserRelatedInfo[]> {
