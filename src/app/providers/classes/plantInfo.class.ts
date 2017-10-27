@@ -20,7 +20,7 @@ export class SalableInfo {
 }
 
 export class AppStoreDelivery {
-	route: number[];
+	deliveryQuantity: number[];
 	discarded: number;
 	reasonCode: string;
 	check: boolean;

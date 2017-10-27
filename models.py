@@ -63,6 +63,7 @@ class AppStoreDelivery(ndb.Expando):
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
     check = ndb.IntegerProperty()
+    deliveryQuantity = ndb.IntegerProperty(repeated=True)
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
