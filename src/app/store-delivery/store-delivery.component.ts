@@ -98,11 +98,11 @@ export class StoreDeliveryComponent implements OnInit {
       });
   }
 
-  updateRouteTotal(index) {
+  updateRouteTotal(index, item) {
     this.appSharedService.routeTotal[index] = 0;
     for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
       if (this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity.length > 0) {
-        this.appSharedService.routeTotal[index] += parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity[index]);
+        this.appSharedService.routeTotal[index] += (parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity[index]) || 0);
       }
       this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity.reduce(function (sum, value) {
         if (value) {
@@ -114,7 +114,7 @@ export class StoreDeliveryComponent implements OnInit {
       }, 0);
       // }
     }
-
+    this.updatePlugToDeliverData(item);
 
   }
 

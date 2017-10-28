@@ -76,10 +76,11 @@
           <span>{{item.salableInfo.totalFlatsToSale}}</span>
         </td>
         <td *ngFor="let route of appSharedService.routesToShow;let in = index;">
-          <input matInput name="sixtyeight" (ngModelChange)="updateRouteTotal(in)" [(ngModel)]="item.appStoreDelivery.deliveryQuantity[route]" (blur)="updatePlugToDeliverData(item)">
+          <input matInput name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.deliveryQuantity[in]">
         </td>
         <td>
-          <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
+          <!-- <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span> -->
+          <span>{{deliveredTotal[i]}}</span>
         </td>
         <td>
           <input matInput type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
@@ -104,7 +105,7 @@
         <td></td>
         <td></td>
         <td *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
-        <td></td>
+        <td>{{sumPlantsDelivered}}</td>
         <td></td>
         <td></td>
         <td></td>
