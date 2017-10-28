@@ -36,7 +36,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model">
+      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model" [hidden]="item.type !=='PLANTING'">
         <td>
             <div class="icon-box" (click)="appSharedService.openDialog(item)">
                 <svg class="icon" [ngClass]="item.color_id">
@@ -58,11 +58,11 @@
           <input matInput type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td>
-          <!-- <input matInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate"> -->
+          <input matInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate">
           <mat-form-field [formGroup]="plantingInfoForm">
             <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
               (dateChange)="updatePlugToDeliverData(item)" formControlName="datePotted">
-            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>
@@ -70,7 +70,7 @@
           <input matInput type="number" name="houseBay" [(ngModel)]="item.plantingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
         </td>
       </tr>
-    </tbody>
+    </tbody> 
   </table>
   <!-- END: Planting Information -->
 

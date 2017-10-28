@@ -17,6 +17,8 @@ export class AppSharedService {
     public locations: Location[];
     public plants: Plant[];
     public varietyOptions: any[];
+    public varietyOptionsType: string; 
+    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING", "RECEIVING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
     private isPlantNameSorted: boolean = false;
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
@@ -26,6 +28,7 @@ export class AppSharedService {
     public currentGreenHouseLocation: any;
     public routesToShow = [];
     public routeTotal = [];
+
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });

@@ -59,6 +59,37 @@ export class OrganicTrackerSheetComponent implements OnInit {
     // );
   }
 
+  moveToNextStage(stage: string): void {
+    if(stage){
+      this.appSharedService.varietyOptions.forEach((val, index) => {
+        let current_status: boolean = false; 
+
+        for (const key in val.plugTray) {
+          if (val.plugTray.hasOwnProperty(key)) {
+            if (!val.plugTray[key]) {
+              current_status = false;
+              break;
+            } else {
+              current_status= true;
+            }
+          }
+        }
+
+
+        if(current_status){
+          val.type = stage;
+          this.appSharedService.updatePlugToDeliverData(val).subscribe(res => {
+        
+          },
+          err => {
+            console.log('Create error');
+          });
+        }
+        
+      });
+    }
+  }
+
   openManageUserDialog(): void {
     const dialogRef = this.dialog.open(ManageUsersComponent, {});
   }

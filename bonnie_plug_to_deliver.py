@@ -41,6 +41,7 @@ class CreatePlugToDeliver(APIRequest):
             print plug_to_deliver
             final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
+                type=plug_to_deliver['type'],
                 userId=plug_to_deliver['userId'],
                 url=plug_to_deliver['url'],
                 color_id=plug_to_deliver['color_id'],
@@ -95,6 +96,7 @@ class UpdatePlugToDeliver(APIRequest):
             # Retriving the entity using datastore_id
             plug_to_deliver = PlugToDeliver.get_by_id(body['datastore_id'])
             plug_to_deliver.name = body['name']
+            plug_to_deliver.type = body['type']
             plug_to_deliver.color_id = body['color_id']
             plug_to_deliver.url = body['url']
             plug_to_deliver.weekNumber = body['weekNumber']

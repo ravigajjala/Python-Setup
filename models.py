@@ -67,6 +67,7 @@ class AppStoreDelivery(ndb.Expando):
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
+    type = ndb.StringProperty()
     url = ndb.StringProperty()
     color_id = ndb.StringProperty()
     weekNumber = ndb.IntegerProperty()
