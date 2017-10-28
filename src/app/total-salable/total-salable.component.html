@@ -81,7 +81,7 @@
         </mat-select>
       </td>
       <td>
-        <span>{{item.salableInfo.totalFlatsToSale || 0}}</span>
+        <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
       </td>
     </tr>
   </tbody>
