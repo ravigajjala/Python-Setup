@@ -109,6 +109,7 @@ export class StoreDeliveryComponent implements OnInit {
           return sum + parseInt(value);
         }
       }, 0);
+      this.appSharedService.varietyOptions[i].appStoreDelivery.delivered = this.deliveredTotal[i];
       this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
         return sum + value;
       }, 0);
