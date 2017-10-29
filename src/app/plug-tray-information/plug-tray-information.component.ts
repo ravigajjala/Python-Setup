@@ -35,6 +35,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public PlugTrayForm: FormGroup;
   public weekNumber: number;
   private plugNotifStatus = [];
+  private type: string = "PLUG";
 
   public options = [
     {
@@ -81,26 +82,27 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
   setNotifStatus(val, index) {
     const currentStatus = this.plugNotifStatus[index];
-
-    // iterate through each key in object
-    for (const key in val.plugTray) {
-      if (val.plugTray.hasOwnProperty(key)) {
-        if (!val.plugTray[key]) {
-          this.plugNotifStatus[index] = false;
-          break;
-        } else {
-          this.plugNotifStatus[index] = true;
+    if(val.type === "PLUG") {
+      // iterate through each key in object
+      for (const key in val.plugTray) {
+        if (val.plugTray.hasOwnProperty(key)) {
+          if (!val.plugTray[key]) {
+            this.plugNotifStatus[index] = false;
+            break;
+          } else {
+            this.plugNotifStatus[index] = true;
+          }
         }
       }
-    }
 
-    if (!currentStatus) {
-      if (this.plugNotifStatus[index]) {
-        this.appSharedService.totalNotif++;
-      }
-    } else {
-      if (!this.plugNotifStatus[index]) {
-        this.appSharedService.totalNotif--;
+      if (!currentStatus) {
+        if (this.plugNotifStatus[index]) {
+          this.appSharedService.totalNotif++;
+        }
+      } else {
+        if (!this.plugNotifStatus[index]) {
+          this.appSharedService.totalNotif--;
+        }
       }
     }
   }
@@ -187,6 +189,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       tempNewPlant.salableInfo = Object.assign({}, newPlant.salableInfo);
       tempNewPlant.appStoreDelivery = Object.assign({}, newPlant.appStoreDelivery);
       tempNewPlant.shipToInfo = Object.assign({}, newPlant.shipToInfo);
+      tempNewPlant.type = this.type;
       this.createPlugToDeliverData(tempNewPlant);
     }
     this.trigger.closePanel();

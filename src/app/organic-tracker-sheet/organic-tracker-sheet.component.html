@@ -24,7 +24,7 @@
   <mat-list>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }" [routerLink]="['/app-organic-tracker-sheet/app-plug-tray-information']">
         Plug tray information
-      <div class="notif-number">
+      <div class="notif-number" (click)="moveToNextStage('PLANTING')">
         <i class="material-icons valign_middle">arrow_downward</i>
         {{appSharedService.totalNotif}}
       </div>

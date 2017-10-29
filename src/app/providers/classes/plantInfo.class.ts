@@ -64,6 +64,7 @@ export class User {
 export class PlugToDeliver {
 	weekNumber: number;
 	name: string;
+	type: string;
 	userGreenHouseLocation: string;
 	receivedInfoFromOtherStations: boolean;
 	plugTray: PlugTray;
