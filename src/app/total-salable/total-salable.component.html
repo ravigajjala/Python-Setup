@@ -81,7 +81,7 @@
         </mat-select>
       </td>
       <td>
-        <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
+        <input matInput name="totalsale" [(ngModel)]="item.salableInfo.totalFlatsToSale" (blur)="updatePlugToDeliverData(item)">
       </td>
     </tr>
   </tbody>

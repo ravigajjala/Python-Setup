@@ -72,7 +72,7 @@
           <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
         </td>
         <td>
-          <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
+          <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
         </td>
         <td *ngFor="let route of appSharedService.routesToShow;let in = index;">
           <input matInput name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.deliveryQuantity[in]">

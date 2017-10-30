@@ -56,7 +56,7 @@ class ShipToInfo(ndb.Expando):
 class SalableInfo(ndb.Model):
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
-    totalFlatsToSale = ndb.StringProperty()
+    totalFlatsToSale = ndb.IntegerProperty()
 
 class AppStoreDelivery(ndb.Expando):
     delivered = ndb.IntegerProperty()

@@ -18,7 +18,7 @@ export class AppSharedService {
     public plants: Plant[];
     public varietyOptions: any[];
     public varietyOptionsType: string; 
-    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING", "RECEIVING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
+    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
     private isPlantNameSorted: boolean = false;
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
