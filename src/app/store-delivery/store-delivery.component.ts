@@ -15,6 +15,7 @@ export class StoreDeliveryComponent implements OnInit {
   public deliveredTotal = [];
   public sumPlantsDelivered = [];
   public routesToShow = [];
+  public totalCount = 0;
   constructor(private appSharedService: AppSharedService,
     public router: Router) { }
 
@@ -58,7 +59,6 @@ export class StoreDeliveryComponent implements OnInit {
     ];
 
 
-
     this.appSharedService.sendUserRelatedInfo().subscribe(
       res => { },
       err => console.log(err)
@@ -78,6 +78,7 @@ export class StoreDeliveryComponent implements OnInit {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;
+        res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0)});
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -97,24 +98,26 @@ export class StoreDeliveryComponent implements OnInit {
         console.log('Update error');
       });
   }
-
+  
   updateRouteTotal(index, item) {
     this.appSharedService.routeTotal[index] = 0;
+    this.totalCount = 0;
     for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
+      this.totalCount = this.totalCount + parseInt(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0)
       if (this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity.length > 0) {
         this.appSharedService.routeTotal[index] += (parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity[index]) || 0);
       }
       this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity.reduce(function (sum, value) {
         if (value) {
-          return sum + parseInt(value);
+          return sum + parseInt(value || 0);
         }
       }, 0);
       this.appSharedService.varietyOptions[i].appStoreDelivery.delivered = this.deliveredTotal[i];
       this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
-        return sum + value;
+        return sum + parseInt(value || 0);
       }, 0);
-      // }
     }
+    item.appStoreDelivery.check = (item.salableInfo.totalFlatsToSale || 0) - (this.deliveredTotal[index] || 0);
     this.updatePlugToDeliverData(item);
 
   }

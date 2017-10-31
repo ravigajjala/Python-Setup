@@ -78,7 +78,6 @@
           <input matInput name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.deliveryQuantity[in]">
         </td>
         <td>
-          <!-- <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span> -->
           <span>{{deliveredTotal[i]}}</span>
         </td>
         <td>
@@ -94,15 +93,17 @@
           <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
         </td>
         <td>
-          <mat-checkbox class="example-margin"></mat-checkbox>
-        </td>
+            <input matInput name="check" [(ngModel)]="item.appStoreDelivery.check" (blur)="updatePlugToDeliverData(item)">
+          <!-- {{(item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) : ""}} <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - deliveredTotal[i]) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - deliveredTotal[i] == 0" ></mat-checkbox> -->
+          
+        </td> 
       </tr>
       <tr>
         <td>Total</td>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
+        <td>{{totalCount}}</td>
         <td *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
         <td>{{sumPlantsDelivered}}</td>
         <td></td>

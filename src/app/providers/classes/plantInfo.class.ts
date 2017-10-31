@@ -23,7 +23,7 @@ export class AppStoreDelivery {
 	deliveryQuantity: number[];
 	discarded: number;
 	reasonCode: string;
-	check: boolean;
+	check: number;
 	delivered: number;
 }
 
