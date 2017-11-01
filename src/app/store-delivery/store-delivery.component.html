@@ -53,7 +53,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i=index;"
-        class="form-input-model">
+        class="form-input-model" [hidden]="item.type !=='PLANTING'">
         <td>
           <div class="icon-box" (click)="appSharedService.openDialog(item)">
             <svg class="icon" [ngClass]="item.color_id">
@@ -78,7 +78,7 @@
           <input matInput name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.deliveryQuantity[in]">
         </td>
         <td>
-          <span>{{deliveredTotal[i]}}</span>
+          <span>{{deliveredTotal[i] || item.appStoreDelivery.delivered}}</span>
         </td>
         <td>
           <input matInput type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
@@ -94,8 +94,8 @@
         </td>
         <td>
           <!-- <input matInput name="check" [(ngModel)]="item.appStoreDelivery.check" (blur)="updatePlugToDeliverData(item)"> -->
-          {{(item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) : ""}} 
-          <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - deliveredTotal[i]) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - deliveredTotal[i] == 0"></mat-checkbox>
+          {{(item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) : ""}} 
+          <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered == 0" (blur)="updatePlugToDeliverData(item)"></mat-checkbox>
           
         </td> 
       </tr>

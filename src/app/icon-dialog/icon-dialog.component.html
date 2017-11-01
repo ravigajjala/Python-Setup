@@ -98,7 +98,7 @@
 		<h3 class="section-title">TO STORE DELIVERY/BALANCE</h3>
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">Delivered</div>
-			<div class="inline-blk entry-count-field"></div>
+			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.delivered || '-'}}</div>
 		</div>
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">#Discarded</div>
@@ -110,7 +110,7 @@
 		</div>
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">Check</div>
-			<div class="inline-blk entry-count-field"></div>
+			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.check || '-'}}</div>
 		</div>
 	</div>
 

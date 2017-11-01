@@ -58,11 +58,14 @@
           <input matInput type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td>
-          <input matInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate">
+          <mat-form-field>
+              <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
+                (dateChange)="updatePlugToDeliverData(item); updatePlugToDeliverData(item)">
+          <!-- <input matInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate">
           <mat-form-field [formGroup]="plantingInfoForm">
             <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
-              (dateChange)="updatePlugToDeliverData(item)" formControlName="datePotted">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              (dateChange)="updatePlugToDeliverData(item)" formControlName="datePotted"> -->
+            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>

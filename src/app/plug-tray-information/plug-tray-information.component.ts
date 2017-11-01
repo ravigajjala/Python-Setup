@@ -251,6 +251,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       res => {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
+        this.plugNotifStatus = [];
         this.appSharedService.varietyOptions.forEach((val, index) => {
           this.setNotifStatus(val, index);
         });
