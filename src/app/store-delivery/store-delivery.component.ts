@@ -104,10 +104,10 @@ export class StoreDeliveryComponent implements OnInit {
     this.totalCount = 0;
     for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
       this.totalCount = this.totalCount + parseInt(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0)
-      if (this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity.length > 0) {
-        this.appSharedService.routeTotal[index] += (parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity[index]) || 0);
+      if (this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.length > 0) {
+        this.appSharedService.routeTotal[index] += (parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale[index]) || 0);
       }
-      this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.deliveryQuantity.reduce(function (sum, value) {
+      this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
         if (value) {
           return sum + parseInt(value || 0);
         }

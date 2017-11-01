@@ -39,7 +39,7 @@ class CreatePlugToDeliver(APIRequest):
         try:
             plug_to_deliver = json.loads(self.request.body)
             print plug_to_deliver
-            print plug_to_deliver['appStoreDelivery'].get('deliveryQuantity')
+            print plug_to_deliver['appStoreDelivery'].get('routeNumberSale')
             print plug_to_deliver['appStoreDelivery'].get('delivered')
             print plug_to_deliver['appStoreDelivery'].get('reasonCode')
             final_plug_to_deliver_data = PlugToDeliver(
@@ -85,7 +85,7 @@ class CreatePlugToDeliver(APIRequest):
                     discarded=plug_to_deliver['appStoreDelivery'].get('discarded', None),
                     reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None),
 	                check=plug_to_deliver['appStoreDelivery'].get('check', None),
-                    deliveryQuantity=plug_to_deliver['appStoreDelivery'].get('deliveryQuantity',[])
+                    routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale',[])
                 )
             )
             print final_plug_to_deliver_data
