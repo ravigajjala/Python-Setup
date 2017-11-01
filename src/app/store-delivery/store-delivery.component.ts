@@ -13,9 +13,10 @@ export class StoreDeliveryComponent implements OnInit {
   public reasonCodes = [];
   public mergeClickBool = false;
   public deliveredTotal = [];
-  public sumPlantsDelivered = [];
+  public sumPlantsDelivered = 0;
   public routesToShow = [];
   public totalCount = 0;
+  public totalBalanceCount = 0;
   constructor(private appSharedService: AppSharedService,
     public router: Router) { }
 
@@ -79,6 +80,7 @@ export class StoreDeliveryComponent implements OnInit {
       res => {
         this.appSharedService.varietyOptions = res;
         res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0)});
+        res.forEach(obj => { this.totalBalanceCount = this.totalBalanceCount + (obj.plantingInfo.finishedTrays || 0)});
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -102,8 +104,10 @@ export class StoreDeliveryComponent implements OnInit {
   updateRouteTotal(index, item) {
     this.appSharedService.routeTotal[index] = 0;
     this.totalCount = 0;
+    this.totalBalanceCount = 0;
     for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
       this.totalCount = this.totalCount + parseInt(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0)
+      this.totalBalanceCount = this.totalBalanceCount + parseInt(this.appSharedService.varietyOptions[i].plantingInfo.finishedTrays || 0)
       if (this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.length > 0) {
         this.appSharedService.routeTotal[index] += (parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale[index]) || 0);
       }
