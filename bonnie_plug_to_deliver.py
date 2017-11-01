@@ -39,6 +39,9 @@ class CreatePlugToDeliver(APIRequest):
         try:
             plug_to_deliver = json.loads(self.request.body)
             print plug_to_deliver
+            print plug_to_deliver['appStoreDelivery'].get('deliveryQuantity')
+            print plug_to_deliver['appStoreDelivery'].get('delivered')
+            print plug_to_deliver['appStoreDelivery'].get('reasonCode')
             final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
                 type=plug_to_deliver['type'],
@@ -85,6 +88,7 @@ class CreatePlugToDeliver(APIRequest):
                     deliveryQuantity=plug_to_deliver['appStoreDelivery'].get('deliveryQuantity',[])
                 )
             )
+            print final_plug_to_deliver_data
             final_plug_to_deliver_data.put()
         except Exception as e:
             logging.error(e)

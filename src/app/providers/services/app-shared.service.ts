@@ -1018,6 +1018,7 @@ export class AppSharedService {
     }
 
     createPlugToDeliverData(plugToDeliver: PlugToDeliver): Observable<PlugToDeliver[]> {
+        console.log(plugToDeliver);
         return this.http.post('/plug-to-deliver/create', plugToDeliver, this.options)
             .map(res => {
                 return res;

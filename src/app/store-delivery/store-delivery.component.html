@@ -93,8 +93,9 @@
           <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
         </td>
         <td>
-            <input matInput name="check" [(ngModel)]="item.appStoreDelivery.check" (blur)="updatePlugToDeliverData(item)">
-          <!-- {{(item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) : ""}} <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - deliveredTotal[i]) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - deliveredTotal[i] == 0" ></mat-checkbox> -->
+          <!-- <input matInput name="check" [(ngModel)]="item.appStoreDelivery.check" (blur)="updatePlugToDeliverData(item)"> -->
+          {{(item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (deliveredTotal[i] || 0) : ""}} 
+          <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - deliveredTotal[i]) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - deliveredTotal[i] == 0"></mat-checkbox>
           
         </td> 
       </tr>

@@ -58,12 +58,12 @@ class SalableInfo(ndb.Model):
     reasonCode = ndb.StringProperty()
     totalFlatsToSale = ndb.IntegerProperty()
 
-class AppStoreDelivery(ndb.Expando):
+class AppStoreDelivery(ndb.Model):
     delivered = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
     check = ndb.IntegerProperty()
-    deliveryQuantity = ndb.IntegerProperty(repeated=True)
+    deliveryQuantity = ndb.JsonProperty(repeated=True)
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
