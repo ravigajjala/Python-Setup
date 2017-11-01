@@ -97,7 +97,7 @@
           <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
         </td>
         <td *ngFor="let route of appSharedService.routesToShow;let in = index;">
-            <input matInput name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.deliveryQuantity[in]" disabled>
+            <input matInput name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]" disabled>
           </td>
         <td>
           <input matInput name="delivered" [(ngModel)]="item.appStoreDelivery.delivered" disabled>
