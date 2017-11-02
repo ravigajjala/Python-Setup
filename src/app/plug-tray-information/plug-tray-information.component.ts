@@ -83,16 +83,23 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   setNotifStatus(val, index) {
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
-      // iterate through each key in object
-      for (const key in val.plugTray) {
-        if (val.plugTray.hasOwnProperty(key)) {
-          if (!val.plugTray[key]) {
-            this.plugNotifStatus[index] = false;
-            break;
-          } else {
-            this.plugNotifStatus[index] = true;
+      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+      if(!errCheck){
+        // iterate through each key in object
+        for (const key in val.plugTray) {
+          if (val.plugTray.hasOwnProperty(key)) {
+            if (!val.plugTray[key] && val.plugTray[key] !== 0 && !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
+              this.plugNotifStatus[index] = false;
+            
+              break;
+            } else {
+              this.plugNotifStatus[index] = true;
+            }
           }
         }
+      }
+      else {
+        this.plugNotifStatus[index] = false;
       }
 
       if (!currentStatus) {
@@ -252,6 +259,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
         this.plugNotifStatus = [];
+        console.log(res);
+        alert("calling ....get");
         this.appSharedService.varietyOptions.forEach((val, index) => {
           this.setNotifStatus(val, index);
         });

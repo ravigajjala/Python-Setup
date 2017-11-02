@@ -22,6 +22,7 @@ import 'rxjs/add/operator/map';
 export class OrganicTrackerSheetComponent implements OnInit {
   public title = 'Bonnie App';
   public locations = [];
+  private plugNotifStatus = [];
 
   constructor(
     public loginService: LoginService,
@@ -61,12 +62,14 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
   moveToNextStage(stage: string): void {
     if(stage){
+      this.appSharedService.totalNotif = 0;
+      this.plugNotifStatus = [];
       this.appSharedService.varietyOptions.forEach((val, index) => {
         let current_status: boolean = false; 
 
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if (!val.plugTray[key]) {
+            if (!val.plugTray[key] && isNaN(val.plugTray[key])) {
               current_status = false;
               break;
             } else {
@@ -75,11 +78,13 @@ export class OrganicTrackerSheetComponent implements OnInit {
           }
         }
 
+        let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
 
-        if(current_status){
+        if(current_status && !errCheck){
           val.type = stage;
+          this.updateNotifStatus(val, index);
           this.appSharedService.updatePlugToDeliverData(val).subscribe(res => {
-        
+            
           },
           err => {
             console.log('Create error');
@@ -87,6 +92,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
         }
         
       });
+      //this.updateNotifStatus(this.appSharedService.varietyOptions)
     }
   }
 
@@ -102,6 +108,38 @@ export class OrganicTrackerSheetComponent implements OnInit {
     const dialogRef = this.dialog.open(ManagePlugCatalogComponent, {});
   }
 
+  updateNotifStatus(val, index): void {
+    const currentStatus = this.plugNotifStatus[index];
+    if(val.type === "PLUG") {
+      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+      if(!errCheck){
+        // iterate through each key in object
+        for (const key in val.plugTray) {
+          if (val.plugTray.hasOwnProperty(key)) {
+            if (!val.plugTray[key] && val.plugTray[key] !== 0) {
+              this.plugNotifStatus[index] = false;
+              break;
+            } else {
+              this.plugNotifStatus[index] = true;
+            }
+          }
+        }
+      }
+      else {
+        this.plugNotifStatus[index] = false;
+      }
+
+      if (!currentStatus) {
+        if (this.plugNotifStatus[index]) {
+          this.appSharedService.totalNotif++;
+        }
+      } else {
+        if (!this.plugNotifStatus[index]) {
+          this.appSharedService.totalNotif--;
+        }
+      }
+    }
+  }
   /**
   * [When user chnages the green house location from the dropdown this function will update the plug to deliver data]
   */
@@ -111,6 +149,11 @@ export class OrganicTrackerSheetComponent implements OnInit {
     this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;
+        this.appSharedService.totalNotif = 0;
+        this.plugNotifStatus = [];
+        this.appSharedService.varietyOptions.forEach((val, index) => {
+          this.updateNotifStatus(val, index);
+        });
       },
       err => console.log(err)
     );
