@@ -28,8 +28,6 @@ export class AppSharedService {
     public currentGreenHouseLocation: any;
     public routesToShow = [];
     public routeTotal = [];
-
-
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
     public plantsData = [{

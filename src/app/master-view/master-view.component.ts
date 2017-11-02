@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
 import { Router } from '@angular/router';
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 
 @Component({
   selector: 'app-master-view',
@@ -17,6 +18,12 @@ export class MasterViewComponent implements OnInit {
   public weekNumbers = [1, 2, 3, 4, 5];
   public startWeek = 1;
   public endWeek = 5;
+  public testData = [
+    {name: "test 1", age: 13},
+    {name: "test 2", age: 15},
+    {name: "test 3", age: 16},
+    {name: "test 4", age: 18}
+  ];
 
   ngOnInit() {
     this.heads6 = [
@@ -50,5 +57,10 @@ export class MasterViewComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
+  }
+
+  exportExcel(){
+    console.log(this.appSharedService.varietyOptions);
+    //new Angular2Csv(this.testData, "testReport");
   }
 }
