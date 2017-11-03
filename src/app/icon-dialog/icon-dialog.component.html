@@ -4,7 +4,7 @@
 			<svg class="icon" [ngClass]="'st'+iconClassNumber"><use attr.xlink:href="../../assets/sprites/icon-sprite-sheet.svg#{{currentPlant.icon}}"/></svg>
 		</div>
 		<h2 class="dialog-title inline-blk">{{currentPlant.name}}</h2>
-		<span>Wk21</span>
+		<span>{{ currentPlant.weekNumber ? '  Wk' + currentPlant.weekNumber : ''}}</span>
 	</div>
 	<div class="dialog-section">
 		<h3 class="section-title">PLUG TRAY INFORMATION</h3>
@@ -107,6 +107,10 @@
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">Reason Code</div>
 			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.reasonCode || '-'}}</div>
+		</div>
+		<div class="entry-field">
+			<div class="inline-blk entry-name-field">Route {{trow}} </div>
+			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.routeNumberSale || '-'}}</div>
 		</div>
 		<div class="entry-field">
 			<div class="inline-blk entry-name-field">Check</div>
