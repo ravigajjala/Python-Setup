@@ -65,22 +65,26 @@ export class OrganicTrackerSheetComponent implements OnInit {
       this.appSharedService.totalNotif = 0;
       this.plugNotifStatus = [];
       this.appSharedService.varietyOptions.forEach((val, index) => {
-        let current_status: boolean = false; 
+      let current_status: boolean = false; 
 
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if (!val.plugTray[key] && isNaN(val.plugTray[key])) {
+            //console.log("current status: " aaaa"print the fields value "+ key +" cond: " + (!val.plugTray[key] && isNaN(val.plugTray[key])));
+            if (!val.plugTray[key] && val.plugTray[key] !== 0 && 
+              !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
               current_status = false;
               break;
             } else {
+              //console.log("its making current_startus to true for key "+ key);
               current_status= true;
             }
           }
         }
 
         let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
-
+        console.log("current_status " +current_status + " check err -- " +errCheck);
         if(current_status && !errCheck){
+          console.log("updating the type");
           val.type = stage;
           this.updateNotifStatus(val, index);
           this.appSharedService.updatePlugToDeliverData(val).subscribe(res => {
@@ -116,7 +120,8 @@ export class OrganicTrackerSheetComponent implements OnInit {
         // iterate through each key in object
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if (!val.plugTray[key] && val.plugTray[key] !== 0) {
+            if (!val.plugTray[key] && val.plugTray[key] !== 0 && 
+              !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
               this.plugNotifStatus[index] = false;
               break;
             } else {
@@ -150,7 +155,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
       res => {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
-        this.plugNotifStatus = [];
+        //this.plugNotifStatus = [];
         this.appSharedService.varietyOptions.forEach((val, index) => {
           this.updateNotifStatus(val, index);
         });

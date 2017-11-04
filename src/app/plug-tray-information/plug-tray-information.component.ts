@@ -88,7 +88,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
         // iterate through each key in object
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if (!val.plugTray[key] && val.plugTray[key] !== 0 && !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
+            if (!val.plugTray[key] && val.plugTray[key] !== 0 && 
+                !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
               this.plugNotifStatus[index] = false;
             
               break;
@@ -137,6 +138,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     ];
 
     this.reasonCodes = [
+      { 'code': null, 'reason': null},
       { 'code': 'A', 'reason': 'Poor germ' },
       { 'code': 'B', 'reason': 'Pest issue' },
       { 'code': 'C', 'reason': 'irrigation problems' },
@@ -258,9 +260,10 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       res => {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
-        this.plugNotifStatus = [];
+        
         console.log(res);
         this.appSharedService.varietyOptions.forEach((val, index) => {
+          this.plugNotifStatus = [];
           this.setNotifStatus(val, index);
         });
       },
@@ -276,6 +279,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index): any {
+    plugToDeliverData.plugTray.reasonsCode = plugToDeliverData.plugTray.plugFlatsDiscarded === 0 ? null : plugToDeliverData.plugTray.reasonsCode;
     this.setNotifStatus(plugToDeliverData, index);
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
