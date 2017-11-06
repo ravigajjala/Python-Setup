@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
 import { Router } from '@angular/router';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-master-view',
@@ -60,7 +61,30 @@ export class MasterViewComponent implements OnInit {
   }
 
   exportExcel(){
+    let exportRecords  = [];
+
     console.log(this.appSharedService.varietyOptions);
-    //new Angular2Csv(this.testData, "testReport");
+    for(let i =0;i<this.appSharedService.varietyOptions.length;i++){
+      console.log(this.appSharedService.varietyOptions[i]);
+        if(_.get(this.appSharedService.varietyOptions[i], 'type') !=='PLANTING') continue;
+        let recordModel = {};
+        recordModel['variety']=_.get(this.appSharedService.varietyOptions[i], 'name') + '' + (this.appSharedService.varietyOptions[i].weekNumber ? '  Wk' + this.appSharedService.varietyOptions[i].weekNumber : ''); 
+        recordModel['seed alot Number']=_.get(this.appSharedService.varietyOptions[i], 'plugTray.seedLotNumber'); 
+        recordModel['Locator']=_.get(this.appSharedService.varietyOptions[i], 'plantingInfo.locatorNumber'); 
+        recordModel['House BAY']=_.get(this.appSharedService.varietyOptions[i], 'plantingInfo.houseBay'); 
+        recordModel['total flats for sale']=_.get(this.appSharedService.varietyOptions[i], 'salableInfo.totalFlatsToSale'); 
+        ///recordModel['routes 71']=_.get(this.appSharedService.varietyOptions[i], ''); 
+        //recordModel['routes']=_.get(this.appSharedService.varietyOptions[i], ''); 
+        for(let j=0; j < this.appSharedService.routesToShow.length;j++){
+          recordModel['routes' + this.appSharedService.routesToShow[j]]=_.get(this.appSharedService.varietyOptions[i], 'appStoreDelivery.routeNumberSale.'+j); 
+        }
+
+        recordModel['delivered']=_.get(this.appSharedService.varietyOptions[i], 'appStoreDelivery.delivered'); 
+        recordModel['discarded']=_.get(this.appSharedService.varietyOptions[i], 'appStoreDelivery.discarded'); 
+
+        exportRecords.push(recordModel);
+    }
+
+    new Angular2Csv(exportRecords, "testReport", {headers:Object.keys(exportRecords[0])});
   }
 }
