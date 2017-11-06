@@ -1063,13 +1063,17 @@ export class AppSharedService {
     }
 
     updateRouteTotal () {
-        for (let i = 0; i < this.routesToShow.length; i++) {
-            this.routeTotal[i] = 0;
-            for(let j=0;j < this.varietyOptions.length;j++) {
-                this.routeTotal[i] += (this.varietyOptions[j].appStoreDelivery.deliveryQuantity[i] || 0);
+        if(this.routesToShow && this.routesToShow.length){
+            for (let i = 0; i < this.routesToShow.length; i++) {
+                this.routeTotal[i] = 0;
+                if(this.varietyOptions && this.varietyOptions.length) {
+                    for(let j=0;j < this.varietyOptions.length;j++) {
+                        this.routeTotal[i] += (this.varietyOptions[j].appStoreDelivery.deliveryQuantity[i] || 0);
+                    }
+                }
+                // this.routeTotal[i] = 
             }
-            // this.routeTotal[i] = 
-          }
+        }
     }
 
     sendUserRelatedInfo(): Observable<UserRelatedInfo[]> {

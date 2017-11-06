@@ -16,17 +16,23 @@ export class MasterViewComponent implements OnInit {
 
   public heads6 = [];
   public mergeClickBool = false;
-  public weekNumbers = [1, 2, 3, 4, 5];
-  public startWeek = 1;
-  public endWeek = 5;
+   
+  public weekNumbers: number[] = [];
+  public startWeek = null;
+  public endWeek = null;
   public testData = [
     {name: "test 1", age: 13},
     {name: "test 2", age: 15},
     {name: "test 3", age: 16},
     {name: "test 4", age: 18}
   ];
-
+  public filteredVariety = [];
   ngOnInit() {
+    this.weekNumbers = [null];
+    for(let i=1; i<100;i++){
+      this.weekNumbers.push(i);
+    }
+
     this.heads6 = [
       'Seed Lot Number',
       'Locator #',
@@ -58,29 +64,49 @@ export class MasterViewComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
+    this.filteredVariety = this.appSharedService.varietyOptions;
+  }
+
+  testChange(v){
+    alert(this.startWeek);
+  } 
+
+  filterVariety() {
+    alert("test");
+    this.filteredVariety = [];
+    for(let i =0;i<this.appSharedService.varietyOptions.length;i++){
+      if(this.startWeek==null && this.endWeek==null){
+        this.filteredVariety = this.appSharedService.varietyOptions;
+      } else if(_.get(this.appSharedService.varietyOptions[i], 'weekNumber') >= this.startWeek
+        && _.get(this.appSharedService.varietyOptions[i], 'weekNumber') <= this.endWeek){
+          this.filteredVariety.push(this.appSharedService.varietyOptions[i]);
+        }
+        
+    }
+    //return this.filteredVariety;
   }
 
   exportExcel(){
     let exportRecords  = [];
 
     console.log(this.appSharedService.varietyOptions);
-    for(let i =0;i<this.appSharedService.varietyOptions.length;i++){
-      console.log(this.appSharedService.varietyOptions[i]);
-        if(_.get(this.appSharedService.varietyOptions[i], 'type') !=='PLANTING') continue;
+    for(let i =0;i<this.filteredVariety.length;i++){
+      console.log(this.filteredVariety[i]);
+        if(_.get(this.filteredVariety[i], 'type') !=='PLANTING') continue;
         let recordModel = {};
-        recordModel['variety']=_.get(this.appSharedService.varietyOptions[i], 'name') + '' + (this.appSharedService.varietyOptions[i].weekNumber ? '  Wk' + this.appSharedService.varietyOptions[i].weekNumber : ''); 
-        recordModel['seed alot Number']=_.get(this.appSharedService.varietyOptions[i], 'plugTray.seedLotNumber'); 
-        recordModel['Locator']=_.get(this.appSharedService.varietyOptions[i], 'plantingInfo.locatorNumber'); 
-        recordModel['House BAY']=_.get(this.appSharedService.varietyOptions[i], 'plantingInfo.houseBay'); 
-        recordModel['total flats for sale']=_.get(this.appSharedService.varietyOptions[i], 'salableInfo.totalFlatsToSale'); 
+        recordModel['variety']=_.get(this.filteredVariety[i], 'name') + '' + (this.filteredVariety[i].weekNumber ? '  Wk' + this.filteredVariety[i].weekNumber : ''); 
+        recordModel['seed alot Number']=_.get(this.filteredVariety[i], 'plugTray.seedLotNumber'); 
+        recordModel['Locator']=_.get(this.filteredVariety[i], 'plantingInfo.locatorNumber'); 
+        recordModel['House BAY']=_.get(this.filteredVariety[i], 'plantingInfo.houseBay'); 
+        recordModel['total flats for sale']=_.get(this.filteredVariety[i], 'salableInfo.totalFlatsToSale'); 
         ///recordModel['routes 71']=_.get(this.appSharedService.varietyOptions[i], ''); 
         //recordModel['routes']=_.get(this.appSharedService.varietyOptions[i], ''); 
         for(let j=0; j < this.appSharedService.routesToShow.length;j++){
-          recordModel['routes' + this.appSharedService.routesToShow[j]]=_.get(this.appSharedService.varietyOptions[i], 'appStoreDelivery.routeNumberSale.'+j); 
+          recordModel['routes' + this.appSharedService.routesToShow[j]]=_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.'+j); 
         }
 
-        recordModel['delivered']=_.get(this.appSharedService.varietyOptions[i], 'appStoreDelivery.delivered'); 
-        recordModel['discarded']=_.get(this.appSharedService.varietyOptions[i], 'appStoreDelivery.discarded'); 
+        recordModel['delivered']=_.get(this.filteredVariety[i], 'appStoreDelivery.delivered'); 
+        recordModel['discarded']=_.get(this.filteredVariety[i], 'appStoreDelivery.discarded'); 
 
         exportRecords.push(recordModel);
     }
