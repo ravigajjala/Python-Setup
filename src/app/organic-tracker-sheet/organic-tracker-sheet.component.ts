@@ -81,7 +81,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
           }
         }
 
-        let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+        let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
         console.log("current_status " +current_status + " check err -- " +errCheck);
         if(current_status && !errCheck){
           console.log("updating the type");
@@ -115,7 +115,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   updateNotifStatus(val, index): void {
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
       if(!errCheck){
         // iterate through each key in object
         for (const key in val.plugTray) {

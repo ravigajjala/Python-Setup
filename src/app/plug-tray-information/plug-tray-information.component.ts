@@ -83,7 +83,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   setNotifStatus(val, index) {
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
       if(!errCheck){
         // iterate through each key in object
         for (const key in val.plugTray) {
@@ -131,7 +131,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.heads = [
       'Plug Flats Received',
       'Date received',
-      'Plug Flats Plotted',
+      'Plug Flats Potted',
       'Plug Flats Discarded',
       'Reasons Code',
       'Seed Lot Number'

@@ -81,6 +81,7 @@ export class StoreDeliveryComponent implements OnInit {
         this.appSharedService.varietyOptions = res;
         res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0)});
         res.forEach(obj => { this.totalBalanceCount = this.totalBalanceCount + (obj.plantingInfo.finishedTrays || 0)});
+        res.forEach(obj => { this.sumPlantsDelivered = this.sumPlantsDelivered + (obj.appStoreDelivery.delivered || 0)});
       },
       err => {
         console.log('Plug to deliver data retrive error');
