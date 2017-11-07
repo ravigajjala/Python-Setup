@@ -72,7 +72,6 @@ export class MasterViewComponent implements OnInit {
   } 
 
   filterVariety() {
-    alert("test");
     this.filteredVariety = [];
     for(let i =0;i<this.appSharedService.varietyOptions.length;i++){
       if(this.startWeek==null && this.endWeek==null){

@@ -1000,7 +1000,7 @@ export class AppSharedService {
     openDialog(currentItem): void {
         console.log('called');
         const dialogRef = this.dialog.open(IconDialogComponent, {
-            data: currentItem
+            data: {currentItem, routesToShow: this.routesToShow}
         });
     }
 

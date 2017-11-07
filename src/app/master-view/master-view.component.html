@@ -22,7 +22,7 @@
             </div>
             to
             <div class="wk-select-box">
-              <label for="startWeek">End Wk#</label>
+              <label class="pos-relative" for="startWeek">End Wk#</label>
               <mat-select [(ngModel)]="endWeek" name="stopWeek" (change)="filterVariety()">
                 <mat-option *ngFor="let wk of weekNumbers" [value]="wk">
                   {{wk}}
@@ -120,13 +120,12 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>{{totalFlatsToSale}}</td>
+        <td>{{totalCount}}</td>
+        <td *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
+        <td>{{sumPlantsDelivered}}</td>
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{totalBalanceCount}}</td>
         <td></td>
       </tr>
       <tr>
