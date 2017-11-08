@@ -81,21 +81,25 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
 
   setNotifStatus(val, index) {
+    //alert("a1");
+   debugger;
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+      console.log("checking errro case ", val.plugTray.plugFlatsPlotted, val.plugTray.plugFlatsReceived, errCheck);
       if(!errCheck){
         // iterate through each key in object
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if (!val.plugTray[key] && val.plugTray[key] !== 0 && 
-                !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
+            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0) 
+            || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode) 
+            || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
               this.plugNotifStatus[index] = false;
-            
               break;
             } else {
               this.plugNotifStatus[index] = true;
             }
+            
           }
         }
       }

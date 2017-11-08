@@ -70,8 +70,10 @@ export class OrganicTrackerSheetComponent implements OnInit {
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
             //console.log("current status: " aaaa"print the fields value "+ key +" cond: " + (!val.plugTray[key] && isNaN(val.plugTray[key])));
-            if (!val.plugTray[key] && val.plugTray[key] !== 0 && 
-              !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
+            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0) 
+            || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode) 
+            || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
+            
               current_status = false;
               break;
             } else {
@@ -81,7 +83,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
           }
         }
 
-        let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+        let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
         console.log("current_status " +current_status + " check err -- " +errCheck);
         if(current_status && !errCheck){
           console.log("updating the type");
@@ -113,21 +115,26 @@ export class OrganicTrackerSheetComponent implements OnInit {
   }
 
   updateNotifStatus(val, index): void {
+///alert("a2");
+  //  debugger;
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
       if(!errCheck){
         // iterate through each key in object
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if (!val.plugTray[key] && val.plugTray[key] !== 0 && 
-              !(val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)) {
+            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0) 
+            || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode) 
+            || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
               this.plugNotifStatus[index] = false;
               break;
             } else {
               this.plugNotifStatus[index] = true;
             }
+           
           }
+
         }
       }
       else {
