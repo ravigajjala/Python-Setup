@@ -109,6 +109,21 @@ export class MasterViewComponent implements OnInit {
 
         exportRecords.push(recordModel);
     }
+    const totalModel = {
+      'variety':'Total',
+      'seed alot Number':[],
+      'Locator':[],
+      'House BAY':[],
+      'total flats for sale':0,
+      delivered:0,
+      discarded:0
+    }
+
+    for(let j=0; j < this.appSharedService.routeTotal.length;j++){
+      totalModel['routes' + this.appSharedService.routesToShow[j]]= this.appSharedService.routeTotal[j]; 
+    }
+    
+    exportRecords.push(totalModel);
 
     new Angular2Csv(exportRecords, "testReport", {headers:Object.keys(exportRecords[0])});
   }
