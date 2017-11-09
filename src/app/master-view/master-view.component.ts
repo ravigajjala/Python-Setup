@@ -71,7 +71,7 @@ export class MasterViewComponent implements OnInit {
     alert(this.startWeek);
   } 
 
-  filterVariety() {
+  filterVasumPlantsDeliveredriety() {
     this.filteredVariety = [];
     for(let i =0;i<this.appSharedService.varietyOptions.length;i++){
       if(this.startWeek==null && this.endWeek==null){
@@ -80,14 +80,27 @@ export class MasterViewComponent implements OnInit {
         && _.get(this.appSharedService.varietyOptions[i], 'weekNumber') <= this.endWeek){
           this.filteredVariety.push(this.appSharedService.varietyOptions[i]);
         }
-        
     }
+    this.updateRouteTotal();
     //return this.filteredVariety;
   }
 
+  updateRouteTotal () {
+    if(this.appSharedService.routesToShow && this.appSharedService.routesToShow.length){
+        for (let i = 0; i < this.appSharedService.routesToShow.length; i++) {
+            this.appSharedService.routeTotal[i] = 0;
+            if(this.filteredVariety && this.filteredVariety.length) {
+                for(let j=0;j < this.filteredVariety.length;j++) {
+                    this.appSharedService.routeTotal[i] += (this.filteredVariety[j].appStoreDelivery.deliveryQuantity[i] || 0);
+                }
+            }
+            // this.routeTotal[i] = 
+        }
+    }
+}
+
   exportExcel(){
     let exportRecords  = [];
-
     console.log(this.appSharedService.varietyOptions);
     for(let i =0;i<this.filteredVariety.length;i++){
       console.log(this.filteredVariety[i]);
@@ -105,7 +118,7 @@ export class MasterViewComponent implements OnInit {
         }
 
         recordModel['delivered']=_.get(this.filteredVariety[i], 'appStoreDelivery.delivered'); 
-        recordModel['discarded']=_.get(this.filteredVariety[i], 'appStoreDelivery.discarded'); 
+        recordModel['discarded']=_.get(this.a[i], 'appStoreDelivery.discarded'); 
 
         exportRecords.push(recordModel);
     }
@@ -114,9 +127,7 @@ export class MasterViewComponent implements OnInit {
       'seed alot Number':[],
       'Locator':[],
       'House BAY':[],
-      'total flats for sale':0,
-      delivered:0,
-      discarded:0
+      'total flats for sale':0
     }
 
     for(let j=0; j < this.appSharedService.routeTotal.length;j++){
