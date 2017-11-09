@@ -25,7 +25,6 @@ export class MasterViewComponent implements OnInit {
   public totalBalanceCount = 0;
   public startWeek = null;
   public endWeek = null;
-    {name: "test 1", age: 13},
   public filteredVariety = [];
   public location = null;
 
