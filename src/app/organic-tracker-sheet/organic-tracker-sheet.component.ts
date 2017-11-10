@@ -23,6 +23,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   public title = 'Bonnie App';
   public locations = [];
   private plugNotifStatus = [];
+  public message;
 
   constructor(
     public loginService: LoginService,
@@ -58,6 +59,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
         );
       // }
     // );
+    this.appSharedService.currentMessage.subscribe(message => this.message = message);
   }
 
   moveToNextStage(stage: string): void {
@@ -162,6 +164,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
       res => {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
+        this.appSharedService.changeMessage('updated_location');
         //this.plugNotifStatus = [];
         this.appSharedService.varietyOptions.forEach((val, index) => {
           this.updateNotifStatus(val, index);

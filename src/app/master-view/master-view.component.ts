@@ -14,7 +14,7 @@ export class MasterViewComponent implements OnInit {
 
   constructor(private appSharedService: AppSharedService,
     private router: Router) { }
-
+  public message: string;
   public heads6 = [];
   public mergeClickBool = false;
   public weekNumbers: number[] = [];
@@ -29,6 +29,7 @@ export class MasterViewComponent implements OnInit {
   public location = null;
 
   ngOnInit() {
+    this.appSharedService.currentMessage.subscribe(message =>  {this.filterVariety()});
     this.weekNumbers = [null];
     for(let i=1; i<55;i++){
       this.weekNumbers.push(i);
@@ -67,9 +68,9 @@ export class MasterViewComponent implements OnInit {
     );
     this.getPlugToDeliverData();
     this.filteredVariety = this.appSharedService.varietyOptions;
-    for(let i =0;i<this.appSharedService.routeTotal.length;i++){
-      this.updateRouteTotal(i, null);
-    }
+    // for(let i =0;i<this.appSharedService.routeTotal.length;i++){
+    //   this.updateRouteTotal(i, null);
+    // }
   }
 
   getPlugToDeliverData() {
@@ -120,6 +121,9 @@ export class MasterViewComponent implements OnInit {
   }
 
   filterVariety() {
+    if(!this.appSharedService.varietyOptions){
+      return false;
+    }
     this.filteredVariety = [];
     for(let i =0;i<this.appSharedService.varietyOptions.length;i++){
       if(this.startWeek==null && this.endWeek==null){

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatDialog } from '@angular/material';
 import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
 import 'rxjs/add/operator/catch';
@@ -12,6 +13,8 @@ import { Location, Plant, PlugToDeliver, User, UserRelatedInfo } from '../classe
 
 @Injectable()
 export class AppSharedService {
+    private messageSource = new BehaviorSubject<string>('UPDATED');
+    public currentMessage = this.messageSource.asObservable();
     private currentStage;
     public users: User[];
     public locations: Location[];
@@ -1084,5 +1087,9 @@ export class AppSharedService {
             .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
+    }
+
+    changeMessage(message: string) {
+        this.messageSource.next(message);
     }
 }
