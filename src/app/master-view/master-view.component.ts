@@ -66,13 +66,8 @@ export class MasterViewComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-   
-    this.filteredVariety = this.appSharedService.varietyOptions;
+   this.filteredVariety = this.appSharedService.varietyOptions;
     this.getPlugToDeliverData();
-    
-    // for(let i =0;i<this.appSharedService.routeTotal.length;i++){
-    //   this.updateRouteTotal(i, null);
-    // }
   }
 
   getPlugToDeliverData() {

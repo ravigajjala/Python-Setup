@@ -81,8 +81,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
 
   setNotifStatus(val, index) {
-    //alert("a1");
-   debugger;
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
       let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
