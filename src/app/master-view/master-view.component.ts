@@ -66,8 +66,10 @@ export class MasterViewComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-    this.getPlugToDeliverData();
+   
     this.filteredVariety = this.appSharedService.varietyOptions;
+    this.getPlugToDeliverData();
+    
     // for(let i =0;i<this.appSharedService.routeTotal.length;i++){
     //   this.updateRouteTotal(i, null);
     // }
@@ -76,7 +78,8 @@ export class MasterViewComponent implements OnInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
-        this.appSharedService.varietyOptions = res;
+        this.filteredVariety = this.appSharedService.varietyOptions = res;
+        this.totalCount = this.totalBalanceCount = this.sumPlantsDelivered = 0;
         res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0)});
         res.forEach(obj => { this.totalBalanceCount = this.totalBalanceCount + (obj.plantingInfo.finishedTrays || 0)});
         res.forEach(obj => { this.sumPlantsDelivered = this.sumPlantsDelivered + (obj.appStoreDelivery.delivered || 0)});
@@ -114,7 +117,7 @@ export class MasterViewComponent implements OnInit {
       this.filteredVariety[i].appStoreDelivery.delivered = this.deliveredTotal[i];
       this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
         return sum + parseInt(value || 0);
-      }, 0);
+      }, 0);  
     }
     //this.updatePlugToDeliverData(item);
 

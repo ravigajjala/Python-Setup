@@ -64,6 +64,7 @@ export class StoreDeliveryComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
+    this.appSharedService.currentMessage.subscribe(message =>  {this.getPlugToDeliverData()});
     this.getPlugToDeliverData();
   }
 
@@ -79,9 +80,13 @@ export class StoreDeliveryComponent implements OnInit {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;
+        this.totalCount = this.totalBalanceCount = this.sumPlantsDelivered = 0;
         res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0)});
         res.forEach(obj => { this.totalBalanceCount = this.totalBalanceCount + (obj.plantingInfo.finishedTrays || 0)});
         res.forEach(obj => { this.sumPlantsDelivered = this.sumPlantsDelivered + (obj.appStoreDelivery.delivered || 0)});
+        for(let i =0;i<this.appSharedService.routeTotal.length;i++){
+          this.updateRouteTotal(i, null);
+        }
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -122,8 +127,10 @@ export class StoreDeliveryComponent implements OnInit {
         return sum + parseInt(value || 0);
       }, 0);
     }
-    item.appStoreDelivery.check = parseInt(item.salableInfo.totalFlatsToSale || 0) - parseInt(item.appStoreDelivery.delivered || 0);
-    this.updatePlugToDeliverData(item);
+    if(item){
+      item.appStoreDelivery.check = parseInt(item.salableInfo.totalFlatsToSale || 0) - parseInt(item.appStoreDelivery.delivered || 0);
+      this.updatePlugToDeliverData(item);
+    }
 
   }
 
