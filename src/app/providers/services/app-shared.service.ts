@@ -21,7 +21,7 @@ export class AppSharedService {
     public plants: Plant[];
     public varietyOptions: any[];
     public varietyOptionsType: string; 
-    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
+    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING","RECEIVING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
     private isPlantNameSorted: boolean = false;
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
@@ -264,7 +264,8 @@ export class AppSharedService {
             "city": "Liverpool",
             "state": " TX",
             "email": "houstontx@bonnieplants.com",
-            "shipToLocations": []
+            "shipToLocations": [],
+            "routes": []
         },
         {
             "code": "30_Drop",
@@ -273,7 +274,8 @@ export class AppSharedService {
             "city": "Beeville",
             "state": " TX",
             "email": "beevilletx@bonnieplants.com",
-            "shipToLocations": []
+            "shipToLocations": [],
+            "routes": []
         },
         {
             "code": "010_Drop ",
@@ -282,7 +284,8 @@ export class AppSharedService {
             "city": "Pearl",
             "state": " MS",
             "email": "pearlms@bonnieplants.com",
-            "shipToLocations": []
+            "shipToLocations": [],
+            "routes": []
         },
         {
             "code": "30_Drop",
@@ -291,7 +294,8 @@ export class AppSharedService {
             "city": "Donaldsonville",
             "state": "LA",
             "email": "fosterreeves@gmail.com",
-            "shipToLocations": []
+            "shipToLocations": [],
+            "routes": []
         },
         {
             "code": "37 Hub",
@@ -896,16 +900,6 @@ export class AppSharedService {
             "state": " ME",
             "email": "station69simons@yahoo.com",
             "shipToLocations": []
-        },
-        {
-            "code": "105_Drop",
-            "first_name": "Jane",
-            "last_name": "Doe",
-            "city": "Dublin",
-            "state": "OH",
-            "email": "station69simons@yahoo.com",
-            "shipToLocations": [],
-            "routes": [60,61,62,63]
         }];
     constructor(private dialog: MatDialog, private http: Http, public router: Router) {
         this.currentGreenHouseLocation = {
@@ -1019,7 +1013,6 @@ export class AppSharedService {
     }
 
     createPlugToDeliverData(plugToDeliver: PlugToDeliver): Observable<PlugToDeliver[]> {
-        console.log(plugToDeliver);
         return this.http.post('/plug-to-deliver/create', plugToDeliver, this.options)
             .map(res => {
                 return res;
@@ -1074,7 +1067,6 @@ export class AppSharedService {
                         this.routeTotal[i] += (this.varietyOptions[j].appStoreDelivery.deliveryQuantity[i] || 0);
                     }
                 }
-                // this.routeTotal[i] = 
             }
         }
     }
@@ -1088,7 +1080,7 @@ export class AppSharedService {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
-
+    
     changeMessage(message: string) {
         this.messageSource.next(message);
     }

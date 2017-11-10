@@ -128,10 +128,9 @@ export class StoreDeliveryComponent implements OnInit {
       }, 0);
     }
     if(item){
-      item.appStoreDelivery.check = parseInt(item.salableInfo.totalFlatsToSale || 0) - parseInt(item.appStoreDelivery.delivered || 0);
-      this.updatePlugToDeliverData(item);
+    item.appStoreDelivery.check = parseInt(item.salableInfo.totalFlatsToSale || 0) - parseInt(item.appStoreDelivery.delivered || 0);
+    this.updatePlugToDeliverData(item);
     }
 
   }
-
 }

@@ -32,7 +32,7 @@ class Users(ndb.Model):
 class PlugTray(ndb.Model):
     plugFlatsReceived = ndb.IntegerProperty()
     dateReceived = ndb.StringProperty()
-    plugFlatsPlotted = ndb.IntegerProperty()
+    plugFlatsPotted = ndb.IntegerProperty()
     plugFlatsDiscarded = ndb.IntegerProperty()
     reasonsCode = ndb.StringProperty()
     seedLotNumber = ndb.StringProperty()
@@ -41,7 +41,7 @@ class PlantingInfo(ndb.Model):
     finishedTrays = ndb.IntegerProperty()
     locatorNumber = ndb.StringProperty()
     pottedDate = ndb.StringProperty()
-    houseBay = ndb.IntegerProperty()
+    houseBay = ndb.StringProperty()
 
 class ReceivingInfo(ndb.Model):
     houseBay = ndb.StringProperty()
@@ -64,7 +64,6 @@ class AppStoreDelivery(ndb.Model):
     reasonCode = ndb.StringProperty()
     check = ndb.IntegerProperty()
     routeNumberSale = ndb.JsonProperty(repeated=True)
-    totalCount = ndb.IntegerProperty()
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()

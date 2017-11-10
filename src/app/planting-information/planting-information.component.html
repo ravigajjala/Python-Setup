@@ -45,35 +45,30 @@
                 </div>
           <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
         </td>
-        <td>
-          <input matInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
+        <td class="td-lg">
+          <input matInput onclick="this.select();" name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
         </td>
-        <td>
-          <input matInput name="plugFlatsPlotted" [(ngModel)]="item.plugTray.plugFlatsPlotted" [disabled]="true">
+        <td class="td-sm">
+          <input matInput onclick="this.select();" name="plugFlatsPotted" [(ngModel)]="item.plugTray.plugFlatsPotted" [disabled]="true">
         </td>
-        <td>
-          <input matInput type="number" name="finishedTrays" [(ngModel)]="item.plantingInfo.finishedTrays" (blur)="updatePlugToDeliverData(item)">
+        <td class="td-sm">
+          <input matInput onclick="this.select();" type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)" disabled>
         </td>
-        <td>
-          <input matInput type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)">
+        <td class="td-sm">
+          <input matInput onclick="this.select();" type="number" name="finishedTrays" [(ngModel)]="item.plantingInfo.finishedTrays" (blur)="updatePlugToDeliverData(item)">
         </td>
-        <td>
+        <td class="td-lg">
           <mat-form-field>
-              <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
-                (dateChange)="updatePlugToDeliverData(item); updatePlugToDeliverData(item)">
-          <!-- <input matInput name="pottedDate" [(ngModel)]="item.plantingInfo.pottedDate">
-          <mat-form-field [formGroup]="plantingInfoForm">
-            <input matInput [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
-              (dateChange)="updatePlugToDeliverData(item)" formControlName="datePotted"> -->
-            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+            <input matInput onclick="this.select();" [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
+              (dateChange)="updatePlugToDeliverData(item)">
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </td>
-        <td>
-          <input matInput type="number" name="houseBay" [(ngModel)]="item.plantingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
+        <td class="td-md">
+          <input matInput onclick="this.select();" name="houseBay" [(ngModel)]="item.plantingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
         </td>
       </tr>
-    </tbody> 
+    </tbody>
   </table>
   <!-- END: Planting Information -->
 

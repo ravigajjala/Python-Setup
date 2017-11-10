@@ -23,7 +23,7 @@ export class AppStoreDelivery {
 	routeNumberSale: number[];
 	discarded: number;
 	reasonCode: string;
-	check: number;
+	check: boolean;
 	delivered: number;
 }
 
@@ -78,7 +78,7 @@ export class PlugToDeliver {
 export class PlugTray {
 	plugFlatsReceived: number;
 	dateReceived: Date;
-	plugFlatsPlotted: number;
+	plugFlatsPotted: number;
 	plugFlatsDiscarded: number;
 	reasonsCode: string;
 	seedLotNumber: string;

@@ -30,20 +30,9 @@
                   </mat-button-toggle>
               </div>
           </td>
-
-
-          <!--<td *ngFor="let head of heads5;let i=index">
-            <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
-          </td>-->
-          <ng-container *ngFor="let head of heads5;let i=index">
-              <td [ngClass]="{'merge-cell-style':i==4}" *ngIf="i!=4">
-                  <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
-              </td>
-              <ng-container *ngIf="i==4">
-                  <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>#Discarded at GH</span></td>
-                  <td class="bottom-row select-title"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span></td>
-              </ng-container>
-          </ng-container>
+          <td *ngFor="let head of heads5;let i=index">
+              <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+          </td>
       </tr>
   </thead>
 
@@ -57,31 +46,30 @@
               </div>
               <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
       </td>
-      <td>
-        <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
+      <td class="td-lg">
+        <input matInput onclick="this.select();" name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
       </td>
-      <td>
-        <input matInput name="q" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
+      <td class="td-sm">
+        <input matInput onclick="this.select();" name="q" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
       </td>
-      <td>
-        <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
+      <td class="td-sm">
+        <input matInput onclick="this.select();" name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
       </td>
-
-      <td>
-        <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
+      <td class="td-md">
+        <input matInput onclick="this.select();" name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
       </td>
-      <td [ngClass]="{'error-box':item.salableInfo.discarded > item.plantingInfo.finishedTrays}" matTooltip="Given input should be less than or equal to finishedTrays"
+      <td class="td-sm" [ngClass]="{'error-box':item.salableInfo.discarded > item.plantingInfo.finishedTrays}" matTooltip="Given input should be less than or equal to finishedTrays"
           [matTooltipDisabled]="item.salableInfo.discarded <= item.plantingInfo.finishedTrays">
-        <input matInput type="number" name="ts_d" [(ngModel)]="item.salableInfo.discarded" (blur)="updatePlugToDeliverData(item)">
+        <input matInput onclick="this.select();" type="number" name="ts_d" [(ngModel)]="item.salableInfo.discarded" (blur)="updatePlugToDeliverData(item)">
       </td>
-      <td>
+      <td class="td-sm">
         <mat-select placeholder="" #select="matSelect" [disabled]="!item.salableInfo.discarded" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
           <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
           <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
         </mat-select>
       </td>
-      <td>
-        <input matInput name="totalsale" [(ngModel)]="item.salableInfo.totalFlatsToSale" (blur)="updatePlugToDeliverData(item)">
+      <td class="td-sm">
+          <input matInput name="totalsale" [(ngModel)]="item.salableInfo.totalFlatsToSale" (blur)="updatePlugToDeliverData(item)">
       </td>
     </tr>
   </tbody>

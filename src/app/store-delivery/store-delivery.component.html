@@ -30,23 +30,17 @@
             </div>
           </td>
           <ng-container *ngFor="let head of heads6;let i=index">
-            <td [ngClass]="{'merge-cell-style':i==4 || i==6}" *ngIf="!(i==4 || i==6)">
-              <span [ngClass]="{'store-left':i==0}">
-                <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
-            </td>
+              <td [ngClass]="{'merge-cell-style':i==4 || i==6}" *ngIf="!(i==4 || i==6)">
+                    <span [ngClass]="{'store-left':i==0}"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+              </td>
               <ng-container *ngIf="i==4">
                   <ng-container *ngFor="let trow of appSharedService.routesToShow">
-                    <td class="bottom-row">
-                      <span class="rotate-text">
-                        <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} 
-                        <i class="material-icons rotate_45 print-icon valign_middle">print</i>
-                      </span>
-                    </td>
+                      <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} <i class="material-icons rotate_45 print-icon valign_middle">print</i></span></td>
                   </ng-container>
               </ng-container>
               <ng-container *ngIf="i==6">
                   <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>#Discarded</span></td>
-                  <td class="bottom-row" style="width:57%"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span></td>
+                  <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span></td>
               </ng-container>
           </ng-container>
       </tr>
@@ -62,55 +56,53 @@
             </div>
             <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
         </td>
-        <td class="store-delivery-table-margin">
+        <td class="td-lg">
           <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
         </td>
-        <td>
-          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled> 
+        <td class="td-sm">
+          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
         </td>
-        <td>
+        <td class="td-md">
           <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
         </td>
-        <td>
+        <td class="td-sm">
           <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
         </td>
-        <td *ngFor="let route of appSharedService.routesToShow;let in = index;">
-          <input matInput name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]">
+        <td class="td-xs" *ngFor="let route of appSharedService.routesToShow;let in = index;">
+          <input matInput onclick="this.select();" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]">
         </td>
-        <td>
+        <td class="td-sm">
           <span>{{deliveredTotal[i] || item.appStoreDelivery.delivered}}</span>
         </td>
-        <td>
-          <input matInput type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
+        <td class="td-sm">
+          <input matInput onclick="this.select();" type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
         </td>
-        <td>
+        <td class="td-sm">
           <mat-select placeholder="" #select="matSelect" [disabled]="!item.appStoreDelivery.discarded" [(ngModel)]="item.appStoreDelivery.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
             <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
             <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
           </mat-select>
         </td>
-        <td>
-          <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
+        <td class="td-sm">
+          <input matInput onclick="this.select();" name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
         </td>
-        <td>
-          <!-- <input matInput name="check" [(ngModel)]="item.appStoreDelivery.check" (blur)="updatePlugToDeliverData(item)"> -->
+        <td class="td-xs">
           {{(item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) : ""}} 
           <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered == 0" (blur)="updatePlugToDeliverData(item)"></mat-checkbox>
-          
-        </td> 
+        </td>
       </tr>
       <tr>
         <td>Total</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>{{totalCount}}</td>
-        <td *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
-        <td>{{sumPlantsDelivered}}</td>
-        <td></td>
-        <td></td>
-        <td>{{totalBalanceCount}}</td>
-        <td></td>
+        <td class="td-lg"></td>
+        <td class="td-sm"></td>
+        <td class="td-md"></td>
+        <td class="td-sm">{{totalCount}}</td>
+        <td class="td-xs" *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
+        <td class="td-sm"> {{sumPlantsDelivered}}</td>
+        <td class="td-sm"></td>
+        <td class="td-sm"></td>
+        <td class="td-sm"> {{totalBalanceCount}}</td>
+        <td class="td-xs"></td>
       </tr>
     </tbody>
   </table>

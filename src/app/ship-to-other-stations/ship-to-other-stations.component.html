@@ -34,20 +34,22 @@
           <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head.name}}</span>
         </td>
         <td *ngFor="let location of appSharedService.currentGreenHouseLocation.shipToLocations;let i= index">
-          <span><i class="material-icons valign_middle" (click)="removeShipToLoc(location, i)" style="cursor: pointer;">clear</i>Ship to {{location}}</span>
+          <span><i class="material-icons rotate_45 valign_middle" (click)="removeShipToLoc(location, i)" style="cursor: pointer;">clear</i>Ship to {{location}}</span>
         </td>
         <td>
-          <span (click)="enableAutoCompleteSearch()"><i class="material-icons valign_middle" style="cursor: pointer;">add_circle</i>Ship TO</span>
-          <div class="auto-comp-cont" *ngIf="shipToClicked">
-            <mat-form-field>
-              <input type="text" matInput [(ngModel)]="newCity" placeholder="Enter Shipping location" [matAutocomplete]="plant">
-            </mat-form-field>
-            <mat-autocomplete #plant="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let location of locations" [value]="location.city" (onSelectionChange)="addShipToLoc($event, location)">
-                {{location.city}}, {{location.state}}
-              </mat-option>
-            </mat-autocomplete>
-          </div>
+          <span (click)="enableAutoCompleteSearch()"><i class="material-icons rotate_45 valign_middle" style="cursor: pointer;">add_circle</i>Ship To</span>
+          <mat-card class="mat-card auto-comp-cont" *ngIf="shipToClicked">
+            <mat-card-content class="mat-card-content">
+              <mat-form-field>
+                <input type="text" matInput [(ngModel)]="newCity" placeholder="Enter Shipping location" [matAutocomplete]="plant">
+              </mat-form-field>
+              <mat-autocomplete #plant="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let location of locations" [value]="location.city" (onSelectionChange)="addShipToLoc($event, location)">
+                  {{location.city}}, {{location.state}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-card-content>
+          </mat-card>
         </td>
       </tr>
     </thead>
@@ -61,20 +63,20 @@
                 </div>
                 <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
         </td>
-        <td>
-          <input matInput name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
+        <td class="td-lg">
+          <input matInput onclick="this.select();" name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
         </td>
-        <td>
-          <input matInput name="ft" [(ngModel)]="item.plantingInfo.finishedTrays" [disabled]="true">
+        <td class="td-sm">
+          <input matInput onclick="this.select();" name="ft" [(ngModel)]="item.plantingInfo.finishedTrays" [disabled]="true">
         </td>
-        <td>
-          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" [disabled]="true">
+        <td class="td-sm">
+          <input matInput onclick="this.select();" name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" [disabled]="true">
         </td>
-        <td>
-          <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" [disabled]="true">
+        <td class="td-md">
+          <input matInput onclick="this.select();" name="b_no" [(ngModel)]="item.plantingInfo.houseBay" [disabled]="true">
         </td>
-        <td *ngFor="let loc of appSharedService.currentGreenHouseLocation.shipToLocations;let ind = index">
-          <input matInput type="number" name="stchi" [(ngModel)]="item.shipToInfo[loc]" (blur)="updatePlugToDeliverData(item)">
+        <td class="td-sm" *ngFor="let loc of appSharedService.currentGreenHouseLocation.shipToLocations;let ind = index">
+          <input matInput onclick="this.select();" type="number" name="stchi" [(ngModel)]="item.shipToInfo[loc]" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td></td>
       </tr>

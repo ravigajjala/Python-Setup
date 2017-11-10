@@ -98,6 +98,7 @@ export class MasterViewComponent implements OnInit {
     this.totalCount = 0;
     this.totalBalanceCount = 0;
     this.deliveredTotal = [];
+    this.sumPlantsDelivered = 0;
     for (let i = 0; i < this.filteredVariety.length; i++) {
       this.totalCount = this.totalCount + parseInt(this.filteredVariety[i].salableInfo.totalFlatsToSale || 0)
       this.totalBalanceCount = this.totalBalanceCount + parseInt(this.filteredVariety[i].plantingInfo.finishedTrays || 0)
@@ -114,7 +115,6 @@ export class MasterViewComponent implements OnInit {
         return sum + parseInt(value || 0);
       }, 0);  
     }
-    //this.updatePlugToDeliverData(item);
 
   }
 
@@ -166,10 +166,9 @@ export class MasterViewComponent implements OnInit {
 
     let totalModel = {};
       totalModel['"'+this.location+'"']='Total';
-      //totalModel['Item Description']=null;
-      totalModel['Seed Lot Number']= null;
-      totalModel['Locator']= null;
-      totalModel['House#/Bay#']= null;
+      totalModel['Seed Lot Number']= [];
+      totalModel['Locator']= [];
+      totalModel['House#/Bay#']= [];
       totalModel['Total Flats To Sale']=this.totalCount;
       
       for(let j=0; j < this.appSharedService.routeTotal.length;j++){
@@ -177,10 +176,10 @@ export class MasterViewComponent implements OnInit {
       }
 
       totalModel['Delivered']= this.sumPlantsDelivered;
-      totalModel['Discarded']=null;
-      totalModel['Reason Code']= null;
+      totalModel['Discarded']=[];
+      totalModel['Reason Code']= [];
       totalModel['Total Balance']=this.totalBalanceCount;
-      totalModel['Check']=null;
+      totalModel['Check']=[];
     exportRecords.push(totalModel);
 
     new Angular2Csv(exportRecords, "BonnieReport", {headers:Object.keys(exportRecords[0]), fielddSeparator:','});

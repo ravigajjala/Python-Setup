@@ -34,8 +34,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.appSharedService.addLocation().subscribe(
-      // resp => {
         this.appSharedService.getLocations().subscribe(
           locations => {
             this.appSharedService.locations = locations;
@@ -57,8 +55,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
             console.log(err);
           }
         );
-      // }
-    // );
     this.appSharedService.currentMessage.subscribe(message => this.message = message);
   }
 
@@ -71,21 +67,18 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            //console.log("current status: " aaaa"print the fields value "+ key +" cond: " + (!val.plugTray[key] && isNaN(val.plugTray[key])));
             if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0) 
             || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode) 
             || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
-            
               current_status = false;
               break;
             } else {
-              //console.log("its making current_startus to true for key "+ key);
               current_status= true;
             }
           }
         }
 
-        let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+        let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
         console.log("current_status " +current_status + " check err -- " +errCheck);
         if(current_status && !errCheck){
           console.log("updating the type");
@@ -117,11 +110,9 @@ export class OrganicTrackerSheetComponent implements OnInit {
   }
 
   updateNotifStatus(val, index): void {
-///alert("a2");
-  //  debugger;
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
+      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
       if(!errCheck){
         // iterate through each key in object
         for (const key in val.plugTray) {
@@ -134,9 +125,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
             } else {
               this.plugNotifStatus[index] = true;
             }
-           
           }
-
         }
       }
       else {
@@ -165,7 +154,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
         this.appSharedService.changeMessage('updated_location');
-        //this.plugNotifStatus = [];
         this.appSharedService.varietyOptions.forEach((val, index) => {
           this.updateNotifStatus(val, index);
         });

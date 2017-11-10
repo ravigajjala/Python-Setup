@@ -39,9 +39,6 @@ class CreatePlugToDeliver(APIRequest):
         try:
             plug_to_deliver = json.loads(self.request.body)
             print plug_to_deliver
-            print plug_to_deliver['appStoreDelivery'].get('routeNumberSale')
-            print plug_to_deliver['appStoreDelivery'].get('delivered')
-            print plug_to_deliver['appStoreDelivery'].get('reasonCode')
             final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
                 type=plug_to_deliver['type'],
@@ -54,7 +51,7 @@ class CreatePlugToDeliver(APIRequest):
                 plugTray=PlugTray(
                     plugFlatsReceived=plug_to_deliver['plugTray'].get('plugFlatsReceived', None),
                     dateReceived=plug_to_deliver['plugTray'].get('dateReceived', None),
-                    plugFlatsPlotted=plug_to_deliver['plugTray'].get('plugFlatsPlotted', None),
+                    plugFlatsPotted=plug_to_deliver['plugTray'].get('plugFlatsPotted', None),
                     plugFlatsDiscarded=plug_to_deliver['plugTray'].get('plugFlatsDiscarded', None),
                     reasonsCode=plug_to_deliver['plugTray'].get('reasonsCode', None),
                     seedLotNumber=plug_to_deliver['plugTray'].get('seedLotNumber', None)
@@ -85,11 +82,9 @@ class CreatePlugToDeliver(APIRequest):
                     discarded=plug_to_deliver['appStoreDelivery'].get('discarded', None),
                     reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None),
 	                check=plug_to_deliver['appStoreDelivery'].get('check', None),
-                    routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale',[]),
-                    totalCount=plug_to_deliver['appStoreDelivery'].get('totalCount', None)
+                    routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale',[])
                 )
             )
-            print final_plug_to_deliver_data
             final_plug_to_deliver_data.put()
         except Exception as e:
             logging.error(e)

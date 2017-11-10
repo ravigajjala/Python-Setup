@@ -40,7 +40,6 @@ export class ReceivingFromOtherStationsComponent implements OnInit {
       'Locator Number',
       'House#/Bay#',
       'Quantity',
-      'Locator #',
       '#Discarded',
       'Reason Code'
     ];

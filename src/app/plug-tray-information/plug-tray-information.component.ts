@@ -83,8 +83,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   setNotifStatus(val, index) {
     const currentStatus = this.plugNotifStatus[index];
     if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPlotted > val.plugTray.plugFlatsReceived);
-      console.log("checking errro case ", val.plugTray.plugFlatsPlotted, val.plugTray.plugFlatsReceived, errCheck);
+      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+      console.log("checking errro case ", val.plugTray.plugFlatsPotted, val.plugTray.plugFlatsReceived, errCheck);
       if(!errCheck){
         // iterate through each key in object
         for (const key in val.plugTray) {
@@ -97,7 +97,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
             } else {
               this.plugNotifStatus[index] = true;
             }
-            
           }
         }
       }
@@ -131,16 +130,15 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     ];
 
     this.heads = [
+      'Date Received',
       'Plug Flats Received',
-      'Date received',
-      'Plug Flats Potted',
       'Plug Flats Discarded',
-      'Reasons Code',
-      'Seed Lot Number'
+      'Reason Code',
+      'Plug Flats Potted',
+      'Seed Lot Number',
     ];
 
     this.reasonCodes = [
-      { 'code': null, 'reason': null},
       { 'code': 'A', 'reason': 'Poor germ' },
       { 'code': 'B', 'reason': 'Pest issue' },
       { 'code': 'C', 'reason': 'irrigation problems' },
@@ -178,12 +176,12 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
         this.loader = false;
       },
       err => {
-        console.log('Unable to retrive green house plants list');
+        console.log('Unable to retrieve green house plants list');
       });
   }
 
   /**
-   * [When user selects a variety from typeahed it creates a new object entry in the Kind]
+   * [When user selects a variety from typeahead it creates a new object entry in the Kind]
    * [Here preparing new object with all screens properties]
    * [Then calling createPlugToDeliverData function by passing prepared new object]
    */

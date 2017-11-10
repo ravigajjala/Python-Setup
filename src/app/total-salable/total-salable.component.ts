@@ -28,7 +28,8 @@ export class TotalSalableComponent implements OnInit {
       'Finished trays',
       'Locator #',
       'House#/Bay#',
-      ['#Discarded', 'Reason Code'],
+      '#Discarded', 
+      'Reason Code',
       'Total Flats to Sale'
     ];
 
@@ -70,7 +71,6 @@ export class TotalSalableComponent implements OnInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
-    /** uncomment th ebelow line to totalFlatsToSale value through API*/
     plugToDeliverData.salableInfo.totalFlatsToSale = plugToDeliverData.plantingInfo.finishedTrays - plugToDeliverData.salableInfo.discarded;
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },

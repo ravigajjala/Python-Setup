@@ -34,9 +34,9 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
     ];
     this.heads2 = [
       'Seed Lot Number',
-      'Plug Flats Plotted',
-      'Finished Trays',
+      'Plug Flats Potted',
       'Locator Number',
+      'Finished Trays',
       'Potted Date',
       'House#/Bay#'
     ];
