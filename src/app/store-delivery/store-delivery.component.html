@@ -69,7 +69,8 @@
           <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
         </td>
         <td class="td-xs" *ngFor="let route of appSharedService.routesToShow;let in = index;">
-          <input matInput onclick="this.select();" type="number" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]">
+          
+          <input matInput onclick="this.select();" type="number" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in][route]">
         </td>
         <td class="td-sm">
           <span>{{deliveredTotal[i] || item.appStoreDelivery.delivered}}</span>

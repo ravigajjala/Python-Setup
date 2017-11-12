@@ -73,6 +73,23 @@ export class MasterViewComponent implements OnInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
+        for(let j=0;j<res.length; j++){
+          if(!res[j].appStoreDelivery.routeNumberSale){
+            res[j].appStoreDelivery.routeNumberSale = [];
+          }
+          for(let i =0;i<this.appSharedService.routesToShow.length;i++){
+            if(res[j].appStoreDelivery.routeNumberSale[i]){
+              res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]]:0;
+            }
+            else {
+              let tmpObj = {};
+              tmpObj[this.appSharedService.routesToShow[i]] = null;
+              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
+            }
+          
+          }          
+        }
+        this.appSharedService.varietyOptions = res;
         this.filteredVariety = this.appSharedService.varietyOptions = res;
         this.totalCount = this.totalBalanceCount = this.sumPlantsDelivered = 0;
         res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0)});
@@ -103,11 +120,11 @@ export class MasterViewComponent implements OnInit {
       this.totalCount = this.totalCount + parseInt(this.filteredVariety[i].salableInfo.totalFlatsToSale || 0)
       this.totalBalanceCount = this.totalBalanceCount + parseInt(this.filteredVariety[i].plantingInfo.finishedTrays || 0)
       if (this.filteredVariety[i].appStoreDelivery.routeNumberSale.length > 0) {
-        this.appSharedService.routeTotal[index] += (parseInt(this.filteredVariety[i].appStoreDelivery.routeNumberSale[index]) || 0);
+        this.appSharedService.routeTotal[index] += (parseInt(Object.values(this.filteredVariety[i].appStoreDelivery.routeNumberSale[index])[0]) || 0);
       }
       this.deliveredTotal[i] = this.filteredVariety[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
         if (value) {
-          return sum + parseInt(value || 0);
+          return sum + parseInt(Object.values(value)[0] || 0);
         }
       }, 0);
       this.filteredVariety[i].appStoreDelivery.delivered = this.deliveredTotal[i];
