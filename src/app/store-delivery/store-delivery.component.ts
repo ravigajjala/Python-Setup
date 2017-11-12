@@ -18,7 +18,7 @@ export class StoreDeliveryComponent implements OnInit {
   public totalCount = 0;
   public totalBalanceCount = 0;
   constructor(private appSharedService: AppSharedService,
-    public router: Router) { }
+  public router: Router) { }
 
   ngOnInit() {
     this.heads6 = [
@@ -117,11 +117,13 @@ export class StoreDeliveryComponent implements OnInit {
       if (this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.length > 0) {
         this.appSharedService.routeTotal[index] += (parseInt(this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale[index]) || 0);
       }
+      console.log("deliveryt...", this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale);
       this.deliveredTotal[i] = this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
-        if (value) {
+      
           return sum + parseInt(value || 0);
-        }
+      
       }, 0);
+      console.log("this my delivery totla", this.deliveredTotal);
       this.appSharedService.varietyOptions[i].appStoreDelivery.delivered = this.deliveredTotal[i];
       this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
         return sum + parseInt(value || 0);
@@ -131,6 +133,5 @@ export class StoreDeliveryComponent implements OnInit {
     item.appStoreDelivery.check = parseInt(item.salableInfo.totalFlatsToSale || 0) - parseInt(item.appStoreDelivery.delivered || 0);
     this.updatePlugToDeliverData(item);
     }
-
   }
 }
