@@ -8,6 +8,8 @@ import { MatAutocompleteTrigger } from '@angular/material';
 import { ShipToInfo } from '../providers/classes/plantInfo.class';
 import { PlugToDeliver } from '../providers/classes/plantInfo.class';
 
+import { User, Plant, Location } from '../providers/classes/plantInfo.class';
+
 @Component({
   selector: 'app-ship-to-other-stations',
   templateUrl: './ship-to-other-stations.component.html',
@@ -35,7 +37,8 @@ export class ShipToOtherStationsComponent implements OnInit {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
   ngOnInit() {
-
+    console.log(this.appSharedService.varietyOptions);
+    console.log(this.appSharedService.currentGreenHouseLocation);
     // Retrieving Locations
     this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
 
@@ -58,60 +61,77 @@ export class ShipToOtherStationsComponent implements OnInit {
     });
   }
 
-  addShipToLoc(event, newlocation): void {
-    const locationName = newlocation.city + ', ' + newlocation.state;
-    this.appSharedService.currentGreenHouseLocation.shipToLocations.push(locationName);
-    // const totalQtyObj = { locationName: undefined };
-    // this.appSharedService.currentGreenHouseLocation.shipToTotalQty.push(totalQtyObj);
+
+  /**
+     * [Invoking when user selects a location from the location dropdown]
+     * [It removes the selected location from the dropdown first]
+     * [Then it pushes the selected location into currentGreenHouseLocation.shipToLocations]
+     * [Also it creates new shipTo obj in varieties]
+     */
+  addShipToLoc(event: Event, newlocation, index: number): void {
+    this.locations.splice(this.locations.indexOf(newlocation), 1);
+    newlocation.shipToTotalQuantities = 0;
+    this.appSharedService.currentGreenHouseLocation.shipToLocations.push(newlocation);
+    // Creating new shipToObj
+    const shipToObj = {
+      city: newlocation.city,
+      state: newlocation.state,
+      disableInput: false,
+      qty: null
+    };
+    this.appSharedService.varietyOptions.forEach(obj => {
+      obj.shipToInfo.push(shipToObj);
+      this.appSharedService.updatePlugToDeliverData(obj).subscribe(
+        res => { },
+        err => console.log(err)
+      );
+    });
     this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation)
       .subscribe(
       res => this.appSharedService.getLocations().subscribe(
-        locations => this.appSharedService.locations = locations,
+        locations => {
+          this.appSharedService.locations = locations;
+        },
         err => console.log(err)
       ),
       err => console.log(err)
       );
-    this.locations.splice(this.locations.indexOf(newlocation), 1);
-    this.trigger.closePanel();
-    this.appSharedService.varietyOptions.forEach(obj => {
-      obj.shipToInfo[locationName] = 0;
-      this.appSharedService.updatePlugToDeliverData(obj).subscribe(
-        res => console.log(res),
-        err => console.log(err)
-      );
-    });
   }
 
   removeShipToLoc(locationName: string, index: number): void {
     this.appSharedService.currentGreenHouseLocation.shipToLocations.splice(index, 1);
-
     this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation)
       .subscribe(
       res => this.appSharedService.getLocations().subscribe(
-        locations => this.appSharedService.locations = locations,
+        locations => {
+          this.appSharedService.locations = locations;
+          this.appSharedService.varietyOptions.forEach(obj => {
+            obj.shipToInfo.splice(index, 1);
+            this.appSharedService.updatePlugToDeliverData(obj).subscribe(
+              response => console.log(response),
+              err => console.log(err)
+            );
+          });
+        },
         err => console.log(err)
       ),
       err => console.log(err)
       );
-
-    this.appSharedService.varietyOptions.forEach(obj => {
-      delete obj.shipToInfo[locationName];
-      this.appSharedService.updatePlugToDeliverData(obj).subscribe(
-        res => console.log(res),
-        err => console.log(err)
-      );
-    });
   }
 
-  shipColumn(locationName: string, event): void {
+  shipColumn(location: Location, index: number): void {
     this.appSharedService.varietyOptions.forEach(
       varietyObj => {
-        if (varietyObj.shipToInfo[locationName] !== undefined && varietyObj.shipToInfo[locationName] > 0) {
-          varietyObj.userGreenHouseLocation = locationName;
-          varietyObj.receivingInfo.quantity = varietyObj.shipToInfo[locationName];
-          varietyObj.receivingInfo.showReceiveButton = true;
-          varietyObj.receivingInfo.receivedInfoFromOtherStations = true;
-          varietyObj.receivedInfo.receivedFromLocation = this.appSharedService.currentGreenHouseLocation.city + ', ' +
+        if (varietyObj.shipToInfo[index] !== undefined && varietyObj.shipToInfo[index].qty > 0) {
+          varietyObj = Object.assign({}, varietyObj);
+          varietyObj.userGreenHouseLocation = `${location.city}, ${location.state}`;
+          varietyObj.docIdOfParentVariety = varietyObj.datastore_id;
+          varietyObj.receivingInfo.quantity = varietyObj.shipToInfo[index].qty;
+          varietyObj.showReceiveButton = true;
+          varietyObj.receivedInfoFromOtherStations = true;
+          varietyObj.receivedButonClicked = false;
+          varietyObj.shipToInfo[index].locatorNumber = `${location.locatorNumber}-${varietyObj.weekNumber}`;
+          varietyObj.receivingInfo.receivedFromLocation = this.appSharedService.currentGreenHouseLocation.city + ', ' +
             this.appSharedService.currentGreenHouseLocation.state;
           this.appSharedService.createPlugToDeliverData(varietyObj).subscribe(
             res => console.log(res),
@@ -122,16 +142,10 @@ export class ShipToOtherStationsComponent implements OnInit {
     );
   }
 
-  cancelShip(item) {
-    this.disabledColumns[item] = false;
-    this.appSharedService.shippedNumber--;
-  }
-
   getTotalOfColumn(locationName: string) {
-    this.appSharedService.currentGreenHouseLocation.shipToTotalQty[locationName] =
-      this.appSharedService.varietyOptions.reduce(function (a, b) {
-        return a + Number(b.shipToInfo[locationName] || 0);
-      }, 0);
+    this.appSharedService.varietyOptions.reduce(function (a, b) {
+      return a + Number(b.shipToInfo[locationName] || 0);
+    }, 0);
   }
 
   enableAutoCompleteSearch(): void {
@@ -143,12 +157,43 @@ export class ShipToOtherStationsComponent implements OnInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
    */
   // TODO:: Make shared function
-  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index: number): any {
+    console.log(this.appSharedService.currentGreenHouseLocation);
+    // TODO:: Sum up the quantities
+    this.appSharedService.currentGreenHouseLocation.shipToLocations[index].totalShipToQuantities = 0;
+    this.appSharedService.varietyOptions.forEach(variety => {
+      if (variety.shipToInfo[index].qty && variety.shipToInfo[index].qty > 0) {
+        this.appSharedService.currentGreenHouseLocation.shipToLocations[index].totalShipToQuantities = variety.shipToInfo[index].qty +
+          this.appSharedService.currentGreenHouseLocation.shipToLocations[index].totalShipToQuantities;
+      }
+    });
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
-      .subscribe(res => { },
-      err => {
+      .subscribe(res => {
+        this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
+          response => {
+            this.appSharedService.getLocations().subscribe(
+              locations => this.appSharedService.locations = locations,
+              locationsError => console.log(locationsError)
+            );
+          },
+          updateLocationError => console.log(updateLocationError)
+        );
+      },
+      updatePlugTOdeliverError => {
         console.log('Update error');
       });
+  }
+
+  inputErrorCheck(location: string, index: number): boolean {
+    let disable = false;
+    for (const variety of this.appSharedService.varietyOptions) {
+      if (variety.shipToInfo[index].qty && variety.shipToInfo[index].qty > 0 &&
+        variety.shipToInfo[index].qty > variety.plantingInfo.finishedTrays) {
+        disable = true;
+        break;
+      }
+    }
+    return disable;
   }
 }
 

@@ -67,28 +67,30 @@ export class ReceivingFromOtherStationsComponent implements OnInit {
    * @return it returns all varities from plugToDeliver Kind
    */
   // TODO:: Make shared function
-  getPlugToDeliverData() {
+  getPlugToDeliverData(): any {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
+        this.appSharedService.varietyOptions = res;
+        this.getPlugToDeliverDataForReceivedInfoScreen();
+      },
+      err => {
+        console.log('Plug to deliver data retrive error');
+      }
+    );
+  }
 
-        for(let j=0;j<res.length; j++){
-          if(!res[j].appStoreDelivery.routeNumberSale){
-            res[j].appStoreDelivery.routeNumberSale = [];
+  getPlugToDeliverDataForReceivedInfoScreen(): any {
+    return this.appSharedService.getPlugToDeliverDataForReceivedInfoScreen().subscribe(
+      receivedVarieties => {
+        let receivedButtonCount = 0;
+        receivedVarieties.forEach(
+          variety => {
+            if (variety.showReceiveButton) {
+              receivedButtonCount += 1;
+            }
           }
-          for(let i =0;i<this.appSharedService.routesToShow.length;i++){
-            if(res[j].appStoreDelivery.routeNumberSale[i]){
-              res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]]:0;
-            }
-            else {
-              let tmpObj = {};
-              tmpObj[this.appSharedService.routesToShow[i]] = null;
-              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
-            }
-          
-          }          
-        }
-        this.appSharedService.varietyOptions = res;
-        this.appSharedService.varietyOptions = res;
+        );
+        this.appSharedService.receivedVarietiesCountWithReceivedButton = receivedButtonCount;
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -101,17 +103,24 @@ export class ReceivingFromOtherStationsComponent implements OnInit {
    * @param  {PlugToDeliver}   plugToDeliverData [plugToDeliver object sending from when user input value change]
    */
   // TODO:: Make shared function
-  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+  updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, receiveButtonClicked: boolean): any {
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
-      .subscribe(res => { },
+      .subscribe(res => {
+        if (receiveButtonClicked) {
+          this.appSharedService.updatePlugToDeliverDataOfTheParentVariety(plugToDeliverData).subscribe(
+            response => { },
+            error => console.log(error)
+          );
+        }
+      },
       err => {
         console.log('Update error');
       });
   }
 
   receivePlant(item): void {
-    item.receivingInfo.receivedButonClicked =  true;
-    item.receivingInfo.showReceiveButton = false;
-    this.updatePlugToDeliverData(item);
+    item.receivedButonClicked = true;
+    item.showReceiveButton = false;
+    this.updatePlugToDeliverData(item, true);
   }
 }

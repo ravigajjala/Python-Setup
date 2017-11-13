@@ -14,7 +14,8 @@
       </mat-menu>
     </div>
     <mat-form-field>
-      <mat-select placeholder="Location" [(ngModel)]="appSharedService.currentGreenHouseLocation" (change)="locationChange()" name="location" class="input-white sec1-select">
+      <mat-select placeholder="Location" [(ngModel)]="appSharedService.currentGreenHouseLocation" (change)="locationChange()" name="location"
+        class="input-white sec1-select">
         <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
           {{location.city}}, {{location.state}}
         </mat-option>
@@ -23,39 +24,40 @@
   </div>
   <mat-list>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }" [routerLink]="['/app-organic-tracker-sheet/app-plug-tray-information']">
-        Plug tray information
-      <div class="notif-number" (click)="moveToNextStage('PLANTING')">
-        <i class="material-icons valign_middle">arrow_downward</i>
-        {{appSharedService.totalNotif}}
+      Plug tray information
+      <div class="notif-number" *ngIf="appSharedService.totalNotif>0">
+        <i class="material-icons valign_middle">arrow_downward</i> {{appSharedService.totalNotif}}
       </div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-planting-information' }" [routerLink]="['/app-organic-tracker-sheet/app-planting-information']">
-        Planting information
+      Planting information
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-receiving-from-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-receiving-from-other-stations']">
-        Receiving
+      Receiving
+      <div class="notif-number">
+       <i class="material-icons valign_middle">arrow_downward</i> {{ appSharedService.receivedVarietiesCountWithReceivedButton }}
+      </div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-ship-to-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-ship-to-other-stations']">
-        Ship to
+      Ship to
       <div class="notif-number">
-        <i class="material-icons valign_middle">arrow_forward</i>
-        {{appSharedService.shippedNumber}}
+        <i class="material-icons valign_middle">arrow_forward</i> {{appSharedService.shippedNumber}}
       </div>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-total-salable' }" [routerLink]="['/app-organic-tracker-sheet/app-total-salable']">
-        Total salable
+      Total salable
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-store-delivery' }" [routerLink]="['/app-organic-tracker-sheet/app-store-delivery']">
-        To store delivery/balance
+      To store delivery/balance
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-master-view' }" [routerLink]="['/app-organic-tracker-sheet/app-master-view']">
-        Master view
+      Master view
     </mat-list-item>
     <mat-divider></mat-divider>
     <!-- <mat-list-item (click)="loginService.logout()">

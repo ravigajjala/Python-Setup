@@ -15,7 +15,7 @@ import { AppSharedService } from '../providers/services/app-shared.service';
 import { PlugToDeliver } from '../providers/classes/plantInfo.class';
 import { ShipToInfo } from '../providers/classes/plantInfo.class';
 
-import {IconDialogComponent} from '../icon-dialog/icon-dialog.component';
+import { IconDialogComponent } from '../icon-dialog/icon-dialog.component';
 
 @Component({
   selector: 'app-plug-tray-information',
@@ -27,6 +27,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public heads = [];
   public reasonCodes = [];
   public optionsData = [];
+  public cols = [];
   public myControl: FormControl;
   public varietyControl: FormControl;
   public mergeClickBool = false;
@@ -35,7 +36,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public PlugTrayForm: FormGroup;
   public weekNumber: number;
   private plugNotifStatus = [];
-  private type: string = "PLUG";
 
   public options = [
     {
@@ -63,62 +63,13 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog
   ) {
     this.appSharedService.varietyOptions = this.appSharedService.varietyOptions || [];
-    console.log('Varieties');
-    console.log(this.appSharedService.varietyOptions);
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
     this.loader = true;
+
   }
 
   @ViewChild(MatAutocompleteTrigger) trigger;
-
-  getTotalOfColumn(array, key) {
-    const total = array.reduce(function (a, b) {
-      return a + b[key];
-    }, 0);
-    return total;
-  }
-
-
-  setNotifStatus(val, index) {
-    const currentStatus = this.plugNotifStatus[index];
-    if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
-      console.log("checking errro case ", val.plugTray.plugFlatsPotted, val.plugTray.plugFlatsReceived, errCheck);
-      if(!errCheck){
-        // iterate through each key in object
-        for (const key in val.plugTray) {
-          if (val.plugTray.hasOwnProperty(key)) {
-            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0) 
-            || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode) 
-            || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
-              this.plugNotifStatus[index] = false;
-              break;
-            } else {
-              this.plugNotifStatus[index] = true;
-            }
-          }
-        }
-      }
-      else {
-        this.plugNotifStatus[index] = false;
-      }
-
-      if (!currentStatus) {
-        if (this.plugNotifStatus[index]) {
-          this.appSharedService.totalNotif++;
-        }
-      } else {
-        if (!this.plugNotifStatus[index]) {
-          this.appSharedService.totalNotif--;
-        }
-      }
-    }
-  }
-
-  mergeClick(e: any, mergeText: string) {
-    mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
-  }
 
   ngOnInit() {
     this.appSharedService.sendUserRelatedInfo().subscribe(
@@ -154,6 +105,44 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.getGreenHouseVarities();
   }
 
+  getTotalOfColumn(array, key) {
+    const total = array.reduce(function (a, b) {
+      return a + b[key];
+    }, 0);
+    return total;
+  }
+
+
+  setNotifStatus(val, index) {
+    const currentStatus = this.plugNotifStatus[index];
+
+    // iterate through each key in object
+    for (const key in val.plugTray) {
+      if (val.plugTray.hasOwnProperty(key)) {
+        if (!val.plugTray[key]) {
+          this.plugNotifStatus[index] = false;
+          break;
+        } else {
+          this.plugNotifStatus[index] = true;
+        }
+      }
+    }
+
+    if (!currentStatus) {
+      if (this.plugNotifStatus[index]) {
+        this.appSharedService.totalNotif++;
+      }
+    } else {
+      if (!this.plugNotifStatus[index]) {
+        this.appSharedService.totalNotif--;
+      }
+    }
+  }
+
+  mergeClick(e: any, mergeText: string) {
+    mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
+  }
+
   displayFn(order): string {
     this.newPlant = { ...order };
     return null;
@@ -183,6 +172,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   /**
    * [When user selects a variety from typeahead it creates a new object entry in the Kind]
    * [Here preparing new object with all screens properties]
+   * [Pushing new shipToObj based on shipToLocations array in the currentGreenHouseLocation]
    * [Then calling createPlugToDeliverData function by passing prepared new object]
    */
   addPlant(event, newPlant) {
@@ -197,8 +187,21 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       tempNewPlant.receivingInfo = Object.assign({}, newPlant.receivingInfo);
       tempNewPlant.salableInfo = Object.assign({}, newPlant.salableInfo);
       tempNewPlant.appStoreDelivery = Object.assign({}, newPlant.appStoreDelivery);
-      tempNewPlant.shipToInfo = Object.assign({}, newPlant.shipToInfo);
-      tempNewPlant.type = this.type;
+      tempNewPlant.shipToInfo = []; // Array of shipto locations Objects
+      // Creating new shipToObj
+      const shipToObj = {
+        city: '',
+        state: '',
+        disableInput: false,
+        qty: null
+      };
+      // Pushing shipToObj to variety shipToInfo array based on shipToLocations array in currentGreenHouseLocation
+      this.appSharedService.currentGreenHouseLocation.shipToLocations = this.appSharedService.currentGreenHouseLocation.shipToLocations.map(
+        location => {
+          shipToObj.city = location.city;
+          shipToObj.state = location.state;
+          tempNewPlant.shipToInfo.push(shipToObj);
+        });
       this.createPlugToDeliverData(tempNewPlant);
     }
     this.trigger.closePanel();
@@ -258,34 +261,14 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
-        for(let j=0;j<res.length; j++){
-          if(!res[j].appStoreDelivery.routeNumberSale){
-            res[j].appStoreDelivery.routeNumberSale = [];
-          }
-          for(let i =0;i<this.appSharedService.routesToShow.length;i++){
-            if(res[j].appStoreDelivery.routeNumberSale[i]){
-              res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]]:0;
-            }
-            else {
-              let tmpObj = {};
-              tmpObj[this.appSharedService.routesToShow[i]] = null;
-              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
-            }
-          
-          }          
-        }
-        this.appSharedService.varietyOptions = res;
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
-        
-        console.log(res);
         this.appSharedService.varietyOptions.forEach((val, index) => {
-          this.plugNotifStatus = [];
           this.setNotifStatus(val, index);
         });
       },
       err => {
-        console.log('Plug to deliver data retrive error');
+        console.log('Plug to deliver data retrieve error');
       }
     );
   }
@@ -296,7 +279,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index): any {
-    plugToDeliverData.plugTray.reasonsCode = plugToDeliverData.plugTray.plugFlatsDiscarded === 0 ? null : plugToDeliverData.plugTray.reasonsCode;
     this.setNotifStatus(plugToDeliverData, index);
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
@@ -312,6 +294,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    */
   calculateWeekNumber(date: Date, plugToDeliverData: PlugToDeliver) {
     const weekNumber = moment(date).week();
+    plugToDeliverData.plantingInfo.locatorNumber = this.appSharedService.currentGreenHouseLocation.locatorNumber + '-' + weekNumber;
     plugToDeliverData.weekNumber = weekNumber;
   }
 }

@@ -19,8 +19,7 @@ class Locations(ndb.Model):
     last_name = ndb.StringProperty()
     email = ndb.StringProperty()
     locatorNumber = ndb.IntegerProperty()
-    shipToLocations = ndb.StringProperty(repeated=True)
-    routes = ndb.IntegerProperty(repeated=True)
+    shipToLocations = ndb.JsonProperty(repeated=True)
 
 class Users(ndb.Model):
     name = ndb.StringProperty()
@@ -44,40 +43,39 @@ class PlantingInfo(ndb.Model):
     houseBay = ndb.StringProperty()
 
 class ReceivingInfo(ndb.Model):
-    houseBay = ndb.StringProperty()
     quantity = ndb.IntegerProperty()
     locator = ndb.StringProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
-
-class ShipToInfo(ndb.Expando):
-    locatorNumber = ndb.IntegerProperty()
+    receivedFromLocation = ndb.StringProperty()
 
 class SalableInfo(ndb.Model):
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
-    totalFlatsToSale = ndb.IntegerProperty()
+    totalFlatsToSale = ndb.StringProperty()
 
 class AppStoreDelivery(ndb.Model):
     delivered = ndb.IntegerProperty()
+    routeNumberSale = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
-    check = ndb.IntegerProperty()
-    routeNumberSale = ndb.JsonProperty(repeated=True)
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
-    type = ndb.StringProperty()
     url = ndb.StringProperty()
     color_id = ndb.StringProperty()
+    docIdOfParentVariety = ndb.IntegerProperty()
     weekNumber = ndb.IntegerProperty()
     userId = ndb.StringProperty()
     userGreenHouseLocation = ndb.StringProperty()
     receivedInfoFromOtherStations = ndb.BooleanProperty()
+    showReceiveButton = ndb.BooleanProperty()
+    receivedButonClicked = ndb.BooleanProperty()
+    screenName = ndb.StringProperty()
     plugTray = ndb.StructuredProperty(PlugTray)
     plantingInfo = ndb.StructuredProperty(PlantingInfo)
     receivingInfo = ndb.StructuredProperty(ReceivingInfo)
-    shipToInfo = ndb.StructuredProperty(ShipToInfo)
+    shipToInfo = ndb.JsonProperty(repeated=True)
     salableInfo = ndb.StructuredProperty(SalableInfo)
     appStoreDelivery = ndb.StructuredProperty(AppStoreDelivery)
 

@@ -34,7 +34,7 @@
                     <span [ngClass]="{'store-left':i==0}"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
               </td>
               <ng-container *ngIf="i==4">
-                  <ng-container *ngFor="let trow of appSharedService.routesToShow">
+                  <ng-container *ngFor="let trow of head">
                       <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} <i class="material-icons rotate_45 print-icon valign_middle">print</i></span></td>
                   </ng-container>
               </ng-container>
@@ -47,7 +47,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i=index;"
-        class="form-input-model" [hidden]="item.type !=='PLANTING'">
+        class="form-input-model">
         <td>
           <div class="icon-box" (click)="appSharedService.openDialog(item)">
             <svg class="icon" [ngClass]="item.color_id">
@@ -66,30 +66,29 @@
           <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
         </td>
         <td class="td-sm">
-          <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
+          <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
+          <!--<span>{{(item.plantingInfo.finishedTrays -item.shipToInfo.totalShipToQuantities) - item.salableInfo.discarded || 0}}</span>-->
         </td>
-        <td class="td-xs" *ngFor="let route of appSharedService.routesToShow;let in = index;">
-          
-          <input matInput onclick="this.select();" type="number" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in][route]">
+        <td class="td-xs" *ngFor="let route of heads6[4];let in = index;">
+          <input matInput onclick="this.select();" name="sixtyeight">
         </td>
         <td class="td-sm">
-          <span>{{deliveredTotal[i] || item.appStoreDelivery.delivered}}</span>
+          <span>{{item.receivingInfo.quantity || 0}}</span>
         </td>
         <td class="td-sm">
           <input matInput onclick="this.select();" type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
         </td>
         <td class="td-sm">
-          <mat-select placeholder="" #select="matSelect" [disabled]="!item.appStoreDelivery.discarded" [(ngModel)]="item.appStoreDelivery.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
+          <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.appStoreDelivery.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
             <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
             <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
           </mat-select>
         </td>
         <td class="td-sm">
-          <input matInput onclick="this.select();" name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
+          <input matInput onclick="this.select();" name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays">
         </td>
         <td class="td-xs">
-          {{(item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) : ""}} 
-          <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered == 0" (blur)="updatePlugToDeliverData(item)"></mat-checkbox>
+          <mat-checkbox class="example-margin"></mat-checkbox>
         </td>
       </tr>
       <tr>
@@ -97,12 +96,12 @@
         <td class="td-lg"></td>
         <td class="td-sm"></td>
         <td class="td-md"></td>
-        <td class="td-sm">{{totalCount}}</td>
-        <td class="td-xs" *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
-        <td class="td-sm"> {{sumPlantsDelivered}}</td>
+        <td class="td-sm" *ngFor="let totalVal of routeTotal"></td>
+        <td class="td-xs" *ngFor="let route of heads6[4];let in = index;"></td>
         <td class="td-sm"></td>
         <td class="td-sm"></td>
-        <td class="td-sm"> {{totalBalanceCount}}</td>
+        <td class="td-sm"></td>
+        <td class="td-sm"></td>
         <td class="td-xs"></td>
       </tr>
     </tbody>

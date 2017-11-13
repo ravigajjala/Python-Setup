@@ -59,22 +59,19 @@
       </td>
 
       <td class="td-sm">
-        <input matInput type="number" name="q" [(ngModel)]="item.receivingInfo.quantity" [disabled]="!item.receivingInfo.receivedButonClicked" (blur)="updatePlugToDeliverData(item)">
+        <input matInput type="number" name="q" [(ngModel)]="item.receivingInfo.quantity" [disabled]="!item.receivedButonClicked" (blur)="updatePlugToDeliverData(item, false)">
       </td>
       <td class="td-sm">
-        <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locator" [disabled]="!item.receivingInfo.receivedButonClicked" (blur)="updatePlugToDeliverData(item)">
+        <input matInput type="number" name="r_d" [(ngModel)]="item.receivingInfo.discarded" [disabled]="!item.receivedButonClicked" (blur)="updatePlugToDeliverData(item, false)">
       </td>
       <td class="td-sm">
-        <input matInput type="number" name="r_d" [(ngModel)]="item.receivingInfo.discarded" [disabled]="!item.receivingInfo.receivedButonClicked" (blur)="updatePlugToDeliverData(item)">
-      </td>
-      <td class="td-sm">
-        <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.receivingInfo.reasonCode" [disabled]="!item.receivingInfo.receivedButonClicked" (ngModelChange)="updatePlugToDeliverData(item)">
+        <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.receivingInfo.reasonCode" [disabled]="!item.receivedButonClicked" (ngModelChange)="updatePlugToDeliverData(item, false)">
           <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
           <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
         </mat-select>
       </td>
       <td>
-        <button mat-raised-button color="primary" (click)="receivePlant(item)" *ngIf="item.receivingInfo.showReceiveButton">Received</button>
+        <button mat-raised-button color="primary" (click)="receivePlant(item)" *ngIf="item.showReceiveButton">Received</button>
       </td>
     </tr>
   </tbody>

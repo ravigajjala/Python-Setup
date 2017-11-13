@@ -224,7 +224,7 @@ $purple: #4339AD;
     }
 
     .notif-number {
-        display:none;
+        display: inline-block;
         background-color: mat-color($accent, A200);
         color:rgba(0,0,0,.87);
         width: 36px;
@@ -241,7 +241,7 @@ $purple: #4339AD;
     }
 
     .active .notif-number{
-        display:inline-block;
+        display: inline-block;
     }
 }
 
@@ -281,6 +281,17 @@ $purple: #4339AD;
       width:120px !important;
     }
 
+}
+
+.disable-all {
+    .right-scroll {
+        input, .mat-form-field, .mat-select {
+            pointer-events: none !important;
+        }
+        thead .flex-display button {
+            pointer-events: none !important;
+        }
+    }
 }
 
 // =============================================//
@@ -695,9 +706,7 @@ table td span i {
     mat-select {
         margin-top:5px;
     }
-    .pos-relative{
-        position: relative;
-    }
+    
 }
 
 .error-overlay {

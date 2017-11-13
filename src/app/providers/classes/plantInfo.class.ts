@@ -1,6 +1,6 @@
 export class PlantingInfo {
-	finishedTrays: number;
-	locatorNumber: number;
+	finishedTrays: string;
+	locatorNumber: string;
 	pottedDate: Date;
 	houseBay: string;
 }
@@ -11,16 +11,18 @@ export class ReceivingInfo {
 	locator: string;
 	discarded: number;
 	reasonCode: string;
+	receivedFromLocation: string;
 }
 
 export class SalableInfo {
 	discarded: number;
 	reasonCode: string;
-	totalFlatsToSale: any;
 }
 
 export class AppStoreDelivery {
-	routeNumberSale: any[];
+	totalFlatstoSale: number;
+	// routeNumberSale: number[];
+	routeNumberSale: number;
 	discarded: number;
 	reasonCode: string;
 	check: boolean;
@@ -28,11 +30,13 @@ export class AppStoreDelivery {
 }
 
 export class ShipToInfo {
-	locatorNumber: number;
-	[key: string]: number;
+	quantity: number;
+	city: number;
+	disableInput: boolean;
 }
 
 export class Location {
+	code: string;
 	datastore_id: string;
 	city: string;
 	state: string;
@@ -40,8 +44,7 @@ export class Location {
 	lastName: string;
 	userEmail: string;
 	locatorNumber: number;
-	shipToLocations: string[];
-	routes: number[];
+	shipToLocations: any[]; // Todo:: Change the type
 }
 
 export class Plant {
@@ -64,13 +67,16 @@ export class User {
 export class PlugToDeliver {
 	weekNumber: number;
 	name: string;
-	type: string;
 	userGreenHouseLocation: string;
 	receivedInfoFromOtherStations: boolean;
+	showReceiveButton: boolean;
+	receivedButonClicked: boolean;
+	docIdOfParentVariety: number;
+	screenName: string;
 	plugTray: PlugTray;
 	plantingInfo: PlantingInfo;
 	receivingInfo: ReceivingInfo;
-	shipToInfo: ShipToInfo;
+	shipToInfo: ShipToInfo[];
 	salableInfo: SalableInfo;
 	appStoreDelivery: AppStoreDelivery;
 }
@@ -88,4 +94,13 @@ export class UserRelatedInfo {
 	lastRoute: string;
 	id: string;
 	datastore_id: string;
+}
+
+export class StoreDeliveryData {
+	delivered: number;
+	discarded: number;
+	reasonCode: string;
+	route: number;
+	routeone: number;
+	routetwo: number;
 }
