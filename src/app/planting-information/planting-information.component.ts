@@ -61,6 +61,23 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
+        for(let j=0;j<res.length; j++){
+          if(!res[j].appStoreDelivery.routeNumberSale){
+            res[j].appStoreDelivery.routeNumberSale = [];
+          }
+          for(let i =0;i<this.appSharedService.routesToShow.length;i++){
+            if(res[j].appStoreDelivery.routeNumberSale[i]){
+              res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.routesToShow[i]]:0;
+            }
+            else {
+              let tmpObj = {};
+              tmpObj[this.appSharedService.routesToShow[i]] = null;
+              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
+            }
+          
+          }          
+        }
+        this.appSharedService.varietyOptions = res;
         this.appSharedService.varietyOptions = res;
       },
       err => {
