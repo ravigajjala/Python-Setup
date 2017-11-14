@@ -1,4 +1,5 @@
 <div class="dialog-main-cont">
+    <form #formCtrl="ngForm">
     <h2>Manage Greenhouses</h2>
     <div class="user-table-cont head-title">
         <div class="user-col nameCol">FIRST NAME</div>
@@ -39,32 +40,32 @@
         <div *ngIf="ghEditList[i]">
             <div class="user-col nameCol">
                 <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="gh.firstName">
+                    <input matInput [(ngModel)]="ghEditList[i].firstName" name="firstName" required>
                 </mat-form-field>
             </div>
             <div class="user-col nameCol">
                 <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="gh.lastName">
+                    <input matInput [(ngModel)]="ghEditList[i].lastName" name="lastName" required>
                 </mat-form-field>
             </div>
             <div class="user-col-email">
                 <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="gh.email">
+                    <input matInput [(ngModel)]="ghEditList[i].email" name="email" required>
                 </mat-form-field>
             </div>
             <div class="user-col cityCol">
                 <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="gh.city">
+                    <input matInput [(ngModel)]="ghEditList[i].city" name="city" required>
                 </mat-form-field>
             </div>
             <div class="user-col stateCol">
                 <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="gh.state">
+                    <input matInput [(ngModel)]="ghEditList[i].state" name="state" required>
                 </mat-form-field>
             </div>
             <div class="user-col lcNumCol">
                 <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="gh.locatorNumber">
+                    <input matInput [(ngModel)]="ghEditList[i].locatorNumber" name="locatorNumber" required>
                 </mat-form-field>
             </div>
             <div class="user-col-del">
@@ -81,6 +82,7 @@
 
     <div class="btn-cont">
         <button mat-button (click)="closeDialog()">CLOSE</button>
-        <button mat-raised-button color="primary" (click)="saveGreenHouse()">SAVE</button>
+        <button mat-raised-button color="primary" [disabled]="!formCtrl.form.valid" (click)="saveGreenHouse()">SAVE</button>
     </div>
+</form>
 </div>

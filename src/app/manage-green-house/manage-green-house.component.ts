@@ -22,6 +22,15 @@ export class ManageGreenHouseComponent {
   public editLocation;
   public editLocatorNumber;
   public ghEditList = [];
+  private isValid = false;
+  public gh = {
+    firstName:null,
+    lastName:null,
+    city:null,
+    state:null,
+    email:null,
+    locatorNumber:null
+  };
 
   constructor(public appSharedService: AppSharedService,
     public dialogRef: MatDialogRef<ManageGreenHouseComponent>) {
@@ -34,6 +43,13 @@ export class ManageGreenHouseComponent {
 
   addGreenHouse(condition) {
     this.greenHouses.push(new Location());
+  }
+
+  validateLocation(){
+    if(this.gh.firstName && this.gh.lastName && this.gh.state && this.gh.email 
+      && this.gh.email && this.gh.locatorNumber){
+        this.isValid = true;
+    }
   }
 
   saveGreenHouse() {
