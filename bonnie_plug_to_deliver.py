@@ -47,6 +47,7 @@ class CreatePlugToDeliver(APIRequest):
                 
             final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
+                type=plug_to_deliver['type'],
                 userId=plug_to_deliver['userId'],
                 docIdOfParentVariety=plug_to_deliver.get('docIdOfParentVariety', None),
                 url=plug_to_deliver['url'],
@@ -80,16 +81,17 @@ class CreatePlugToDeliver(APIRequest):
                 ),
                 shipToInfo=plug_to_deliver['shipToInfo'], #Attaching the array directly
                 salableInfo=SalableInfo(
+                    finishedTrays=plug_to_deliver['salableInfo'].get('finishedTrays', None),
                     discarded=plug_to_deliver['salableInfo'].get('discarded', None),
                     reasonCode=plug_to_deliver['salableInfo'].get('reasonCode', None),
                     totalFlatsToSale=plug_to_deliver['salableInfo'].get('reasonCode', None)
                 ),
                 appStoreDelivery=AppStoreDelivery(
                     delivered=plug_to_deliver['appStoreDelivery'].get('delivered', None),
-	                routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale', None),
                     discarded=plug_to_deliver['appStoreDelivery'].get('discarded', None),
-                    reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None)
-	                # check=plug_to_deliver['appStoreDelivery'].get('check', None)
+                    reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None),
+	                check=plug_to_deliver['appStoreDelivery'].get('check', None),
+                    routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale',[])
                 )
             )
             final_plug_to_deliver_data.put()
@@ -103,6 +105,7 @@ class UpdatePlugToDeliver(APIRequest):
             # Retriving the entity using datastore_id
             plug_to_deliver = PlugToDeliver.get_by_id(body['datastore_id'])
             plug_to_deliver.name = body['name']
+            plug_to_deliver.type = body['type']
             plug_to_deliver.color_id = body['color_id']
             plug_to_deliver.docIdOfParentVariety=body['docIdOfParentVariety']
             plug_to_deliver.receivedInfoFromOtherStations=body['receivedInfoFromOtherStations']

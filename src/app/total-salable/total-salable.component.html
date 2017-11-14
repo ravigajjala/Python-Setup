@@ -37,7 +37,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model">
+    <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model" [hidden]="item.type !=='PLANTING'">
       <td>
           <div class="icon-box" (click)="appSharedService.openDialog(item)">
               <svg class="icon" [ngClass]="item.color_id">
@@ -59,18 +59,18 @@
       <td class="td-md">
         <input matInput onclick="this.select();" name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
       </td>
-      <td class="td-sm">
+      <td class="td-sm" [ngClass]="{'error-box':item.salableInfo.discarded > item.plantingInfo.finishedTrays}" matTooltip="Given input should be less than or equal to finishedTrays"
+          [matTooltipDisabled]="item.salableInfo.discarded <= item.plantingInfo.finishedTrays">
         <input matInput onclick="this.select();" type="number"  min="0" name="ts_d" [(ngModel)]="item.salableInfo.discarded" (blur)="updatePlugToDeliverData(item)">
       </td>
       <td class="td-sm">
-        <mat-select placeholder="" #select="matSelect" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
+        <mat-select placeholder="" #select="matSelect" [disabled]="!item.salableInfo.discarded" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
           <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
           <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
         </mat-select>
       </td>
       <td class="td-sm">
-        <span>{{item.plantingInfo.finishedTrays - item.salableInfo.discarded || 0}}</span>
-        <!--<span>{{(item.plantingInfo.finishedTrays - item.shipToInfo.totalShipToQuantities) - item.salableInfo.discarded || 0}}</span>-->
+        <input matInput name="totalsale" [(ngModel)]="item.salableInfo.totalFlatsToSale" (blur)="updatePlugToDeliverData(item)">
       </td>
     </tr>
   </tbody>

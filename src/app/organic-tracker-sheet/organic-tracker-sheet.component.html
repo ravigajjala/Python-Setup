@@ -24,9 +24,10 @@
   </div>
   <mat-list>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }" [routerLink]="['/app-organic-tracker-sheet/app-plug-tray-information']">
-      Plug tray information
-      <div class="notif-number" *ngIf="appSharedService.totalNotif>0">
-        <i class="material-icons valign_middle">arrow_downward</i> {{appSharedService.totalNotif}}
+        Plug tray information
+      <div class="notif-number" (click)="moveToNextStage('PLANTING')">
+        <i class="material-icons valign_middle">arrow_downward</i>
+        {{appSharedService.totalNotif}}
       </div>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -43,9 +44,9 @@
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-ship-to-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-ship-to-other-stations']">
       Ship to
-      <div class="notif-number">
+      <!-- <div class="notif-number">
         <i class="material-icons valign_middle">arrow_forward</i> {{appSharedService.shippedNumber}}
-      </div>
+      </div> -->
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-total-salable' }" [routerLink]="['/app-organic-tracker-sheet/app-total-salable']">

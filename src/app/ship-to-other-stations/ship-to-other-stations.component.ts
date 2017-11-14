@@ -8,7 +8,7 @@ import { MatAutocompleteTrigger } from '@angular/material';
 import { ShipToInfo } from '../providers/classes/plantInfo.class';
 import { PlugToDeliver } from '../providers/classes/plantInfo.class';
 
-import { User, Plant, Location } from '../providers/classes/plantInfo.class';
+import { User, Plant, Location, ShipToLocationInfo } from '../providers/classes/plantInfo.class';
 
 @Component({
   selector: 'app-ship-to-other-stations',
@@ -68,9 +68,18 @@ export class ShipToOtherStationsComponent implements OnInit {
      * [Then it pushes the selected location into currentGreenHouseLocation.shipToLocations]
      * [Also it creates new shipTo obj in varieties]
      */
-  addShipToLoc(event: Event, newlocation, index: number): void {
+  addShipToLoc(event: Event, location, index: number): void {
+    const newlocation: ShipToLocationInfo = {
+      city: location.city,
+      state: location.state,
+      firstName: location.firstName,
+      lastName: location.lastName,
+      userEmail: location.userEmail,
+      locatorNumber: location.locatorNumber,
+      totalShipToQuantities: 0
+    };
+    // TODO:: Removing location from the dropdown
     this.locations.splice(this.locations.indexOf(newlocation), 1);
-    newlocation.shipToTotalQuantities = 0;
     this.appSharedService.currentGreenHouseLocation.shipToLocations.push(newlocation);
     // Creating new shipToObj
     const shipToObj = {

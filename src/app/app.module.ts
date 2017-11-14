@@ -34,7 +34,6 @@ import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-ca
 // Import Pipes here
 import { SearchVarietiesPipe } from './pipes/varieties.pipe';
 import { ReceivingInfoPipe } from './pipes/receiving-info.pipe';
-
 const appRoutes: Routes = [
   {
     path: '',

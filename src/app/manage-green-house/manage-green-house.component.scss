@@ -1,6 +1,6 @@
 .dialog-main-cont {
     height: 600px;
-    width: 800px;
+    width: 956px;
     padding: 10px;
     h2 {
         font-size: 16px;
@@ -11,7 +11,7 @@
         padding: 3px;
         border-bottom: 1px solid #ddd;
         .user-col {
-            width: 18%;
+            width: 30%;
             display: inline-block;
         }
         .user-col-del {
@@ -27,13 +27,16 @@
             width:15%;
         }
         .stateCol {
-            width:7%;
+            width:8%;
         }
         .cityCol {
             width: 15%;
         }
         .lcNumCol {
-            width: 14%;
+            width: 10%;
+        }
+        .routesCol{
+            width: 7%;
         }
     }
     .head-title {

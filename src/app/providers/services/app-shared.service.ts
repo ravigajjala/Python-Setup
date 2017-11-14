@@ -2,29 +2,36 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, RequestOptions, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MatDialog } from '@angular/material';
+import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/mergeMap';
-
-import { MatDialog } from '@angular/material';
-import { IconDialogComponent } from '../../icon-dialog/icon-dialog.component';
 import { Location, Plant, PlugToDeliver, User, UserRelatedInfo } from '../classes/plantInfo.class';
 
 @Injectable()
 export class AppSharedService {
+    private messageSource = new BehaviorSubject<string>('UPDATED');
+    public currentMessage = this.messageSource.asObservable();
     private currentStage;
     public users: User[];
     public locations: Location[];
     public plants: Plant[];
     public varietyOptions: any[];
+    public varietyOptionsType: string; 
+    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING","RECEIVING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
     private isPlantNameSorted: boolean = false;
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
     public shippedNumber = 0;
     public totalNotif = 0;
     public userId: string = 'sainath8090';
+    //public currentGreenHouseLocation: any;
+    public routesToShow = [];
+    public routeTotal = [];
     public currentGreenHouseLocation: Location = undefined;
     public receivedVarietiesCountWithReceivedButton: number;
 
@@ -212,6 +219,7 @@ export class AppSharedService {
         "state": " AL",
         "email": "tim.trussell@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [60,61,62,63],
         "locatorNumber": 10
     },
     {
@@ -222,6 +230,7 @@ export class AppSharedService {
         "state": " GA",
         "email": "rydalga@bonniesales.com",
         "shipToLocations": [],
+        "routes": [71,72],
         "locatorNumber": 0
     },
     {
@@ -232,6 +241,7 @@ export class AppSharedService {
         "state": " GA",
         "email": "alvatonga@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [91,92,93],
         "locatorNumber": 59
     },
     {
@@ -242,6 +252,7 @@ export class AppSharedService {
         "state": " AL",
         "email": "dj.bonniefarm@hotmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -252,6 +263,7 @@ export class AppSharedService {
         "state": " AL",
         "email": "athensal@bonniesales.com",
         "shipToLocations": [],
+        "routes": [91,92],
         "locatorNumber": 19
     },
     {
@@ -262,6 +274,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "houstontx@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [11,12,13],
         "locatorNumber": 0
     },
     {
@@ -272,6 +285,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "beevilletx@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [1,2,3,4],
         "locatorNumber": 34
     },
     {
@@ -282,6 +296,7 @@ export class AppSharedService {
         "state": " MS",
         "email": "pearlms@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [7,8,9],
         "locatorNumber": 17
     },
     {
@@ -292,6 +307,7 @@ export class AppSharedService {
         "state": "LA",
         "email": "fosterreeves@gmail.com",
         "shipToLocations": [],
+        "routes": [27,28],
         "locatorNumber": 57
     },
     {
@@ -302,6 +318,7 @@ export class AppSharedService {
         "state": " FL",
         "email": "waverlyfl@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [31,32],
         "locatorNumber": 37
     },
     {
@@ -312,6 +329,7 @@ export class AppSharedService {
         "state": " FL",
         "email": "southfl@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [77,78,79],
         "locatorNumber": 64
     },
     {
@@ -322,6 +340,7 @@ export class AppSharedService {
         "state": " FL",
         "email": "BradTrussell@aol.com",
         "shipToLocations": [],
+        "routes": [67,68],
         "locatorNumber": 0
     },
     {
@@ -332,6 +351,7 @@ export class AppSharedService {
         "state": " CA",
         "email": "palaca@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [14,15],
         "locatorNumber": 0
     },
     {
@@ -342,6 +362,7 @@ export class AppSharedService {
         "state": " CA",
         "email": "randy.beasley@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [22,23],
         "locatorNumber": 48
     },
     {
@@ -352,6 +373,7 @@ export class AppSharedService {
         "state": " CA",
         "email": "watsonvilleca@bonniesales.com",
         "shipToLocations": [],
+        "routes": [87,88,89,90],
         "locatorNumber": 52
     },
     {
@@ -361,6 +383,7 @@ export class AppSharedService {
         "city": "Terra Bella",
         "state": " CA",
         "email": "marchiando@sbcglobal.net",
+        "routes": [81],
         "locatorNumber": 47
     },
     {
@@ -371,6 +394,7 @@ export class AppSharedService {
         "state": " CA",
         "email": "losangeles@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -380,6 +404,7 @@ export class AppSharedService {
         "city": "Chino Valley",
         "state": " AZ",
         "email": "bpfchino@cableone.net",
+        "routes": [81],
         "locatorNumber": 54
     },
     {
@@ -390,6 +415,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "tim.sherwood@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -400,6 +426,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "midlandtx@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 33
     },
     {
@@ -410,6 +437,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "whitesborotx@bonnieplans.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -430,6 +458,7 @@ export class AppSharedService {
         "state": " OK",
         "email": "bpfok32@yahoo.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 32
     },
     {
@@ -440,6 +469,7 @@ export class AppSharedService {
         "state": " NM",
         "email": "mcintoshnm@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 39
     },
     {
@@ -450,6 +480,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "abilenetx@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -460,6 +491,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "nick.schiavone@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -470,6 +502,7 @@ export class AppSharedService {
         "state": " NC",
         "email": "chuck.roten@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -480,6 +513,7 @@ export class AppSharedService {
         "state": " SC",
         "email": "spartanburgsc@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 24
     },
     {
@@ -490,6 +524,7 @@ export class AppSharedService {
         "state": " SC",
         "email": "bonnieplants1@yahoo.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 40
     },
     {
@@ -500,6 +535,7 @@ export class AppSharedService {
         "state": " NC",
         "email": "plantembonnie@yahoo.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -510,6 +546,7 @@ export class AppSharedService {
         "state": " NC",
         "email": "joewatbpfnc@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 43
     },
     {
@@ -520,6 +557,7 @@ export class AppSharedService {
         "state": " UT",
         "email": "grantsvilleutah67@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -530,6 +568,7 @@ export class AppSharedService {
         "state": " NV",
         "email": "aclinken@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 50
     },
     {
@@ -540,6 +579,7 @@ export class AppSharedService {
         "state": " NV",
         "email": "alfredo.perez@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -550,6 +590,7 @@ export class AppSharedService {
         "state": " TN",
         "email": "acalley4@netzero.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 18
     },
     {
@@ -560,6 +601,7 @@ export class AppSharedService {
         "state": " WV",
         "email": "charlestonwv@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -570,6 +612,7 @@ export class AppSharedService {
         "state": " TN",
         "email": "knoxvilletn@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 21
     },
     {
@@ -579,6 +622,7 @@ export class AppSharedService {
         "city": "Springfield",
         "state": "KY",
         "email": "jpadgettbpf@bellsouth.net",
+        "routes": [81],
         "locatorNumber": 35
 
     },
@@ -590,6 +634,7 @@ export class AppSharedService {
         "state": " VA",
         "email": "abingdonva@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 45
     },
     {
@@ -599,6 +644,7 @@ export class AppSharedService {
         "city": "Anabel",
         "state": " MO",
         "email": "showmebonnie@hughes.net",
+        "routes": [81],
         "locatorNumber": 16
     },
     {
@@ -609,6 +655,7 @@ export class AppSharedService {
         "state": " NY",
         "email": "waldenny@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -619,6 +666,7 @@ export class AppSharedService {
         "state": " WA",
         "email": "lavell.head@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 49
     },
     {
@@ -629,6 +677,7 @@ export class AppSharedService {
         "state": " NJ",
         "email": "casey@hollandgreenhousesinc.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -639,6 +688,7 @@ export class AppSharedService {
         "state": " NJ",
         "email": "Harmonynj@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 42
     },
     {
@@ -649,6 +699,7 @@ export class AppSharedService {
         "state": " PA",
         "email": "westwyomingpa@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -659,6 +710,7 @@ export class AppSharedService {
         "state": " WA",
         "email": "everettwa@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -668,6 +720,7 @@ export class AppSharedService {
         "city": "Marsing",
         "state": " ID",
         "email": "schwisow@speedyquick.net",
+        "routes": [81],
         "locatorNumber": 51
     },
     {
@@ -678,6 +731,7 @@ export class AppSharedService {
         "state": " MT",
         "email": "jessetumamtstation@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 53
     },
     {
@@ -688,6 +742,7 @@ export class AppSharedService {
         "state": " WA",
         "email": "dwight.w.hudson@hotmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -698,6 +753,7 @@ export class AppSharedService {
         "state": " OR",
         "email": "roseburgor@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -708,6 +764,7 @@ export class AppSharedService {
         "state": " CT",
         "email": "randy.trussell@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 41
     },
     {
@@ -718,6 +775,7 @@ export class AppSharedService {
         "state": " CO",
         "email": "joshmontague69@yahoo.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 29
     },
     {
@@ -728,6 +786,7 @@ export class AppSharedService {
         "state": " CO",
         "email": "jcody22173@aol.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 28
     },
     {
@@ -738,6 +797,7 @@ export class AppSharedService {
         "state": "KS",
         "email": "bonnieplantskansas@yahoo.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 56
     },
     {
@@ -748,6 +808,7 @@ export class AppSharedService {
         "state": " VA",
         "email": "chris.simpson@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -758,6 +819,7 @@ export class AppSharedService {
         "state": " VA",
         "email": "lee.turner@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 44
     },
     {
@@ -768,6 +830,7 @@ export class AppSharedService {
         "state": " MD",
         "email": "david103@aol.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 46
     },
     {
@@ -778,6 +841,7 @@ export class AppSharedService {
         "state": " PA",
         "email": "wesley.pennington@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 30
     },
     {
@@ -788,6 +852,7 @@ export class AppSharedService {
         "state": " IL",
         "email": "plantman2606@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 26
     },
     {
@@ -798,6 +863,7 @@ export class AppSharedService {
         "state": " IA",
         "email": "wellis06@aol.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 27
     },
     {
@@ -808,6 +874,7 @@ export class AppSharedService {
         "state": "IN",
         "email": "crawfordsvillein@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 65
     },
     {
@@ -818,6 +885,7 @@ export class AppSharedService {
         "state": " WI",
         "email": "gaatzj@hotmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 63
     },
     {
@@ -828,6 +896,7 @@ export class AppSharedService {
         "state": " IL",
         "email": "travis.hammonds@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -838,6 +907,7 @@ export class AppSharedService {
         "state": " WI ",
         "email": "bonnieplants68@hotmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -848,6 +918,7 @@ export class AppSharedService {
         "state": " MO",
         "email": "drplants@aol.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 61
     },
     {
@@ -858,6 +929,7 @@ export class AppSharedService {
         "state": " OH",
         "email": "bpfcygnet@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 23
     },
     {
@@ -868,6 +940,7 @@ export class AppSharedService {
         "state": " PA",
         "email": "blairsvillepa@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -878,6 +951,7 @@ export class AppSharedService {
         "state": " OH",
         "email": "ben.santee@yahoo.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -888,6 +962,7 @@ export class AppSharedService {
         "state": " OH",
         "email": "marysvilleoh@bonniesales.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -897,6 +972,7 @@ export class AppSharedService {
         "city": "Ithaca",
         "state": " MI",
         "email": "markdaniels@bonnieplantfarm.net",
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -907,6 +983,7 @@ export class AppSharedService {
         "state": "Canada",
         "email": "brett.vann@bonnieplants.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 62
     },
     {
@@ -917,6 +994,7 @@ export class AppSharedService {
         "state": " MN",
         "email": "Pcreed57@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -927,6 +1005,7 @@ export class AppSharedService {
         "state": " NE",
         "email": "wakefieldbonnie70@gmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -937,6 +1016,7 @@ export class AppSharedService {
         "state": " WY",
         "email": "justinviles@hotmail.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     },
     {
@@ -946,6 +1026,7 @@ export class AppSharedService {
         "city": "Lempster",
         "state": " NH",
         "email": "bpflempster@verizon.net",
+        "routes": [81],
         "locatorNumber": 55
     },
     {
@@ -955,6 +1036,7 @@ export class AppSharedService {
         "city": "New Berlin",
         "state": " NY",
         "email": "bpfnewberlin@frontiernet.net",
+        "routes": [81],
         "locatorNumber": 58
     },
     {
@@ -965,6 +1047,7 @@ export class AppSharedService {
         "state": " ME",
         "email": "station69simons@yahoo.com",
         "shipToLocations": [],
+        "routes": [81],
         "locatorNumber": 0
     }];
     constructor(private dialog: MatDialog, private http: Http, public router: Router) {
@@ -977,6 +1060,7 @@ export class AppSharedService {
             "userEmail": "justinviles@hotmail.com",
             "shipToLocations": [],
             "locatorNumber": 0,
+            "routes": [94,95],
             "datastore_id": ''
         };
         this.receivedVarietiesCountWithReceivedButton = this.receivedVarietiesCountWithReceivedButton || 0;
@@ -1071,7 +1155,7 @@ export class AppSharedService {
     openDialog(currentItem): void {
         console.log('called');
         const dialogRef = this.dialog.open(IconDialogComponent, {
-            data: currentItem
+            data: {currentItem, routesToShow: this.routesToShow}
         });
     }
 
@@ -1158,6 +1242,19 @@ export class AppSharedService {
         return total;
     }
 
+    updateRouteTotal () {
+        if(this.routesToShow && this.routesToShow.length){
+            for (let i = 0; i < this.routesToShow.length; i++) {
+                this.routeTotal[i] = 0;
+                if(this.varietyOptions && this.varietyOptions.length) {
+                    for(let j=0;j < this.varietyOptions.length;j++) {
+                        this.routeTotal[i] += (this.varietyOptions[j].appStoreDelivery.deliveryQuantity[i] || 0);
+                    }
+                }
+            }
+        }
+    }
+
     sendUserRelatedInfo(): Observable<UserRelatedInfo[]> {
         return this.http.post('/user/post', { "user_id": this.userId, "lastRoute": this.router.url }, this.options)
             .map((res: Response) => {
@@ -1166,5 +1263,9 @@ export class AppSharedService {
             .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
+    }
+    
+    changeMessage(message: string) {
+        this.messageSource.next(message);
     }
 }

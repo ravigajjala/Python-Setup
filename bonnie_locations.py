@@ -42,7 +42,8 @@ class CreateLocationsDatabase(APIRequest):
                     last_name=location.get('last_name', None),
                     email=location.get('email', None),
                     locatorNumber=location.get('locatorNumber', None),
-                    shipToLocations=location['shipToLocations'])
+                    shipToLocations=location['shipToLocations'],
+                    routes=location.get('routes', []))
                 final_locations.put()
         except Exception as e:
             logging.error(e)
@@ -61,6 +62,7 @@ class UpdateLocationsDatabase(APIRequest):
             location.email = body['email']
             location.locatorNumber = body['locatorNumber']
             location.shipToLocations = body['shipToLocations']
+            location.routes = body['routes']
             location.put()
         except Exception as e:
             logging.error(e)

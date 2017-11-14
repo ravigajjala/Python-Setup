@@ -20,6 +20,7 @@ class Locations(ndb.Model):
     email = ndb.StringProperty()
     locatorNumber = ndb.IntegerProperty()
     shipToLocations = ndb.JsonProperty(repeated=True)
+    routes = ndb.IntegerProperty(repeated=True)
 
 class Users(ndb.Model):
     name = ndb.StringProperty()
@@ -50,18 +51,21 @@ class ReceivingInfo(ndb.Model):
     receivedFromLocation = ndb.StringProperty()
 
 class SalableInfo(ndb.Model):
+    finishedTrays = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
-    totalFlatsToSale = ndb.StringProperty()
+    totalFlatsToSale = ndb.IntegerProperty()
 
 class AppStoreDelivery(ndb.Model):
     delivered = ndb.IntegerProperty()
-    routeNumberSale = ndb.IntegerProperty()
     discarded = ndb.IntegerProperty()
     reasonCode = ndb.StringProperty()
+    check = ndb.IntegerProperty()
+    routeNumberSale = ndb.JsonProperty(repeated=True)
 
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
+    type = ndb.StringProperty()
     url = ndb.StringProperty()
     color_id = ndb.StringProperty()
     docIdOfParentVariety = ndb.IntegerProperty()

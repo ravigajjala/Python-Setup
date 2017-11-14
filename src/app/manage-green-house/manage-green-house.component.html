@@ -1,16 +1,17 @@
 <div class="dialog-main-cont">
     <form #formCtrl="ngForm">
-    <h2>Manage Greenhouses</h2>
-    <div class="user-table-cont head-title">
-        <div class="user-col nameCol">FIRST NAME</div>
-        <div class="user-col nameCol">LAST NAME</div>
-        <div class="user-col-email">USER EMAIL</div>
-        <div class="user-col cityCol">CITY</div>
-        <div class="user-col stateCol">STATE</div>
-        <div class="user-col lcNumCol">LOCATOR NUMBER</div>
-        <div class="user-col-del"></div>
-    </div>
-    <!-- <div class="user-table-cont" *ngFor="let gh of appSharedService.locations;let i = index;">
+        <h2>Manage Greenhouses</h2>
+        <div class="user-table-cont head-title">
+            <div class="user-col nameCol">FIRST NAME</div>
+            <div class="user-col nameCol">LAST NAME</div>
+            <div class="user-col-email">USER EMAIL</div>
+            <div class="user-col cityCol">CITY</div>
+            <div class="user-col stateCol">STATE</div>
+            <div class="user-col lcNumCol">LOCATOR NUMBER</div>
+            <div class="user-col routesCol">ROUTES</div>
+            <div class="user-col-del"></div>
+        </div>
+        <!-- <div class="user-table-cont" *ngFor="let gh of appSharedService.locations;let i = index;">
         <div class="user-col">{{gh.firstName}}</div>
         <div class="user-col">{{gh.lastName}}</div>
         <div class="user-col">{{gh.email}}</div>
@@ -23,66 +24,73 @@
             </div>
         </div>
     </div> -->
-    <div class="user-table-cont" *ngFor="let gh of greenHouses;let i = index;">
-        <div *ngIf="!ghEditList[i]" (click)="ghEditList[i]=true">
-            <div class="user-col nameCol">{{gh.first_name}}</div>
-            <div class="user-col nameCol">{{gh.last_name}}</div>
-            <div class="user-col-email">{{gh.email}}</div>
-            <div class="user-col cityCol">{{gh.city}}</div>
-            <div class="user-col stateCol">{{gh.state}}</div>
-            <div class="user-col lcNumCol">{{gh.locatorNumber}}</div>
-            <div class="user-col-del">
-                <div (click)="deleteGreenHouse(i)">
-                    <i class="material-icons valign_middle">delete</i>
+        <div class="user-table-cont" *ngFor="let gh of greenHouses;let i = index;">
+            <div *ngIf="!ghEditList[i]" (click)="ghEditList[i]=true">
+                <div class="user-col nameCol">{{gh.first_name}}</div>
+                <div class="user-col nameCol">{{gh.last_name}}</div>
+                <div class="user-col-email">{{gh.email}}</div>
+                <div class="user-col cityCol">{{gh.city}}</div>
+                <div class="user-col stateCol">{{gh.state}}</div>
+                <div class="user-col lcNumCol">{{gh.locatorNumber}}</div>
+                <div class="user-col routesCol">{{gh.routes}}</div>
+                <div class="user-col-del">
+                    <div (click)="deleteGreenHouse(i)">
+                        <i class="material-icons valign_middle">delete</i>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div *ngIf="ghEditList[i]">
-            <div class="user-col nameCol">
-                <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="ghEditList[i].firstName" name="firstName" required>
-                </mat-form-field>
-            </div>
-            <div class="user-col nameCol">
-                <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="ghEditList[i].lastName" name="lastName" required>
-                </mat-form-field>
-            </div>
-            <div class="user-col-email">
-                <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="ghEditList[i].email" name="email" required>
-                </mat-form-field>
-            </div>
-            <div class="user-col cityCol">
-                <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="ghEditList[i].city" name="city" required>
-                </mat-form-field>
-            </div>
-            <div class="user-col stateCol">
-                <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="ghEditList[i].state" name="state" required>
-                </mat-form-field>
-            </div>
-            <div class="user-col lcNumCol">
-                <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="ghEditList[i].locatorNumber" name="locatorNumber" required>
-                </mat-form-field>
-            </div>
-            <div class="user-col-del">
-                <div (click)="deleteGreenHouse(i)">
-                    <i class="material-icons valign_middle">delete</i>
+            <div *ngIf="ghEditList[i]">
+                <div class="user-col nameCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="ghEditList[i].firstName" name="firstName" required>
+                    </mat-form-field>
+                </div>
+                <div class="user-col nameCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="ghEditList[i].lastName" name="lastName" required>
+                    </mat-form-field>
+                </div>
+                <div class="user-col-email">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="ghEditList[i].email" name="email" required>
+                    </mat-form-field>
+                </div>
+                <div class="user-col cityCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="ghEditList[i].city" name="city" required>
+                    </mat-form-field>
+                </div>
+                <div class="user-col stateCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="ghEditList[i].state" name="state" required>
+                    </mat-form-field>
+                </div>
+                <div class="user-col lcNumCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="ghEditList[i].locatorNumber" name="locatorNumber" required>
+                    </mat-form-field>
+                </div>
+                <div class="user-col routesCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="ghEditList[i].routes" name="routes" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="user-col-del">
+                    <div (click)="deleteGreenHouse(i)">
+                        <i class="material-icons valign_middle">delete</i>
+                    </div>
                 </div>
             </div>
+
         </div>
+        <div class="add-user" (click)="addGreenHouse(true)" *ngIf="!showEditBox">
+            <i class="material-icons valign_middle">add_circle</i> New Greenhouse</div>
+        <!-- <div class="add-user" (click)="addUser(false)" *ngIf="showEditBox">Cancel</div> -->
 
-    </div>
-    <div class="add-user" (click)="addGreenHouse(true)" *ngIf="!showEditBox">
-        <i class="material-icons valign_middle">add_circle</i> New Greenhouse</div>
-    <!-- <div class="add-user" (click)="addUser(false)" *ngIf="showEditBox">Cancel</div> -->
-
-    <div class="btn-cont">
-        <button mat-button (click)="closeDialog()">CLOSE</button>
-        <button mat-raised-button color="primary" [disabled]="!formCtrl.form.valid" (click)="saveGreenHouse()">SAVE</button>
-    </div>
-</form>
+        <div class="btn-cont">
+            <button mat-button (click)="closeDialog()">CLOSE</button>
+            <button mat-raised-button color="primary" [disabled]="!formCtrl.form.valid" (click)="saveGreenHouse()">SAVE</button>
+        </div>
+    </form>
 </div>

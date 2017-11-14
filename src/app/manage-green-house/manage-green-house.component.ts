@@ -29,7 +29,8 @@ export class ManageGreenHouseComponent {
     city:null,
     state:null,
     email:null,
-    locatorNumber:null
+    locatorNumber:null,
+    routes:null
   };
 
   constructor(public appSharedService: AppSharedService,
@@ -47,7 +48,7 @@ export class ManageGreenHouseComponent {
 
   validateLocation(){
     if(this.gh.firstName && this.gh.lastName && this.gh.state && this.gh.email 
-      && this.gh.email && this.gh.locatorNumber){
+      && this.gh.email && this.gh.locatorNumber &&this.gh.routes){
         this.isValid = true;
     }
   }

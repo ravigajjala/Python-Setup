@@ -14,7 +14,7 @@
           <div class="flex-display" [class.flex-center]="mergeClickBool">
             <div class="wk-select-box">
               <label for="startWeek">Start Wk#</label>
-              <mat-select [(ngModel)]="startWeek" name="startWeek">
+              <mat-select [(ngModel)]="startWeek" name="startWeek" (change)="filterVariety()">
                 <mat-option *ngFor="let wk of weekNumbers" [value]="wk">
                   {{wk}}
                 </mat-option>
@@ -22,8 +22,8 @@
             </div>
             to
             <div class="wk-select-box">
-              <label for="startWeek">End Wk#</label>
-              <mat-select [(ngModel)]="endWeek" name="stopWeek">
+              <label class="pos-relative" for="startWeek">End Wk#</label>
+              <mat-select [(ngModel)]="endWeek" name="stopWeek" (change)="filterVariety()">
                 <mat-option *ngFor="let wk of weekNumbers" [value]="wk">
                   {{wk}}
                 </mat-option>
@@ -52,7 +52,7 @@
               <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
           </td>
           <ng-container *ngIf="i==4">
-            <ng-container *ngFor="let trow of head">
+            <ng-container *ngFor="let trow of appSharedService.routesToShow">
               <td class="bottom-row">
                 <span class="rotate-text">
                   <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}}
@@ -75,124 +75,65 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of appSharedService.varietyOptions" class="form-input-model">
+      <tr *ngFor="let item of filteredVariety | SearchVarieties: appSharedService.searchFieldValue; let i=index;"
+        class="form-input-model" [hidden]="item.type !=='PLANTING'">
         <td>
-            <div class="icon-box" (click)="appSharedService.openDialog(item)">
-                <svg class="icon" [ngClass]="item.color_id">
-                <use [attr.href]="item.url" />
-                </svg>
-                </div>
-                <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
+          <div class="icon-box" (click)="appSharedService.openDialog(item)">
+            <svg class="icon" [ngClass]="item.color_id">
+              <use [attr.href]="item.url" />
+            </svg>
+          </div>
+          <span>{{item.name}}
+            <s class="secondary-text">{{ item.weekNumber ? ' Wk' + item.weekNumber : ''}}</s>
+          </span>
         </td>
         <td class="td-md">
-          <input matInput name="lot_no" [(ngModel)]="item.lot_no" disabled>
+          <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
         </td>
         <td class="td-md">
-          <input matInput name="rl_no" [(ngModel)]="item.rl_no" disabled>
+          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
         </td>
         <td class="td-md">
-          <input matInput name="b_no" [(ngModel)]="item.b_no" disabled>
+          <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
         </td>
         <td class="td-sm">
-          <span>{{item.q - item.ts_d}}</span>
+          <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
         </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight" [(ngModel)]="item.sixtyeight" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_one" [(ngModel)]="item.sixtyeight_one" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_two" [(ngModel)]="item.sixtyeight_two" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_three" [(ngModel)]="item.sixtyeight_three" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_four" [(ngModel)]="item.sixtyeight_four" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_five" [(ngModel)]="item.sixtyeight_five" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_six" [(ngModel)]="item.sixtyeight_six" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_seven" [(ngModel)]="item.sixtyeight_seven" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_eight" [(ngModel)]="item.sixtyeight_eight" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_nine" [(ngModel)]="item.sixtyeight_nine" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_ten" [(ngModel)]="item.sixtyeight_ten" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_eleven" [(ngModel)]="item.sixtyeight_eleven" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_twelve" [(ngModel)]="item.sixtyeight_twelve" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_thirteen" [(ngModel)]="item.sixtyeight_thirteen" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_fourteen" [(ngModel)]="item.sixtyeight_fourteen" disabled>
-        </td>
-        <td class="td-xs">
-          <input matInput name="sixtyeight_fifteen" [(ngModel)]="item.sixtyeight_fifteen" disabled>
+        <td class="td-xs" *ngFor="let route of appSharedService.routesToShow;let in = index;">
+          <input matInput onclick="this.select();" type="number" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]" disabled>
         </td>
         <td class="td-sm">
-          <span>{{item.q - item.ts_d}}</span>
+          <input matInput name="delivered" [(ngModel)]="item.appStoreDelivery.delivered" disabled>
         </td>
         <td class="td-sm">
-          <input matInput name="discarded" [(ngModel)]="item.discarded" disabled>
+          <input matInput name="discarded" [(ngModel)]="item.appStoreDelivery.discarded" disabled>
         </td>
         <td class="td-sm">
-          <mat-select placeholder="" #select="matSelect" disabled>
-            <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
-            <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
-          </mat-select>
+          <input matInput name="resoncode" [(ngModel)]="item.appStoreDelivery.reasonCode" disabled>
         </td>
         <td class="td-sm">
-          <span>{{item.q - item.ts_d - item.discarded}}</span>
+          <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
         </td>
-        <td class="td-sm"></td>
+        <td class="td-xs">
+            <input matInput name="totalBalance" [(ngModel)]="item.appStoreDelivery.check" disabled>
+        </td>
       </tr>
       <tr>
         <td>Total</td>
+        <td class="td-lg"></td>
+        <td class="td-sm"></td>
         <td class="td-md"></td>
-        <td class="td-md"></td>
-        <td class="td-md"></td>
-        <td class="td-sm">{{totalFlatsToSale}}</td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
-        <td class="td-xs"></td>
+        <td class="td-sm">{{totalCount}}</td>
+        <td class="td-xs" *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
+        <td class="td-sm"> {{sumPlantsDelivered}}</td>
         <td class="td-sm"></td>
         <td class="td-sm"></td>
-        <td class="td-sm"></td>
-        <td class="td-sm"></td>
-        <td class="td-sm"></td>
+        <td class="td-sm"> {{totalBalanceCount}}</td>
+        <td class="td-xs"></td>
       </tr>
       <tr>
         <td>
-          <button mat-raised-button color="primary">Export</button>
+          <button mat-raised-button color="primary" (click)="exportExcel()">Export</button>
         </td>
       </tr>
     </tbody>

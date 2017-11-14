@@ -27,7 +27,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public heads = [];
   public reasonCodes = [];
   public optionsData = [];
-  public cols = [];
   public myControl: FormControl;
   public varietyControl: FormControl;
   public mergeClickBool = false;
@@ -66,7 +65,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.myControl = new FormControl();
     this.varietyControl = new FormControl();
     this.loader = true;
-
   }
 
   @ViewChild(MatAutocompleteTrigger) trigger;
@@ -115,26 +113,36 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
   setNotifStatus(val, index) {
     const currentStatus = this.plugNotifStatus[index];
-
-    // iterate through each key in object
-    for (const key in val.plugTray) {
-      if (val.plugTray.hasOwnProperty(key)) {
-        if (!val.plugTray[key]) {
-          this.plugNotifStatus[index] = false;
-          break;
-        } else {
-          this.plugNotifStatus[index] = true;
+    if(val.type === "PLUG") {
+      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+      console.log("checking errro case ", val.plugTray.plugFlatsPotted, val.plugTray.plugFlatsReceived, errCheck);
+      if(!errCheck){
+        // iterate through each key in object
+        for (const key in val.plugTray) {
+          if (val.plugTray.hasOwnProperty(key)) {
+            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0) 
+            || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode) 
+            || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
+              this.plugNotifStatus[index] = false;
+              break;
+            } else {
+              this.plugNotifStatus[index] = true;
+            }
+          }
         }
       }
-    }
-
-    if (!currentStatus) {
-      if (this.plugNotifStatus[index]) {
-        this.appSharedService.totalNotif++;
+      else {
+        this.plugNotifStatus[index] = false;
       }
-    } else {
-      if (!this.plugNotifStatus[index]) {
-        this.appSharedService.totalNotif--;
+
+      if (!currentStatus) {
+        if (this.plugNotifStatus[index]) {
+          this.appSharedService.totalNotif++;
+        }
+      } else {
+        if (!this.plugNotifStatus[index]) {
+          this.appSharedService.totalNotif--;
+        }
       }
     }
   }
@@ -187,6 +195,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       tempNewPlant.receivingInfo = Object.assign({}, newPlant.receivingInfo);
       tempNewPlant.salableInfo = Object.assign({}, newPlant.salableInfo);
       tempNewPlant.appStoreDelivery = Object.assign({}, newPlant.appStoreDelivery);
+      // tempNewPlant.shipToInfo = Object.assign({}, newPlant.shipToInfo);
+      tempNewPlant.type = 'PLUG';
       tempNewPlant.shipToInfo = []; // Array of shipto locations Objects
       // Creating new shipToObj
       const shipToObj = {
@@ -196,7 +206,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
         qty: null
       };
       // Pushing shipToObj to variety shipToInfo array based on shipToLocations array in currentGreenHouseLocation
-      this.appSharedService.currentGreenHouseLocation.shipToLocations = this.appSharedService.currentGreenHouseLocation.shipToLocations.map(
+      this.appSharedService.currentGreenHouseLocation.shipToLocations.forEach(
         location => {
           shipToObj.city = location.city;
           shipToObj.state = location.state;
@@ -263,12 +273,15 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       res => {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
+        
+        console.log(res);
         this.appSharedService.varietyOptions.forEach((val, index) => {
+          this.plugNotifStatus = [];
           this.setNotifStatus(val, index);
         });
       },
       err => {
-        console.log('Plug to deliver data retrieve error');
+        console.log('Plug to deliver data retrive error');
       }
     );
   }
@@ -279,6 +292,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index): any {
+    plugToDeliverData.plugTray.reasonsCode = plugToDeliverData.plugTray.plugFlatsDiscarded === 0 ? null : plugToDeliverData.plugTray.reasonsCode;
     this.setNotifStatus(plugToDeliverData, index);
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
