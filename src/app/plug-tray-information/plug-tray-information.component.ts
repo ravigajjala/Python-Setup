@@ -277,11 +277,14 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
           }
           for(let i =0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
             if(res[j].appStoreDelivery.routeNumberSale[i]){
-              res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]]:0;
+              res[j].appStoreDelivery.routeNumberSale[i]['route'] = this.appSharedService.currentGreenHouseLocation.routes[i];
+              res[j].appStoreDelivery.routeNumberSale[i]['value'] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]]:0;
+            
             }
             else {
               let tmpObj = {};
-              tmpObj[this.appSharedService.currentGreenHouseLocation.routes[i]] = null;
+              tmpObj['route'] = this.appSharedService.currentGreenHouseLocation.routes[i];
+              tmpObj['value'] = null;
               res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
             }
           
