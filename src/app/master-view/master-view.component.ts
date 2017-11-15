@@ -20,7 +20,6 @@ export class MasterViewComponent implements OnInit {
   public weekNumbers: number[] = [];
   public sumPlantsDelivered = 0;
   public deliveredTotal = [];
-  public routesToShow = [];
   public totalCount = 0;
   public totalBalanceCount = 0;
   public startWeek = null;
@@ -73,6 +72,23 @@ export class MasterViewComponent implements OnInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
+        for(let j=0;j<res.length; j++){
+          if(!res[j].appStoreDelivery.routeNumberSale){
+            res[j].appStoreDelivery.routeNumberSale = [];
+          }
+          for(let i =0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
+            if(res[j].appStoreDelivery.routeNumberSale[i]){
+              res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]]:0;
+            }
+            else {
+              let tmpObj = {};
+              tmpObj[this.appSharedService.currentGreenHouseLocation.routes[i]] = null;
+              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
+            }
+          
+          }          
+        }
+        this.appSharedService.varietyOptions = res;
         this.filteredVariety = this.appSharedService.varietyOptions = res;
         this.totalCount = this.totalBalanceCount = this.sumPlantsDelivered = 0;
         res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0) });
@@ -103,11 +119,11 @@ export class MasterViewComponent implements OnInit {
       this.totalCount = this.totalCount + parseInt(this.filteredVariety[i].salableInfo.totalFlatsToSale || 0)
       this.totalBalanceCount = this.totalBalanceCount + parseInt(this.filteredVariety[i].plantingInfo.finishedTrays || 0)
       if (this.filteredVariety[i].appStoreDelivery.routeNumberSale.length > 0) {
-        this.appSharedService.routeTotal[index] += (parseInt(this.filteredVariety[i].appStoreDelivery.routeNumberSale[index]) || 0);
+        this.appSharedService.routeTotal[index] += (parseInt(Object.values(this.appSharedService.varietyOptions[i].appStoreDelivery.routeNumberSale[index])[0]) || 0);
       }
       this.deliveredTotal[i] = this.filteredVariety[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
         if (value) {
-          return sum + parseInt(value || 0);
+          return sum + parseInt(Object.values(value)[0] || 0);
         }
       }, 0);
       this.filteredVariety[i].appStoreDelivery.delivered = this.deliveredTotal[i];
@@ -151,8 +167,8 @@ export class MasterViewComponent implements OnInit {
       recordModel['Locator'] = _.get(this.filteredVariety[i], 'plantingInfo.locatorNumber');
       recordModel['House#/Bay#'] = _.get(this.filteredVariety[i], 'plantingInfo.houseBay');
       recordModel['Total Flats To Sale'] = _.get(this.filteredVariety[i], 'salableInfo.totalFlatsToSale');
-      for (let j = 0; j < this.appSharedService.routesToShow.length; j++) {
-        recordModel['Route' + this.appSharedService.routesToShow[j]] = _.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j);
+      for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
+        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = _.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j);
       }
 
       recordModel['Delivered'] = _.get(this.filteredVariety[i], 'appStoreDelivery.delivered');
@@ -172,7 +188,7 @@ export class MasterViewComponent implements OnInit {
     totalModel['Total Flats To Sale'] = this.totalCount;
 
     for (let j = 0; j < this.appSharedService.routeTotal.length; j++) {
-      totalModel['routes' + this.appSharedService.routesToShow[j]] = this.appSharedService.routeTotal[j];
+      totalModel['routes' + this.appSharedService.currentGreenHouseLocation.routes[j]] = this.appSharedService.routeTotal[j];
     }
 
     totalModel['Delivered'] = this.sumPlantsDelivered;

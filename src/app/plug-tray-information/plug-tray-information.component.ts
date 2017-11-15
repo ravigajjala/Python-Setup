@@ -271,6 +271,22 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
+        for(let j=0;j<res.length; j++){
+          if(!res[j].appStoreDelivery.routeNumberSale){
+            res[j].appStoreDelivery.routeNumberSale = [];
+          }
+          for(let i =0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
+            if(res[j].appStoreDelivery.routeNumberSale[i]){
+              res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]]:0;
+            }
+            else {
+              let tmpObj = {};
+              tmpObj[this.appSharedService.currentGreenHouseLocation.routes[i]] = null;
+              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
+            }
+          
+          }          
+        }
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
         

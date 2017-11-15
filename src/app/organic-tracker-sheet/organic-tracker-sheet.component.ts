@@ -141,7 +141,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   * [When user chnages the green house location from the dropdown this function will update the plug to deliver data]
   */
   locationChange(): void {
-    this.appSharedService.routesToShow = this.appSharedService.currentGreenHouseLocation.routes;
+    this.appSharedService.currentGreenHouseLocation.routes;
     this.appSharedService.updateRouteTotal();
     this.appSharedService.getPlugToDeliverData().subscribe(
       res => {

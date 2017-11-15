@@ -52,7 +52,7 @@
               <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
           </td>
           <ng-container *ngIf="i==4">
-            <ng-container *ngFor="let trow of appSharedService.routesToShow">
+            <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes">
               <td class="bottom-row">
                 <span class="rotate-text">
                   <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}}
@@ -99,8 +99,8 @@
         <td class="td-sm">
           <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
         </td>
-        <td class="td-xs" *ngFor="let route of appSharedService.routesToShow;let in = index;">
-          <input matInput onclick="this.select();" type="number" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]" disabled>
+        <td class="td-xs" *ngFor="let route of appSharedService.currentGreenHouseLocation.routes;let in = index;">
+          <input matInput onclick="this.select();" type="number" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in][route]" disabled>
         </td>
         <td class="td-sm">
           <input matInput name="delivered" [(ngModel)]="item.appStoreDelivery.delivered" disabled>

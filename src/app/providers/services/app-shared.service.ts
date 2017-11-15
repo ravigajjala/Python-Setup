@@ -30,7 +30,6 @@ export class AppSharedService {
     public totalNotif = 0;
     public userId: string = 'sainath8090';
     //public currentGreenHouseLocation: any;
-    public routesToShow = [];
     public routeTotal = [];
     public currentGreenHouseLocation: Location = undefined;
     public receivedVarietiesCountWithReceivedButton: number;
@@ -1155,7 +1154,7 @@ export class AppSharedService {
     openDialog(currentItem): void {
         console.log('called');
         const dialogRef = this.dialog.open(IconDialogComponent, {
-            data: {currentItem, routesToShow: this.routesToShow}
+            data: currentItem
         });
     }
 
@@ -1243,8 +1242,8 @@ export class AppSharedService {
     }
 
     updateRouteTotal () {
-        if(this.routesToShow && this.routesToShow.length){
-            for (let i = 0; i < this.routesToShow.length; i++) {
+        if(this.currentGreenHouseLocation.routes && this.currentGreenHouseLocation.routes.length){
+            for (let i = 0; i < this.currentGreenHouseLocation.routes.length; i++) {
                 this.routeTotal[i] = 0;
                 if(this.varietyOptions && this.varietyOptions.length) {
                     for(let j=0;j < this.varietyOptions.length;j++) {
