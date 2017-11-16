@@ -72,26 +72,6 @@ export class MasterViewComponent implements OnInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
-        for(let j=0;j<res.length; j++){
-          if(!res[j].appStoreDelivery.routeNumberSale){
-            res[j].appStoreDelivery.routeNumberSale = [];
-          }
-          for(let i =0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
-            if(res[j].appStoreDelivery.routeNumberSale[i]){
-              res[j].appStoreDelivery.routeNumberSale[i]['route'] = this.appSharedService.currentGreenHouseLocation.routes[i];
-              res[j].appStoreDelivery.routeNumberSale[i]['value'] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]]:0;
-            
-            }
-            else {
-              let tmpObj = {};
-              tmpObj['route'] = this.appSharedService.currentGreenHouseLocation.routes[i];
-              tmpObj['value'] = null;
-              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
-            }
-          
-          }          
-        }
-        this.appSharedService.varietyOptions = res;
         this.filteredVariety = this.appSharedService.varietyOptions = res;
         this.totalCount = this.totalBalanceCount = this.sumPlantsDelivered = 0;
         res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0) });

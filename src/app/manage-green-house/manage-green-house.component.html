@@ -25,7 +25,7 @@
         </div>
     </div> -->
         <div class="user-table-cont" *ngFor="let gh of greenHouses;let i = index;">
-            <div *ngIf="!ghEditList[i]" (click)="ghEditList[i]=true">
+            <div *ngIf="!ghEditList[i]" (click)="editableRow(i,gh)">
                 <div class="user-col nameCol">{{gh.first_name}}</div>
                 <div class="user-col nameCol">{{gh.last_name}}</div>
                 <div class="user-col-email">{{gh.email}}</div>
@@ -39,15 +39,15 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="ghEditList[i]">
+            <div *ngIf="ghEditList[i]">                
                 <div class="user-col nameCol">
                     <mat-form-field class="example-full-width">
-                        <input matInput [(ngModel)]="ghEditList[i].firstName" name="firstName" required>
+                            <input matInput [(ngModel)]="gh.first_name" name="first_name" required>
                     </mat-form-field>
                 </div>
                 <div class="user-col nameCol">
                     <mat-form-field class="example-full-width">
-                        <input matInput [(ngModel)]="ghEditList[i].lastName" name="lastName" required>
+                        <input matInput [(ngModel)]="gh.last_name" name="last_name" required>
                     </mat-form-field>
                 </div>
                 <div class="user-col-email">
@@ -84,8 +84,13 @@
             </div>
 
         </div>
-        <div class="add-user" (click)="addGreenHouse(true)" *ngIf="!showEditBox">
-            <i class="material-icons valign_middle">add_circle</i> New Greenhouse</div>
+        <!-- <div class="add-user" (click)="addGreenHouse(true)" *ngIf="!showEditBox">
+            <i class="material-icons valign_middle">add_circle</i> New Greenhouse</div> -->
+            <div class="add-user">
+                <button mat-button (click)="addGreenHouse(true)" *ngIf="!showEditBox">
+                <i class="material-icons valign_middle">add_circle</i> New Greenhouse</button>
+            </div>
+
         <!-- <div class="add-user" (click)="addUser(false)" *ngIf="showEditBox">Cancel</div> -->
 
         <div class="btn-cont">
