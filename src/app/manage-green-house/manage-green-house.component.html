@@ -42,7 +42,7 @@
             <div *ngIf="ghEditList[i]">                
                 <div class="user-col nameCol">
                     <mat-form-field class="example-full-width">
-                            <input matInput [(ngModel)]="gh.first_name" name="first_name" required>
+                        <input matInput [(ngModel)]="gh.first_name" name="first_name" required>
                     </mat-form-field>
                 </div>
                 <div class="user-col nameCol">
@@ -52,27 +52,27 @@
                 </div>
                 <div class="user-col-email">
                     <mat-form-field class="example-full-width">
-                        <input matInput [(ngModel)]="ghEditList[i].email" name="email" required>
+                        <input matInput [(ngModel)]="gh.email" name="email" required>
                     </mat-form-field>
                 </div>
                 <div class="user-col cityCol">
                     <mat-form-field class="example-full-width">
-                        <input matInput [(ngModel)]="ghEditList[i].city" name="city" required>
+                        <input matInput [(ngModel)]="gh.city" name="city" required>
                     </mat-form-field>
                 </div>
                 <div class="user-col stateCol">
                     <mat-form-field class="example-full-width">
-                        <input matInput [(ngModel)]="ghEditList[i].state" name="state" required>
+                        <input matInput [(ngModel)]="gh.state" name="state" required>
                     </mat-form-field>
                 </div>
                 <div class="user-col lcNumCol">
                     <mat-form-field class="example-full-width">
-                        <input matInput [(ngModel)]="ghEditList[i].locatorNumber" name="locatorNumber" required>
+                        <input matInput [(ngModel)]="gh.locatorNumber" type="number" min="0" name="locatorNumber" required>
                     </mat-form-field>
                 </div>
                 <div class="user-col routesCol">
                     <mat-form-field class="example-full-width">
-                        <input matInput [(ngModel)]="ghEditList[i].routes" name="routes" required>
+                        <input matInput [(ngModel)]="gh.routes" name="routes" required>
                     </mat-form-field>
                 </div>
 

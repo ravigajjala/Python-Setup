@@ -37,12 +37,17 @@ export class ManageGreenHouseComponent {
     public dialogRef: MatDialogRef<ManageGreenHouseComponent>) {
     this.greenHouses = Object.assign([], this.appSharedService.locations);
     for (let i = 0; i < this.greenHouses.length; i++) {
-      this.ghEditList[i] = null;
+      this.ghEditList[i]= false;
     }
   }
 
   editableRow(i,gh){
-    this.ghEditList[i] = JSON.parse(JSON.stringify(gh));
+    // this.ghEditList[i] = Object.assign({}, gh);
+    for (let i = 0; i < this.greenHouses.length; i++) {
+      this.ghEditList[i]= false;
+    }
+    this.ghEditList[i]= true;
+    console.log("edit row...", this.ghEditList);
   }
 
   addGreenHouse(condition) {
