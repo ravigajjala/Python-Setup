@@ -8,6 +8,7 @@
             <div class="user-col cityCol">CITY</div>
             <div class="user-col stateCol">STATE</div>
             <div class="user-col lcNumCol">LOCATOR NUMBER</div>
+            <div class="user-col-edit"></div>
             <div class="user-col-del"></div>
         </div>
 
@@ -19,6 +20,11 @@
                 <div class="user-col cityCol">{{gh.city}}</div>
                 <div class="user-col stateCol">{{gh.state}}</div>
                 <div class="user-col lcNumCol">{{gh.locatorNumber}}</div>
+                <div class="user-col-edit">
+                    <div>
+                        <i class="material-icons valign_middle">edit</i>
+                    </div>
+                </div>
                 <div class="user-col-del">
                     <div (click)="deleteGreenHouse(i)">
                         <i class="material-icons valign_middle">delete</i>
@@ -55,6 +61,11 @@
                     <mat-form-field class="example-full-width">
                         <input matInput [(ngModel)]="gh.locatorNumber" type="number" min="0" name="locatorNumber" required>
                     </mat-form-field>
+                </div>
+                <div class="user-col-edit">
+                    <div>  
+                        <i class="material-icons valign_middle">edit</i>
+                    </div>
                 </div>
 
                 <div class="user-col-del">
