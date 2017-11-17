@@ -1,24 +1,25 @@
-<div class="right-scroll">
+<div [ngClass]="{'disable-all': appSharedService.loggedInUserGreenHouseLocation != appSharedService.currentGreenHouseLocation.city}">
+  <div class="right-scroll">
 
-  <!-- START: Planting Information -->
-  <table class="table_two table-width">
-    <thead>
-      <tr>
-        <td>
-          <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-            <div>
-              <mat-form-field class="full-width">
-                <input matInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
-              </mat-form-field>
+    <!-- START: Planting Information -->
+    <table class="table_two table-width">
+      <thead>
+        <tr>
+          <td>
+            <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+              <div>
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
+                </mat-form-field>
+              </div>
             </div>
-          </div>
-          <div class="flex-display" [class.flex-center]="mergeClickBool">
-            <button mat-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
-            <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
-            <button mat-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
-          </div>
-          <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
-          <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+            <div class="flex-display" [class.flex-center]="mergeClickBool">
+              <button mat-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+              <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+              <button mat-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+            </div>
+            <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
+            <div class="toggle-button-css" *ngIf="mergeClickBool == false">
               <mat-button-toggle value="left">
                 Type <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
@@ -28,48 +29,52 @@
               <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
                 Wk# <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
-          </div>
-        </td>
-        <td *ngFor="let head of heads2">
-          <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model" [hidden]="item.type !=='PLANTING'">
-        <td>
+            </div>
+          </td>
+          <td *ngFor="let head of heads2">
+            <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model"
+          [hidden]="item.type !=='PLANTING'">
+          <td>
             <div class="icon-box" (click)="appSharedService.openDialog(item)">
-                <svg class="icon" [ngClass]="item.color_id">
+              <svg class="icon" [ngClass]="item.color_id">
                 <use [attr.href]="item.url" />
-                </svg>
-                </div>
-          <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
-        </td>
-        <td class="td-lg">
-          <input matInput onclick="this.select();" name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
-        </td>
-        <td class="td-sm">
-          <input matInput onclick="this.select();" name="plugFlatsPotted" [(ngModel)]="item.plugTray.plugFlatsPotted" [disabled]="true">
-        </td>
-        <td class="td-sm">
-          <input matInput onclick="this.select();" type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)" disabled>
-        </td>
-        <td class="td-sm">
-          <input matInput onclick="this.select();" type="number" name="finishedTrays" [(ngModel)]="item.plantingInfo.finishedTrays" (blur)="updatePlugToDeliverData(item)">
-        </td>
-        <td class="td-lg">
-          <mat-form-field>
-            <input matInput onclick="this.select();" [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
-              (dateChange)="updatePlugToDeliverData(item)">
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </td>
-        <td class="td-md">
-          <input matInput onclick="this.select();" name="houseBay" [(ngModel)]="item.plantingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <!-- END: Planting Information -->
+              </svg>
+            </div>
+            <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
+          </td>
+          <td class="td-lg">
+            <input matInput onclick="this.select();" name="seedLotNumber" [(ngModel)]="item.plugTray.seedLotNumber" [disabled]="true">
+          </td>
+          <td class="td-sm">
+            <input matInput onclick="this.select();" name="plugFlatsPotted" [(ngModel)]="item.plugTray.plugFlatsPotted" [disabled]="true">
+          </td>
+          <td class="td-sm">
+            <input matInput onclick="this.select();" type="text" name="locatorNumber" [(ngModel)]="item.plantingInfo.locatorNumber" (blur)="updatePlugToDeliverData(item)"
+              disabled>
+          </td>
+          <td class="td-sm">
+            <input matInput onclick="this.select();" type="number" name="finishedTrays" [(ngModel)]="item.plantingInfo.finishedTrays"
+              (blur)="updatePlugToDeliverData(item)">
+          </td>
+          <td class="td-lg">
+            <mat-form-field>
+              <input matInput onclick="this.select();" [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plantingInfo.pottedDate"
+                (dateChange)="updatePlugToDeliverData(item)">
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td class="td-md">
+            <input matInput onclick="this.select();" name="houseBay" [(ngModel)]="item.plantingInfo.houseBay" (blur)="updatePlugToDeliverData(item)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- END: Planting Information -->
 
+  </div>
 </div>

@@ -2,20 +2,31 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
+import { Http, RequestOptions, Headers, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+
+import { Location, Plant, PlugToDeliver, User, UserRelatedInfo } from '../providers/classes/plantInfo.class';
+import { AppSharedService } from '../providers/services/app-shared.service';
 
 @Injectable()
 export class LoginService {
+    public userProfile: any;
 
     auth0 = new auth0.WebAuth({
         clientID: 'TuQ25VKQ1LTBuoWba0ezL2qOfRIXMYOZ',
         domain: 'sainathgande.auth0.com',
         responseType: 'token id_token',
         audience: 'https://sainathgande.auth0.com/userinfo',
-        redirectUri: 'https://bonnie-organic-tracker.appspot.com/app-organic-tracker-sheet/app-plug-tray-information',
-        scope: 'openid'
+        redirectUri: 'https://bonnie-organic-tracker.appspot.com/app-organic-tracker-sheet',
+        scope: 'openid profile'
     });
+    private headers = new Headers({ 'Content-Type': 'application/json' });
+    private options = new RequestOptions({ headers: this.headers });
 
-    constructor(public router: Router) {
+    constructor(public router: Router, private http: Http) {
+        this.userProfile = '';
     }
 
     public login(): void {
@@ -49,13 +60,33 @@ export class LoginService {
     public handleAuthentication(): void {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
-                window.location.hash = '';
                 this.setSession(authResult);
-                this.router.navigate(['/home']);
+                // window.location.hash = '';
             } else if (err) {
-                this.router.navigate(['/home']);
                 console.log(err);
             }
         });
+    }
+
+    public getProfile(accessToken): any {
+        const self = this;
+        if (!accessToken) {
+            throw new Error('Access token must exist to fetch profile');
+        }
+        return this.auth0.client.userInfo(accessToken, function (err, profile) {
+            if (profile) {
+                self.userProfile = profile;
+            }
+        });
+    }
+
+    public getLocationByEmail(userEmail: string): Observable<Location> {
+        return this.http.get('/locations/getByEmail' + '?userEmail=' + userEmail)
+            .map((response: Response) => {
+                return response.json();
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
     }
 }

@@ -1,123 +1,122 @@
 <div class="dialog-container" id="dialog_container">
-	<div class="dialog-header">
-		<div class="icon-logo">
-			<svg class="icon" [ngClass]="'st'+iconClassNumber"><use attr.xlink:href="../../assets/sprites/icon-sprite-sheet.svg#{{currentPlant.icon}}"/></svg>
-		</div>
-		<h2 class="dialog-title inline-blk">{{currentPlant.name}}</h2>
-		<span>{{ currentPlant.weekNumber ? '  Wk' + currentPlant.weekNumber : ''}}</span>
-	</div>
-	<div class="dialog-section">
-		<h3 class="section-title">PLUG TRAY INFORMATION</h3>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Plug Flats Received</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plugTray.plugFlatsReceived || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Date received</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plugTray.dateReceived | date:'shortDate' || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Plug Flats Plotted</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plugTray.plugFlatsPlotted || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Plug Flats Discarded</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plugTray.plugFlatsDiscarded || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Reasons Code</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plugTray.reasonsCode || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Seed Lot Number</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plugTray.seedLotNumber || '-'}}</div>
-		</div>
-	</div>
+  <div class="dialog-header">
+    <div class="icon-logo">
+      <svg class="icon" [ngClass]="'st'+iconClassNumber">
+        <use attr.xlink:href="../../assets/sprites/icon-sprite-sheet.svg#{{currentPlant.icon}}" />
+      </svg>
+    </div>
+    <h2 class="dialog-title inline-blk">{{currentPlant.name}}</h2>
+    <span>{{ currentPlant.weekNumber ? '  Wk' + currentPlant.weekNumber : ''}}</span>
+  </div>
+  <div class="dialog-section">
+    <h3 class="section-title">PLUG TRAY INFORMATION</h3>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Plug Flats Received</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plugTray.plugFlatsReceived || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Date received</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plugTray.dateReceived | date:'shortDate' || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Plug Flats Plotted</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plugTray.plugFlatsPlotted || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Plug Flats Discarded</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plugTray.plugFlatsDiscarded || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Reasons Code</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plugTray.reasonsCode || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Seed Lot Number</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plugTray.seedLotNumber || '-'}}</div>
+    </div>
+  </div>
 
-	<div class="dialog-section">
-		<h3 class="section-title">PLANTING INFORMATION</h3>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Finished Trays</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.finishedTrays || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Locator Number</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.locatorNumber || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Potted Date</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.pottedDate | date:'shortDate'|| '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">House#/Bay#</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.houseBay || '-'}}</div>
-		</div>
-	</div>
+  <div class="dialog-section">
+    <h3 class="section-title">PLANTING INFORMATION</h3>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Finished Trays</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.finishedTrays || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Locator Number</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.locatorNumber || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Potted Date</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.pottedDate | date:'shortDate'|| '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">House#/Bay#</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.plantingInfo.houseBay || '-'}}</div>
+    </div>
+  </div>
 
-	<div class="dialog-section">
-		<h3 class="section-title">Receiving</h3>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">House#/Bay#</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.receivingInfo.houseBay}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Quantity</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.receivingInfo.quantity}}</div>
-		</div>
-	</div>
+  <div class="dialog-section">
+    <h3 class="section-title">Receiving</h3>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">House#/Bay#</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.receivingInfo.houseBay}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Quantity</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.receivingInfo.quantity}}</div>
+    </div>
+  </div>
+  <div class="dialog-section">
+    <h3 class="section-title">Ship To</h3>
+    <div class="entry-field" *ngFor="let shipToLocation of currentPlant.shipToInfo">
+      <div class="inline-blk entry-name-field">Ship to {{ shipToLocation.city}}, {{shipToLocation.state}}</div>
+      <div class="inline-blk entry-count-field">{{ shipToLocation.qty }}</div>
+    </div>
+  </div>
+  <div class="dialog-section">
+    <h3 class="section-title">TOTAL SALABLE</h3>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">#Discarded</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.salableInfo.discarded || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Reason Code</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.salableInfo.reasonCode || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Total Flats to Sale</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.salableInfo.totalFlatsToSale || '-'}}</div>
+    </div>
+  </div>
 
-	<div class="dialog-section">
-		<h3 class="section-title">Ship To</h3>
-		<div class="entry-field" *ngFor="let location of currentPlant.shipToInfo">
-			<div class="inline-blk entry-name-field">Ship to {{location.city}}, {{location.state}}</div>
-			<div class="inline-blk entry-count-field">{{location.qty}}</div>
-		</div>
-	</div>
+  <div class="dialog-section">
+    <h3 class="section-title">TO STORE DELIVERY/BALANCE</h3>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Delivered</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.delivered || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">#Discarded</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.discarded || '-'}}</div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Reason Code</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.reasonCode || '-'}}</div>
+    </div>
+    <div class="entry-field" *ngFor="let routeObj of currentPlant.appStoreDelivery.routeNumberSale">
+      <div class="inline-blk entry-name-field">Route {{routeObj.route}} </div>
+      <div class="inline-blk entry-count-field">
+        {{routeObj.value}}
+      </div>
+    </div>
+    <div class="entry-field">
+      <div class="inline-blk entry-name-field">Check</div>
+      <div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.check || '0'}}</div>
+    </div>
+  </div>
 
-	<div class="dialog-section">
-		<h3 class="section-title">TOTAL SALABLE</h3>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">#Discarded</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.salableInfo.discarded || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Reason Code</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.salableInfo.reasonCode || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Total Flats to Sale</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.salableInfo.totalFlatsToSale || '-'}}</div>
-		</div>
-	</div>
-
-	<div class="dialog-section">
-		<h3 class="section-title">TO STORE DELIVERY/BALANCE</h3>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Delivered</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.delivered || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">#Discarded</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.discarded || '-'}}</div>
-		</div>
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Reason Code</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.reasonCode || '-'}}</div>
-		</div>
-		<!-- <div class="entry-field" *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes;let in = index;">
-			<div class="inline-blk entry-name-field">Route {{trow}} </div>
-			<div class="inline-blk entry-count-field">
-		
-				{{currentPlant.appStoreDelivery.routeNumberSale[in] || '-'}}
-			</div>
-		</div> -->
-		<div class="entry-field">
-			<div class="inline-blk entry-name-field">Check</div>
-			<div class="inline-blk entry-count-field">{{currentPlant.appStoreDelivery.check || '0'}}</div>
-		</div>
-	</div>
-
-	<button mat-button color="primary" class="close-button" (click)="closeDialog()" tabindex="-1">
+  <button mat-button color="primary" class="close-button" (click)="closeDialog()" tabindex="-1">
 		CLOSE
 	</button>
 </div>

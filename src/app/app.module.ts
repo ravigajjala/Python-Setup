@@ -26,6 +26,7 @@ import { ShipToOtherStationsComponent } from './ship-to-other-stations/ship-to-o
 
 // Import Services here
 import { AppSharedService } from './providers/services/app-shared.service';
+import { LoginService } from './login/login.service';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
 import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
@@ -37,7 +38,7 @@ import { ReceivingInfoPipe } from './pipes/receiving-info.pipe';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/app-organic-tracker-sheet/app-plug-tray-information',
+    redirectTo: '/app-organic-tracker-sheet',
     pathMatch: 'full'
   },
   { path: 'app-login', component: LoginComponent },
@@ -112,6 +113,6 @@ const appRoutes: Routes = [
     ManageGreenHouseComponent,
     ManagePlugCatalogComponent
   ],
-  providers: [AppSharedService]
+  providers: [AppSharedService, LoginService]
 })
 export class AppModule { }

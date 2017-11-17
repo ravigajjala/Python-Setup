@@ -24,29 +24,27 @@ export class ManageGreenHouseComponent {
   public ghEditList = [];
   private isValid = false;
   public gh = {
-    firstName:null,
-    lastName:null,
-    city:null,
-    state:null,
-    email:null,
-    locatorNumber:null,
-    routes:null
+    firstName: null,
+    lastName: null,
+    city: null,
+    state: null,
+    email: null,
+    locatorNumber: null
   };
 
   constructor(public appSharedService: AppSharedService,
     public dialogRef: MatDialogRef<ManageGreenHouseComponent>) {
     this.greenHouses = Object.assign([], this.appSharedService.locations);
     for (let i = 0; i < this.greenHouses.length; i++) {
-      this.ghEditList[i]= false;
+      this.ghEditList[i] = false;
     }
   }
 
-  editableRow(i,gh){
-    // this.ghEditList[i] = Object.assign({}, gh);
+  editableRow(i, gh) {
     for (let i = 0; i < this.greenHouses.length; i++) {
-      this.ghEditList[i]= false;
+      this.ghEditList[i] = false;
     }
-    this.ghEditList[i]= true;
+    this.ghEditList[i] = true;
     console.log("edit row...", this.ghEditList);
   }
 
@@ -54,10 +52,10 @@ export class ManageGreenHouseComponent {
     this.greenHouses.push(new Location());
   }
 
-  validateLocation(){
-    if(this.gh.firstName && this.gh.lastName && this.gh.state && this.gh.email 
-      && this.gh.email && this.gh.locatorNumber &&this.gh.routes){
-        this.isValid = true;
+  validateLocation() {
+    if (this.gh.firstName && this.gh.lastName && this.gh.state && this.gh.email
+      && this.gh.email && this.gh.locatorNumber) {
+      this.isValid = true;
     }
   }
 
@@ -66,10 +64,10 @@ export class ManageGreenHouseComponent {
     // this.appSharedService.addLocation(this.greenHouses).subscribe(
     //   houseData => {
     //     console.log(houseData);
-        this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
-        this.ghEditList = this.ghEditList.map(val => {
-          val = false;
-        });
+    this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
+    this.ghEditList = this.ghEditList.map(val => {
+      val = false;
+    });
     //   },
     //   err => console.log(err)
     // );
@@ -81,13 +79,13 @@ export class ManageGreenHouseComponent {
 
   deleteGreenHouse(i) {
     this.greenHouses.splice(i, 1);
-  //   this.appSharedService.addLocation(this.greenHouses).subscribe(
-  //     houseData => {
-  //       console.log(houseData);
-  //       this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
-  //     },
-  //     err => console.log(err)
-  //   );
+    //   this.appSharedService.addLocation(this.greenHouses).subscribe(
+    //     houseData => {
+    //       console.log(houseData);
+    //       this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
+    //     },
+    //     err => console.log(err)
+    //   );
   }
 
 }

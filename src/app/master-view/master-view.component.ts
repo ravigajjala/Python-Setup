@@ -11,9 +11,7 @@ import * as _ from 'lodash';
   styleUrls: ['./master-view.component.scss']
 })
 export class MasterViewComponent implements OnInit {
-
-  constructor(private appSharedService: AppSharedService,
-    private router: Router) { }
+  private routeTotalQuantites: any;
   public message: string;
   public heads6 = [];
   public mergeClickBool = false;
@@ -26,6 +24,13 @@ export class MasterViewComponent implements OnInit {
   public endWeek = null;
   public filteredVariety = [];
   public location = null;
+  constructor(private appSharedService: AppSharedService,
+    private router: Router) {
+    this.routeTotalQuantites = {};
+    this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
+      this.routeTotalQuantites[route] = 0;
+    });
+  }
 
   ngOnInit() {
     this.appSharedService.currentMessage.subscribe(message => { this.filterVariety() });
@@ -73,10 +78,7 @@ export class MasterViewComponent implements OnInit {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.filteredVariety = this.appSharedService.varietyOptions = res;
-        this.totalCount = this.totalBalanceCount = this.sumPlantsDelivered = 0;
-        res.forEach(obj => { this.totalCount = this.totalCount + (obj.salableInfo.totalFlatsToSale || 0) });
-        res.forEach(obj => { this.totalBalanceCount = this.totalBalanceCount + (obj.plantingInfo.finishedTrays || 0) });
-        res.forEach(obj => { this.sumPlantsDelivered = this.sumPlantsDelivered + (obj.appStoreDelivery.delivered || 0) });
+        this.updateRouteTotal(null);
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -92,29 +94,38 @@ export class MasterViewComponent implements OnInit {
       });
   }
 
-  updateRouteTotal(index, item) {
-    this.appSharedService.routeTotal[index] = 0;
+  updateRouteTotal(plugToDeliverData: PlugToDeliver) {
+    console.log('called');
     this.totalCount = 0;
     this.totalBalanceCount = 0;
-    this.deliveredTotal = [];
     this.sumPlantsDelivered = 0;
-    for (let i = 0; i < this.filteredVariety.length; i++) {
-      this.totalCount = this.totalCount + parseInt(this.filteredVariety[i].salableInfo.totalFlatsToSale || 0)
-      this.totalBalanceCount = this.totalBalanceCount + parseInt(this.filteredVariety[i].plantingInfo.finishedTrays || 0)
-      if (this.filteredVariety[i].appStoreDelivery.routeNumberSale.length > 0) {
-        this.appSharedService.routeTotal[index] += (parseInt(Object.values(this.filteredVariety[i].appStoreDelivery.routeNumberSale[index])[0]) || 0);
-      }
-      this.deliveredTotal[i] = this.filteredVariety[i].appStoreDelivery.routeNumberSale.reduce(function (sum, value) {
-        if (value) {
-          return sum + parseInt(Object.values(value)[0] || 0);
-        }
-      }, 0);
-      this.filteredVariety[i].appStoreDelivery.delivered = this.deliveredTotal[i];
-      this.sumPlantsDelivered = this.deliveredTotal.reduce(function (sum, value) {
-        return sum + parseInt(value || 0);
-      }, 0);
-    }
 
+    // Removing Plug to deliver screen varieties
+    const varietyOptions = this.appSharedService.varietyOptions.filter(variety => {
+      return variety.type !== 'PLUG';
+    });
+
+    this.routeTotalQuantites = {};
+    this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
+      this.routeTotalQuantites[route] = 0;
+    });
+
+    varietyOptions.forEach((variety, i) => {
+      variety.deliverdTotal = 0;
+      this.totalCount += Number(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0);
+      this.totalBalanceCount += Number(this.appSharedService.varietyOptions[i].plantingInfo.finishedTrays || 0);
+      if (variety.appStoreDelivery.routeNumberSale.length > 0) {
+        variety.appStoreDelivery.routeNumberSale.forEach(routeObj => {
+          variety.deliverdTotal += Number(routeObj.value || 0);
+          this.routeTotalQuantites[routeObj.route] += routeObj.value;
+        });
+      }
+      console.log(varietyOptions);
+      this.sumPlantsDelivered += variety.deliverdTotal;
+    });
+    if (plugToDeliverData != null) {
+      this.updatePlugToDeliverData(plugToDeliverData);
+    }
   }
 
   filterVariety() {
@@ -132,20 +143,22 @@ export class MasterViewComponent implements OnInit {
     }
 
     for (let i = 0; i < this.appSharedService.routeTotal.length; i++) {
-      this.updateRouteTotal(i, null);
+      this.updateRouteTotal(null);
     }
   }
 
   exportExcel() {
-    let exportRecords = [];
-
+    const exportRecords = [];
     console.log(this.appSharedService.varietyOptions);
     for (let i = 0; i < this.filteredVariety.length; i++) {
       console.log(this.filteredVariety[i]);
-      if (_.get(this.filteredVariety[i], 'type') !== 'PLANTING') continue;
-      let recordModel = {};
+      if (_.get(this.filteredVariety[i], 'type') !== 'PLANTING') {
+        continue;
+      }
+      const recordModel = {};
       this.location = _.get(this.filteredVariety[i], 'userGreenHouseLocation');
-      recordModel['"' + this.location + '"'] = _.get(this.filteredVariety[i], 'name') + '' + (this.filteredVariety[i].weekNumber ? '  Wk' + this.filteredVariety[i].weekNumber : '');
+      recordModel['"' + this.location + '"'] = _.get(this.filteredVariety[i], 'name') + '' + (this.filteredVariety[i].weekNumber ? '  Wk' +
+        this.filteredVariety[i].weekNumber : '');
       recordModel['Seed Lot Number'] = _.get(this.filteredVariety[i], 'plugTray.seedLotNumber');
       recordModel['Locator'] = _.get(this.filteredVariety[i], 'plantingInfo.locatorNumber');
       recordModel['House#/Bay#'] = _.get(this.filteredVariety[i], 'plantingInfo.houseBay');
@@ -163,7 +176,7 @@ export class MasterViewComponent implements OnInit {
       exportRecords.push(recordModel);
     }
 
-    let totalModel = {};
+    const totalModel = {};
     totalModel['"' + this.location + '"'] = 'Total';
     totalModel['Seed Lot Number'] = [];
     totalModel['Locator'] = [];

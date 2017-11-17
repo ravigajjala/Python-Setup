@@ -8,6 +8,8 @@ import { ManageUsersComponent } from '../manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from '../manage-green-house/manage-green-house.component';
 import { ManagePlugCatalogComponent } from '../manage-plug-catalog/manage-plug-catalog.component';
 import { User, Plant, Location } from '../providers/classes/plantInfo.class';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-organic-tracker-sheet',
@@ -20,6 +22,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   public locations = [];
   private plugNotifStatus = [];
   public message;
+  private loading: boolean;
 
   constructor(
     public loginService: LoginService,
@@ -27,14 +30,72 @@ export class OrganicTrackerSheetComponent implements OnInit {
     public dialog: MatDialog,
     public router: Router
   ) {
+    this.loading = true;
+    // Using accessToken retriving the user data from Auth0
+    // const accessToken = localStorage.getItem('access_token');
+    // console.log('accesstoken:: ' + accessToken);
+
+    // this.loginService.getProfile(accessToken);
   }
 
   ngOnInit() {
+   // // Retrieving the locations from Locations Kind
+    // return this.appSharedService.getLocations().subscribe(
+    //   locations => {
+    //     this.appSharedService.locations = locations;
+    //     const userEmail = this.loginService.userProfile.name;
+    //     return this.loginService.getLocationByEmail(userEmail).subscribe(
+    //       location => {
+    //         this.appSharedService.userId = location[0].email;
+    //         // TODO:: Add state too
+    //         this.appSharedService.loggedInUserGreenHouseLocation = location[0].city;
+    //         this.appSharedService.currentGreenHouseLocation = location[0];
+    //         // checking first time login or reoccuring login then routing
+    //         return this.appSharedService.getUserPreviousRoute().subscribe(
+    //           userInfoArray => {
+    //             // TODO:: Make observable filter
+    //             let newRoute;
+    //             userInfoArray = userInfoArray.filter(response => response.datastore_id === this.appSharedService.userId);
+    //             this.loading = false;
+    //             if (this.loginService.isAuthenticated() && userInfoArray.length > 0) {
+    //               newRoute = userInfoArray[0].lastRoute;
+    //               this.router.navigate([newRoute]);
+    //             } else {
+    //               this.router.navigate(['app-organic-tracker-sheet/app-plug-tray-information']);
+    //             }
+    //           },
+    //           err => console.log(err)
+    //         );
+    //       },
+    //       err => console.log(err)
+    //     );
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
+    // // this.appSharedService.currentMessage.subscribe(message => this.message = message);
+
     this.appSharedService.getLocations().subscribe(
       locations => {
+        this.loading = false;
         this.appSharedService.locations = locations;
+        this.appSharedService.userId = 'gajjalaraviteja@gmail.com';
+        this.appSharedService.loggedInUserGreenHouseLocation = 'Rydal';
+        this.appSharedService.currentGreenHouseLocation = {
+          "code": "67_drop",
+          "firstName": "Justin",
+          "lastName": "Viles",
+          "city": "Gillette",
+          "state": " WY",
+          "userEmail": "justinviles@hotmail.com",
+          "shipToLocations": [],
+          "locatorNumber": 0,
+          "routes": [94, 95],
+          "datastore_id": ''
+        };
         // TODO:: check first time login or reoccuring login then route
-        this.appSharedService.getUserPreviousRoute(this.appSharedService.userId).subscribe(
+        this.appSharedService.getUserPreviousRoute().subscribe(
           userInfoArray => {
             // TODO:: Make observable filter
             let newRoute;
@@ -51,8 +112,8 @@ export class OrganicTrackerSheetComponent implements OnInit {
         console.log(err);
       }
     );
-    this.appSharedService.currentMessage.subscribe(message => this.message = message);
   }
+
 
   moveToNextStage(stage: string): void {
     if (stage) {
@@ -63,8 +124,8 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0)
-              || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)
+            if ((['reasonsCode'].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0)
+              || (['reasonsCode'].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)
                 || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
               current_status = false;
               break;
@@ -74,7 +135,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
           }
         }
 
-        let errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+        const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
         if (current_status && !errCheck) {
           val.type = stage;
           this.updateNotifStatus(val, index);
@@ -105,14 +166,14 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
   updateNotifStatus(val, index): void {
     const currentStatus = this.plugNotifStatus[index];
-    if (val.type === "PLUG") {
-      let errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+    if (val.type === 'PLUG') {
+      const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
       if (!errCheck) {
         // iterate through each key in object
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0)
-              || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)
+            if ((['reasonsCode'].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0)
+              || (['reasonsCode'].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)
                 || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
               this.plugNotifStatus[index] = false;
               break;
@@ -121,8 +182,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
             }
           }
         }
-      }
-      else {
+      } else {
         this.plugNotifStatus[index] = false;
       }
 
@@ -140,9 +200,10 @@ export class OrganicTrackerSheetComponent implements OnInit {
   /**
   * [When user chnages the green house location from the dropdown this function will update the plug to deliver data]
   */
-  locationChange(): void {
-    this.appSharedService.currentGreenHouseLocation.routes;
-    this.appSharedService.updateRouteTotal();
+  locationChange(location): void {
+    this.appSharedService.currentGreenHouseLocation = location;
+    console.log(this.appSharedService.currentGreenHouseLocation);
+    // this.appSharedService.updateRouteTotal();
     this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;

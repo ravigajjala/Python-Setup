@@ -29,6 +29,17 @@ class GetLocations(APIRequest):
         except Exception as e:
             logging.error(e)
 
+class GetLocationByEmail(APIRequest):
+    def get(self):
+        try:
+            params = self.request.params
+            locations = Locations.query(Locations.email == params.get('userEmail')).fetch()
+            locations = self.to_json(locations)
+            self.response.headers['Content-Type'] = 'application/json'
+            self.response.out.write(json.dumps(locations))
+        except Exception as e:
+            logging.error(e)
+
 class CreateLocationsDatabase(APIRequest):
     def post(self):
         try:
@@ -70,5 +81,6 @@ class UpdateLocationsDatabase(APIRequest):
 app = webapp2.WSGIApplication([
     ('/locations/get', GetLocations),
     ('/locations/create', CreateLocationsDatabase),
-    ('/locations/put', UpdateLocationsDatabase)
+    ('/locations/put', UpdateLocationsDatabase),
+    ('/locations/getByEmail', GetLocationByEmail)
 ], debug=True)

@@ -22,16 +22,22 @@ export class SalableInfo {
 }
 
 export class AppStoreDelivery {
-	routeNumberSale: any[];
+	routeNumberSale: Route[];
 	discarded: number;
 	reasonCode: string;
 	check: boolean;
 	delivered: number;
 }
 
+export class Route {
+	route: number;
+	value: number;
+}
+
 export class ShipToInfo {
-	quantity: number;
-	city: number;
+	qty: number;
+	city: string;
+	state: string;
 	disableInput: boolean;
 }
 
@@ -85,6 +91,7 @@ export class PlugToDeliver {
 	receivedButonClicked: boolean;
 	docIdOfParentVariety: number;
 	screenName: string;
+	flatsToSaleAfterShipping: number;
 	plugTray: PlugTray;
 	plantingInfo: PlantingInfo;
 	receivingInfo: ReceivingInfo;

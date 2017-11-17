@@ -1,79 +1,83 @@
-<div class="right-scroll">
+<div [ngClass]="{'disable-all': appSharedService.loggedInUserGreenHouseLocation != appSharedService.currentGreenHouseLocation.city}">
+  <div class="right-scroll">
 
-  <!-- START: Total Salable -->
-  <table class="table_five table-width">
-    <thead>
-      <tr>
+    <!-- START: Total Salable -->
+    <table class="table_five table-width">
+      <thead>
+        <tr>
           <td>
-              <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-                <div>
-                  <mat-form-field class="full-width">
-                    <input matInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
-                  </mat-form-field>
-                </div>
+            <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+              <div>
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Variety" [(ngModel)]="appSharedService.searchFieldValue">
+                </mat-form-field>
               </div>
-              <div class="flex-display" [class.flex-center]="mergeClickBool">
-                <button mat-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
-                <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
-                <button mat-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
-              </div>
-              <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
-              <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-                  <mat-button-toggle value="left">
-                    Type <i class="material-icons">arrow_drop_down</i>
-                  </mat-button-toggle>
-                  <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
-                    A-Z <i class="material-icons">arrow_drop_down</i>
-                  </mat-button-toggle>
-                  <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
-                    Wk# <i class="material-icons">arrow_drop_down</i>
-                  </mat-button-toggle>
-              </div>
+            </div>
+            <div class="flex-display" [class.flex-center]="mergeClickBool">
+              <button mat-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+              <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
+              <button mat-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
+            </div>
+            <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
+            <div class="toggle-button-css" *ngIf="mergeClickBool == false">
+              <mat-button-toggle value="left">
+                Type <i class="material-icons">arrow_drop_down</i>
+              </mat-button-toggle>
+              <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+                A-Z <i class="material-icons">arrow_drop_down</i>
+              </mat-button-toggle>
+              <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
+                Wk# <i class="material-icons">arrow_drop_down</i>
+              </mat-button-toggle>
+            </div>
           </td>
           <td *ngFor="let head of heads5;let i=index">
-              <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+            <span><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
           </td>
-      </tr>
-  </thead>
+        </tr>
+      </thead>
 
-  <tbody>
-    <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model" [hidden]="item.type !=='PLANTING'">
-      <td>
-          <div class="icon-box" (click)="appSharedService.openDialog(item)">
+      <tbody>
+        <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model"
+          [hidden]="item.type !=='PLANTING'">
+          <td>
+            <div class="icon-box" (click)="appSharedService.openDialog(item)">
               <svg class="icon" [ngClass]="item.color_id">
-              <use [attr.href]="item.url" />
+                <use [attr.href]="item.url" />
               </svg>
-              </div>
-              <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
-      </td>
-      <td class="td-lg">
-        <input matInput onclick="this.select();" name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
-      </td>
-      <td class="td-sm">
-        <input matInput onclick="this.select();" name="q" [ngModel]="item.plantingInfo.finishedTrays" disabled>
-        <!--<input matInput onclick="this.select();" name="q" [ngModel]="item.plantingInfo.finishedTrays - item.shipToInfo.totalShipToQuantities" disabled>-->
-      </td>
-      <td class="td-sm">
-        <input matInput onclick="this.select();" name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
-      </td>
-      <td class="td-md">
-        <input matInput onclick="this.select();" name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
-      </td>
-      <td class="td-sm" [ngClass]="{'error-box':item.salableInfo.discarded > item.plantingInfo.finishedTrays}" matTooltip="Given input should be less than or equal to finishedTrays"
-          [matTooltipDisabled]="item.salableInfo.discarded <= item.plantingInfo.finishedTrays">
-        <input matInput onclick="this.select();" type="number"  min="0" name="ts_d" [(ngModel)]="item.salableInfo.discarded" (blur)="updatePlugToDeliverData(item)">
-      </td>
-      <td class="td-sm">
-        <mat-select placeholder="" #select="matSelect" [disabled]="!item.salableInfo.discarded" [(ngModel)]="item.salableInfo.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
-          <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
-          <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
-        </mat-select>
-      </td>
-      <td class="td-sm">
-        <input matInput name="totalsale" [(ngModel)]="item.salableInfo.totalFlatsToSale" (blur)="updatePlugToDeliverData(item)">
-      </td>
-    </tr>
-  </tbody>
-  </table>
-  <!-- END: Total Salable -->
+            </div>
+            <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
+          </td>
+          <td class="td-lg">
+            <input matInput onclick="this.select();" name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
+          </td>
+          <td class="td-sm">
+            <input matInput onclick="this.select();" name="q" [ngModel]="item.flatsToSaleAfterShipping" disabled>
+            <!--<input matInput onclick="this.select();" name="q" [ngModel]="item.plantingInfo.finishedTrays - item.shipToInfo.totalShipToQuantities" disabled>-->
+          </td>
+          <td class="td-sm">
+            <input matInput onclick="this.select();" name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
+          </td>
+          <td class="td-md">
+            <input matInput onclick="this.select();" name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
+          </td>
+          <td class="td-sm" [ngClass]="{'error-box':item.salableInfo.discarded > item.flatsToSaleAfterShipping}" matTooltip="Given input should be less than or equal to finishedTrays"
+            [matTooltipDisabled]="item.salableInfo.discarded <= item.flatsToSaleAfterShipping">
+            <input matInput onclick="this.select();" type="number" min="0" name="ts_d" [(ngModel)]="item.salableInfo.discarded" (blur)="updatePlugToDeliverData(item)">
+          </td>
+          <td class="td-sm">
+            <mat-select placeholder="" #select="matSelect" [disabled]="!item.salableInfo.discarded" [(ngModel)]="item.salableInfo.reasonCode"
+              (ngModelChange)="updatePlugToDeliverData(item)">
+              <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
+              <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
+            </mat-select>
+          </td>
+          <td class="td-sm">
+            <input matInput name="totalsale" [(ngModel)]="item.salableInfo.totalFlatsToSale" (blur)="updatePlugToDeliverData(item)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- END: Total Salable -->
+  </div>
 </div>

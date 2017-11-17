@@ -1,8 +1,9 @@
-<div class="right-scroll">
-  <!-- START: To Store Delivery/Balance -->
-  <table class="table_six table-width">
-    <thead>
-      <tr>
+<div [ngClass]="{'disable-all': appSharedService.loggedInUserGreenHouseLocation != appSharedService.currentGreenHouseLocation.city}">
+  <div class="right-scroll">
+    <!-- START: To Store Delivery/Balance -->
+    <table class="table_six table-width">
+      <thead>
+        <tr>
           <td>
             <div class="toggle-button-css" *ngIf="mergeClickBool == false">
               <div>
@@ -18,95 +19,100 @@
             </div>
             <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
             <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-                <mat-button-toggle value="left">
-                  Type <i class="material-icons">arrow_drop_down</i>
-                </mat-button-toggle>
-                <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
-                  A-Z <i class="material-icons">arrow_drop_down</i>
-                </mat-button-toggle>
-                <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
-                  Wk# <i class="material-icons">arrow_drop_down</i>
-                </mat-button-toggle>
+              <mat-button-toggle value="left">
+                Type <i class="material-icons">arrow_drop_down</i>
+              </mat-button-toggle>
+              <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
+                A-Z <i class="material-icons">arrow_drop_down</i>
+              </mat-button-toggle>
+              <mat-button-toggle value="right" (click)="appSharedService.weekSort()">
+                Wk# <i class="material-icons">arrow_drop_down</i>
+              </mat-button-toggle>
             </div>
           </td>
           <ng-container *ngFor="let head of heads6;let i=index">
-              <td [ngClass]="{'merge-cell-style':i==4 || i==6}" *ngIf="!(i==4 || i==6)">
-                    <span [ngClass]="{'store-left':i==0}"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
-              </td>
-              <ng-container *ngIf="i==4">
-                  <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes">
-                      <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} <i class="material-icons rotate_45 print-icon valign_middle">print</i></span></td>
-                  </ng-container>
+            <td [ngClass]="{'merge-cell-style':i==4 || i==6}" *ngIf="!(i==4 || i==6)">
+              <span [ngClass]="{'store-left':i==0}"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+            </td>
+            <ng-container *ngIf="i==4">
+              <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes">
+                <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} <i class="material-icons rotate_45 print-icon valign_middle">print</i></span></td>
               </ng-container>
-              <ng-container *ngIf="i==6">
-                  <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>#Discarded</span></td>
-                  <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span></td>
-              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="i==6">
+              <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>#Discarded</span></td>
+              <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span></td>
+            </ng-container>
           </ng-container>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i=index;"
-        class="form-input-model" [hidden]="item.type !=='PLANTING'">
-        <td>
-          <div class="icon-box" (click)="appSharedService.openDialog(item)">
-            <svg class="icon" [ngClass]="item.color_id">
-            <use [attr.href]="item.url" />
-            </svg>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue; let i=index;"
+          class="form-input-model" [hidden]="item.type !=='PLANTING'">
+          <td>
+            <div class="icon-box" (click)="appSharedService.openDialog(item)">
+              <svg class="icon" [ngClass]="item.color_id">
+                <use [attr.href]="item.url" />
+              </svg>
             </div>
             <span>{{item.name}}<s class="secondary-text">{{ item.weekNumber ? '  Wk' + item.weekNumber : ''}}</s></span>
-        </td>
-        <td class="td-lg">
-          <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
-        </td>
-        <td class="td-sm">
-          <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
-        </td>
-        <td class="td-md">
-          <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
-        </td>
-        <td class="td-sm">
-          <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
-        </td>
-        <td class="td-xs" *ngFor="let route of appSharedService.currentGreenHouseLocation.routes;let in = index;">
-          <input matInput onclick="this.select();" type="number" min="0" name="sixtyeight" (blur)="updateRouteTotal(in,item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in][route]">
-        </td>
-        <td class="td-sm">
-          <span>{{deliveredTotal[i] || item.appStoreDelivery.delivered}}</span>
-        </td>
-        <td class="td-sm">
-          <input matInput onclick="this.select();" type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
-        </td>
-        <td class="td-sm">
-          <mat-select placeholder="" #select="matSelect" [disabled]="!item.appStoreDelivery.discarded" [(ngModel)]="item.appStoreDelivery.reasonCode" (ngModelChange)="updatePlugToDeliverData(item)">
-            <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
-            <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
-          </mat-select>
-        </td>
-        <td class="td-sm">
-          <input matInput onclick="this.select();" name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
-        </td>
-        <td class="td-xs">
-          {{(item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) !== 0 ? (item.salableInfo.totalFlatsToSale || 0) - (item.appStoreDelivery.delivered || 0) : ""}} 
-          <mat-checkbox [hidden]="(item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered) !== 0 " class="example-margin" [checked]="item.salableInfo.totalFlatsToSale - item.appStoreDelivery.delivered == 0" (blur)="updatePlugToDeliverData(item)"></mat-checkbox>
-        </td>
-      </tr>
-      <tr>
-        <td>Total</td>
-        <td class="td-lg"></td>
-        <td class="td-sm"></td>
-        <td class="td-md"></td>
-        <td class="td-sm">{{totalCount}}</td>
-        <td class="td-xs" *ngFor="let totalVal of appSharedService.routeTotal">{{totalVal}}</td>
-        <td class="td-sm"> {{sumPlantsDelivered}}</td>
-        <td class="td-sm"></td>
-        <td class="td-sm"></td>
-        <td class="td-sm"> {{totalBalanceCount}}</td>
-        <td class="td-xs"></td>
-      </tr>
-    </tbody>
-  </table>
-  <!-- END: To Store Delivery/Balance -->
+          </td>
+          <td class="td-lg">
+            <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
+          </td>
+          <td class="td-sm">
+            <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
+          </td>
+          <td class="td-md">
+            <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
+          </td>
+          <td class="td-sm">
+            <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
+          </td>
+          <td class="td-xs" *ngFor="let routeObj of appSharedService.currentGreenHouseLocation.routes;let in = index;">
+            <input matInput type="number" min="0" onclick="this.select();" name="routeValue" (blur)="updateRouteTotal(item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]['value']">
+          </td>
+          <td class="td-sm">
+            <span>{{item.deliverdTotal}}</span>
+          </td>
+          <td class="td-sm">
+            <input matInput onclick="this.select();" type="number" name="ts_d" [(ngModel)]="item.appStoreDelivery.discarded" (blur)="updatePlugToDeliverData(item)">
+          </td>
+          <td class="td-sm">
+            <mat-select placeholder="" #select="matSelect" [disabled]="!item.appStoreDelivery.discarded" [(ngModel)]="item.appStoreDelivery.reasonCode"
+              (ngModelChange)="updatePlugToDeliverData(item)">
+              <mat-select-trigger>{{select.selected?.viewValue.split(' (')[0]}}</mat-select-trigger>
+              <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
+            </mat-select>
+          </td>
+          <td class="td-sm">
+            <input matInput onclick="this.select();" name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
+          </td>
+          <td class="td-xs">
+            <div *ngIf="(item.salableInfo.totalFlatsToSale - item.deliverdTotal) == 0; else elseBlock">
+              <mat-checkbox class="example-margin" [checked]="(item.salableInfo.totalFlatsToSale - item.deliverdTotal) == 0"></mat-checkbox>
+            </div>
+            <ng-template #elseBlock>{{ item.salableInfo.totalFlatsToSale - item.deliverdTotal }}</ng-template>
+          </td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td class="td-lg"></td>
+          <td class="td-sm"></td>
+          <td class="td-md"></td>
+          <td class="td-sm">{{totalCount}}</td>
+          <td class="td-xs" *ngFor="let routeNumber of appSharedService.currentGreenHouseLocation.routes">{{routeTotalQuantites[routeNumber] || 0 }}</td>
+          <!--{{routeTotalQuantites[routeNumber]}}-->
+          <td class="td-sm"> {{sumPlantsDelivered}}</td>
+          <td class="td-sm"></td>
+          <td class="td-sm"></td>
+          <td class="td-sm"> {{totalBalanceCount}}</td>
+          <td class="td-xs"></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- END: To Store Delivery/Balance -->
 
 
+  </div>
 </div>

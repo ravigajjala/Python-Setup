@@ -21,18 +21,19 @@ export class AppSharedService {
     public locations: Location[];
     public plants: Plant[];
     public varietyOptions: any[];
-    public varietyOptionsType: string; 
-    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING","RECEIVING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
+    public varietyOptionsType: string;
+    public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING", "RECEIVING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
     private isPlantNameSorted: boolean = false;
     private isWeekNumberSorted: boolean = false;
     public searchFieldValue: any = undefined;
     public shippedNumber = 0;
     public totalNotif = 0;
-    public userId: string = 'sainath8090';
-    //public currentGreenHouseLocation: any;
+    public userId: string;
+    public currentLocation: Location;
     public routeTotal = [];
     public currentGreenHouseLocation: Location = undefined;
     public receivedVarietiesCountWithReceivedButton: number;
+    public loggedInUserGreenHouseLocation: string;
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
@@ -218,7 +219,7 @@ export class AppSharedService {
         "state": " AL",
         "email": "tim.trussell@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [60,61,62,63],
+        "routes": [60, 61, 62, 63],
         "locatorNumber": 10
     },
     {
@@ -229,7 +230,7 @@ export class AppSharedService {
         "state": " GA",
         "email": "rydalga@bonniesales.com",
         "shipToLocations": [],
-        "routes": [71,72],
+        "routes": [71, 72],
         "locatorNumber": 0
     },
     {
@@ -240,7 +241,7 @@ export class AppSharedService {
         "state": " GA",
         "email": "alvatonga@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [91,92,93],
+        "routes": [91, 92, 93],
         "locatorNumber": 59
     },
     {
@@ -262,7 +263,7 @@ export class AppSharedService {
         "state": " AL",
         "email": "athensal@bonniesales.com",
         "shipToLocations": [],
-        "routes": [91,92],
+        "routes": [91, 92],
         "locatorNumber": 19
     },
     {
@@ -273,7 +274,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "houstontx@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [11,12,13],
+        "routes": [11, 12, 13],
         "locatorNumber": 0
     },
     {
@@ -284,7 +285,7 @@ export class AppSharedService {
         "state": " TX",
         "email": "beevilletx@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [1,2,3,4],
+        "routes": [1, 2, 3, 4],
         "locatorNumber": 34
     },
     {
@@ -295,7 +296,7 @@ export class AppSharedService {
         "state": " MS",
         "email": "pearlms@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [7,8,9],
+        "routes": [7, 8, 9],
         "locatorNumber": 17
     },
     {
@@ -306,7 +307,7 @@ export class AppSharedService {
         "state": "LA",
         "email": "fosterreeves@gmail.com",
         "shipToLocations": [],
-        "routes": [27,28],
+        "routes": [27, 28],
         "locatorNumber": 57
     },
     {
@@ -317,7 +318,7 @@ export class AppSharedService {
         "state": " FL",
         "email": "waverlyfl@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [31,32],
+        "routes": [31, 32],
         "locatorNumber": 37
     },
     {
@@ -328,7 +329,7 @@ export class AppSharedService {
         "state": " FL",
         "email": "southfl@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [77,78,79],
+        "routes": [77, 78, 79],
         "locatorNumber": 64
     },
     {
@@ -339,7 +340,7 @@ export class AppSharedService {
         "state": " FL",
         "email": "BradTrussell@aol.com",
         "shipToLocations": [],
-        "routes": [67,68],
+        "routes": [67, 68],
         "locatorNumber": 0
     },
     {
@@ -350,7 +351,7 @@ export class AppSharedService {
         "state": " CA",
         "email": "palaca@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [14,15],
+        "routes": [14, 15],
         "locatorNumber": 0
     },
     {
@@ -361,7 +362,7 @@ export class AppSharedService {
         "state": " CA",
         "email": "randy.beasley@bonnieplants.com",
         "shipToLocations": [],
-        "routes": [22,23],
+        "routes": [22, 23],
         "locatorNumber": 48
     },
     {
@@ -372,7 +373,7 @@ export class AppSharedService {
         "state": " CA",
         "email": "watsonvilleca@bonniesales.com",
         "shipToLocations": [],
-        "routes": [87,88,89,90],
+        "routes": [87, 88, 89, 90],
         "locatorNumber": 52
     },
     {
@@ -1050,18 +1051,19 @@ export class AppSharedService {
         "locatorNumber": 0
     }];
     constructor(private dialog: MatDialog, private http: Http, public router: Router) {
-        this.currentGreenHouseLocation = {
-            "code": "67_drop",
-            "firstName": "Justin",
-            "lastName": "Viles",
-            "city": "Gillette",
-            "state": " WY",
-            "userEmail": "justinviles@hotmail.com",
-            "shipToLocations": [],
-            "locatorNumber": 0,
-            "routes": [94,95],
-            "datastore_id": ''
-        };
+        // this.currentGreenHouseLocation = {
+        //     "code": "67_drop",
+        //     "firstName": "Justin",
+        //     "lastName": "Viles",
+        //     "city": "Gillette",
+        //     "state": " WY",
+        //     "userEmail": "justinviles@hotmail.com",
+        //     "shipToLocations": [],
+        //     "locatorNumber": 0,
+        //     "routes": [94, 95],
+        //     "datastore_id": ''
+        // };
+        this.currentGreenHouseLocation = undefined;
         this.receivedVarietiesCountWithReceivedButton = this.receivedVarietiesCountWithReceivedButton || 0;
     }
 
@@ -1152,13 +1154,13 @@ export class AppSharedService {
     }
 
     openDialog(currentItem): void {
-        console.log('called');
         const dialogRef = this.dialog.open(IconDialogComponent, {
             data: currentItem
         });
     }
 
     getPlugToDeliverData(): Observable<PlugToDeliver[]> {
+        console.log(this.currentGreenHouseLocation.city + this.currentGreenHouseLocation.state);
         return this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
             this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state)
             .map(res => {
@@ -1170,11 +1172,11 @@ export class AppSharedService {
     }
 
     getPlugToDeliverDataForReceivedInfoScreen(): Observable<PlugToDeliver[]> {
-        return this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
-            this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state)
-            // return IntervalObservable.create(5000)
-            //     .flatMap(() => this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
-            //     this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state))
+        // return this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
+        //     this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state)
+            return IntervalObservable.create(5000)
+                .flatMap(() => this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
+                this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state))
             .map((res: Response) => {
                 return res.json();
             })
@@ -1205,22 +1207,22 @@ export class AppSharedService {
             });
     }
 
+    getUserPreviousRoute(): Observable<UserRelatedInfo[]> {
+        return this.http.get('/user/get')
+            .map((res: Response) => {
+                return res.json();
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
     updatePlugToDeliverDataOfTheParentVariety(plugToDeliver: PlugToDeliver): Observable<PlugToDeliver[]> {
         return this.http.put('/plug-to-deliver-parent/put', plugToDeliver, this.options)
             .map(res => {
                 return res;
             })
             .catch(err => {
-                return Observable.throw(err.json().error || 'Server error');
-            });
-    }
-
-    getUserPreviousRoute(userId: string): Observable<UserRelatedInfo[]> {
-        return this.http.get('/user/get')
-            .map((res: Response) => {
-                return res.json();
-            })
-            .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
@@ -1241,13 +1243,15 @@ export class AppSharedService {
         return total;
     }
 
-    updateRouteTotal () {
-        if(this.currentGreenHouseLocation.routes && this.currentGreenHouseLocation.routes.length){
+    updateRouteTotal() {
+        if (this.currentGreenHouseLocation.routes && this.currentGreenHouseLocation.routes.length) {
             for (let i = 0; i < this.currentGreenHouseLocation.routes.length; i++) {
                 this.routeTotal[i] = 0;
-                if(this.varietyOptions && this.varietyOptions.length) {
-                    for(let j=0;j < this.varietyOptions.length;j++) {
-                        this.routeTotal[i] += (this.varietyOptions[j].appStoreDelivery.deliveryQuantity[i] || 0);
+                if (this.varietyOptions && this.varietyOptions.length) {
+                    for (let j = 0; j < this.varietyOptions.length; j++) {
+                        if (this.varietyOptions[j].appStoreDelivery.deliveryQuantity) {
+                            this.routeTotal[i] += (this.varietyOptions[j].appStoreDelivery.deliveryQuantity[i] || 0);
+                        }
                     }
                 }
             }
@@ -1263,7 +1267,7 @@ export class AppSharedService {
                 return Observable.throw(err.json().error || 'Server error');
             });
     }
-    
+
     changeMessage(message: string) {
         this.messageSource.next(message);
     }

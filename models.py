@@ -76,6 +76,7 @@ class PlugToDeliver(ndb.Model):
     showReceiveButton = ndb.BooleanProperty()
     receivedButonClicked = ndb.BooleanProperty()
     screenName = ndb.StringProperty()
+    flatsToSaleAfterShipping = ndb.IntegerProperty()
     plugTray = ndb.StructuredProperty(PlugTray)
     plantingInfo = ndb.StructuredProperty(PlantingInfo)
     receivingInfo = ndb.StructuredProperty(ReceivingInfo)

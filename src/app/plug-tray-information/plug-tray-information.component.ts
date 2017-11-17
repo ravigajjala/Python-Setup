@@ -113,16 +113,15 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
   setNotifStatus(val, index) {
     const currentStatus = this.plugNotifStatus[index];
-    if(val.type === "PLUG") {
-      let errCheck =  (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
-      console.log("checking errro case ", val.plugTray.plugFlatsPotted, val.plugTray.plugFlatsReceived, errCheck);
-      if(!errCheck){
+    if (val.type === 'PLUG') {
+      const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+      if (!errCheck) {
         // iterate through each key in object
         for (const key in val.plugTray) {
           if (val.plugTray.hasOwnProperty(key)) {
-            if ((["reasonsCode"].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0) 
-            || (["reasonsCode"].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode) 
-            || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
+            if ((['reasonsCode'].indexOf(key) === -1 && !val.plugTray[key] && val.plugTray[key] !== 0)
+              || (['reasonsCode'].indexOf(key) > -1 && !((val.plugTray.plugFlatsDiscarded === 0 && !val.plugTray.reasonsCode)
+                || (val.plugTray.plugFlatsDiscarded !== 0 && !!val.plugTray.reasonsCode)))) {
               this.plugNotifStatus[index] = false;
               break;
             } else {
@@ -130,8 +129,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
             }
           }
         }
-      }
-      else {
+      } else {
         this.plugNotifStatus[index] = false;
       }
 
@@ -198,20 +196,34 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       // tempNewPlant.shipToInfo = Object.assign({}, newPlant.shipToInfo);
       tempNewPlant.type = 'PLUG';
       tempNewPlant.shipToInfo = []; // Array of shipto locations Objects
-      // Creating new shipToObj
-      const shipToObj = {
-        city: '',
-        state: '',
-        disableInput: false,
-        qty: null
-      };
+
       // Pushing shipToObj to variety shipToInfo array based on shipToLocations array in currentGreenHouseLocation
-      this.appSharedService.currentGreenHouseLocation.shipToLocations.forEach(
-        location => {
-          shipToObj.city = location.city;
-          shipToObj.state = location.state;
-          tempNewPlant.shipToInfo.push(shipToObj);
+      if (this.appSharedService.currentGreenHouseLocation.shipToLocations.length > 0) {
+        this.appSharedService.currentGreenHouseLocation.shipToLocations.forEach(
+          location => {
+            // Creating new shipToObj
+            const shipToObj = {
+              city: '',
+              state: '',
+              disableInput: false,
+              qty: null
+            };
+            shipToObj.city = location.city;
+            shipToObj.state = location.state;
+            tempNewPlant.shipToInfo.push(shipToObj);
+          });
+      }
+      if (this.appSharedService.currentGreenHouseLocation.routes.length > 0) {
+        tempNewPlant.appStoreDelivery.routeNumberSale = [];
+        this.appSharedService.currentGreenHouseLocation.routes.forEach(routeNumber => {
+          const routeObj = {
+            route: null,
+            value: null
+          };
+          routeObj.route = routeNumber;
+          tempNewPlant.appStoreDelivery.routeNumberSale.push(routeObj);
         });
+      }
       this.createPlugToDeliverData(tempNewPlant);
     }
     this.trigger.closePanel();
@@ -271,29 +283,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
-        for(let j=0;j<res.length; j++){
-          if(!res[j].appStoreDelivery.routeNumberSale){
-            res[j].appStoreDelivery.routeNumberSale = [];
-          }
-          for(let i =0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
-            if(res[j].appStoreDelivery.routeNumberSale[i]){
-              res[j].appStoreDelivery.routeNumberSale[i]['route'] = this.appSharedService.currentGreenHouseLocation.routes[i];
-              res[j].appStoreDelivery.routeNumberSale[i]['value'] = !!(res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]])?res[j].appStoreDelivery.routeNumberSale[i][this.appSharedService.currentGreenHouseLocation.routes[i]]:0;
-            
-            }
-            else {
-              let tmpObj = {};
-              tmpObj['route'] = this.appSharedService.currentGreenHouseLocation.routes[i];
-              tmpObj['value'] = null;
-              res[j].appStoreDelivery.routeNumberSale.push(tmpObj);
-            }
-          
-          }          
-        }
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
-        
-        console.log(res);
         this.appSharedService.varietyOptions.forEach((val, index) => {
           this.plugNotifStatus = [];
           this.setNotifStatus(val, index);

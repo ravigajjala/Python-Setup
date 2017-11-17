@@ -13,7 +13,7 @@ export class TotalSalableComponent implements OnInit {
 
   constructor(private appSharedService: AppSharedService,
     public router: Router) {
-     }
+  }
   public reasonCodes = [];
   public heads5 = [];
   public mergeClickBool = false;
@@ -28,7 +28,7 @@ export class TotalSalableComponent implements OnInit {
       'Finished trays',
       'Locator #',
       'House#/Bay#',
-      '#Discarded', 
+      '#Discarded',
       'Reason Code',
       'Total Flats to Sale'
     ];
@@ -56,8 +56,15 @@ export class TotalSalableComponent implements OnInit {
   // TODO:: Make shared function
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
-      res => {
-        this.appSharedService.varietyOptions = res;
+      varieties => {
+        this.appSharedService.varietyOptions = varieties;
+        this.appSharedService.varietyOptions.forEach(vareity => {
+          // Subtracting shipping quantities from flatsToSale
+          vareity.flatsToSaleAfterShipping = Number(vareity.plantingInfo.finishedTrays);
+          vareity.shipToInfo.forEach(location => {
+            vareity.flatsToSaleAfterShipping = vareity.flatsToSaleAfterShipping - Number(location.qty);
+          });
+        });
       },
       err => {
         console.log('Plug to deliver data retrive error');
@@ -71,7 +78,7 @@ export class TotalSalableComponent implements OnInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
-    plugToDeliverData.salableInfo.totalFlatsToSale = plugToDeliverData.plantingInfo.finishedTrays - plugToDeliverData.salableInfo.discarded;
+    plugToDeliverData.salableInfo.totalFlatsToSale = plugToDeliverData.flatsToSaleAfterShipping - plugToDeliverData.salableInfo.discarded;
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
       err => {

@@ -37,8 +37,6 @@ export class ShipToOtherStationsComponent implements OnInit {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
   ngOnInit() {
-    console.log(this.appSharedService.varietyOptions);
-    console.log(this.appSharedService.currentGreenHouseLocation);
     // Retrieving Locations
     this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
 
@@ -53,6 +51,7 @@ export class ShipToOtherStationsComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
+    this.getPlugToDeliverData();
   }
 
   openDialog(currentItem): void {
@@ -151,6 +150,22 @@ export class ShipToOtherStationsComponent implements OnInit {
     );
   }
 
+  /**
+  * [Retriving all plugToDeliver objects from plugToDeliver Kind]
+  * @return it returns all varities from plugToDeliver Kind
+  */
+  // TODO:: Make shared function
+  getPlugToDeliverData() {
+    return this.appSharedService.getPlugToDeliverData().subscribe(
+      res => {
+        this.appSharedService.varietyOptions = res;
+      },
+      err => {
+        console.log('Plug to deliver data retrive error');
+      }
+    );
+  }
+
   getTotalOfColumn(locationName: string) {
     this.appSharedService.varietyOptions.reduce(function (a, b) {
       return a + Number(b.shipToInfo[locationName] || 0);
@@ -167,7 +182,6 @@ export class ShipToOtherStationsComponent implements OnInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver, index: number): any {
-    console.log(this.appSharedService.currentGreenHouseLocation);
     // TODO:: Sum up the quantities
     this.appSharedService.currentGreenHouseLocation.shipToLocations[index].totalShipToQuantities = 0;
     this.appSharedService.varietyOptions.forEach(variety => {
@@ -193,16 +207,18 @@ export class ShipToOtherStationsComponent implements OnInit {
       });
   }
 
-  inputErrorCheck(location: string, index: number): boolean {
-    let disable = false;
-    for (const variety of this.appSharedService.varietyOptions) {
-      if (variety.shipToInfo[index].qty && variety.shipToInfo[index].qty > 0 &&
-        variety.shipToInfo[index].qty > variety.plantingInfo.finishedTrays) {
-        disable = true;
-        break;
-      }
-    }
-    return disable;
-  }
+  // inputErrorCheck(location: string, index: number): boolean {
+  //   let disable = false;
+  //   if (this.appSharedService.varietyOptions && this.appSharedService.varietyOptions.length > 0) {
+  //     for (const variety of this.appSharedService.varietyOptions) {
+  //       if (variety.shipToInfo[index].qty && variety.shipToInfo[index].qty > 0 &&
+  //         variety.shipToInfo[index].qty > variety.plantingInfo.finishedTrays) {
+  //         disable = true;
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   return disable;
+  // }
 }
 

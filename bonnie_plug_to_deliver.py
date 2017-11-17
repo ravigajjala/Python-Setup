@@ -57,6 +57,7 @@ class CreatePlugToDeliver(APIRequest):
                 receivedInfoFromOtherStations=plug_to_deliver.get('receivedInfoFromOtherStations', None),
                 showReceiveButton=plug_to_deliver.get('showReceiveButton', None),
                 receivedButonClicked=plug_to_deliver.get('receivedButonClicked', None),
+                flatsToSaleAfterShipping=plug_to_deliver.get('flatsToSaleAfterShipping', None),
                 plugTray=PlugTray(
                     plugFlatsReceived=plug_to_deliver['plugTray'].get('plugFlatsReceived', None),
                     dateReceived=plug_to_deliver['plugTray'].get('dateReceived', None),
@@ -91,7 +92,7 @@ class CreatePlugToDeliver(APIRequest):
                     discarded=plug_to_deliver['appStoreDelivery'].get('discarded', None),
                     reasonCode=plug_to_deliver['appStoreDelivery'].get('reasonCode', None),
 	                check=plug_to_deliver['appStoreDelivery'].get('check', None),
-                    routeNumberSale=plug_to_deliver['appStoreDelivery'].get('routeNumberSale',[])
+                    routeNumberSale=plug_to_deliver['appStoreDelivery']['routeNumberSale']
                 )
             )
             final_plug_to_deliver_data.put()
@@ -115,6 +116,7 @@ class UpdatePlugToDeliver(APIRequest):
             plug_to_deliver.weekNumber = body['weekNumber']
             plug_to_deliver.userId = body['userId']
             plug_to_deliver.userGreenHouseLocation=body['userGreenHouseLocation']
+            plug_to_deliver.flatsToSaleAfterShipping=body['flatsToSaleAfterShipping']
             plug_to_deliver.plugTray = body['plugTray']
             plug_to_deliver.salableInfo = body['salableInfo']
             plug_to_deliver.appStoreDelivery = body['appStoreDelivery']
