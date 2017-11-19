@@ -690,6 +690,7 @@ table td span i {
   position:absolute;
   top: 134px;
   left: 0px;
+  z-index: 999999;
   .mat-form-field {
       width: 145px !important;
   }

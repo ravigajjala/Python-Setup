@@ -13,7 +13,6 @@ import { User, Plant, Location, ShipToLocationInfo } from '../providers/classes/
 @Component({
   selector: 'app-ship-to-other-stations',
   templateUrl: './ship-to-other-stations.component.html',
-  styleUrls: ['./ship-to-other-stations.component.scss']
 })
 export class ShipToOtherStationsComponent implements OnInit {
 
@@ -35,6 +34,10 @@ export class ShipToOtherStationsComponent implements OnInit {
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
+  }
+
+  closeSearch(){
+    this.shipToClicked = false;
   }
   ngOnInit() {
     // Retrieving Locations

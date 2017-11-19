@@ -84,7 +84,7 @@ export class ManageGreenHouseComponent {
   }
 
   deleteGreenHouse(i) {
-    if(!confirm("Are you sure")){
+    if(!confirm("Are you sure want to Delete?")){
       return false;
     }
     this.greenHouses.splice(i, 1);

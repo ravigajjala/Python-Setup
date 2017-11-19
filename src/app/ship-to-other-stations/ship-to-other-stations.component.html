@@ -38,8 +38,8 @@
             <span><i class="material-icons rotate_45 valign_middle" (click)="removeShipToLoc(location, i)" style="cursor: pointer;">clear</i>Ship to {{location.city}}, {{ location.state}}</span>
           </td>
           <td>
-            <span (click)="enableAutoCompleteSearch()"><i class="material-icons rotate_45 valign_middle" style="cursor: pointer;">add_circle</i>Ship To</span>
-            <mat-card class="mat-card auto-comp-cont" *ngIf="shipToClicked">
+           <span><i (click)="enableAutoCompleteSearch()" class="enable-search material-icons rotate_45 valign_middle" style="cursor: pointer;">add_circle</i>Ship To</span>
+            <mat-card (clickOutside)="closeSearch()" [exclude]="'i.enable-search'" class="mat-card auto-comp-cont" *ngIf="shipToClicked">
               <mat-card-content class="mat-card-content">
                 <mat-form-field>
                   <input type="text" matInput [(ngModel)]="newCity" placeholder="Enter Shipping location" [matAutocomplete]="plant">
@@ -52,7 +52,7 @@
               </mat-card-content>
             </mat-card>
           </td>
-        </tr>
+        </tr> 
       </thead>
       <tbody>
         <tr *ngFor="let item of appSharedService.varietyOptions | SearchVarieties: appSharedService.searchFieldValue" class="form-input-model"
