@@ -41,6 +41,7 @@ export class ManageGreenHouseComponent {
   }
 
   editableRow(i, gh) {
+    this.isValid = true;
     for (let i = 0; i < this.greenHouses.length; i++) {
       this.ghEditList[i] = false;
     }
@@ -50,6 +51,7 @@ export class ManageGreenHouseComponent {
 
   addGreenHouse(condition) {
     this.greenHouses.push(new Location());
+    this.editableRow(this.greenHouses.length-1, {});
   }
 
   validateLocation() {
@@ -59,9 +61,13 @@ export class ManageGreenHouseComponent {
     }
   }
 
-  saveGreenHouse() {
+  saveGreenHouse(formCtrl) {
+    if(!formCtrl.form.valid){
+      return false;
+    }
     // post API call here
-    // this.appSharedService.addLocation(this.greenHouses).subscribe(
+    // this.appSharedService.ghLocationsData = this.greenHouses;
+    // this.appSharedService.addLocation().subscribe(
     //   houseData => {
     //     console.log(houseData);
     this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
@@ -78,6 +84,9 @@ export class ManageGreenHouseComponent {
   }
 
   deleteGreenHouse(i) {
+    if(!confirm("Are you sure")){
+      return false;
+    }
     this.greenHouses.splice(i, 1);
     //   this.appSharedService.addLocation(this.greenHouses).subscribe(
     //     houseData => {

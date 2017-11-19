@@ -211,7 +211,7 @@ export class AppSharedService {
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#mint-sweet"
     }];
 
-    private ghLocationsData = [{
+    public ghLocationsData = [{
         "code": "010 Hub",
         "first_name": "Tim",
         "last_name": "Trussell",
