@@ -101,9 +101,11 @@ export class MasterViewComponent implements OnInit {
     this.sumPlantsDelivered = 0;
 
     // Removing Plug to deliver screen varieties
-    const varietyOptions = this.appSharedService.varietyOptions.filter(variety => {
-      return variety.type !== 'PLUG';
-    });
+    const varietyOptions = this.filteredVariety;
+    
+    //this.appSharedService.varietyOptions.filter(variety => {
+    //   return variety.type !== 'PLUG';
+    // });
 
     this.routeTotalQuantites = {};
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
@@ -112,8 +114,8 @@ export class MasterViewComponent implements OnInit {
 
     varietyOptions.forEach((variety, i) => {
       variety.deliverdTotal = 0;
-      this.totalCount += Number(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0);
-      this.totalBalanceCount += Number(this.appSharedService.varietyOptions[i].plantingInfo.finishedTrays || 0);
+      this.totalCount += Number(this.filteredVariety[i].salableInfo.totalFlatsToSale || 0);
+      this.totalBalanceCount += Number(this.filteredVariety[i].plantingInfo.finishedTrays || 0);
       if (variety.appStoreDelivery.routeNumberSale.length > 0) {
         variety.appStoreDelivery.routeNumberSale.forEach(routeObj => {
           variety.deliverdTotal += Number(routeObj.value || 0);
@@ -142,14 +144,21 @@ export class MasterViewComponent implements OnInit {
       }
     }
 
-    for (let i = 0; i < this.appSharedService.routeTotal.length; i++) {
+    //for (let i = 0; i < this.appSharedService.routeTotal.length; i++) {
       this.updateRouteTotal(null);
-    }
+    //}
   }
 
   exportExcel() {
     const exportRecords = [];
-    console.log(this.appSharedService.varietyOptions);
+    const totalModel = {};
+    totalModel['"' + this.location + '"'] = 'Total';
+    totalModel['Seed Lot Number'] = [];
+    totalModel['Locator'] = [];
+    totalModel['House#/Bay#'] = [];
+    totalModel['Total Flats To Sale'] = this.totalCount;
+    console.log(this.filteredVariety);
+    let tmp = 0;
     for (let i = 0; i < this.filteredVariety.length; i++) {
       console.log(this.filteredVariety[i]);
       if (_.get(this.filteredVariety[i], 'type') !== 'PLANTING') {
@@ -165,6 +174,8 @@ export class MasterViewComponent implements OnInit {
       recordModel['Total Flats To Sale'] = _.get(this.filteredVariety[i], 'salableInfo.totalFlatsToSale');
       for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
         recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = (Object.values(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j))[1] || 0);
+        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = (totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] || 0) + (Object.values(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j))[1] || 0);
+      
       }
 
       recordModel['Delivered'] = _.get(this.filteredVariety[i], 'deliverdTotal');
@@ -176,18 +187,13 @@ export class MasterViewComponent implements OnInit {
       exportRecords.push(recordModel);
     }
 
-    const totalModel = {};
-    totalModel['"' + this.location + '"'] = 'Total';
-    totalModel['Seed Lot Number'] = [];
-    totalModel['Locator'] = [];
-    totalModel['House#/Bay#'] = [];
-    totalModel['Total Flats To Sale'] = this.totalCount;
-    for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
-      totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = [];
-    }
+    
     // for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
-    //   totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]];
+    //   totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = 0;
     // }
+  //  for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
+      
+  //  }
 
     totalModel['Delivered'] = this.sumPlantsDelivered;
     totalModel['Discarded'] = [];
