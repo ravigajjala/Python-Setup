@@ -149,6 +149,14 @@ export class MasterViewComponent implements OnInit {
 
   exportExcel() {
     const exportRecords = [];
+    const totalModel = {};
+    totalModel['"' + this.location + '"'] = 'Total';
+    totalModel['Seed Lot Number'] = [];
+    totalModel['Locator'] = [];
+    totalModel['House#/Bay#'] = [];
+    totalModel['Total Flats To Sale'] = this.totalCount;
+    let t = 0;
+    console.log(this.filteredVariety);
     console.log(this.appSharedService.varietyOptions);
     for (let i = 0; i < this.filteredVariety.length; i++) {
       console.log(this.filteredVariety[i]);
@@ -164,10 +172,11 @@ export class MasterViewComponent implements OnInit {
       recordModel['House#/Bay#'] = _.get(this.filteredVariety[i], 'plantingInfo.houseBay');
       recordModel['Total Flats To Sale'] = _.get(this.filteredVariety[i], 'salableInfo.totalFlatsToSale');
       for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
-        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = Object.values(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j))[0];
+        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = (Object.values(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j))[1] || 0);
+        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = t + (Object.values(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j))[1] || 0);
       }
 
-      recordModel['Delivered'] = _.get(this.filteredVariety[i], 'appStoreDelivery.delivered');
+      recordModel['Delivered'] = _.get(this.filteredVariety[i], 'deliverdTotal');
       recordModel['Discarded'] = _.get(this.filteredVariety[i], 'appStoreDelivery.discarded');
       recordModel['Reason Code'] = _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode');
       recordModel['Total Balance'] = _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays');
@@ -176,16 +185,9 @@ export class MasterViewComponent implements OnInit {
       exportRecords.push(recordModel);
     }
 
-    const totalModel = {};
-    totalModel['"' + this.location + '"'] = 'Total';
-    totalModel['Seed Lot Number'] = [];
-    totalModel['Locator'] = [];
-    totalModel['House#/Bay#'] = [];
-    totalModel['Total Flats To Sale'] = this.totalCount;
-
-    for (let j = 0; j < this.appSharedService.routeTotal.length; j++) {
-      totalModel['routes' + this.appSharedService.currentGreenHouseLocation.routes[j]] = this.appSharedService.routeTotal[j];
-    }
+    // for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
+    //   totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]];
+    // }
 
     totalModel['Delivered'] = this.sumPlantsDelivered;
     totalModel['Discarded'] = [];
