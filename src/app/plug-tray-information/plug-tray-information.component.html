@@ -51,7 +51,7 @@
           <td class="td-lg">
             <mat-form-field>
               <input matInput onclick="this.select();" [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plugTray.dateReceived"
-                (dateChange)="calculateWeekNumber(item.plugTray.dateReceived, item); updatePlugToDeliverData(item)">
+                (dateChange)="calculateWeekNumber(item.plugTray.dateReceived, item); updatePlugToDeliverData(item, i)">
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </td>

@@ -34,7 +34,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   public totalFlatsToSale = 0;
   public PlugTrayForm: FormGroup;
   public weekNumber: number;
-  private plugNotifStatus = [];
+  private plugNotifStatus = {};
 
   public options = [
     {
@@ -99,8 +99,12 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.PlugTrayForm = new FormGroup({
       dateReceived: new FormControl()
     });
-    this.getPlugToDeliverData();
-    this.getGreenHouseVarities();
+    
+
+    this.appSharedService.currentMessage.subscribe(message => {
+      this.getPlugToDeliverData();
+      this.getGreenHouseVarities();
+    });
   }
 
   getTotalOfColumn(array, key) {
@@ -112,8 +116,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
 
 
   setNotifStatus(val, index) {
-    const currentStatus = this.plugNotifStatus[index];
     if (val.type === 'PLUG') {
+      const currentStatus = this.plugNotifStatus[index];
       const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
       if (!errCheck) {
         // iterate through each key in object
@@ -285,8 +289,8 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       res => {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
+        this.plugNotifStatus = {};
         this.appSharedService.varietyOptions.forEach((val, index) => {
-          this.plugNotifStatus = [];
           this.setNotifStatus(val, index);
         });
       },

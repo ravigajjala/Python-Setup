@@ -209,9 +209,9 @@ export class OrganicTrackerSheetComponent implements OnInit {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
         this.appSharedService.changeMessage('updated_location');
-        this.appSharedService.varietyOptions.forEach((val, index) => {
-          this.updateNotifStatus(val, index);
-        });
+        // this.appSharedService.varietyOptions.forEach((val, index) => {
+        //   this.updateNotifStatus(val, index);
+        // });
       },
       err => console.log(err)
     );
