@@ -1,94 +1,97 @@
-<div class="dialog-main-cont">
-  <div class="close-right">
-    <div class="user-col-close save-btn" title="CLOSE">
-      <div (click)="closeDialog()">
-        <i class="material-icons valign_middle">close</i>
+<h2 mat-dialog-title>Manage Greenhouses</h2>
+<mat-dialog-content>
+  <div class="dialog-main-cont">
+    <div class="close-right">
+      <div class="user-col-close save-btn" title="CLOSE">
+        <button mat-icon-button mat-dialog-close>
+          <i class="material-icons valign_middle">close</i>
+        </button>
       </div>
     </div>
+    <form #formCtrl="ngForm">
+      <table>
+        <thead>
+          <tr>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>EMAIL</th>
+            <th>CITY</th>
+            <th>STATE</th>
+            <th>LOCATOR#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let gh of greenHouses;let i = index;">
+            <ng-container *ngIf="!ghEditList[i]">
+              <td>{{gh.first_name}}</td>
+              <td>{{gh.last_name}}</td>
+              <td>{{gh.email}}</td>
+              <td>{{gh.city}}</td>
+              <td>{{gh.state}}</td>
+              <td>{{gh.locatorNumber}}</td>
+              <td>
+                <button mat-icon-button color="primary" (click)="editableRow(i,gh)">
+                  <i color="primary" class="material-icons md-18 valign_middle">edit</i>
+                </button>
+              </td>
+              <td>
+                <button mat-icon-button color="primary" (click)="deleteGreenHouse(i)">
+                  <i color="primary" class="material-icons md-18 valign_middle">delete</i>
+                </button>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="ghEditList[i]">
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput [(ngModel)]="gh.first_name" name="first_name" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput [(ngModel)]="gh.last_name" name="last_name" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput [(ngModel)]="gh.email" name="email" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput [(ngModel)]="gh.city" name="city" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput [(ngModel)]="gh.state" name="state" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="full-width">
+                  <input matInput [(ngModel)]="gh.locatorNumber" type="number" min="0" name="locatorNumber" required>
+                </mat-form-field>
+              </td>
+              <td title="{{formCtrl.form.valid?'SAVE':''}}">
+                <button mat-icon-button color="primary" (click)="saveGreenHouse(formCtrl,gh)" [disabled]="!formCtrl.form.valid">
+                  <i color="primary" class="material-icons md-18 valign_middle" [ngClass]="{'blue-icon':formCtrl.form.valid}">save</i>
+                </button>
+              </td>
+              <td>
+                <button mat-icon-button color="primary" (click)="deleteGreenHouse(i)">
+                  <i color="primary" class="material-icons md-18 valign_middle blue-icon">delete</i>
+                </button>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <button mat-raised-button color="primary" (click)="addGreenHouse(true)" *ngIf="!showEditBox">
+        <i class="material-icons valign_middle">add</i> New Greenhouse</button>
+
+      <!-- <div class="btn-cont">
+                <button mat-button (click)="closeDialog()">CLOSE</button>
+            </div> -->
+    </form>
   </div>
-  <form #formCtrl="ngForm">
-    <h2>Manage Greenhouses</h2>
-    <div class="user-table-cont head-title">
-      <div class="user-col nameCol">FIRST NAME</div>
-      <div class="user-col nameCol">LAST NAME</div>
-      <div class="user-col-email">USER EMAIL</div>
-      <div class="user-col cityCol">CITY</div>
-      <div class="user-col stateCol">STATE</div>
-      <div class="user-col lcNumCol">LOCATOR NUMBER</div>
-      <div class="user-col-edit"></div>
-      <div class="user-col-del"></div>
-    </div>
-
-    <div class="user-table-cont" *ngFor="let gh of greenHouses;let i = index;">
-      <div *ngIf="!ghEditList[i]">
-        <div class="user-col nameCol">{{gh.first_name}}</div>
-        <div class="user-col nameCol">{{gh.last_name}}</div>
-        <div class="user-col-email">{{gh.email}}</div>
-        <div class="user-col cityCol">{{gh.city}}</div>
-        <div class="user-col stateCol">{{gh.state}}</div>
-        <div class="user-col lcNumCol">{{gh.locatorNumber}}</div>
-        <div class="user-col-edit" title="EDIT">
-          <div (click)="editableRow(i,gh)">
-            <i class="material-icons valign_middle blue-icon">edit</i>
-          </div>
-        </div>
-        <div class="user-col-del" title="DELETE">
-          <div (click)="deleteGreenHouse(gh)">
-            <i class="material-icons valign_middle blue-icon">delete</i>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="ghEditList[i]">
-        <div class="user-col nameCol">
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="gh.first_name" name="first_name" required>
-          </mat-form-field>
-        </div>
-        <div class="user-col nameCol">
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="gh.last_name" name="last_name" required>
-          </mat-form-field>
-        </div>
-        <div class="user-col-email">
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="gh.email" name="email" required>
-          </mat-form-field>
-        </div>
-        <div class="user-col cityCol">
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="gh.city" name="city" required>
-          </mat-form-field>
-        </div>
-        <div class="user-col stateCol">
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="gh.state" name="state" required>
-          </mat-form-field>
-        </div>
-        <div class="user-col lcNumCol">
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="gh.locatorNumber" type="number" min="0" name="locatorNumber" required>
-          </mat-form-field>
-        </div>
-        <div class="user-col-save save-btn" title="{{formCtrl.form.valid?'SAVE':''}}">
-          <div (click)="saveGreenHouse(formCtrl, gh)">
-            <i class="material-icons valign_middle" [ngClass]="{'blue-icon':formCtrl.form.valid}">save</i>
-          </div>
-        </div>
-
-        <div class="user-col-del" title="DELETE">
-          <div (click)="deleteGreenHouse(gh)">
-            <i class="material-icons valign_middle blue-icon">delete</i>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="add-user">
-      <button mat-button (click)="addGreenHouse(true)" *ngIf="!showEditBox"><i class="material-icons valign_middle">add_circle</i> New Greenhouse</button>
-    </div>
-
-    <!-- <div class="btn-cont">
-            <button mat-button (click)="closeDialog()">CLOSE</button>
-        </div> -->
-  </form>
-</div>
+</mat-dialog-content>

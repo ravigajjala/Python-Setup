@@ -1,6 +1,5 @@
 .dialog-main-cont {
-    height: 600px;
-    width: 800px;
+    min-height: 600px;
     padding: 10px;
     h2 {
         font-size: 16px;
@@ -16,9 +15,32 @@
     }
     .close-right{
         float:right;
-        margin-top: -37px;
-        margin-right: -37px;
+        margin-top: -97px;
+        margin-right: -27px;
         cursor: pointer;
+    }
+
+    form {
+        max-height: 400px;
+    }
+    
+    table {
+        width:100%;
+        overflow: auto;
+        max-height: 400px;
+        font-size: 11px;
+        thead {
+            text-align: left;
+        }
+        tr:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+        }
+        td:not(:last-child), th:not(:last-child) {
+            padding-right: 8px;
+        }
+        button {
+            margin: -8px; 
+        }
     }
     .user-table-cont {
         font-size: 11px;
@@ -40,9 +62,9 @@
             text-align: right;
             cursor: pointer;
         }
-       
-        .nameCol {
-            width:15%;
+        .user-col-email {
+            width: 27%;
+            display: inline-block;
         }
     }
     .head-title {
@@ -60,11 +82,11 @@
     .mat-form-field {
         width: 80%;
     }
-    // .btn-cont {
-    //     margin-top:30px;
-    //     padding-left:60%;
-    //     button {
-    //     margin:5px;
-    //     }
-    // }
+    .btn-cont {
+        margin-top:30px;
+        padding-left:60%;
+        button {
+        margin:5px;
+        }
+    }
 }

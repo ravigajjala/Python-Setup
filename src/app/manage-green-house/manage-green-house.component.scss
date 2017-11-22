@@ -1,6 +1,5 @@
 .dialog-main-cont {
-    height: 600px;
-    width: 800px;
+    min-height: 600px;
     padding: 10px;
     h2 {
         font-size: 16px;
@@ -16,9 +15,32 @@
     }
     .close-right{
         float:right;
-        margin-top: -37px;
-        margin-right: -37px;
+        margin-top: -97px;
+        margin-right: -27px;
         cursor: pointer;
+    }
+
+    form {
+        max-height: 400px;
+    }
+    
+    table {
+        width:100%;
+        overflow: auto;
+        max-height: 400px;
+        font-size: 11px;
+        thead {
+            text-align: left;
+        }
+        tr:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+        }
+        td:not(:last-child), th:not(:last-child) {
+            padding-right: 8px;
+        }
+        button {
+            margin: -8px; 
+        }
     }
     .user-table-cont {
         font-size: 11px;
@@ -41,7 +63,7 @@
             cursor: pointer;
         }
         .user-col-email {
-            width: 23%;
+            width: 27%;
             display: inline-block;
         }
         .nameCol {
@@ -54,7 +76,10 @@
             width: 15%;
         } 
         .lcNumCol {
-            width: 14%;
+            width: 10%;
+        }
+        .nameCol, .user-col-email, .cityCol, .stateCol, .lcNumCol, .user-col-edit, .user-col-del {
+            display: table-cell;
         }
     }
     .head-title {
