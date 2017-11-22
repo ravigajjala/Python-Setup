@@ -20,7 +20,7 @@
             <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
             <div class="toggle-button-css" *ngIf="mergeClickBool == false">
               <!-- <mat-button-toggle-group #group="matButtonToggleGroup"> -->
-              <mat-button-toggle value="left">
+              <mat-button-toggle value="left" (click)="appSharedService.typeSort()">
                 Type <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
               <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">
@@ -51,7 +51,7 @@
           <td class="td-lg">
             <mat-form-field>
               <input matInput onclick="this.select();" [matDatepicker]="picker" (click)="picker.open()" (focus)="picker.open()" [(ngModel)]="item.plugTray.dateReceived"
-                (dateChange)="calculateWeekNumber(item.plugTray.dateReceived, item); updatePlugToDeliverData(item, i)">
+                (dateChange)="calculateWeekNumber(item.plugTray.dateReceived, item); updatePlugToDeliverData(item,i)">
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </td>

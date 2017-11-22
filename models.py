@@ -10,6 +10,7 @@ class Plants(ndb.Model):
     icon = ndb.StringProperty()
     url = ndb.StringProperty()
     color_id = ndb.StringProperty()
+    varietyType = ndb.StringProperty()
 
 class Locations(ndb.Model):
     city = ndb.StringProperty()
@@ -66,6 +67,7 @@ class AppStoreDelivery(ndb.Model):
 class PlugToDeliver(ndb.Model):
     name = ndb.StringProperty()
     type = ndb.StringProperty()
+    varietyType = ndb.StringProperty()
     url = ndb.StringProperty()
     color_id = ndb.StringProperty()
     docIdOfParentVariety = ndb.IntegerProperty()

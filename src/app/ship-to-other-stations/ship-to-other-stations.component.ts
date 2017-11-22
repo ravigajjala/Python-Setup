@@ -13,6 +13,7 @@ import { User, Plant, Location, ShipToLocationInfo } from '../providers/classes/
 @Component({
   selector: 'app-ship-to-other-stations',
   templateUrl: './ship-to-other-stations.component.html',
+  styleUrls: ['./ship-to-other-stations.component.scss']
 })
 export class ShipToOtherStationsComponent implements OnInit {
 
@@ -35,14 +36,21 @@ export class ShipToOtherStationsComponent implements OnInit {
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
-
-  closeSearch(){
-    this.shipToClicked = false;
-  }
   ngOnInit() {
     // Retrieving Locations
     this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
-
+    // Removing current greenhouse location from the ship to locations dropdown
+    this.locations = this.locations.filter(locationObj => {
+      return locationObj.city !== this.appSharedService.currentGreenHouseLocation.city &&
+        locationObj.state !== this.appSharedService.currentGreenHouseLocation.state;
+    });
+    // Removing selected ship to locations from the ship to locations dropdown
+    this.appSharedService.currentGreenHouseLocation.shipToLocations.forEach((shipToObj, i) => {
+      this.locations = this.locations.filter(locationObj => {
+        return locationObj.city.trim() !== shipToObj.city.trim() && locationObj.state.trim() !== shipToObj.state.trim();
+      });
+    });
+    this.locations.sort();
 
     this.heads4 = [
       { 'name': 'Seed Lot Number', 'icon': 'down' },
@@ -74,23 +82,23 @@ export class ShipToOtherStationsComponent implements OnInit {
     const newlocation: ShipToLocationInfo = {
       city: location.city,
       state: location.state,
-      firstName: location.firstName,
-      lastName: location.lastName,
-      userEmail: location.userEmail,
+      firstName: location.first_name,
+      lastName: location.last_name,
+      userEmail: location.email,
       locatorNumber: location.locatorNumber,
       totalShipToQuantities: 0
     };
     // TODO:: Removing location from the dropdown
     this.locations.splice(this.locations.indexOf(newlocation), 1);
     this.appSharedService.currentGreenHouseLocation.shipToLocations.push(newlocation);
-    // Creating new shipToObj
-    const shipToObj = {
-      city: newlocation.city,
-      state: newlocation.state,
-      disableInput: false,
-      qty: null
-    };
     this.appSharedService.varietyOptions.forEach(obj => {
+      // Creating new shipToObj
+      const shipToObj = {
+        city: newlocation.city,
+        state: newlocation.state,
+        disableInput: false,
+        qty: null
+      };
       obj.shipToInfo.push(shipToObj);
       this.appSharedService.updatePlugToDeliverData(obj).subscribe(
         res => { },
@@ -99,33 +107,26 @@ export class ShipToOtherStationsComponent implements OnInit {
     });
     this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation)
       .subscribe(
-      res => this.appSharedService.getLocations().subscribe(
-        locations => {
-          this.appSharedService.locations = locations;
-        },
-        err => console.log(err)
-      ),
+      res => { },
       err => console.log(err)
       );
   }
 
-  removeShipToLoc(locationName: string, index: number): void {
+  // Removing location from current location shipTo array
+  removeShipToLoc(location: string, index: number): void {
+    this.locations.push(location);
+    this.locations.sort();
     this.appSharedService.currentGreenHouseLocation.shipToLocations.splice(index, 1);
     this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation)
-      .subscribe(
-      res => this.appSharedService.getLocations().subscribe(
-        locations => {
-          this.appSharedService.locations = locations;
-          this.appSharedService.varietyOptions.forEach(obj => {
-            obj.shipToInfo.splice(index, 1);
-            this.appSharedService.updatePlugToDeliverData(obj).subscribe(
-              response => console.log(response),
-              err => console.log(err)
-            );
-          });
-        },
-        err => console.log(err)
-      ),
+      .subscribe(res => {
+        this.appSharedService.varietyOptions.forEach(obj => {
+          obj.shipToInfo.splice(index, 1);
+          this.appSharedService.updatePlugToDeliverData(obj).subscribe(
+            response => console.log(response),
+            err => console.log(err)
+          );
+        });
+      },
       err => console.log(err)
       );
   }
@@ -196,12 +197,7 @@ export class ShipToOtherStationsComponent implements OnInit {
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => {
         this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
-          response => {
-            this.appSharedService.getLocations().subscribe(
-              locations => this.appSharedService.locations = locations,
-              locationsError => console.log(locationsError)
-            );
-          },
+          response => { },
           updateLocationError => console.log(updateLocationError)
         );
       },

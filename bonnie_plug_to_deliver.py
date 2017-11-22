@@ -48,6 +48,7 @@ class CreatePlugToDeliver(APIRequest):
             final_plug_to_deliver_data = PlugToDeliver(
                 name=plug_to_deliver['name'],
                 type=plug_to_deliver['type'],
+                varietyType=plug_to_deliver['varietyType'],
                 userId=plug_to_deliver['userId'],
                 docIdOfParentVariety=plug_to_deliver.get('docIdOfParentVariety', None),
                 url=plug_to_deliver['url'],
@@ -107,6 +108,7 @@ class UpdatePlugToDeliver(APIRequest):
             plug_to_deliver = PlugToDeliver.get_by_id(body['datastore_id'])
             plug_to_deliver.name = body['name']
             plug_to_deliver.type = body['type']
+            plug_to_deliver.varietyType = body['varietyType']
             plug_to_deliver.color_id = body['color_id']
             plug_to_deliver.docIdOfParentVariety=body['docIdOfParentVariety']
             plug_to_deliver.receivedInfoFromOtherStations=body['receivedInfoFromOtherStations']

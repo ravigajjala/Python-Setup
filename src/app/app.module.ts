@@ -7,7 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 import { MatButtonModule, MatMenuModule, MatButtonToggleModule, MatSelectModule, MatAutocompleteModule, MatDatepickerModule, MatListModule, MatInputModule, MatNativeDateModule, MatCheckboxModule, MatTooltipModule } from '@angular/material';
-import { ClickOutsideModule } from 'ng-click-outside';
+
 
 import { HttpModule } from '@angular/http';
 
@@ -80,7 +80,7 @@ const appRoutes: Routes = [
     StoreDeliveryComponent,
     ShipToOtherStationsComponent,
     SearchVarietiesPipe,
-    TotalSalableComponent
+    TotalSalableComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,8 +103,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatListModule,
     MatInputModule,
-    MatTooltipModule,
-    ClickOutsideModule
+    MatTooltipModule
     // NgxDatatableModule
   ],
   bootstrap: [AppComponent],

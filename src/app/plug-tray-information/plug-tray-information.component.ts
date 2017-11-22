@@ -99,7 +99,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
     this.PlugTrayForm = new FormGroup({
       dateReceived: new FormControl()
     });
-    
 
     this.appSharedService.currentMessage.subscribe(message => {
       this.getPlugToDeliverData();
@@ -118,7 +117,7 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
   setNotifStatus(val, index) {
     if (val.type === 'PLUG') {
       const currentStatus = this.plugNotifStatus[index];
-      const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+      const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived || val.plugTray.plugFlatsDiscarded > val.plugTray.plugFlatsReceived);
       if (!errCheck) {
         // iterate through each key in object
         for (const key in val.plugTray) {

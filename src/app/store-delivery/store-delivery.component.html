@@ -19,7 +19,7 @@
             </div>
             <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
             <div class="toggle-button-css" *ngIf="mergeClickBool == false">
-              <mat-button-toggle value="left">
+              <mat-button-toggle value="left" (click)="appSharedService.typeSort()">
                 Type <i class="material-icons">arrow_drop_down</i>
               </mat-button-toggle>
               <mat-button-toggle value="center" (click)="appSharedService.varietiesSort()">

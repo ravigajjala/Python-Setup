@@ -44,9 +44,11 @@ class CreateLocationsDatabase(APIRequest):
     def post(self):
         try:
             locations = json.loads(self.request.body)
+            print '*******99999999*******'
+            print locations
             for location in locations:
                 final_locations = Locations(
-                    code=location['code'],
+                    code=location.get('code', None),
                     city=location['city'],
                     state=location['state'],
                     first_name=location.get('first_name', None),
@@ -78,9 +80,21 @@ class UpdateLocationsDatabase(APIRequest):
         except Exception as e:
             logging.error(e)
 
+class DeleteLocation(APIRequest):
+    def delete(self):
+        body = json.loads(self.request.body)
+        try:
+            # Retriving the entity using datastore_id
+            location = Locations.get_by_id(body['datastore_id'])
+            location.delete()
+        except Exception as e:
+            logging.error(e)
+
+
 app = webapp2.WSGIApplication([
     ('/locations/get', GetLocations),
     ('/locations/create', CreateLocationsDatabase),
     ('/locations/put', UpdateLocationsDatabase),
-    ('/locations/getByEmail', GetLocationByEmail)
+    ('/locations/getByEmail', GetLocationByEmail),
+    ('/locations/delete', DeleteLocation)
 ], debug=True)

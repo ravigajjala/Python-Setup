@@ -31,7 +31,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
     public router: Router
   ) {
     this.loading = true;
-    // Using accessToken retriving the user data from Auth0
+    // // Using accessToken retriving the user data from Auth0
     // const accessToken = localStorage.getItem('access_token');
     // console.log('accesstoken:: ' + accessToken);
 
@@ -39,7 +39,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   }
 
   ngOnInit() {
-   // // Retrieving the locations from Locations Kind
+    // // Retrieving the locations from Locations Kind
     // return this.appSharedService.getLocations().subscribe(
     //   locations => {
     //     this.appSharedService.locations = locations;
@@ -80,8 +80,8 @@ export class OrganicTrackerSheetComponent implements OnInit {
       locations => {
         this.loading = false;
         this.appSharedService.locations = locations;
-        this.appSharedService.userId = 'gajjalaraviteja@gmail.com';
-        this.appSharedService.loggedInUserGreenHouseLocation = 'Rydal';
+        this.appSharedService.userId = 'sai.nani.999@gmail.com';
+        this.appSharedService.loggedInUserGreenHouseLocation = 'Pearl';
         this.appSharedService.currentGreenHouseLocation = {
           "code": "67_drop",
           "firstName": "Justin",
@@ -112,6 +112,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
         console.log(err);
       }
     );
+
   }
 
 
@@ -135,7 +136,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
           }
         }
 
-        const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+        const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived || val.plugTray.plugFlatsDiscarded > val.plugTray.plugFlatsReceived);
         if (current_status && !errCheck) {
           val.type = stage;
           this.updateNotifStatus(val, index);
@@ -167,7 +168,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
   updateNotifStatus(val, index): void {
     const currentStatus = this.plugNotifStatus[index];
     if (val.type === 'PLUG') {
-      const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived);
+      const errCheck = (val.plugTray.plugFlatsPotted > val.plugTray.plugFlatsReceived || val.plugTray.plugFlatsDiscarded > val.plugTray.plugFlatsReceived);
       if (!errCheck) {
         // iterate through each key in object
         for (const key in val.plugTray) {
@@ -209,9 +210,6 @@ export class OrganicTrackerSheetComponent implements OnInit {
         this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
         this.appSharedService.changeMessage('updated_location');
-        // this.appSharedService.varietyOptions.forEach((val, index) => {
-        //   this.updateNotifStatus(val, index);
-        // });
       },
       err => console.log(err)
     );

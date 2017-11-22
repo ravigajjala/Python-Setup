@@ -25,6 +25,7 @@ export class AppSharedService {
     public availableVarietyOptionsType: string[] = ["PLUG", "PLANTING", "RECEIVING", "SHIP", "TOTAL", "TO_STORE", "MASTER"];
     private isPlantNameSorted: boolean = false;
     private isWeekNumberSorted: boolean = false;
+    private isTypeSorted: boolean = false;
     public searchFieldValue: any = undefined;
     public shippedNumber = 0;
     public totalNotif = 0;
@@ -41,177 +42,207 @@ export class AppSharedService {
         "name": "Better Boy Tomato",
         "icon": "tomato-bboy",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-bboy"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-bboy",
+        "varietyType": "tomato"
     },
     {
         "name": "Better Bush Tomato",
         "icon": "tomato-bbush",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-bbush"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-bbush",
+        "varietyType": "tomato"
     }, {
         "name": "Husky Cherry Red Tomato",
         "icon": "tomato-hcr",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-hcr"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-hcr",
+        "varietyType": "tomato"
     }, {
         "name": "Red Beefsteak Tomato",
         "icon": "tomato-rb",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-rb"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-rb",
+        "varietyType": "tomato"
     },
     {
         "name": "Roma Tomato",
         "icon": "tomato-roma",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-roma"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-roma",
+        "varietyType": "tomato"
     },
     {
         "name": "Sweet Million Tomato",
         "icon": "tomato-sm",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-sm"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#tomato-sm",
+        "varietyType": "tomato"
     }, {
         "name": "Green Bell Pepper",
         "icon": "pepper-bell-green",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-green"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-green",
+        "varietyType": "pepper"
     }, {
         "name": "Hot Banana Pepper",
         "icon": "pepper-banana-hot",
         "color_id": "st2",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-hot"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-hot",
+         "varietyType": "pepper"
     }, {
         "name": "Jalapeno Pepper",
         "icon": "pepper-jalapeno",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-jalapeno"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-jalapeno",
+         "varietyType": "pepper"
     },
     {
         "name": "Poblano Pepper",
         "icon": "pepper-poblano",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-poblano"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-poblano",
+         "varietyType": "pepper"
     },
     {
         "name": "Red Bell Pepper",
         "icon": "pepper-bell-red",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-red"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-red",
+         "varietyType": "pepper"
     },
     {
         "name": "Serrano Pepper",
         "icon": "pepper-serrano",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-serrano"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-serrano",
+         "varietyType": "pepper"
     },
     {
         "name": "Sweet Banana Pepper",
         "icon": "pepper-banana-sweet",
         "color_id": "st2",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-sweet"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-sweet",
+         "varietyType": "pepper"
     },
     {
         "name": "Yellow Bell Pepper",
         "icon": "pepper-bell-yellow",
         "color_id": "st2",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-yellow"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-yellow",
+         "varietyType": "pepper"
     }, {
         "name": "Broccoli",
         "icon": "broccoli",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#broccoli"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#broccoli",
+         "varietyType": "broccoli"
     }, {
         "name": "Cucumber Bush",
         "icon": "cucumber-bush",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cucumber-bush"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cucumber-bush",
+        "varietyType": "cucumber"
     },
     {
         "name": "Cucumber Traditional",
         "icon": "cucumber-traditional",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cucumber-traditional"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cucumber-traditional",
+        "varietyType": "cucumber"
     },
     {
         "name": "Eggplant",
         "icon": "eggplant",
         "color_id": "st3",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#eggplant"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#eggplant",
+        "varietyType": "eggplant"
     },
     {
         "name": "Kale",
         "icon": "kale",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#kale"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#kale",
+        "varietyType": "kale"
     },
     {
         "name": "Romaine Lettuce",
         "icon": "lettuce-romaine",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#lettuce-romaine"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#lettuce-romaine",
+        "varietyType": "lettuce"
     },
     {
         "name": "Strawberries",
         "icon": "strawberry",
         "color_id": "st0",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#strawberry"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#strawberry",
+        "varietyType": "strawberry"
     },
     {
         "name": "Zucchini",
         "icon": "zucchini",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#zucchini"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#zucchini",
+        "varietyType": "zucchini"
     },
     {
         "name": "Basil",
         "icon": "basil",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#basil"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#basil",
+        "varietyType": "basil"
     },
     {
         "name": "Chives",
         "icon": "chives",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#chives"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#chives",
+        "varietyType": "chives"
     },
     {
         "name": "Cilantro",
         "icon": "cilantro",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cilantro"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#cilantro",
+        "varietyType": "cilantro"
     },
     {
         "name": "Curled Parsley",
         "icon": "parsley-curled",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#parsley-curled"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#parsley-curled",
+        "varietyType": "parsley"
     },
     {
         "name": "Flat Parsley",
         "icon": "parsley-flat",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#parsley-flat"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#parsley-flat",
+        "varietyType": "parsley"
     },
     {
         "name": "Rosemary",
         "icon": "rosemary",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#rosemary"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#rosemary",
+        "varietyType": "rosemary"
     },
     {
         "name": "Sage",
         "icon": "sage",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#sage"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#sage",
+        "varietyType": "sage"
     },
     {
         "name": "Sweet Mint",
         "icon": "mint-sweet",
         "color_id": "st1",
-        "url": "dist/assets/sprites/icon-sprite-sheet.svg#mint-sweet"
+        "url": "dist/assets/sprites/icon-sprite-sheet.svg#mint-sweet",
+        "varietyType": "mint"
     }];
 
-    public ghLocationsData = [{
+    private ghLocationsData = [{
         "code": "010 Hub",
         "first_name": "Tim",
         "last_name": "Trussell",
@@ -1078,16 +1109,6 @@ export class AppSharedService {
             });
     }
 
-    updateLocation(location: Location): Observable<Location[]> {
-        return this.http.put('/locations/put', location, this.options)
-            .map((res: Response) => {
-                return res;
-            })
-            .catch((err: Response) => {
-                return Observable.throw(err.json().error || 'Server error');
-            });
-    }
-
     // To get plant varieties from datastore
     getPlantVarieties(): Observable<Plant[]> {
         return this.http.get('/plants/get')
@@ -1110,8 +1131,26 @@ export class AppSharedService {
             });
     }
 
-    addLocation(): Observable<Location[]> {
-        return this.http.post('/locations/create', this.ghLocationsData, this.options)
+    addLocation(GhLocation: Location): Observable<Location[]> {
+        let LocationsArray;
+        if (GhLocation) {
+            LocationsArray = [];
+            LocationsArray.push(GhLocation);
+        } else {
+            LocationsArray = this.ghLocationsData;
+        }
+        return this.http.post('/locations/create', LocationsArray, this.options)
+            .map((res: Response) => {
+                console.log(res);
+                return res;
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
+    updateLocation(location: Location): Observable<Location[]> {
+        return this.http.put('/locations/put', location, this.options)
             .map((res: Response) => {
                 console.log(res);
                 return res;
@@ -1131,25 +1170,49 @@ export class AppSharedService {
             });
     }
 
+    deletePlant(location): Observable<Plant[]> {
+        return this.http.delete('/plants/delete', location)
+            .map((res: Response) => {
+                return res.json();
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
     varietiesSort(): void {
-        if (!this.isPlantNameSorted) {
+        if (!this.isPlantNameSorted && !this.isTypeSorted) {
             this.varietyOptions = this.varietyOptions
                 .sort((a, b) =>
                     (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0));
             this.isPlantNameSorted = true;
         }
         this.isWeekNumberSorted = false;
+        this.isTypeSorted = false;
         this.varietyOptions = this.varietyOptions.reverse();
     }
 
     weekSort(): void {
-        if (!this.isWeekNumberSorted) {
+        if (!this.isWeekNumberSorted && !this.isTypeSorted) {
             this.varietyOptions = this.varietyOptions
                 .sort((a, b) =>
                     (a.weekNumber > b.weekNumber) ? -1 : ((b.weekNumber > a.weekNumber) ? 1 : 0));
             this.isWeekNumberSorted = true;
         }
         this.isPlantNameSorted = false;
+        this.isTypeSorted = false;
+        this.varietyOptions = this.varietyOptions.reverse();
+    }
+
+    typeSort(): void {
+        if (!this.isTypeSorted) {
+            this.varietyOptions = this.varietyOptions
+                .sort((a, b) =>
+                    (a.type > b.type) ? -1 : ((b.type > a.type) ? 1 : 0));
+            this.isTypeSorted = true;
+        }
+        this.isPlantNameSorted = false;
+        this.isWeekNumberSorted = false;
         this.varietyOptions = this.varietyOptions.reverse();
     }
 

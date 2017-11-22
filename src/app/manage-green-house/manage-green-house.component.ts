@@ -51,7 +51,7 @@ export class ManageGreenHouseComponent {
 
   addGreenHouse(condition) {
     this.greenHouses.push(new Location());
-    this.editableRow(this.greenHouses.length-1, {});
+    this.editableRow(this.greenHouses.length - 1, {});
   }
 
   validateLocation() {
@@ -61,40 +61,40 @@ export class ManageGreenHouseComponent {
     }
   }
 
-  saveGreenHouse(formCtrl) {
-    if(!formCtrl.form.valid){
+  saveGreenHouse(formCtrl, location) {
+    if (!formCtrl.form.valid) {
       return false;
     }
-    // post API call here
-    // this.appSharedService.ghLocationsData = this.greenHouses;
-    // this.appSharedService.addLocation().subscribe(
-    //   houseData => {
-    //     console.log(houseData);
-    this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
-    this.ghEditList = this.ghEditList.map(val => {
-      val = false;
-    });
-    //   },
-    //   err => console.log(err)
-    // );
+    console.log(location);
+    location.shipToLocations = [];
+    this.appSharedService.addLocation(location).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+  }
+
+  updateGreenHouse(formCtrl, location) {
+    if (!formCtrl.form.valid) {
+      return false;
+    }
+    console.log(location);
+    this.appSharedService.updateLocation(location).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
   }
 
   closeDialog(): void {
     this.dialogRef.close();
   }
 
-  deleteGreenHouse(i) {
-    if(!confirm("Are you sure want to Delete?")){
+  deleteGreenHouse(location) {
+    if (!confirm("Are you sure want to Delete?")) {
       return false;
     }
-    this.greenHouses.splice(i, 1);
-    //   this.appSharedService.addLocation(this.greenHouses).subscribe(
-    //     houseData => {
-    //       console.log(houseData);
-    //       this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
-    //     },
-    //     err => console.log(err)
-    //   );
+    this.appSharedService.deletePlant(location).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
   }
-
 }

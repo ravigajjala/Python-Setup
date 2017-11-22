@@ -71,6 +71,7 @@ export class Plant {
 	url: string;
 	color_id: string;
 	organic: boolean;
+	varietyType: string;
 }
 
 export class User {
@@ -85,6 +86,7 @@ export class PlugToDeliver {
 	weekNumber: number;
 	name: string;
 	type: string;
+	varietyType: string;
 	userGreenHouseLocation: string;
 	receivedInfoFromOtherStations: boolean;
 	showReceiveButton: boolean;
