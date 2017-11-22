@@ -51,7 +51,7 @@ export class ManageGreenHouseComponent {
 
   addGreenHouse(condition) {
     this.greenHouses.push(new Location());
-    this.editableRow(this.greenHouses.length - 1, {});
+    this.editableRow(this.greenHouses.length - 1, {});  
   }
 
   validateLocation() {
@@ -89,10 +89,11 @@ export class ManageGreenHouseComponent {
   }
 
   deleteGreenHouse(location) {
-    if (!confirm("Are you sure want to Delete?")) {
+    if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
-    this.appSharedService.deletePlant(location).subscribe(
+    const id = location.datastore_id;
+    this.appSharedService.deleteLocation(id).subscribe(
       res => console.log(res),
       err => console.log(err)
     );

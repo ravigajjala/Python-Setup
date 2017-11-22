@@ -82,11 +82,11 @@ class UpdateLocationsDatabase(APIRequest):
 
 class DeleteLocation(APIRequest):
     def delete(self):
-        body = json.loads(self.request.body)
+        params = self.request.params
         try:
             # Retriving the entity using datastore_id
-            location = Locations.get_by_id(body['datastore_id'])
-            location.delete()
+            id = int(params.get('id'))
+            ndb.Key(Locations, int(id)).delete()
         except Exception as e:
             logging.error(e)
 

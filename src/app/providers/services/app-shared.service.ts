@@ -1170,8 +1170,8 @@ export class AppSharedService {
             });
     }
 
-    deletePlant(location): Observable<Plant[]> {
-        return this.http.delete('/plants/delete', location)
+    deleteLocation(id): Observable<Plant[]> {
+        return this.http.delete('/locations/delete' + '?id=' + id, this.options)
             .map((res: Response) => {
                 return res.json();
             })
