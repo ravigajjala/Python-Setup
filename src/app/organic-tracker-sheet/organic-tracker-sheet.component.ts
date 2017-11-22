@@ -6,7 +6,7 @@ import { AppSharedService } from '../providers/services/app-shared.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ManageUsersComponent } from '../manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from '../manage-green-house/manage-green-house.component';
-import { ManagePlugCatalogComponent } from '../manage-plug-catalog/manage-plug-catalog.component';
+import { ManageRoutesComponent } from '../manage-routes/manage-routes.component';
 import { User, Plant, Location } from '../providers/classes/plantInfo.class';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -161,8 +161,8 @@ export class OrganicTrackerSheetComponent implements OnInit {
     const dialogRef = this.dialog.open(ManageGreenHouseComponent, {});
   }
 
-  openManagePlugCatalogDialog(): void {
-    const dialogRef = this.dialog.open(ManagePlugCatalogComponent, {});
+  openManageRoutesDialog(): void {
+    const dialogRef = this.dialog.open(ManageRoutesComponent, {});
   }
 
   updateNotifStatus(val, index): void {

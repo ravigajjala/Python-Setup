@@ -1,0 +1,70 @@
+.dialog-main-cont {
+    height: 600px;
+    width: 800px;
+    padding: 10px;
+    h2 {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .blue-icon {
+        color: rgb(41, 29, 177);
+        cursor: pointer;
+    }
+    .save-btn{
+        display: inline-block;
+        margin-left: 6px;
+    }
+    .close-right{
+        float:right;
+        margin-top: -37px;
+        margin-right: -37px;
+        cursor: pointer;
+    }
+    .user-table-cont {
+        font-size: 11px;
+        padding: 3px;
+        border-bottom: 1px solid #ddd;
+        .user-col {
+            width: 18%;
+            display: inline-block;
+        }
+        .user-col-del {
+            width: 4%;
+            display: inline-block;
+            text-align: right;
+            cursor: pointer;
+        }
+        .user-col-edit {
+            width: 4%;
+            display: inline-block;
+            text-align: right;
+            cursor: pointer;
+        }
+       
+        .nameCol {
+            width:15%;
+        }
+    }
+    .head-title {
+        padding: 6px 3px;
+        border-bottom: 0px;
+        div {
+            font-weight: 600;
+            color: #666;
+        }
+    }
+    .add-user {
+        font-size: 12px;
+        padding: 8px;
+    }
+    .mat-form-field {
+        width: 80%;
+    }
+    // .btn-cont {
+    //     margin-top:30px;
+    //     padding-left:60%;
+    //     button {
+    //     margin:5px;
+    //     }
+    // }
+}

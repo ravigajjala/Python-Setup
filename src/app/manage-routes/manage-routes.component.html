@@ -1,0 +1,68 @@
+<div class="dialog-main-cont">
+
+    <div class="close-right">
+        <div class="user-col-close save-btn" title="CLOSE">
+            <div (click)="closeDialog()">
+                <i class="material-icons valign_middle">close</i>
+            </div>
+        </div>
+    </div>
+    <form #formCtrl="ngForm">
+        <h2>MANAGE ROUTES</h2>
+        <div class="user-table-cont head-title">
+            <div class="user-col nameCol">ROUTE#</div>
+            <div class="user-col nameCol">NICK NAME</div>
+            <div class="user-col-edit"></div>
+            <div class="user-col-del"></div>
+        </div>
+
+        <div class="user-table-cont" *ngFor="let gh of greenHouses;let i = index;">
+            <div *ngIf="!ghEditList[i]">
+                <div class="user-col nameCol">{{gh.routes}}</div>
+                <div class="user-col nameCol">{{gh.nick_name}}</div>
+                <div class="user-col-edit" title="EDIT">
+                    <div (click)="editableRow(i,gh)">
+                        <i class="material-icons valign_middle blue-icon">edit</i>
+                    </div>
+                </div>
+                <div class="user-col-del" title="DELETE">
+                    <div (click)="deleteRoute(i)">
+                        <i class="material-icons valign_middle blue-icon">delete</i>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="ghEditList[i]">
+                <div class="user-col nameCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="gh.routes" type="number" name="routes" required>
+                    </mat-form-field>
+                </div>
+                <div class="user-col nameCol">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="gh.nick_name" name="nick_name">
+                    </mat-form-field>
+                </div>
+                <div class="user-col-save save-btn" title="{{formCtrl.form.valid?'SAVE':''}}">
+                    <div (click)="saveGreenHouse(formCtrl)">
+                        <i class="material-icons valign_middle" [ngClass]="{'blue-icon':formCtrl.form.valid}">save</i>
+                    </div>
+                </div>
+
+                <div class="user-col-del" title="DELETE">
+                    <div (click)="deleteRoute(i)">
+                        <i class="material-icons valign_middle blue-icon">delete</i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="add-user">
+            <button mat-button (click)="addRoute(true)" *ngIf="!showEditBox">
+                <i class="material-icons valign_middle">add_circle</i> New Route</button>
+        </div>
+
+        <!-- <div class="btn-cont">
+                <button mat-button (click)="closeDialog()">CLOSE</button>
+            </div> -->
+    </form>
+</div>

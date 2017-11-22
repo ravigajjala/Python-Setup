@@ -29,7 +29,7 @@ import { AppSharedService } from './providers/services/app-shared.service';
 import { LoginService } from './login/login.service';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
-import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
+import { ManageRoutesComponent } from './manage-routes/manage-routes.component';
 
 
 // Import Pipes here
@@ -71,7 +71,7 @@ const appRoutes: Routes = [
     MasterViewComponent,
     ManageUsersComponent,
     ManageGreenHouseComponent,
-    ManagePlugCatalogComponent,
+    ManageRoutesComponent,
     OrganicTrackerSheetComponent,
     PlugTrayInformationComponent,
     PlantingInformationComponent,
@@ -111,7 +111,7 @@ const appRoutes: Routes = [
     IconDialogComponent,
     ManageUsersComponent,
     ManageGreenHouseComponent,
-    ManagePlugCatalogComponent
+    ManageRoutesComponent
   ],
   providers: [AppSharedService, LoginService]
 })
