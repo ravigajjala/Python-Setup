@@ -42,6 +42,14 @@ export class ManageGreenHouseComponent {
     }
   }
 
+  getLocations(){
+    this.appSharedService.getLocations().subscribe(
+      locations => {
+        this.appSharedService.locations = locations;
+        this.greenHouses = Object.assign([], this.appSharedService.locations);
+      });
+  }
+
   editableRow(i, gh) {
     this.isValid = true;
     for (let i = 0; i < this.greenHouses.length; i++) {
@@ -86,7 +94,7 @@ export class ManageGreenHouseComponent {
     if(this.isAddFlag[i]){
       location.shipToLocations = [];
       this.appSharedService.addLocation(location).subscribe(
-        res => {console.log(res); this.ghEditList[i]=false; this.isAddFlag[i]= false},
+        res => {console.log(res); this.ghEditList[i]=false; this.isAddFlag[i]= false; this.getLocations();},
         err => console.log(err)
       );
     }
