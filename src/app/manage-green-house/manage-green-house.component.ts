@@ -102,13 +102,14 @@ export class ManageGreenHouseComponent {
     this.dialogRef.close();
   }
 
-  deleteGreenHouse(location) {
+  deleteGreenHouse(location,i) {
     if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
     const id = location.datastore_id;
+    const that = this;
     this.appSharedService.deleteLocation(id).subscribe(
-      res => console.log(res),
+      res => { console.log(res); that.greenHouses.splice(i,1);},
       err => console.log(err)
     );
   }
