@@ -31,12 +31,14 @@ export class ManageGreenHouseComponent {
     email: null,
     locatorNumber: null
   };
+  public isAddFlag = [];
 
   constructor(public appSharedService: AppSharedService,
     public dialogRef: MatDialogRef<ManageGreenHouseComponent>) {
     this.greenHouses = Object.assign([], this.appSharedService.locations);
     for (let i = 0; i < this.greenHouses.length; i++) {
       this.ghEditList[i] = false;
+      this.isAddFlag[i] = false;
     }
   }
 
@@ -52,6 +54,8 @@ export class ManageGreenHouseComponent {
   addGreenHouse(condition) {
     this.greenHouses.push(new Location());
     this.editableRow(this.greenHouses.length - 1, {});  
+    this.isAddFlag[this.greenHouses.length - 1] = true;
+    
   }
 
   validateLocation() {
@@ -73,15 +77,25 @@ export class ManageGreenHouseComponent {
     );
   }
 
-  updateGreenHouse(formCtrl, location) {
+  updateGreenHouse(formCtrl, location,i) {
     if (!formCtrl.form.valid) {
       return false;
     }
-    console.log(location);
-    this.appSharedService.updateLocation(location).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
+    console.log("adding new is : " + this.isAddFlag[i]);
+
+    if(this.isAddFlag[i]){
+      location.shipToLocations = [];
+      this.appSharedService.addLocation(location).subscribe(
+        res => {console.log(res); this.ghEditList[i]=false; this.isAddFlag[i]= false},
+        err => console.log(err)
+      );
+    }
+    else {
+      this.appSharedService.updateLocation(location).subscribe(
+        res => {console.log(res); this.ghEditList[i]=false;},
+        err => console.log(err)
+      );
+    }  
   }
 
   closeDialog(): void {

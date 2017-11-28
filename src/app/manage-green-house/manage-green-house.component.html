@@ -72,7 +72,7 @@
                 </mat-form-field>
               </td>
               <td title="{{formCtrl.form.valid?'SAVE':''}}">
-                <button mat-icon-button color="primary" (click)="saveGreenHouse(formCtrl,gh)" [disabled]="!formCtrl.form.valid">
+                <button mat-icon-button color="primary" (click)="updateGreenHouse(formCtrl,gh,i)" [disabled]="!formCtrl.form.valid">
                   <i color="primary" class="material-icons md-18 valign_middle" [ngClass]="{'blue-icon':formCtrl.form.valid}">save</i>
                 </button>
               </td>
