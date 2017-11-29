@@ -21,7 +21,7 @@ class Locations(ndb.Model):
     email = ndb.StringProperty()
     locatorNumber = ndb.IntegerProperty()
     shipToLocations = ndb.JsonProperty(repeated=True)
-    routes = ndb.IntegerProperty(repeated=True)
+    routes = ndb.JsonProperty(repeated=True)
 
 class Users(ndb.Model):
     name = ndb.StringProperty()

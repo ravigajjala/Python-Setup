@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Manage ROUTES</h2>
+<h2 mat-dialog-title>Manage Routes for ABC</h2>
 <mat-dialog-content>
     <div class="dialog-main-cont">
         <div class="close-right">
@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let gh of greenHouses;let i = index;">
+                    <tr *ngFor="let gh of greenHouseRoutes;let i = index;">
                         <ng-container *ngIf="!ghEditList[i]">
                             <td>{{gh.routes}}</td>
                             <td>{{gh.nick_name}}</td>
@@ -61,7 +61,7 @@
             </table>
             <br>
             <button mat-raised-button color="primary" (click)="addRoute(true)" *ngIf="!showEditBox">
-                <i class="material-icons valign_middle">add</i> New Greenhouse</button>
+                <i class="material-icons valign_middle">add</i> Add Routes</button>
 
             <!-- <div class="btn-cont">
                 <button mat-button (click)="closeDialog()">CLOSE</button>
