@@ -36,7 +36,7 @@
             </td>
             <ng-container *ngIf="i==4">
               <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes">
-                <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow}} <i class="material-icons rotate_45 print-icon valign_middle">print</i></span></td>
+                <td class="bottom-row"><span class="rotate-text"><i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow.routes}} ({{trow.nick_name}})</span></td>
               </ng-container>
             </ng-container>
             <ng-container *ngIf="i==6">

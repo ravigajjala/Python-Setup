@@ -74,10 +74,17 @@ public greenHouseRoutes = [];
     if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
-    const id = location.datastore_id;
-    const that = this;
-    this.appSharedService.deleteLocation(id).subscribe(
-      res => { console.log(res); that.greenHouses.splice(i, 1); },
+    //const id = location.datastore_id;
+    //const that = this;
+    // this.appSharedService.deleteLocation(id).subscribe(
+    //   res => { console.log(res); that.greenHouses.splice(i, 1); },
+    //   err => console.log(err)
+    // );
+    this.greenHouseRoutes.splice(i,1);
+    this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
+    //this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
+    this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
+      res => {console.log(res);},
       err => console.log(err)
     );
   }
