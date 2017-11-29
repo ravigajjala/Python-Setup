@@ -35,6 +35,8 @@ export class AppSharedService {
     public currentGreenHouseLocation: Location = undefined;
     public receivedVarietiesCountWithReceivedButton: number;
     public loggedInUserGreenHouseLocation: string;
+    public selectedYear: number;
+    public userLocation: Location = undefined;
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
@@ -88,54 +90,54 @@ export class AppSharedService {
         "icon": "pepper-banana-hot",
         "color_id": "st2",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-hot",
-         "varietyType": "pepper"
+        "varietyType": "pepper"
     }, {
         "name": "Jalapeno Pepper",
         "icon": "pepper-jalapeno",
         "color_id": "st1",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-jalapeno",
-         "varietyType": "pepper"
+        "varietyType": "pepper"
     },
     {
         "name": "Poblano Pepper",
         "icon": "pepper-poblano",
         "color_id": "st1",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-poblano",
-         "varietyType": "pepper"
+        "varietyType": "pepper"
     },
     {
         "name": "Red Bell Pepper",
         "icon": "pepper-bell-red",
         "color_id": "st0",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-red",
-         "varietyType": "pepper"
+        "varietyType": "pepper"
     },
     {
         "name": "Serrano Pepper",
         "icon": "pepper-serrano",
         "color_id": "st0",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-serrano",
-         "varietyType": "pepper"
+        "varietyType": "pepper"
     },
     {
         "name": "Sweet Banana Pepper",
         "icon": "pepper-banana-sweet",
         "color_id": "st2",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-banana-sweet",
-         "varietyType": "pepper"
+        "varietyType": "pepper"
     },
     {
         "name": "Yellow Bell Pepper",
         "icon": "pepper-bell-yellow",
         "color_id": "st2",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#pepper-bell-yellow",
-         "varietyType": "pepper"
+        "varietyType": "pepper"
     }, {
         "name": "Broccoli",
         "icon": "broccoli",
         "color_id": "st1",
         "url": "dist/assets/sprites/icon-sprite-sheet.svg#broccoli",
-         "varietyType": "broccoli"
+        "varietyType": "broccoli"
     }, {
         "name": "Cucumber Bush",
         "icon": "cucumber-bush",
@@ -1173,7 +1175,7 @@ export class AppSharedService {
     deleteLocation(id): Observable<Plant[]> {
         return this.http.delete('/locations/delete' + '?id=' + id, this.options)
             .map((res: Response) => {
-                return res.json();
+                return res;
             })
             .catch((err: Response) => {
                 return Observable.throw(err.json().error || 'Server error');
@@ -1223,9 +1225,8 @@ export class AppSharedService {
     }
 
     getPlugToDeliverData(): Observable<PlugToDeliver[]> {
-        console.log(this.currentGreenHouseLocation.city + this.currentGreenHouseLocation.state);
         return this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
-            this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state)
+            this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state + '&year=' + this.selectedYear)
             .map(res => {
                 return res.json();
             })
@@ -1235,11 +1236,9 @@ export class AppSharedService {
     }
 
     getPlugToDeliverDataForReceivedInfoScreen(): Observable<PlugToDeliver[]> {
-        // return this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
-        //     this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state)
-            return IntervalObservable.create(5000)
-                .flatMap(() => this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
-                this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state))
+        return IntervalObservable.create(5000)
+            .flatMap(() => this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
+                this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state + '&year=' + this.selectedYear))
             .map((res: Response) => {
                 return res.json();
             })

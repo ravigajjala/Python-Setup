@@ -70,11 +70,15 @@ public greenHouseRoutes = [];
     this.dialogRef.close();
   }
           
-  deleteRoute(i) {
-    if (!confirm("Are you sure want to Delete?")) {
+  deleteRoute(location, i) {
+    if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
-    this.greenHouseRoutes.splice(i, 1);
-
+    const id = location.datastore_id;
+    const that = this;
+    this.appSharedService.deleteLocation(id).subscribe(
+      res => { console.log(res); that.greenHouses.splice(i, 1); },
+      err => console.log(err)
+    );
   }
 }

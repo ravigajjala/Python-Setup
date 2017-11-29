@@ -1,5 +1,6 @@
 <div [ngClass]="{'disable-all': appSharedService.loggedInUserGreenHouseLocation != appSharedService.currentGreenHouseLocation.city}">
   <div class="right-scroll">
+    <!-- START: Master View -->
     <table class="table_six table-width">
       <thead>
         <tr>
@@ -30,7 +31,8 @@
                 </mat-select>
               </div>
             </div>
-            <div class="toggle-button-css">
+            <div class="select-plant-text" *ngIf="mergeClickBool == true">Select a plant to merge</div>
+            <div class="toggle-button-css" *ngIf="mergeClickBool == false">
               <mat-button-toggle value="left" (click)="appSharedService.typeSort()">
                 Type
                 <i class="material-icons">arrow_drop_down</i>
@@ -87,31 +89,32 @@
           </span>
           </td>
           <td class="td-md">
-            <span>{{item.plugTray.seedLotNumber}}</span>
+            <input matInput name="lot_no" [(ngModel)]="item.plugTray.seedLotNumber" disabled>
           </td>
           <td class="td-md">
-            <span>{{item.plantingInfo.locatorNumber}}</span>
+            <input matInput name="rl_no" [(ngModel)]="item.plantingInfo.locatorNumber" disabled>
           </td>
           <td class="td-md">
-            <span>{{item.plantingInfo.houseBay}}</span>
+            <input matInput name="b_no" [(ngModel)]="item.plantingInfo.houseBay" disabled>
           </td>
           <td class="td-sm">
-            <span>{{item.salableInfo.totalFlatsToSale}}</span>
+            <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
           </td>
           <td class="td-xs" *ngFor="let routeObj of appSharedService.currentGreenHouseLocation.routes;let in = index;">
-            <span>{{item.appStoreDelivery.routeNumberSale[in]['value']}}</span>
+            <input matInput type="number" min="0" onclick="this.select();" name="routeValue" (blur)="updateRouteTotal(item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]['value']"
+              disabled>
           </td>
           <td class="td-sm">
-            <span>{{item.deliverdTotal}}</span>
+            <input matInput name="delivered" [(ngModel)]="item.deliverdTotal" disabled>
           </td>
           <td class="td-sm">
-            <span>{{item.appStoreDelivery.discarded}}</span>
+            <input matInput name="discarded" [(ngModel)]="item.appStoreDelivery.discarded" disabled>
           </td>
           <td class="td-sm">
-            <span>{{item.appStoreDelivery.reasonCode}}</span>
+            <input matInput name="resoncode" [(ngModel)]="item.appStoreDelivery.reasonCode" disabled>
           </td>
           <td class="td-sm">
-            <span>{{item.plantingInfo.finishedTrays}}</span>
+            <input matInput name="totalBalance" [(ngModel)]="item.plantingInfo.finishedTrays" disabled>
           </td>
           <td class="td-xs">
             <span>{{item.salableInfo.totalFlatsToSale - item.deliverdTotal}}</span>
@@ -137,5 +140,7 @@
         </tr>
       </tbody>
     </table>
+    <!-- END: Master View-->
+
   </div>
 </div>

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Manage Routes for ABC</h2>
+<h2 mat-dialog-title>Manage Routes</h2>
 <mat-dialog-content>
     <div class="dialog-main-cont">
         <div class="close-right">
@@ -29,7 +29,7 @@
                                 </button>
                             </td>
                             <td>
-                                <button mat-icon-button color="primary" (click)="deleteGreenHouse(i)">
+                                <button mat-icon-button color="primary" (click)="deleteRoute(gh,i)">
                                     <i color="primary" class="material-icons md-18 valign_middle">delete</i>
                                 </button>
                             </td>
@@ -51,7 +51,7 @@
                                 </button>
                             </td>
                             <td>
-                                <button mat-icon-button color="primary" (click)="deleteRoute(i)">
+                                <button mat-icon-button color="primary" (click)="deleteRoute(gh,i)">
                                     <i color="primary" class="material-icons md-18 valign_middle blue-icon">delete</i>
                                 </button>
                             </td>

@@ -44,8 +44,6 @@ class CreateLocationsDatabase(APIRequest):
     def post(self):
         try:
             locations = json.loads(self.request.body)
-            print '*******99999999*******'
-            print locations
             for location in locations:
                 final_locations = Locations(
                     code=location.get('code', None),

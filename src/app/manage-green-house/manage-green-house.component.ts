@@ -31,6 +31,7 @@ export class ManageGreenHouseComponent {
     email: null,
     locatorNumber: null
   };
+
   public isAddFlag = [];
 
   constructor(public appSharedService: AppSharedService,
@@ -42,7 +43,7 @@ export class ManageGreenHouseComponent {
     }
   }
 
-  getLocations(){
+  getLocations() {
     this.appSharedService.getLocations().subscribe(
       locations => {
         this.appSharedService.locations = locations;
@@ -50,20 +51,19 @@ export class ManageGreenHouseComponent {
       });
   }
 
-  editableRow(i, gh) {
+  editableRow(index, gh) {
     this.isValid = true;
     for (let i = 0; i < this.greenHouses.length; i++) {
       this.ghEditList[i] = false;
     }
-    this.ghEditList[i] = true;
-    console.log("edit row...", this.ghEditList);
+    this.ghEditList[index] = true;
   }
 
   addGreenHouse(condition) {
+
     this.greenHouses.push(new Location());
-    this.editableRow(this.greenHouses.length - 1, {});  
+    this.editableRow(this.greenHouses.length - 1, {});
     this.isAddFlag[this.greenHouses.length - 1] = true;
-    
   }
 
   validateLocation() {
@@ -73,51 +73,37 @@ export class ManageGreenHouseComponent {
     }
   }
 
-  saveGreenHouse(formCtrl, location) {
+  updateGreenHouse(formCtrl, location, i) {
     if (!formCtrl.form.valid) {
       return false;
     }
-    console.log(location);
-    location.shipToLocations = [];
-    this.appSharedService.addLocation(location).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
-  }
 
-  updateGreenHouse(formCtrl, location,i) {
-    if (!formCtrl.form.valid) {
-      return false;
-    }
-    console.log("adding new is : " + this.isAddFlag[i]);
-
-    if(this.isAddFlag[i]){
+    if (this.isAddFlag[i]) {
       location.shipToLocations = [];
       this.appSharedService.addLocation(location).subscribe(
-        res => {console.log(res); this.ghEditList[i]=false; this.isAddFlag[i]= false; this.getLocations();},
+        res => { console.log(res); this.ghEditList[i] = false; this.isAddFlag[i] = false; this.getLocations(); },
+        err => console.log(err)
+      );
+    } else {
+      this.appSharedService.updateLocation(location).subscribe(
+        res => { console.log(res); this.ghEditList[i] = false; },
         err => console.log(err)
       );
     }
-    else {
-      this.appSharedService.updateLocation(location).subscribe(
-        res => {console.log(res); this.ghEditList[i]=false;},
-        err => console.log(err)
-      );
-    }  
   }
 
   closeDialog(): void {
     this.dialogRef.close();
   }
 
-  deleteGreenHouse(location,i) {
+  deleteGreenHouse(location, i) {
     if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
     const id = location.datastore_id;
     const that = this;
     this.appSharedService.deleteLocation(id).subscribe(
-      res => { console.log(res); that.greenHouses.splice(i,1);},
+      res => { console.log(res); that.greenHouses.splice(i, 1); },
       err => console.log(err)
     );
   }

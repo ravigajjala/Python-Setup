@@ -25,10 +25,14 @@ class GetPlugToDeliver(APIRequest):
         try:
             # retriving the request parameters to get the requested user id
             params = self.request.params
-
+            selectedYear = params.get('year')
             # querying by user id
             plug_to_deliver_data = PlugToDeliver.query(PlugToDeliver.userGreenHouseLocation == params.get('userGreenHouseLocation')).fetch()
-            plug_to_deliver_data = self.to_json(plug_to_deliver_data)
+            filtered_plug_to_deliver_data = []
+            for item  in plug_to_deliver_data:
+                if item.plugTray.dateReceived is None or str(datetime.strptime(item.plugTray.dateReceived, "%Y-%m-%dT%H:%M:%S.%fZ").year) == str(selectedYear):
+                    filtered_plug_to_deliver_data.append(item)
+            plug_to_deliver_data = self.to_json(filtered_plug_to_deliver_data)
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(plug_to_deliver_data))
         except Exception as e:

@@ -15,10 +15,10 @@ export class LoginService {
     public userProfile: any;
 
     auth0 = new auth0.WebAuth({
-        clientID: 'TuQ25VKQ1LTBuoWba0ezL2qOfRIXMYOZ',
-        domain: 'sainathgande.auth0.com',
+        clientID: 'ueeYTUdMHzvjrFrmGAzOgG0b9noHbDML',
+        domain: 'bonnie.auth0.com',
         responseType: 'token id_token',
-        audience: 'https://sainathgande.auth0.com/userinfo',
+        audience: 'https://bonnie.auth0.com/userinfo',
         redirectUri: 'https://bonnie-organic-tracker.appspot.com/app-organic-tracker-sheet',
         scope: 'openid profile'
     });
@@ -30,7 +30,12 @@ export class LoginService {
     }
 
     public login(): void {
-        this.auth0.authorize();
+        if (localStorage.getItem('access_token') && localStorage.getItem('id_token')
+            && moment(localStorage.getItem('expires_at')).isAfter(moment())) {
+            this.router.navigate(['app-organic-tracker-sheet']);
+        } else {
+            this.auth0.authorize();
+        }
     }
 
     private setSession(authResult): void {

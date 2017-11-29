@@ -98,6 +98,24 @@ mat-card:not([class*=mat-elevation-z]), .mat-card:not([class*=mat-elevation-z]) 
         0 1px 5px 0 rgba(0,0,0,.12);
 }
 
+button[disabled] {
+    i[color="primary"], i[color="accent"] {
+        color:inherit;
+    }
+}
+
+i[color="primary"] {
+    color:mat-color($primary);
+}
+
+i[color="accent"] {
+    color:mat-color($accent);
+}
+
+.md-18 {
+    font-size: 18px;
+}
+
 .rotate_90 {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -116,6 +134,10 @@ mat-card:not([class*=mat-elevation-z]), .mat-card:not([class*=mat-elevation-z]) 
 
 .valign_middle {
   vertical-align: middle;
+}
+
+.full-width {
+    width: 100%;
 }
 
 .flex-display {
@@ -325,6 +347,7 @@ $purple: #4339AD;
                 &:first-child {
                     vertical-align: bottom;
                     width: $first-col-width;
+                    min-width: $first-col-width;
                     border-right: transparent;
                     border-top: transparent;
                     background:#f5f5f5;
@@ -384,6 +407,12 @@ $purple: #4339AD;
                     border-right: 1px solid #ccc;
                 }
             }
+            tr:after {
+                content:'';
+                height: 100px;
+                width: 100%;
+                display: table-cell;
+            }
         }
         tbody {
             z-index: 4;
@@ -391,6 +420,7 @@ $purple: #4339AD;
                 text-align: right;
                 padding:0;
                 position: relative;
+                height: 34px;
                 &:first-child {
                     text-align: left;
                     padding: 8px 0px 7px 28px;
@@ -411,7 +441,7 @@ $purple: #4339AD;
                 &.td-xl { min-width: 124px; max-width: 124px; }
 
                 .mat-select .mat-select-trigger {
-                    padding:9px 4px;
+                    padding:10px 4px;
                     display: block;
                     margin-bottom: -4px;
                     box-sizing: content-box;
@@ -484,7 +514,6 @@ $purple: #4339AD;
                 width: 100%;
                 height: $first-col-width;
                 background:#fafafa;
-                border-right: 1px solid #ccc;
             }
         }
         .flex-display.add-plant {
@@ -540,7 +569,7 @@ $purple: #4339AD;
         }
         &:after {
             content:'';
-            z-index: 1;
+            z-index: -1;
             display: block;
             position: absolute;
             top: 0;
@@ -548,6 +577,20 @@ $purple: #4339AD;
             width: $first-col-width;
             box-shadow:1px 0 0 #ccc, 1px 0 2px rgba(0,0,0,.12);
             pointer-events: none;
+            background: #fafafa;
+            border-right: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        &:before {
+            content: '';
+            z-index: -1;
+            display: block;
+            position: absolute;
+            top: 0;
+            height: 133px;
+            width: 100%;
+            box-shadow: 0 2px 2px rgba(0,0,0,.12);
+            background: #fff;
         }
     }
     

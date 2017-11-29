@@ -15,19 +15,28 @@
       </mat-menu>
     </div>
     <mat-form-field>
-      <mat-select placeholder="Location" [(ngModel)]="appSharedService.currentGreenHouseLocation" (change)="locationChange(appSharedService.currentGreenHouseLocation)" name="location" class="input-white sec1-select">
+      <mat-select placeholder="Location" [(ngModel)]="appSharedService.currentGreenHouseLocation" (change)="locationChange(appSharedService.currentGreenHouseLocation)"
+        name="location" class="input-white sec1-select">
         <mat-option *ngFor="let location of appSharedService.locations" [value]="location">
           {{location.city}}, {{location.state}}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Year" [(ngModel)]="appSharedService.selectedYear" (change)="yearChange(appSharedService.selectedYear)"
+        name="year" class="input-white sec1-select">
+        <mat-option *ngFor="let year of years" [value]="year">
+          {{year}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <mat-list>
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-plug-tray-information' }" [routerLink]="['/app-organic-tracker-sheet/app-plug-tray-information']">
-        Plug tray information
+      Plug tray information
       <div class="notif-number" (click)="moveToNextStage('PLANTING')">
-        <i class="material-icons valign_middle">arrow_downward</i>
-        {{appSharedService.totalNotif}}
+        <i class="material-icons valign_middle">arrow_downward</i> {{appSharedService.totalNotif}}
       </div>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -38,7 +47,8 @@
     <mat-list-item [ngClass]="{'active': router.url === '/app-organic-tracker-sheet/app-receiving-from-other-stations' }" [routerLink]="['/app-organic-tracker-sheet/app-receiving-from-other-stations']">
       Receiving
       <div class="notif-number">
-       <i class="material-icons valign_middle">arrow_downward</i> {{ appSharedService.receivedVarietiesCountWithReceivedButton }}
+        <i class="material-icons valign_middle">arrow_downward</i> {{ appSharedService.receivedVarietiesCountWithReceivedButton
+        }}
       </div>
     </mat-list-item>
     <mat-divider></mat-divider>

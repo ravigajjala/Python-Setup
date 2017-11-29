@@ -46,9 +46,9 @@ export class Location {
 	datastore_id: string;
 	city: string;
 	state: string;
-	firstName: string;
-	lastName: string;
-	userEmail: string;
+	first_name: string;
+	last_name: string;
+	email: string;
 	locatorNumber: number;
 	shipToLocations: ShipToLocationInfo[]; // Todo:: Change the type
 	routes: number[];
