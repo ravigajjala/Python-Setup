@@ -111,7 +111,7 @@ export class StoreDeliveryComponent implements OnInit {
     this.totalBalanceCount = 0;
     this.sumPlantsDelivered = 0;
 
-    // Removeing Plug to deliver screen varieties
+    // Removing Plug to deliver screen varieties
     const varietyOptions = this.appSharedService.varietyOptions.filter(variety => {
       return variety.type !== 'PLUG';
     });
