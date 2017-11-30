@@ -26,6 +26,17 @@ export class StoreDeliveryComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.appSharedService.currentMessage.subscribe(message => {
+      if(message === "update_variety"){
+        for(let i=0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
+          for(let j=0; j< this.appSharedService.varietyOptions.length; j++){
+            this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] = this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] || {}; 
+          }
+        }
+      }
+
+    });
     this.heads6 = [
       'Seed Lot Number',
       'Locator #',

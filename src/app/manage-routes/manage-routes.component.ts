@@ -29,7 +29,7 @@ public greenHouseRoutes = [];
     public dialogRef: MatDialogRef<ManageRoutesComponent>) { 
       console.log("printin the location information ......");
       console.log(appSharedService.currentGreenHouseLocation);
-      this.greenHouseRoutes = appSharedService.currentGreenHouseLocation.routes;
+      this.greenHouseRoutes = JSON.parse(JSON.stringify(appSharedService.currentGreenHouseLocation.routes));
     }
 
   editableRow(i, gh) {
@@ -53,7 +53,8 @@ public greenHouseRoutes = [];
     }
 
     this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
-    //this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
+    this.appSharedService.changeMessage('update_variety');
+    this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
     this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
       res => {console.log(res);},
       err => console.log(err)
