@@ -30,7 +30,7 @@ export class AppStoreDelivery {
 }
 
 export class Route {
-	route: number;
+	routes: number;
 	value: number;
 }
 

@@ -29,11 +29,15 @@ export class StoreDeliveryComponent implements OnInit {
 
     this.appSharedService.currentMessage.subscribe(message => {
       if(message === "update_variety"){
-        for(let i=0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
-          for(let j=0; j< this.appSharedService.varietyOptions.length; j++){
-            this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] = this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] || {}; 
-          }
-        }
+        this.getPlugToDeliverData();
+        //alert("callig update verify");
+        
+          // for(let j=0; j< this.appSharedService.varietyOptions.length; j++){
+          //   for(let i=0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
+          //     this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] = this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] || {}; 
+          //   }
+          // }
+        
       }
 
     });
@@ -80,7 +84,7 @@ export class StoreDeliveryComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-    this.appSharedService.currentMessage.subscribe(message => { this.getPlugToDeliverData() });
+    //this.appSharedService.currentMessage.subscribe(message => { this.getPlugToDeliverData() });
     this.getPlugToDeliverData();
   }
 
@@ -95,7 +99,20 @@ export class StoreDeliveryComponent implements OnInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
-        this.appSharedService.varietyOptions = res;
+        let varietyOptions = res;
+        console.log("prinitni....... this.appSharedService.varietyOptions   ", this.appSharedService.varietyOptions);
+
+        console.log("prinitni....... this.appSharedService.currentGreenHouseLocation.routes   ", this.appSharedService.currentGreenHouseLocation.routes);
+        
+        for(let j=0; j< varietyOptions.length; j++){
+          for(let i=0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
+            if(!varietyOptions[j].appStoreDelivery.routeNumberSale[i]){
+              varietyOptions[j].appStoreDelivery.routeNumberSale.push({routes:null,value:null});
+            }
+            //this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] = this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] || {}; 
+          }
+        }
+        this.appSharedService.varietyOptions = varietyOptions;
         this.updateRouteTotal(null);
       },
       err => {

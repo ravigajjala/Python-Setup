@@ -13,7 +13,7 @@ export class ManageRoutesComponent {
 
   public currentGreenHouses = [];
   public locationId;
-  public locations = [];
+  //public locations = [];
   public greenHouses = [];
   public showEditBox = false;
   public editRoutes;
@@ -52,14 +52,18 @@ public greenHouseRoutes = [];
       return false;
     }
 
-    this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
-    this.appSharedService.changeMessage('update_variety');
-    this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
-    this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
-      res => {console.log(res);},
+    ///this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
+    let routesDataObject = Object.assign({}, this.appSharedService.currentGreenHouseLocation, this.greenHouseRoutes);
+   
+    //this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
+    this.appSharedService.updateLocation(routesDataObject).subscribe(
+      res =>{ console.log(res); 
+      //console.log("succefully updated routed");  
+      this.appSharedService.changeMessage('update_variety'); },
       err => console.log(err)
     );
     
+    //console.log("calling this ...........froim  save GreenHouse");
     this.ghEditList = this.ghEditList.map(val => {
       val = false;
     });
