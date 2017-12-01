@@ -28,7 +28,7 @@ export class MasterViewComponent implements OnInit {
     private router: Router) {
     this.routeTotalQuantites = {};
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
-      this.routeTotalQuantites[route] = 0;
+      this.routeTotalQuantites[route.routes] = 0;
     });
   }
 
@@ -120,7 +120,7 @@ export class MasterViewComponent implements OnInit {
       if (variety.appStoreDelivery.routeNumberSale.length > 0) {
         variety.appStoreDelivery.routeNumberSale.forEach(routeObj => {
           variety.deliverdTotal += Number(routeObj.value || 0);
-          this.routeTotalQuantites[routeObj.routes] += routeObj.value;
+          this.routeTotalQuantites[routeObj.routes] += Number(routeObj.value || 0);
         });
       }
       console.log(varietyOptions);
@@ -174,8 +174,8 @@ export class MasterViewComponent implements OnInit {
       recordModel['House#/Bay#'] = _.get(this.filteredVariety[i], 'plantingInfo.houseBay');
       recordModel['Total Flats To Sale'] = _.get(this.filteredVariety[i], 'salableInfo.totalFlatsToSale');
       for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
-        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = (Object.values(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j))[1] || 0);
-        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = (totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] || 0) + (Object.values(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j))[1] || 0);
+        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes] = _.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0;
+        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes] = (totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes] || 0) + parseInt(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0);
       
       }
 
