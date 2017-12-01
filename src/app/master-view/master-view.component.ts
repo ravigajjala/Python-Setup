@@ -108,8 +108,9 @@ export class MasterViewComponent implements OnInit {
     // });
 
     this.routeTotalQuantites = {};
+    console.log("printing .....................routes" , this.appSharedService.currentGreenHouseLocation.routes);
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
-      this.routeTotalQuantites[route] = 0;
+      this.routeTotalQuantites[route.routes] = 0;
     });
 
     varietyOptions.forEach((variety, i) => {
@@ -119,7 +120,7 @@ export class MasterViewComponent implements OnInit {
       if (variety.appStoreDelivery.routeNumberSale.length > 0) {
         variety.appStoreDelivery.routeNumberSale.forEach(routeObj => {
           variety.deliverdTotal += Number(routeObj.value || 0);
-          this.routeTotalQuantites[routeObj.route] += routeObj.value;
+          this.routeTotalQuantites[routeObj.routes] += routeObj.value;
         });
       }
       console.log(varietyOptions);

@@ -101,7 +101,7 @@
           <td class="td-sm"></td>
           <td class="td-md"></td>
           <td class="td-sm">{{totalCount}}</td>
-          <td class="td-xs" *ngFor="let routeNumber of appSharedService.currentGreenHouseLocation.routes">{{routeTotalQuantites[routeNumber] || 0 }}</td>
+          <td class="td-xs" *ngFor="let routeNumber of appSharedService.currentGreenHouseLocation.routes">{{routeTotalQuantites[routeNumber.routes] || 0 }}</td>
           <!--{{routeTotalQuantites[routeNumber]}}-->
           <td class="td-sm"> {{sumPlantsDelivered}}</td>
           <td class="td-sm"></td>

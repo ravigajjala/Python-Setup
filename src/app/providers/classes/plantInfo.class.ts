@@ -51,7 +51,7 @@ export class Location {
 	email: string;
 	locatorNumber: number;
 	shipToLocations: ShipToLocationInfo[]; // Todo:: Change the type
-	routes: number[];
+	routes: any[];
 }
 
 export class ShipToLocationInfo {
