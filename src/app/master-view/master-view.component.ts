@@ -174,8 +174,9 @@ export class MasterViewComponent implements OnInit {
       recordModel['House#/Bay#'] = _.get(this.filteredVariety[i], 'plantingInfo.houseBay');
       recordModel['Total Flats To Sale'] = _.get(this.filteredVariety[i], 'salableInfo.totalFlatsToSale');
       for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
-        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes] = _.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0;
-        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes] = (totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes] || 0) + parseInt(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0);
+        let routes = this.appSharedService.currentGreenHouseLocation.routes[j];
+        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name? '('+routes.nick_name+')' : '')] = _.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0;
+        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name? '('+routes.nick_name+')' : '')] = (totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name? '('+routes.nick_name+')' : '')] || 0) + parseInt(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0);
       
       }
 
