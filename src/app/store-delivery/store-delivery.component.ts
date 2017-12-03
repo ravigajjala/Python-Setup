@@ -149,18 +149,24 @@ export class StoreDeliveryComponent implements OnInit {
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
       this.routeTotalQuantites[route.routes] = 0;
     });
+
+    console.log("printing toal routes ----> ", this.routeTotalQuantites);
     varietyOptions.forEach((variety, i) => {
+
+      console.log("variety -----> ", i , variety);
       variety.deliverdTotal = 0;
       this.totalCount += Number(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0);
       this.totalBalanceCount += Number(this.appSharedService.varietyOptions[i].plantingInfo.finishedTrays || 0);
       if (variety.appStoreDelivery.routeNumberSale.length > 0) {
         variety.appStoreDelivery.routeNumberSale.forEach(routeObj => {
-          variety.deliverdTotal += Number(routeObj.value || 0);
-          this.routeTotalQuantites[routeObj.routes] += routeObj.value;
+          variety.deliverdTotal += parseInt(routeObj.value || 0);
+          this.routeTotalQuantites[routeObj.routes] += parseInt(routeObj.value || 0);
         });
       }
       this.sumPlantsDelivered += variety.deliverdTotal;
     });
+
+    console.log("printing toal routes ----> ", this.routeTotalQuantites);
     if (plugToDeliverData != null) {
       this.updatePlugToDeliverData(plugToDeliverData);
     }
