@@ -74,10 +74,9 @@ export class OrganicTrackerSheetComponent implements OnInit {
       locations => {
         this.loading = false;
         this.appSharedService.locations = locations;
-        
         this.appSharedService.userId = 'gajjala@gmail.com';
-        this.appSharedService.loggedInUserGreenHouseLocation = 'Dublin';
-        console.log("reading locations ...", locations);
+        this.appSharedService.loggedInUserGreenHouseLocation = 'Rydal';
+        console.log(locations);
         this.appSharedService.currentGreenHouseLocation = locations[0];
         console.log(this.appSharedService.currentGreenHouseLocation);
         this.appSharedService.selectedYear = this.years.filter(year => {
@@ -214,21 +213,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
     // this.appSharedService.updateRouteTotal();
     this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
-        let varietyOptions = res;
-        //console.log("prinitni....... this.appSharedService.varietyOptions   ", this.appSharedService.varietyOptions);
-
-        console.log("prinitni....... this.appSharedService.currentGreenHouseLocation.routes   ", this.appSharedService.currentGreenHouseLocation.routes);
-        
-        for(let j=0; j< varietyOptions.length; j++){
-          for(let i=0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
-            if(!varietyOptions[j].appStoreDelivery.routeNumberSale[i]){
-              varietyOptions[j].appStoreDelivery.routeNumberSale.push({routes:null,value:null});
-            }
-            //this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] = this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] || {}; 
-          }
-        }
-        this.appSharedService.varietyOptions = varietyOptions;
-       // this.appSharedService.varietyOptions = res;
+        this.appSharedService.varietyOptions = res;
         this.appSharedService.totalNotif = 0;
         this.appSharedService.changeMessage('updated_location');
       },

@@ -102,13 +102,8 @@ export class MasterViewComponent implements OnInit {
 
     // Removing Plug to deliver screen varieties
     const varietyOptions = this.filteredVariety;
-    
-    //this.appSharedService.varietyOptions.filter(variety => {
-    //   return variety.type !== 'PLUG';
-    // });
 
     this.routeTotalQuantites = {};
-    console.log("printing .....................routes" , this.appSharedService.currentGreenHouseLocation.routes);
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
       this.routeTotalQuantites[route.routes] = 0;
     });
@@ -145,9 +140,7 @@ export class MasterViewComponent implements OnInit {
       }
     }
 
-    //for (let i = 0; i < this.appSharedService.routeTotal.length; i++) {
       this.updateRouteTotal(null);
-    //}
   }
 
   exportExcel() {
@@ -188,14 +181,6 @@ export class MasterViewComponent implements OnInit {
 
       exportRecords.push(recordModel);
     }
-
-    
-    // for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
-    //   totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j]] = 0;
-    // }
-  //  for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
-      
-  //  }
 
     totalModel['Delivered'] = this.sumPlantsDelivered;
     totalModel['Discarded'] = [];

@@ -26,21 +26,6 @@ export class StoreDeliveryComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.appSharedService.currentMessage.subscribe(message => {
-      if(message === "update_variety"){
-        this.getPlugToDeliverData();
-        //alert("callig update verify");
-        
-          // for(let j=0; j< this.appSharedService.varietyOptions.length; j++){
-          //   for(let i=0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
-          //     this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] = this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] || {}; 
-          //   }
-          // }
-        
-      }
-
-    });
     this.heads6 = [
       'Seed Lot Number',
       'Locator #',
@@ -84,7 +69,7 @@ export class StoreDeliveryComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-    //this.appSharedService.currentMessage.subscribe(message => { this.getPlugToDeliverData() });
+    this.appSharedService.currentMessage.subscribe(message => { this.getPlugToDeliverData() });
     this.getPlugToDeliverData();
   }
 
@@ -99,20 +84,7 @@ export class StoreDeliveryComponent implements OnInit {
   getPlugToDeliverData() {
     return this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
-        let varietyOptions = res;
-        console.log("prinitni....... this.appSharedService.varietyOptions   ", this.appSharedService.varietyOptions);
-
-        console.log("prinitni....... this.appSharedService.currentGreenHouseLocation.routes   ", this.appSharedService.currentGreenHouseLocation.routes);
-        
-        for(let j=0; j< varietyOptions.length; j++){
-          for(let i=0;i<this.appSharedService.currentGreenHouseLocation.routes.length;i++){
-            if(!varietyOptions[j].appStoreDelivery.routeNumberSale[i]){
-              varietyOptions[j].appStoreDelivery.routeNumberSale.push({routes:null,value:null});
-            }
-            //this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] = this.appSharedService.varietyOptions[j].appStoreDelivery.routeNumberSale[i] || {}; 
-          }
-        }
-        this.appSharedService.varietyOptions = varietyOptions;
+        this.appSharedService.varietyOptions = res;
         this.updateRouteTotal(null);
       },
       err => {
@@ -145,28 +117,21 @@ export class StoreDeliveryComponent implements OnInit {
     });
 
     this.routeTotalQuantites = {};
-    console.log("printing .....................routes" , this.appSharedService.currentGreenHouseLocation.routes);
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
       this.routeTotalQuantites[route.routes] = 0;
     });
-
-    console.log("printing toal routes ----> ", this.routeTotalQuantites);
     varietyOptions.forEach((variety, i) => {
-
-      console.log("variety -----> ", i , variety);
       variety.deliverdTotal = 0;
       this.totalCount += Number(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0);
       this.totalBalanceCount += Number(this.appSharedService.varietyOptions[i].plantingInfo.finishedTrays || 0);
       if (variety.appStoreDelivery.routeNumberSale.length > 0) {
         variety.appStoreDelivery.routeNumberSale.forEach(routeObj => {
-          variety.deliverdTotal += parseInt(routeObj.value || 0);
-          this.routeTotalQuantites[routeObj.routes] += parseInt(routeObj.value || 0);
+          variety.deliverdTotal += Number(routeObj.value || 0);
+          this.routeTotalQuantites[routeObj.routes] += Number(routeObj.value || 0);
         });
       }
       this.sumPlantsDelivered += variety.deliverdTotal;
     });
-
-    console.log("printing toal routes ----> ", this.routeTotalQuantites);
     if (plugToDeliverData != null) {
       this.updatePlugToDeliverData(plugToDeliverData);
     }

@@ -13,7 +13,7 @@ export class ManageRoutesComponent {
 
   public currentGreenHouses = [];
   public locationId;
-  //public locations = [];
+  public locations = [];
   public greenHouses = [];
   public showEditBox = false;
   public editRoutes;
@@ -29,7 +29,7 @@ public greenHouseRoutes = [];
     public dialogRef: MatDialogRef<ManageRoutesComponent>) { 
       console.log("printin the location information ......");
       console.log(appSharedService.currentGreenHouseLocation);
-      this.greenHouseRoutes = JSON.parse(JSON.stringify(appSharedService.currentGreenHouseLocation.routes));
+      this.greenHouseRoutes = appSharedService.currentGreenHouseLocation.routes;
     }
 
   editableRow(i, gh) {
@@ -47,23 +47,18 @@ public greenHouseRoutes = [];
   }
 
 
-  saveGreenHouse(formCtrl) {
+  saveRoute(formCtrl) {
     if(!formCtrl.form.valid){
       return false;
     }
 
-    ///this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
-    let routesDataObject = Object.assign({}, this.appSharedService.currentGreenHouseLocation, this.greenHouseRoutes);
-   
+    this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
     //this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
-    this.appSharedService.updateLocation(routesDataObject).subscribe(
-      res =>{ console.log(res); 
-      //console.log("succefully updated routed");  
-      this.appSharedService.changeMessage('update_variety'); },
+    this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
+      res => {console.log(res);},
       err => console.log(err)
     );
     
-    //console.log("calling this ...........froim  save GreenHouse");
     this.ghEditList = this.ghEditList.map(val => {
       val = false;
     });
@@ -79,15 +74,8 @@ public greenHouseRoutes = [];
     if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
-    //const id = location.datastore_id;
-    //const that = this;
-    // this.appSharedService.deleteLocation(id).subscribe(
-    //   res => { console.log(res); that.greenHouses.splice(i, 1); },
-    //   err => console.log(err)
-    // );
     this.greenHouseRoutes.splice(i,1);
     this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
-    //this.appSharedService.locations = Object.assign([], this.greenHouses); // use object.assign for deep copying
     this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
       res => {console.log(res);},
       err => console.log(err)

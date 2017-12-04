@@ -219,8 +219,6 @@ export class PlugTrayInformationComponent implements OnInit, AfterViewInit {
       if (this.appSharedService.currentGreenHouseLocation.routes.length > 0) {
         tempNewPlant.appStoreDelivery.routeNumberSale = [];
         this.appSharedService.currentGreenHouseLocation.routes.forEach(routeNumber => {
-          console.log("....print the routeNumber ...", routeNumber);
-          //routeNumber.value: null;
           tempNewPlant.appStoreDelivery.routeNumberSale.push(routeNumber);
         });
       }

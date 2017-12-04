@@ -29,7 +29,7 @@
                                 </button>
                             </td>
                             <td>
-                                <button mat-icon-button color="primary" (click)="deleteRoute(gh,i)">
+                                <button mat-icon-button color="primary" (click)="deleteRoute(i,gh)">
                                     <i color="primary" class="material-icons md-18 valign_middle">delete</i>
                                 </button>
                             </td>
@@ -46,12 +46,12 @@
                                 </mat-form-field>
                             </td>
                             <td title="{{formCtrl.form.valid?'SAVE':''}}">
-                                <button mat-icon-button color="primary" (click)="saveGreenHouse(formCtrl,gh)" [disabled]="!formCtrl.form.valid">
+                                <button mat-icon-button color="primary" (click)="saveRoute(formCtrl,gh)" [disabled]="!formCtrl.form.valid">
                                     <i color="primary" class="material-icons md-18 valign_middle" [ngClass]="{'blue-icon':formCtrl.form.valid}">save</i>
                                 </button>
                             </td>
                             <td>
-                                <button mat-icon-button color="primary" (click)="deleteRoute(gh,i)">
+                                <button mat-icon-button color="primary" (click)="deleteRoute(i,gh)">
                                     <i color="primary" class="material-icons md-18 valign_middle blue-icon">delete</i>
                                 </button>
                             </td>
@@ -62,10 +62,6 @@
             <br>
             <button mat-raised-button color="primary" (click)="addRoute(true)" *ngIf="!showEditBox">
                 <i class="material-icons valign_middle">add</i> Add Routes</button>
-
-            <!-- <div class="btn-cont">
-                <button mat-button (click)="closeDialog()">CLOSE</button>
-            </div> -->
         </form>
     </div>
 </mat-dialog-content>
