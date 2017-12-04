@@ -37,7 +37,7 @@
                             <td><mat-form-field class="full-width"><input matInput [(ngModel)]="gh.last_name" name="last_name" required></mat-form-field></td>
                             <td><mat-form-field class="full-width"><input matInput [(ngModel)]="gh.email" name="email" required></mat-form-field></td>
                             <td><mat-form-field class="full-width"><input matInput [(ngModel)]="gh.city" name="city" required></mat-form-field></td>
-                            <td><mat-form-field class="full-width"><input matInput [(ngModel)]="gh.state" name="state" required></mat-form-field></td>
+                            <td><mat-form-field class="full-width"><input matInput [(ngModel)]="gh.state" (change)="gh.state = gh.state.toUpperCase()" name="state" required></mat-form-field></td>
                             <td><mat-form-field class="full-width"><input matInput [(ngModel)]="gh.locatorNumber" type="number" min="0" name="locatorNumber" required></mat-form-field></td>
                             <td title="{{formCtrl.form.valid?'SAVE':''}}">
                                 <button mat-icon-button color="primary" (click)="updateGreenHouse(formCtrl, gh, i)" [disabled]="!formCtrl.form.valid">
