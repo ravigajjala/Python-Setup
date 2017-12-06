@@ -18,6 +18,7 @@ export class ManageGreenHouseComponent {
   public showEditBox = false;
   public editFirstName;
   public editLastName;
+  public editCode;
   public editUserEmail;
   public editLocation;
   public editLocatorNumber;
@@ -26,6 +27,7 @@ export class ManageGreenHouseComponent {
   public gh = {
     firstName: null,
     lastName: null,
+    code: null,
     city: null,
     state: null,
     email: null,
@@ -67,8 +69,8 @@ export class ManageGreenHouseComponent {
   }
 
   validateLocation() {
-    if (this.gh.firstName && this.gh.lastName && this.gh.state && this.gh.email
-      && this.gh.email && this.gh.locatorNumber) {
+    if (this.gh.firstName && this.gh.lastName && this.gh.code && this.gh.state && this.gh.email
+      && this.gh.city && this.gh.locatorNumber) {
       this.isValid = true;
     }
   }
@@ -81,7 +83,9 @@ export class ManageGreenHouseComponent {
     if (this.isAddFlag[i]) {
       location.shipToLocations = [];
       this.appSharedService.addLocation(location).subscribe(
-        res => { console.log(res); this.ghEditList[i] = false; this.isAddFlag[i] = false; this.getLocations(); },
+        res => { console.log(res); 
+                this.ghEditList[i] = false; 
+                this.isAddFlag[i] = false; this.getLocations(); },
         err => console.log(err)
       );
     } else {

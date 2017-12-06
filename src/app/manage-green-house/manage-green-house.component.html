@@ -16,6 +16,7 @@
                     <tr>
                         <th>FIRST NAME</th>
                         <th>LAST NAME</th>
+                        <th>CODE</th>
                         <th>EMAIL</th>
                         <th>CITY</th>
                         <th>STATE</th>
@@ -27,6 +28,7 @@
                         <ng-container *ngIf="!ghEditList[i]">
                             <td>{{gh.first_name}}</td>
                             <td>{{gh.last_name}}</td>
+                            <td>{{gh.code}}</td>
                             <td>{{gh.email}}</td>
                             <td>{{gh.city}}</td>
                             <td>{{gh.state}}</td>
@@ -37,7 +39,7 @@
                                 </button>
                             </td>
                             <td>
-                                <button mat-icon-button color="primary" (click)="deleteGreenHouse(i, gh)">
+                                <button mat-icon-button color="primary" (click)="deleteGreenHouse(gh, i)">
                                     <i color="primary" class="material-icons md-18 valign_middle">delete</i>
                                 </button>
                             </td>
@@ -51,6 +53,11 @@
                             <td>
                                 <mat-form-field class="full-width">
                                     <input matInput [(ngModel)]="gh.last_name" name="last_name" required>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="full-width">
+                                    <input matInput [(ngModel)]="gh.code" name="code" required>
                                 </mat-form-field>
                             </td>
                             <td>
