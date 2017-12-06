@@ -38,6 +38,8 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
   ngOnInit() {
     // Retrieving Locations
+    this.getPlugToDeliverData();
+    
     this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
     // Removing current greenhouse location from the ship to locations dropdown
     this.locations = this.locations.filter(locationObj => {
@@ -62,7 +64,7 @@ export class ShipToOtherStationsComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-    this.getPlugToDeliverData();
+    
   }
 
   openDialog(currentItem): void {

@@ -1225,6 +1225,18 @@ export class AppSharedService {
     }
 
     getPlugToDeliverData(): Observable<PlugToDeliver[]> {
+        this.currentGreenHouseLocation = this.currentGreenHouseLocation || {
+            code: null,
+            datastore_id: null,
+            city: null,
+            state: null,
+            first_name: null,
+            last_name: null,
+            email: null,
+            locatorNumber: null,
+            shipToLocations:[],
+            routes: []
+        };
         return this.http.get('/plug-to-deliver/get' + '?userGreenHouseLocation=' +
             this.currentGreenHouseLocation.city + ', ' + this.currentGreenHouseLocation.state + '&year=' + this.selectedYear)
             .map(res => {

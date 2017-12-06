@@ -27,6 +27,7 @@ export class MasterViewComponent implements OnInit {
   constructor(private appSharedService: AppSharedService,
     private router: Router) {
     this.routeTotalQuantites = {};
+    this.getPlugToDeliverData();
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
       this.routeTotalQuantites[route.routes] = 0;
     });
@@ -71,7 +72,6 @@ export class MasterViewComponent implements OnInit {
       err => console.log(err)
     );
     this.filteredVariety = this.appSharedService.varietyOptions;
-    this.getPlugToDeliverData();
   }
 
   getPlugToDeliverData() {

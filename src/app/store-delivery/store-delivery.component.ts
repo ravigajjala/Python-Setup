@@ -20,6 +20,7 @@ export class StoreDeliveryComponent implements OnInit {
   constructor(private appSharedService: AppSharedService,
     public router: Router) {
     this.routeTotalQuantites = {};
+    this.getPlugToDeliverData();
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
       this.routeTotalQuantites[route] = 0;
     });
@@ -70,7 +71,6 @@ export class StoreDeliveryComponent implements OnInit {
       err => console.log(err)
     );
     this.appSharedService.currentMessage.subscribe(message => { this.getPlugToDeliverData() });
-    this.getPlugToDeliverData();
   }
 
   mergeClick(e: any, mergeText: string) {
