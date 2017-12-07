@@ -83,9 +83,7 @@ export class ManageGreenHouseComponent {
     if (this.isAddFlag[i]) {
       location.shipToLocations = [];
       this.appSharedService.addLocation(location).subscribe(
-        res => { console.log(res); 
-                this.ghEditList[i] = false; 
-                this.isAddFlag[i] = false; this.getLocations(); },
+        res => { console.log(res); this.ghEditList[i] = false; this.isAddFlag[i] = false; this.getLocations(); },
         err => console.log(err)
       );
     } else {
@@ -100,15 +98,14 @@ export class ManageGreenHouseComponent {
     this.dialogRef.close();
   }
 
-  deleteGreenHouse(i, location) {
+  deleteGreenHouse(location, i) {
     if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
     const id = location.datastore_id;
     const that = this;
-    
     this.appSharedService.deleteLocation(id).subscribe(
-      res => { console.log(res); that.greenHouses.splice(i, 1); this.appSharedService.locations.splice(i, 1);},
+      res => { console.log(res); that.greenHouses.splice(i, 1); this.appSharedService.locations.splice(i,1);},
       err => console.log(err)
     );
   }
