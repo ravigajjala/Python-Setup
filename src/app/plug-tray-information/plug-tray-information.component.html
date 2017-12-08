@@ -13,7 +13,7 @@
               </div>
             </div>
             <div class="flex-display" [class.flex-center]="mergeClickBool">
-              <button mat-button *ngIf="mergeClickBool == false" (click)="mergeClick($event, 'start_merge')"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
+              <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">merge_type</i> MERGE</button>
               <button mat-button *ngIf="mergeClickBool == false"><i class="material-icons rotate_90">call_split</i> SPLIT</button>
               <button mat-button *ngIf="mergeClickBool == true" (click)="mergeClick($event, 'cancel_merge')"><i class="material-icons rotate_90">merge_type</i> CANCEL MERGE</button>
             </div>

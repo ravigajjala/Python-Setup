@@ -27,7 +27,7 @@ public greenHouseRoutes = [];
 
   constructor(public appSharedService: AppSharedService,
     public dialogRef: MatDialogRef<ManageRoutesComponent>) { 
-      this.greenHouseRoutes = JSON.parse(JSON.stringify(appSharedService.currentGreenHouseLocation.routes));
+      this.greenHouseRoutes = appSharedService.currentGreenHouseLocation.routes;
       let len = this.greenHouseRoutes.length;
       if( len > 0 &&  Object.keys(this.greenHouseRoutes[len-1]).length == 0){
         this.greenHouseRoutes.splice(len-1, 1);
@@ -40,7 +40,6 @@ public greenHouseRoutes = [];
       this.ghEditList[i] = false;
     }
     this.ghEditList[i] = true;
-    console.log("edit row...", this.ghEditList);
   }
 
   addRoute(condition) {
@@ -72,7 +71,7 @@ public greenHouseRoutes = [];
     this.dialogRef.close();
   }
           
-  deleteRoute(i, location) {
+  deleteRoute(i,location) {
     if (!confirm('Are you sure want to Delete?')) {
       return false;
     }

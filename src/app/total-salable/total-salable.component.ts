@@ -78,6 +78,7 @@ export class TotalSalableComponent implements OnInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+    plugToDeliverData.salableInfo.reasonCode = plugToDeliverData.salableInfo.discarded === 0 ? null : plugToDeliverData.salableInfo.reasonCode;
     plugToDeliverData.salableInfo.totalFlatsToSale = plugToDeliverData.flatsToSaleAfterShipping - plugToDeliverData.salableInfo.discarded;
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },

@@ -37,9 +37,8 @@ export class ShipToOtherStationsComponent implements OnInit {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
   ngOnInit() {
-    // Retrieving Locations
     this.getPlugToDeliverData();
-    
+    // Retrieving Locations
     this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
     // Removing current greenhouse location from the ship to locations dropdown
     this.locations = this.locations.filter(locationObj => {
@@ -64,7 +63,6 @@ export class ShipToOtherStationsComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-    
   }
 
   openDialog(currentItem): void {

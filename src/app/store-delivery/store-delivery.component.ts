@@ -99,6 +99,7 @@ export class StoreDeliveryComponent implements OnInit {
    */
   // TODO:: Make shared function
   updatePlugToDeliverData(plugToDeliverData: PlugToDeliver): any {
+    plugToDeliverData.appStoreDelivery.reasonCode = plugToDeliverData.appStoreDelivery.discarded === 0 ? null : plugToDeliverData.appStoreDelivery.reasonCode;
     this.appSharedService.updatePlugToDeliverData(plugToDeliverData)
       .subscribe(res => { },
       err => {
