@@ -143,6 +143,29 @@ export class MasterViewComponent implements OnInit {
       this.updateRouteTotal(null);
   }
 
+  printTable() {
+    let printContents, popupWin;
+    printContents = document.getElementById('print-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Print tab</title>
+          <style>
+            table {
+              border:1px solid #000;
+              width:100%;
+            }
+          </style>
+        </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+    //window.print();
+  }
+
   exportExcel() {
     const exportRecords = [];
     const totalModel = {};
