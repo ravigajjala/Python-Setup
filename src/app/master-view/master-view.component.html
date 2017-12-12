@@ -48,12 +48,12 @@
           <ng-container *ngFor="let head of heads6;let i=index">
             <td [ngClass]="{'merge-cell-style':i==4 || i==6}" *ngIf="!(i==4 || i==6)">
               <span [ngClass]="{'store-left':i==0}">
-              <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
+                <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>{{head}}</span>
             </td>
             <ng-container *ngIf="i==4">
-              <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes">
+              <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes; let ind = index">
                 <td class="bottom-row">
-                  <span class="rotate-text print-table" (click)="printTable()">
+                  <span class="rotate-text print-table" (click)="printTable(ind)">
                     <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Route {{trow.routes}} {{trow.nick_name? '('+trow.nick_name+')' : ''}}
                     <i class="material-icons rotate_45 print-icon valign_middle">print</i>
                   </span>
@@ -63,11 +63,11 @@
             <ng-container *ngIf="i==6">
               <td class="bottom-row">
                 <span class="rotate-text">
-                <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>#Discarded</span>
+                  <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>#Discarded</span>
               </td>
               <td class="bottom-row">
                 <span class="rotate-text">
-                <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span>
+                  <i class="material-icons rotate_45 valign_middle">arrow_drop_down</i>Reason Code</span>
               </td>
             </ng-container>
           </ng-container>
@@ -83,8 +83,8 @@
               </svg>
             </div>
             <span>{{item.name}}
-            <s class="secondary-text">{{ item.weekNumber ? ' Wk' + item.weekNumber : ''}}</s>
-          </span>
+              <s class="secondary-text">{{ item.weekNumber ? ' Wk' + item.weekNumber : ''}}</s>
+            </span>
           </td>
           <td class="td-md">
             <span>{{item.plugTray.seedLotNumber}}</span>
@@ -139,7 +139,7 @@
     </table>
   </div>
   <div id='print-section' >
-    <table>
+    <table cellspacing="0">
       <tr>
         <td colspan="6">Bonnie Sales Rep.Name</td>
       </tr>
@@ -159,33 +159,31 @@
         <td>Trays Delivered</td>
         <td>Trays Returned</td>
         <td>Item Description</td>
-        <td>Route#</td>
+        <td>
+          <span *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes; let ind = index">
+            <span *ngIf="ind===selectedPrintableRoute">Route# {{trow.routes}} {{trow.nick_name? '('+trow.nick_name+')' : ''}}</span>
+          </span>
+        </td>
         <td>Delivered Locator</td>
         <td>Returned Locator</td>
       </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-      </tr>
-      <tr>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
-        <td>.</td>
+      <tr *ngFor="let item of filteredVariety | SearchVarieties: appSharedService.searchFieldValue; let i=index;">
+        <td></td>
+        <td></td>
+        <td>
+          <span>{{item.name}}
+            <span class="secondary-text">{{ item.weekNumber ? ' Wk' + item.weekNumber : ''}}</span>
+          </span>
+        </td>
+        <td>
+          <span *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes; let ind = index">
+            <span *ngIf="ind===selectedPrintableRoute">
+              {{item.appStoreDelivery.routeNumberSale[ind]['value']}}
+            </span>
+          </span>
+        </td>
+        <td></td>
+        <td></td>
       </tr>
     </table>
   </div>

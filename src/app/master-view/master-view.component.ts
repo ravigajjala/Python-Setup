@@ -22,6 +22,7 @@ export class MasterViewComponent implements OnInit {
   public totalBalanceCount = 0;
   public startWeek = null;
   public endWeek = null;
+  public selectedPrintableRoute = null;
   public filteredVariety = [];
   public location = null;
   constructor(private appSharedService: AppSharedService,
@@ -143,7 +144,8 @@ export class MasterViewComponent implements OnInit {
       this.updateRouteTotal(null);
   }
 
-  printTable() {
+  printTable(ind) {
+    this.selectedPrintableRoute = ind;
     let printContents, popupWin;
     printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
@@ -151,9 +153,9 @@ export class MasterViewComponent implements OnInit {
     popupWin.document.write(`
       <html>
         <head>
-          <title>Print tab</title>
+          <title></title>
           <style>
-            table {
+            table, td {
               border:1px solid #000;
               width:100%;
             }
