@@ -146,6 +146,12 @@ export class MasterViewComponent implements OnInit {
 
   printTable(ind) {
     this.selectedPrintableRoute = ind;
+    setTimeout(()=>this.displayPrintPopup(), 500);
+    //alert("testoing.");
+    //window.print();
+  }
+
+  displayPrintPopup(){
     let printContents, popupWin;
     printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
@@ -159,13 +165,15 @@ export class MasterViewComponent implements OnInit {
               border:1px solid #000;
               width:100%;
             }
+            body {
+              background:#e0e0e0;
+            }
           </style>
         </head>
         <body onload="window.print();window.close()">${printContents}</body>
       </html>`
     );
     popupWin.document.close();
-    //window.print();
   }
 
   exportExcel() {

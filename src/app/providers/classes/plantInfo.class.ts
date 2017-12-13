@@ -25,7 +25,7 @@ export class AppStoreDelivery {
 	routeNumberSale: Route[];
 	discarded: number;
 	reasonCode: string;
-	check: boolean;
+	check: number;
 	delivered: number;
 }
 
@@ -87,6 +87,7 @@ export class PlugToDeliver {
 	name: string;
 	type: string;
 	varietyType: string;
+	deliverdTotal: number;
 	userGreenHouseLocation: string;
 	receivedInfoFromOtherStations: boolean;
 	showReceiveButton: boolean;
