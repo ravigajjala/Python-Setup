@@ -23,7 +23,6 @@ import { StoreDeliveryComponent } from './store-delivery/store-delivery.componen
 import { MasterViewComponent } from './master-view/master-view.component';
 import { ReceivingFromOtherStationsComponent } from './receiving-from-other-stations/receiving-from-other-stations.component';
 import { ShipToOtherStationsComponent } from './ship-to-other-stations/ship-to-other-stations.component';
-import { PrintDialogComponent } from './print-dialog/print-dialog.component';
 
 // Import Services here
 import { AppSharedService } from './providers/services/app-shared.service';
@@ -82,7 +81,6 @@ const appRoutes: Routes = [
     ShipToOtherStationsComponent,
     SearchVarietiesPipe,
     TotalSalableComponent,
-    PrintDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,8 +111,7 @@ const appRoutes: Routes = [
     IconDialogComponent,
     ManageUsersComponent,
     ManageGreenHouseComponent,
-    ManageRoutesComponent,
-    PrintDialogComponent
+    ManageRoutesComponent
   ],
   providers: [AppSharedService, LoginService]
 })

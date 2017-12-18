@@ -140,51 +140,54 @@
   </div>
   <div [hidden]="true">
     <div id='print-section'>
-      <table cellspacing=0>
+      <table cellspacing=0 cellpadding=5 style="border-color:#aaa;font-family:sans-serif;font-size:9pt;border-collapse:collapse;width:100%;">
         <tr>
-          <td colspan="6">Bonnie Sales Rep.Name</td>
+          <td colspan="6" style="border-color:#aaa;">Bonnie Sales Rep Name</td>
         </tr>
         <tr>
-          <td colspan="6">Rt.#</td>
+          <td colspan="6" style="border-color:#aaa;">Rt #</td>
         </tr>
         <tr>
-          <td colspan="6">Store Name</td>
+          <td colspan="6" style="border-color:#aaa;">Store Name</td>
         </tr>
         <tr>
-          <td colspan="6">Store #</td>
+          <td colspan="6" style="border-color:#aaa;">Store #</td>
         </tr>
         <tr>
-          <td colspan="6">Date</td>
+          <td colspan="6" style="border-color:#aaa;">Date</td>
         </tr>
         <tr>
-          <td>Trays Delivered</td>
-          <td>Trays Returned</td>
-          <td>Item Description</td>
-          <td>
-            <span *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes; let ind = index">
-              <span *ngIf="ind===selectedPrintableRoute">Route# {{trow.routes}} {{trow.nick_name? '('+trow.nick_name+')' : ''}}</span>
-            </span>
+          <td colspan="6" style="border-color:transparent;border-bottom:1px solid #aaa;height:24px;"></td>
+        </tr>
+        <tr>
+          <td style="border-color:#aaa;">Item Description</td>
+          <td style="border-color:#aaa;">Trays Delivered</td>
+          <td style="border-color:#aaa;">Trays Returned</td>
+          <td style="border-color:#aaa;">
+            <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes; let ind = index">
+              <ng-container *ngIf="ind===selectedPrintableRoute">Route# {{trow.routes}} {{trow.nick_name? '('+trow.nick_name+')' : ''}}</ng-container>
+            </ng-container>
           </td>
-          <td>Delivered Locator</td>
-          <td>Returned Locator</td>
+          <td style="border-color:#aaa;">Delivered Locator</td>
+          <td style="border-color:#aaa;">Returned Locator</td>
         </tr>
         <tr *ngFor="let item of filteredVariety | SearchVarieties: appSharedService.searchFieldValue; let i=index;">
-          <td></td>
-          <td></td>
-          <td>
-            <span>{{item.name}}
-              <span class="secondary-text">{{ item.weekNumber ? ' Wk' + item.weekNumber : ''}}</span>
-            </span>
+          <td style="border-color:#aaa;">
+            <ng-container>{{item.name}}
+              <span style="color:#666;">{{ item.plantingInfo.locatorNumber ? ' ' + item.plantingInfo.locatorNumber : ''}}</span>
+            </ng-container>
           </td>
-          <td>
-            <span *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes; let ind = index">
-              <span *ngIf="ind===selectedPrintableRoute">
+          <td style="border-color:#aaa;"></td>
+          <td style="border-color:#aaa;"></td>
+          <td style="border-color:#aaa;">
+            <ng-container *ngFor="let trow of appSharedService.currentGreenHouseLocation.routes; let ind = index">
+              <ng-container *ngIf="ind===selectedPrintableRoute">
                 {{item.appStoreDelivery.routeNumberSale[ind]['value']}}
-              </span>
-            </span>
+              </ng-container>
+            </ng-container>
           </td>
-          <td></td>
-          <td></td>
+          <td style="border-color:#aaa;"></td>
+          <td style="border-color:#aaa;"></td>
         </tr>
       </table>
     </div>

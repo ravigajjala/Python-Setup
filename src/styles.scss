@@ -762,3 +762,8 @@ table td span i {
     left:0;
     top:0;
 }
+
+.print-table {
+    z-index:9999999;
+    cursor: pointer;
+}

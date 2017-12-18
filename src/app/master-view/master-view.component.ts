@@ -147,8 +147,6 @@ export class MasterViewComponent implements OnInit {
   printTable(ind) {
     this.selectedPrintableRoute = ind;
     setTimeout(()=>this.displayPrintPopup(), 500);
-    //alert("testoing.");
-    //window.print();
   }
 
   displayPrintPopup(){
@@ -166,7 +164,6 @@ export class MasterViewComponent implements OnInit {
               width:100%;
             }
             body {
-              background:#e0e0e0;
             }
           </style>
         </head>
@@ -175,6 +172,7 @@ export class MasterViewComponent implements OnInit {
     );
     popupWin.document.close();
   }
+
 
   exportExcel() {
     const exportRecords = [];
@@ -193,8 +191,8 @@ export class MasterViewComponent implements OnInit {
       }
       const recordModel = {};
       this.location = _.get(this.filteredVariety[i], 'userGreenHouseLocation');
-      recordModel['"' + this.location + '"'] = _.get(this.filteredVariety[i], 'name') + '' + (this.filteredVariety[i].weekNumber ? '  Wk' +
-        this.filteredVariety[i].weekNumber : '');
+      recordModel['"' + this.location + '"'] = _.get(this.filteredVariety[i], 'name') + ' ' + (this.filteredVariety[i].plantingInfo.locatorNumber ? '' +
+        this.filteredVariety[i].plantingInfo.locatorNumber : '');
       recordModel['Seed Lot Number'] = _.get(this.filteredVariety[i], 'plugTray.seedLotNumber');
       recordModel['Locator'] = _.get(this.filteredVariety[i], 'plantingInfo.locatorNumber');
       recordModel['House#/Bay#'] = _.get(this.filteredVariety[i], 'plantingInfo.houseBay');
