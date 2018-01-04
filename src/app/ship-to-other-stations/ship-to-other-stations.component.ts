@@ -89,7 +89,7 @@ export class ShipToOtherStationsComponent implements OnInit {
       totalShipToQuantities: 0
     };
     // TODO:: Removing location from the dropdown
-    this.locations.splice(this.locations.indexOf(newlocation), 1);
+    this.locations.splice(index, 1);
     this.appSharedService.currentGreenHouseLocation.shipToLocations.push(newlocation);
     this.appSharedService.varietyOptions.forEach(obj => {
       // Creating new shipToObj
@@ -100,6 +100,8 @@ export class ShipToOtherStationsComponent implements OnInit {
         qty: null
       };
       obj.shipToInfo.push(shipToObj);
+
+      this.shipToClicked = false;
       this.appSharedService.updatePlugToDeliverData(obj).subscribe(
         res => { },
         err => console.log(err)
@@ -110,6 +112,8 @@ export class ShipToOtherStationsComponent implements OnInit {
       res => { },
       err => console.log(err)
       );
+
+      this.newCity = '';
   }
 
   // Removing location from current location shipTo array
@@ -177,6 +181,7 @@ export class ShipToOtherStationsComponent implements OnInit {
   }
 
   enableAutoCompleteSearch(): void {
+    this.newCity = '';
     this.shipToClicked = !this.shipToClicked;
   }
 
