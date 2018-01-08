@@ -73,8 +73,8 @@
               <mat-option *ngFor="let rc of reasonCodes" [value]="rc.code">{{ rc.code }} ({{rc.reason}})</mat-option>
             </mat-select>
           </td>
-          <td>
-            <button mat-raised-button color="primary" (click)="receivePlant(item)" *ngIf="item.showReceiveButton">Received</button>
+          <td *ngIf="item.showReceiveButton">
+            <button mat-raised-button color="primary" (click)="receivePlant(item)" >Received</button>
           </td>
         </tr>
       </tbody>

@@ -119,8 +119,11 @@ export class ReceivingFromOtherStationsComponent implements OnInit {
   }
 
   receivePlant(item): void {
-    item.receivedButonClicked = true;
-    item.showReceiveButton = false;
-    this.updatePlugToDeliverData(item, true);
+    
+    if(this.appSharedService.loggedInUserGreenHouseLocation == this.appSharedService.currentGreenHouseLocation.city){
+      item.receivedButonClicked = true;
+      item.showReceiveButton = false;
+      this.updatePlugToDeliverData(item, true);
+    }
   }
 }
