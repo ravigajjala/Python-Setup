@@ -210,10 +210,10 @@ export class MasterViewComponent implements OnInit {
       
       }
 
-      recordModel['Delivered'] = !!_.get(this.filteredVariety[i], 'deliverdTotal')  && _.get(this.filteredVariety[i], 'deliverdTotal') >= 0 ? _.get(this.filteredVariety[i], 'deliverdTotal') : "-";
+      recordModel['Delivered'] = (!!_.get(this.filteredVariety[i], 'deliverdTotal')  || _.get(this.filteredVariety[i], 'deliverdTotal') === 0)  && _.get(this.filteredVariety[i], 'deliverdTotal') >= 0 ? _.get(this.filteredVariety[i], 'deliverdTotal') : "-";
       recordModel['Discarded'] = (!!_.get(this.filteredVariety[i], 'appStoreDelivery.discarded') || _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') === 0)  && _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') >= 0 ? _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') : "-";
-      recordModel['Reason Code'] = _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode');
-      recordModel['Total Balance'] = _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays');
+      recordModel['Reason Code'] = (!!_.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') || _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') === 0)  && _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') >= 0 ? _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') : "-";
+      recordModel['Total Balance'] = (!!_.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') || _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') === 0)  && _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') >= 0 ? _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') : "-";
       recordModel['Check'] = _.get(this.filteredVariety[i], 'appStoreDelivery.check');
 
       exportRecords.push(recordModel);
