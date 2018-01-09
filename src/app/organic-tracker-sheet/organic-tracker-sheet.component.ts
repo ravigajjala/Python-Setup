@@ -75,7 +75,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
         this.loading = false;
         this.appSharedService.locations = locations;
         this.appSharedService.userId = 'gajjala@gmail.com';
-        this.appSharedService.loggedInUserGreenHouseLocation = 'Dublin';
+        this.appSharedService.loggedInUserGreenHouseLocation = 'Rydal';
         console.log(locations);
         this.appSharedService.currentGreenHouseLocation = locations[0];
         console.log(this.appSharedService.currentGreenHouseLocation);

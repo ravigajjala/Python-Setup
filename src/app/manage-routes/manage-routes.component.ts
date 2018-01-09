@@ -43,7 +43,7 @@ public greenHouseRoutes = [];
   }
 
   addRoute(condition) {
-    this.greenHouseRoutes.push({});
+    this.greenHouseRoutes.push({value:null});
     this.editableRow(this.greenHouseRoutes.length - 1, {});
   }
 

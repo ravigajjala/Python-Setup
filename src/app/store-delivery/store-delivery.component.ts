@@ -109,6 +109,17 @@ export class StoreDeliveryComponent implements OnInit {
       });
   }
 
+  updateRouteNoSale(item1,ind) {
+    ind = ind + 1;
+    if(!item1.appStoreDelivery.routeNumberSale[ind]){
+      item1.appStoreDelivery.routeNumberSale.push({value:null});
+      item1.appStoreDelivery.routeNumberSale[ind] = {value:null};
+    }
+    else if(item1.appStoreDelivery.routeNumberSale[ind] && !item1.appStoreDelivery.routeNumberSale[ind]['value']) {
+      item1.appStoreDelivery.routeNumberSale[ind].value = null;
+    }
+  }
+
   updateRouteTotal(plugToDeliverData: PlugToDeliver) {
     this.totalCount = 0;
     this.totalBalanceCount = 0;

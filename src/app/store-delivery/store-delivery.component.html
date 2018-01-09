@@ -70,7 +70,7 @@
             <input matInput name="total" [(ngModel)]="item.salableInfo.totalFlatsToSale" disabled>
           </td>
           <td class="td-xs" *ngFor="let routeObj of appSharedService.currentGreenHouseLocation.routes;let in = index;">
-            <input matInput type="number" min="0" onclick="this.select();" name="routeValue" (blur)="updateRouteTotal(item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]['value']">
+            {{updateRouteNoSale(item,in)}} <input matInput type="number" min="0" onclick="this.select();" name="routeValue" (blur)="updateRouteTotal(item)" [(ngModel)]="item.appStoreDelivery.routeNumberSale[in]['value']">
           </td>
           <td class="td-sm">
             <span>{{item.deliverdTotal}}</span>

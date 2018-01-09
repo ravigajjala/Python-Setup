@@ -99,7 +99,7 @@
             <span>{{item.salableInfo.totalFlatsToSale}}</span>
           </td>
           <td class="td-xs" *ngFor="let routeObj of appSharedService.currentGreenHouseLocation.routes;let in = index;">
-            <span>{{item.appStoreDelivery.routeNumberSale[in]['value']}}</span>
+            {{updateRouteNoSale(item,in)}}<span>{{item.appStoreDelivery.routeNumberSale[in]['value']}}</span>
           </td>
           <td class="td-sm">
             <span>{{item.deliverdTotal}}</span>

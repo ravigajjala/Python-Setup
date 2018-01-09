@@ -95,6 +95,12 @@ export class MasterViewComponent implements OnInit {
       });
   }
 
+  updateRouteNoSale(item1,ind) {
+    if(!item1.appStoreDelivery.routeNumberSale[ind]){
+      item1.appStoreDelivery.routeNumberSale.push({value:null});
+    }
+  }
+
   updateRouteTotal(plugToDeliverData: PlugToDeliver) {
     console.log('called');
     this.totalCount = 0;
