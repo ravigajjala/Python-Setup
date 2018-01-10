@@ -17,7 +17,20 @@ import { User, Plant, Location, ShipToLocationInfo } from '../providers/classes/
 })
 export class ShipToOtherStationsComponent implements OnInit {
 
-  constructor(public appSharedService: AppSharedService, private router: Router, public dialog: MatDialog, private zone: NgZone) { }
+  constructor(public appSharedService: AppSharedService, private router: Router, public dialog: MatDialog, private zone: NgZone) { 
+    this.appSharedService.currentGreenHouseLocation = this.appSharedService.currentGreenHouseLocation || {
+      code: null,
+      datastore_id: null,
+      city: null,
+      state: null,
+      first_name: null,
+      last_name: null,
+      email: null,
+      locatorNumber: null,
+      shipToLocations: [],
+      routes: []
+    };
+  }
 
   public heads4 = [];
   public mergeClickBool = false;
@@ -37,7 +50,12 @@ export class ShipToOtherStationsComponent implements OnInit {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
   }
   ngOnInit() {
-    this.getPlugToDeliverData();
+    this.appSharedService.currentMessage.subscribe(message => {
+      if (message === "updated_location") {
+        this.getPlugToDeliverData()
+      }
+
+    });
     // Retrieving Locations
     this.locations = Object.assign([], this.appSharedService.locations); // Object.assign used for deep copying of array
     // Removing current greenhouse location from the ship to locations dropdown

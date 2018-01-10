@@ -73,6 +73,13 @@ export class MasterViewComponent implements OnInit {
       err => console.log(err)
     );
     this.filteredVariety = this.appSharedService.varietyOptions;
+
+    this.appSharedService.currentMessage.subscribe(message => { 
+      if(message === "updated_location"){
+        this.getPlugToDeliverData() 
+      }
+      
+    });
   }
 
   getPlugToDeliverData() {

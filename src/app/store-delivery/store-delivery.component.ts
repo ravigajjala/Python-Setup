@@ -71,7 +71,7 @@ export class StoreDeliveryComponent implements OnInit {
       err => console.log(err)
     );
     this.appSharedService.currentMessage.subscribe(message => { this.getPlugToDeliverData() });
-  }
+      }
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
@@ -111,11 +111,11 @@ export class StoreDeliveryComponent implements OnInit {
 
   updateRouteNoSale(item1,ind) {
     ind = ind + 1;
-    if(!item1.appStoreDelivery.routeNumberSale[ind]){
-      item1.appStoreDelivery.routeNumberSale.push({value:null});
-      item1.appStoreDelivery.routeNumberSale[ind] = {value:null};
+    if (!item1.appStoreDelivery.routeNumberSale[ind]) {
+      item1.appStoreDelivery.routeNumberSale.push({ value: null });
+      item1.appStoreDelivery.routeNumberSale[ind] = { value: null };
     }
-    else if(item1.appStoreDelivery.routeNumberSale[ind] && !item1.appStoreDelivery.routeNumberSale[ind]['value']) {
+    else if (item1.appStoreDelivery.routeNumberSale[ind] && !item1.appStoreDelivery.routeNumberSale[ind]['value']) {
       item1.appStoreDelivery.routeNumberSale[ind].value = null;
     }
   }

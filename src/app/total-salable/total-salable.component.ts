@@ -13,6 +13,19 @@ export class TotalSalableComponent implements OnInit {
 
   constructor(private appSharedService: AppSharedService,
     public router: Router) {
+
+    this.appSharedService.currentGreenHouseLocation = this.appSharedService.currentGreenHouseLocation || {
+      code: null,
+      datastore_id: null,
+      city: null,
+      state: null,
+      first_name: null,
+      last_name: null,
+      email: null,
+      locatorNumber: null,
+      shipToLocations: [],
+      routes: []
+    };
   }
   public reasonCodes = [];
   public heads5 = [];
@@ -46,7 +59,13 @@ export class TotalSalableComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-    this.getPlugToDeliverData();
+
+    this.appSharedService.currentMessage.subscribe(message => {
+      if (message === "updated_location") {
+        this.getPlugToDeliverData()
+      }
+
+    });
   }
 
   /**

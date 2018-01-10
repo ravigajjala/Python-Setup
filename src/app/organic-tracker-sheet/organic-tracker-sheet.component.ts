@@ -68,20 +68,23 @@ export class OrganicTrackerSheetComponent implements OnInit {
     //     console.log(err);
     //   }
     // );
-    this.appSharedService.currentMessage.subscribe(message => this.message = message);
+
+    //this.appSharedService.currentMessage.subscribe(message => {this.message = message; alert("test m - "+ message);});
 
     this.appSharedService.getLocations().subscribe(
       locations => {
         this.loading = false;
         this.appSharedService.locations = locations;
         this.appSharedService.userId = 'gajjala@gmail.com';
-        this.appSharedService.loggedInUserGreenHouseLocation = 'Rydal';
-        console.log(locations);
         this.appSharedService.currentGreenHouseLocation = locations[0];
+        this.appSharedService.loggedInUserGreenHouseLocation = 'San Ramon';
+        console.log(locations[0]);
+        
         console.log(this.appSharedService.currentGreenHouseLocation);
         this.appSharedService.selectedYear = this.years.filter(year => {
           return year === moment().year();
         })[0];
+        this.appSharedService.changeMessage('updated_location');
         // TODO:: check first time login or reoccuring login then route
         this.appSharedService.getUserPreviousRoute().subscribe(
           userInfoArray => {
@@ -214,7 +217,7 @@ export class OrganicTrackerSheetComponent implements OnInit {
     this.appSharedService.getPlugToDeliverData().subscribe(
       res => {
         this.appSharedService.varietyOptions = res;
-        this.appSharedService.totalNotif = 0;
+        this.appSharedService.totalNotif = 0;        
         this.appSharedService.changeMessage('updated_location');
       },
       err => console.log(err)

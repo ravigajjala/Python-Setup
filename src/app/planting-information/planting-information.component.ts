@@ -26,6 +26,18 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
     private el: ElementRef,
     public router: Router
   ) {
+    this.appSharedService.currentGreenHouseLocation = this.appSharedService.currentGreenHouseLocation || {
+      code: null,
+      datastore_id: null,
+      city: null,
+      state: null,
+      first_name: null,
+      last_name: null,
+      email: null,
+      locatorNumber: null,
+      shipToLocations: [],
+      routes: []
+    };
   }
 
   ngOnInit() {
@@ -50,7 +62,12 @@ export class PlantingInformationComponent implements OnInit, AfterViewInit {
       err => console.log(err)
     );
 
-   this.getPlugToDeliverData();
+    this.appSharedService.currentMessage.subscribe(message => {
+      if (message === "updated_location") {
+        this.getPlugToDeliverData()
+      }
+
+    });
   }
 
   /**
