@@ -17,6 +17,7 @@ export class StoreDeliveryComponent implements OnInit {
   public totalCount = 0;
   public totalBalanceCount = 0;
   private routeTotalQuantites: any;
+  private isAddedRoute = false;
   constructor(private appSharedService: AppSharedService,
     public router: Router) {
     this.routeTotalQuantites = {};
@@ -70,8 +71,15 @@ export class StoreDeliveryComponent implements OnInit {
       res => { },
       err => console.log(err)
     );
-    this.appSharedService.currentMessage.subscribe(message => { this.getPlugToDeliverData() });
-      }
+    this.appSharedService.currentMessage.subscribe(message => { 
+        if(message === "add_route"){
+          this.isAddedRoute = true;
+        }
+        else {
+          this.getPlugToDeliverData();
+        }
+    });
+  }
 
   mergeClick(e: any, mergeText: string) {
     mergeText === 'start_merge' ? this.mergeClickBool = true : mergeText === 'cancel_merge' ? this.mergeClickBool = false : '';
@@ -109,16 +117,55 @@ export class StoreDeliveryComponent implements OnInit {
       });
   }
 
-  updateRouteNoSale(item1,ind) {
+  updateRouteNoSale(item1, ind, routeObj) {
+    // console.log("going to update route no.", ind, routeObj);
+    // console.log("all routes ... to update route no.", this.appSharedService.currentGreenHouseLocation.routes);
+    if(this.isAddedRoute){
     ind = ind + 1;
-    if (!item1.appStoreDelivery.routeNumberSale[ind]) {
-      item1.appStoreDelivery.routeNumberSale.push({ value: null });
-      item1.appStoreDelivery.routeNumberSale[ind] = { value: null };
+    
+    if(!item1.appStoreDelivery.routeNumberSale[ind] && ind > 0) {
+      let tmprouteObj = Object.assign({}, {value:0});
+      // console.log("creatd neew object ...", tmprouteObj);
+      item1.appStoreDelivery.routeNumberSale.push(tmprouteObj);
+      //item1.appStoreDelivery.routeNumberSale[ind] = tmprouteObj;
     }
-    else if (item1.appStoreDelivery.routeNumberSale[ind] && !item1.appStoreDelivery.routeNumberSale[ind]['value']) {
-      item1.appStoreDelivery.routeNumberSale[ind].value = null;
-    }
+    // else if(item1.appStoreDelivery.routeNumberSale[ind] && !item1.appStoreDelivery.routeNumberSale[ind]['value'] && item1.appStoreDelivery.routeNumberSale[ind]['value'] === 0) {
+    //   item1.appStoreDelivery.routeNumberSale[ind].value = null;
+    // }
+    console.log(item1.appStoreDelivery.routeNumberSale[ind], ind);
+    this.isAddedRoute = false;
   }
+  else {
+    let tmprouteObj;
+    for(let i = 0; i < this.appSharedService.currentGreenHouseLocation.routes.length; i++) {
+      if(!item1.appStoreDelivery.routeNumberSale[i]){
+        tmprouteObj = Object.assign({}, this.appSharedService.currentGreenHouseLocation.routes[i], {value:0});
+        // console.log("creatd if ...neew object ...", tmprouteObj);
+        item1.appStoreDelivery.routeNumberSale.push(tmprouteObj);
+     }
+     else{
+       tmprouteObj = Object.assign({}, item1.appStoreDelivery.routeNumberSale[i], this.appSharedService.currentGreenHouseLocation.routes[i]);
+      //  console.log("creatd else ... neew object ...", tmprouteObj);
+       item1.appStoreDelivery.routeNumberSale[i] = tmprouteObj;
+     }
+    }
+    
+    //  console.log("assign neew object ...", tmprouteObj);
+      
+  }
+  }
+
+
+  // updateRouteNoSale(item1,ind) {
+  //   ind = ind + 1;
+  //   if (!item1.appStoreDelivery.routeNumberSale[ind]) {
+  //     item1.appStoreDelivery.routeNumberSale.push({ value: null });
+  //     item1.appStoreDelivery.routeNumberSale[ind] = { value: null };
+  //   }
+  //   else if (item1.appStoreDelivery.routeNumberSale[ind] && !item1.appStoreDelivery.routeNumberSale[ind]['value']) {
+  //     item1.appStoreDelivery.routeNumberSale[ind].value = null;
+  //   }
+  // }
 
   updateRouteTotal(plugToDeliverData: PlugToDeliver) {
     this.totalCount = 0;
@@ -134,10 +181,12 @@ export class StoreDeliveryComponent implements OnInit {
     this.appSharedService.currentGreenHouseLocation.routes.forEach(route => {
       this.routeTotalQuantites[route.routes] = 0;
     });
+    // console.log("prinitnhg routes after upddate", this.appSharedService.currentGreenHouseLocation.routes);
     varietyOptions.forEach((variety, i) => {
       variety.deliverdTotal = 0;
       this.totalCount += Number(this.appSharedService.varietyOptions[i].salableInfo.totalFlatsToSale || 0);
       this.totalBalanceCount += Number(this.appSharedService.varietyOptions[i].plantingInfo.finishedTrays || 0);
+      // console.log("testing ...variety .. ", variety.appStoreDelivery.routeNumberSale);
       if (variety.appStoreDelivery.routeNumberSale.length > 0) {
         variety.appStoreDelivery.routeNumberSale.forEach(routeObj => {
           variety.deliverdTotal += Number(routeObj.value || 0);
