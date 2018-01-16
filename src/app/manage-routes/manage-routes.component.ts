@@ -76,7 +76,7 @@ public greenHouseRoutes = [];
     this.greenHouseRoutes.splice(i,1);
     this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
     this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
-      res => {console.log(res);},
+      res => {console.log(res);this.appSharedService.changeMessage('delete_route');},
       err => console.log(err)
     );
   }

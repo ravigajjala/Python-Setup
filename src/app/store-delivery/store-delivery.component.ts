@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppSharedService } from '../providers/services/app-shared.service';
 import { Router } from '@angular/router';
 import { PlugToDeliver } from '../providers/classes/plantInfo.class';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-store-delivery',
@@ -18,6 +19,7 @@ export class StoreDeliveryComponent implements OnInit {
   public totalBalanceCount = 0;
   private routeTotalQuantites: any;
   private isAddedRoute = false;
+  private isDeletedRoute = false;
   constructor(private appSharedService: AppSharedService,
     public router: Router) {
     this.routeTotalQuantites = {};
@@ -74,6 +76,9 @@ export class StoreDeliveryComponent implements OnInit {
     this.appSharedService.currentMessage.subscribe(message => { 
         if(message === "add_route"){
           this.isAddedRoute = true;
+        }
+        if(message === "delete_route"){
+          this.isDeletedRoute = true;
         }
         else {
           this.getPlugToDeliverData();
@@ -135,6 +140,20 @@ export class StoreDeliveryComponent implements OnInit {
     console.log(item1.appStoreDelivery.routeNumberSale[ind], ind);
     this.isAddedRoute = false;
   }
+  else if(this.isDeletedRoute){
+    let routeNumberSale = [];
+    for(let i = 0; i < this.appSharedService.currentGreenHouseLocation.routes.length; i++) {
+      let routes = this.appSharedService.currentGreenHouseLocation.routes[i].routes;
+      let routeObj = _.find(item1.appStoreDelivery.routeNumberSale, {routes});
+      if(routeObj){
+        routeNumberSale.push(routeObj);
+      }
+
+    }
+    item1.appStoreDelivery.routeNumberSale = routeNumberSale;
+    this.isDeletedRoute = false;
+    this.updateRouteTotal(item1);
+  }
   else {
     let tmprouteObj;
     for(let i = 0; i < this.appSharedService.currentGreenHouseLocation.routes.length; i++) {
@@ -143,7 +162,7 @@ export class StoreDeliveryComponent implements OnInit {
         // console.log("creatd if ...neew object ...", tmprouteObj);
         item1.appStoreDelivery.routeNumberSale.push(tmprouteObj);
      }
-     else{
+     else {
        tmprouteObj = Object.assign({}, item1.appStoreDelivery.routeNumberSale[i], this.appSharedService.currentGreenHouseLocation.routes[i]);
       //  console.log("creatd else ... neew object ...", tmprouteObj);
        item1.appStoreDelivery.routeNumberSale[i] = tmprouteObj;

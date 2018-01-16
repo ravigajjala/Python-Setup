@@ -69,17 +69,16 @@ export class OrganicTrackerSheetComponent implements OnInit {
     //   }
     // );
 
-    //this.appSharedService.currentMessage.subscribe(message => {this.message = message; alert("test m - "+ message);});
+    this.appSharedService.currentMessage.subscribe(message => this.message = message);
 
     this.appSharedService.getLocations().subscribe(
       locations => {
         this.loading = false;
         this.appSharedService.locations = locations;
         this.appSharedService.userId = 'gajjala@gmail.com';
-        this.appSharedService.currentGreenHouseLocation = locations[0];
-        this.appSharedService.loggedInUserGreenHouseLocation = 'San Ramon';
+        this.appSharedService.loggedInUserGreenHouseLocation = 'Marysville';
         console.log(locations[0]);
-        
+        this.appSharedService.currentGreenHouseLocation = locations[0];
         console.log(this.appSharedService.currentGreenHouseLocation);
         this.appSharedService.selectedYear = this.years.filter(year => {
           return year === moment().year();
