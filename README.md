@@ -3,14 +3,14 @@
 ## Requirements
 
 #### Node Version
-* Both the CLI and generated project have dependencies that require Node 6.9.0 or higher, together with NPM 3 or higher.
+* Both the CLI and generated project have dependencies that require Node 8.9.4 , together with NPM 5.6.0.
 
 #### Angular Cli
 * Using Angular cli version 1.3.0
 
-#### Global node libraries.
+####Node libraries.
 * Angular@4.4.6
-* Typescript@2.5.3
+* Typescript@2.6.2
 
 ## Project setup
 * Clone Bonnie repo from [Github](https://github.smg-apps.com/BT-Developers/Bonnie/tree/develop).

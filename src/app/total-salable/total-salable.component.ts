@@ -66,6 +66,7 @@ export class TotalSalableComponent implements OnInit {
       }
 
     });
+    this.getPlugToDeliverData()
   }
 
   /**
