@@ -74,11 +74,11 @@ export class MasterViewComponent implements OnInit {
     );
     this.filteredVariety = this.appSharedService.varietyOptions;
 
-    this.appSharedService.currentMessage.subscribe(message => { 
-      if(message === "updated_location"){
-        this.getPlugToDeliverData() 
+    this.appSharedService.currentMessage.subscribe(message => {
+      if (message === "updated_location") {
+        this.getPlugToDeliverData()
       }
-      
+
     });
   }
 
@@ -102,9 +102,9 @@ export class MasterViewComponent implements OnInit {
       });
   }
 
-  updateRouteNoSale(item1,ind) {
-    if(!item1.appStoreDelivery.routeNumberSale[ind]){
-      item1.appStoreDelivery.routeNumberSale.push({value:null});
+  updateRouteNoSale(item1, ind) {
+    if (!item1.appStoreDelivery.routeNumberSale[ind]) {
+      item1.appStoreDelivery.routeNumberSale.push({ value: null });
     }
   }
 
@@ -153,16 +153,37 @@ export class MasterViewComponent implements OnInit {
         this.filteredVariety.push(this.appSharedService.varietyOptions[i]);
       }
     }
+    this.updateRouteTotal(null);
+  }
 
-      this.updateRouteTotal(null);
+  filterSearchVariety() {
+    if (!this.appSharedService.varietyOptions) {
+      return false;
+    }
+
+
+    let filteredVariety = [];
+    for (let i = 0; i < this.appSharedService.varietyOptions.length; i++) {
+      if (this.appSharedService.searchFieldValue && this.appSharedService.varietyOptions[i].name.indexOf(this.appSharedService.searchFieldValue) > -1) {
+        filteredVariety.push(this.appSharedService.varietyOptions[i]);
+      }
+
+    }
+    if (!this.appSharedService.searchFieldValue) {
+      this.filteredVariety = this.appSharedService.varietyOptions;
+    }
+    else {
+      this.filteredVariety = filteredVariety;
+    }
+    this.updateRouteTotal(null);
   }
 
   printTable(ind) {
     this.selectedPrintableRoute = ind;
-    setTimeout(()=>this.displayPrintPopup(), 500);
+    setTimeout(() => this.displayPrintPopup(), 500);
   }
 
-  displayPrintPopup(){
+  displayPrintPopup() {
     let printContents, popupWin;
     printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
@@ -212,15 +233,15 @@ export class MasterViewComponent implements OnInit {
       recordModel['Total Flats To Sale'] = _.get(this.filteredVariety[i], 'salableInfo.totalFlatsToSale');
       for (let j = 0; j < this.appSharedService.currentGreenHouseLocation.routes.length; j++) {
         let routes = this.appSharedService.currentGreenHouseLocation.routes[j];
-        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name? '('+routes.nick_name+')' : '')] = _.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0;
-        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name? '('+routes.nick_name+')' : '')] = (totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name? '('+routes.nick_name+')' : '')] || 0) + parseInt(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0);
-      
+        recordModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name ? '(' + routes.nick_name + ')' : '')] = _.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0;
+        totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name ? '(' + routes.nick_name + ')' : '')] = (totalModel['Route' + this.appSharedService.currentGreenHouseLocation.routes[j].routes + (routes.nick_name ? '(' + routes.nick_name + ')' : '')] || 0) + parseInt(_.get(this.filteredVariety[i], 'appStoreDelivery.routeNumberSale.' + j).value || 0);
+
       }
 
-      recordModel['Delivered'] = (!!_.get(this.filteredVariety[i], 'deliverdTotal')  || _.get(this.filteredVariety[i], 'deliverdTotal') === 0)  && _.get(this.filteredVariety[i], 'deliverdTotal') >= 0 ? _.get(this.filteredVariety[i], 'deliverdTotal') : "-";
-      recordModel['Discarded'] = (!!_.get(this.filteredVariety[i], 'appStoreDelivery.discarded') || _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') === 0)  && _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') >= 0 ? _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') : "-";
-      recordModel['Reason Code'] = (!!_.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') || _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') === 0)  && _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') >= 0 ? _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') : "-";
-      recordModel['Total Balance'] = (!!_.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') || _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') === 0)  && _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') >= 0 ? _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') : "-";
+      recordModel['Delivered'] = (!!_.get(this.filteredVariety[i], 'deliverdTotal') || _.get(this.filteredVariety[i], 'deliverdTotal') === 0) && _.get(this.filteredVariety[i], 'deliverdTotal') >= 0 ? _.get(this.filteredVariety[i], 'deliverdTotal') : "-";
+      recordModel['Discarded'] = (!!_.get(this.filteredVariety[i], 'appStoreDelivery.discarded') || _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') === 0) && _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') >= 0 ? _.get(this.filteredVariety[i], 'appStoreDelivery.discarded') : "-";
+      recordModel['Reason Code'] = (!!_.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') || _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') === 0) && _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') >= 0 ? _.get(this.filteredVariety[i], 'appStoreDelivery.reasonCode') : "-";
+      recordModel['Total Balance'] = (!!_.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') || _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') === 0) && _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') >= 0 ? _.get(this.filteredVariety[i], 'plantingInfo.finishedTrays') : "-";
       recordModel['Check'] = _.get(this.filteredVariety[i], 'appStoreDelivery.check');
 
       exportRecords.push(recordModel);
@@ -232,7 +253,7 @@ export class MasterViewComponent implements OnInit {
     totalModel['Total Balance'] = this.totalBalanceCount;
     totalModel['Check'] = [];
     exportRecords.push(totalModel);
-
-    new Angular2Csv(exportRecords, "BonnieReport", { headers: Object.keys(exportRecords[0]), fieldSeparator: ',' });
+    let cDate = new Date();
+    new Angular2Csv(exportRecords, "BonnieReport " + cDate.getFullYear() + "-" + (cDate.getMonth() + 1) + "-" + cDate.getDate(), { headers: Object.keys(exportRecords[0]), fieldSeparator: ',' });
   }
 }
