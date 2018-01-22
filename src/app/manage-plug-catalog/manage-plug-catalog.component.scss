@@ -1,0 +1,92 @@
+.dialog-main-cont {
+    min-height: 600px;
+    padding: 10px;
+    h2 {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .blue-icon {
+        color: rgb(41, 29, 177);
+        cursor: pointer;
+    }
+    .save-btn{
+        display: inline-block;
+        margin-left: 6px;
+    }
+    .close-right{
+        float:right;
+        margin-top: -97px;
+        margin-right: -27px;
+        cursor: pointer;
+    }
+
+    form {
+        max-height: 400px;
+    }
+    
+    table {
+        width:100%;
+        overflow: auto;
+        max-height: 400px;
+        font-size: 11px;
+        thead {
+            text-align: left;
+        }
+        tr:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+        }
+        td:not(:last-child), th:not(:last-child) {
+            padding-right: 8px;
+        }
+        button {
+            margin: -8px; 
+        }
+    }
+    .user-table-cont {
+        font-size: 11px;
+        padding: 3px;
+        border-bottom: 1px solid #ddd;
+        .user-col {
+            width: 18%;
+            display: inline-block;
+        }
+        .user-col-del {
+            width: 4%;
+            display: inline-block;
+            text-align: right;
+            cursor: pointer;
+        }
+        .user-col-edit {
+            width: 4%;
+            display: inline-block;
+            text-align: right;
+            cursor: pointer;
+        }
+        .user-col-email {
+            width: 27%;
+            display: inline-block;
+        }
+    }
+    .head-title {
+        padding: 6px 3px;
+        border-bottom: 0px;
+        div {
+            font-weight: 600;
+            color: #666;
+        }
+    }
+    .add-user {
+        font-size: 12px;
+        padding: 8px;
+    }
+    .mat-form-field {
+        width: 80%;
+    }
+    .btn-cont {
+        margin-top:30px;
+        padding-left:60%;
+        button {
+        margin:5px;
+        }
+    }
+}

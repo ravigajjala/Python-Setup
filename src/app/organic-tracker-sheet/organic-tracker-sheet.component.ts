@@ -10,6 +10,7 @@ import { ManageRoutesComponent } from '../manage-routes/manage-routes.component'
 import { User, Plant, Location } from '../providers/classes/plantInfo.class';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
+import { ManagePlugCatalogComponent } from '../manage-plug-catalog/manage-plug-catalog.component';
 
 @Component({
   selector: 'app-organic-tracker-sheet',
@@ -171,6 +172,10 @@ export class OrganicTrackerSheetComponent implements OnInit {
 
   openManageRoutesDialog(): void {
     const dialogRef = this.dialog.open(ManageRoutesComponent, {});
+  }
+
+  openManagePlugCatalogDialog(): void {
+    const dialogRef = this.dialog.open(ManagePlugCatalogComponent, {});
   }
 
   updateNotifStatus(val, index): void {

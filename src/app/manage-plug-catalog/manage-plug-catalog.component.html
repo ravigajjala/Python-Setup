@@ -1,0 +1,88 @@
+<h2 mat-dialog-title>Manage Plug Catalog</h2>
+<mat-dialog-content>
+    <div class="dialog-main-cont">
+        <div class="close-right">
+            <div class="user-col-close save-btn" title="CLOSE">
+                <div (click)="closeDialog()">
+                    <button mat-icon-button mat-dialog-close>
+                        <i class="material-icons valign_middle">close</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <form #formCtrl="ngForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Icon</th>
+                        <th>Color_ID</th>
+                        <th>Url</th>
+                        <th>Variety Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let gh of currentPlugs;let i = index;">
+                        <ng-container *ngIf="!ghEditList[i]">
+                            <td>{{gh.name}}</td>
+                            <td>{{gh.icon}}</td>
+                            <td>{{gh.color_id}}</td>
+                            <td>{{gh.url}}</td>
+                            <td>{{gh.variety_type}}</td>
+                            <td>
+                                <button mat-icon-button color="primary" (click)="editableRow(i,gh)">
+                                    <i color="primary" class="material-icons md-18 valign_middle">edit</i>
+                                </button>
+                            </td>
+                            <td>
+                                <button mat-icon-button color="primary" (click)="deleteRoute(i,gh)">
+                                    <i color="primary" class="material-icons md-18 valign_middle">delete</i>
+                                </button>
+                            </td>
+                        </ng-container>
+                        <ng-container *ngIf="ghEditList[i]">
+                            <td>
+                                <mat-form-field class="full-width">
+                                    <input matInput [(ngModel)]="gh.name" name="name" required>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="full-width">
+                                    <input matInput [(ngModel)]="gh.icon" name="icon">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="full-width">
+                                    <input matInput [(ngModel)]="gh.color_id" name="color_id">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="full-width">
+                                    <input matInput [(ngModel)]="gh.url" name="url">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="full-width">
+                                    <input matInput [(ngModel)]="gh.variety_type" name="variety_type">
+                                </mat-form-field>
+                            </td>
+                            <td title="{{formCtrl.form.valid?'SAVE':''}}">
+                                <button mat-icon-button color="primary" (click)="updateGreenHouse(formCtrl, gh, i)" [disabled]="!formCtrl.form.valid">
+                                    <i color="primary" class="material-icons md-18 valign_middle">save</i>
+                                </button>
+                            </td>
+                            <td>
+                                <button mat-icon-button color="primary" (click)="deleteVariety(gh, i)">
+                                    <i color="primary" class="material-icons md-18 valign_middle blue-icon">delete</i>
+                                </button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <button mat-raised-button color="primary" (click)="addVariety(true)" *ngIf="!showEditBox">
+                <i class="material-icons valign_middle">add</i> Add Variety</button>
+        </form>
+    </div>
+</mat-dialog-content>

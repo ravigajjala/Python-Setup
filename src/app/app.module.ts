@@ -30,7 +30,7 @@ import { LoginService } from './login/login.service';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageGreenHouseComponent } from './manage-green-house/manage-green-house.component';
 import { ManageRoutesComponent } from './manage-routes/manage-routes.component';
-
+import { ManagePlugCatalogComponent } from './manage-plug-catalog/manage-plug-catalog.component';
 
 // Import Pipes here
 import { SearchVarietiesPipe } from './pipes/varieties.pipe';
@@ -72,6 +72,7 @@ const appRoutes: Routes = [
     ManageUsersComponent,
     ManageGreenHouseComponent,
     ManageRoutesComponent,
+    ManagePlugCatalogComponent,
     OrganicTrackerSheetComponent,
     PlugTrayInformationComponent,
     PlantingInformationComponent,
@@ -111,7 +112,8 @@ const appRoutes: Routes = [
     IconDialogComponent,
     ManageUsersComponent,
     ManageGreenHouseComponent,
-    ManageRoutesComponent
+    ManageRoutesComponent,
+    ManagePlugCatalogComponent
   ],
   providers: [AppSharedService, LoginService]
 })
