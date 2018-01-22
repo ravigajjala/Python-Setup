@@ -42,7 +42,35 @@ class CreatePlantsDatabase(APIRequest):
             logging.error(e)
 
 
+class UpdatePlantsDatabase(APIRequest):
+    def put(self):
+        body = json.loads(self.request.body)
+        try:
+            # Retriving the entity using datastore_id
+            plant = plants.get_by_id(body['datastore_id'])
+            plant.name=body['name']
+            plant.icon = body['icon']
+            plant.color_id = body['color_id']
+            plant.url = body['url']
+            plant.varietyType = body['varietyType']
+            plant.put()
+        except Exception as e:
+            logging.error(e)            
+
+class DeletePlant(APIRequest):
+    def delete(self):
+        params = self.request.params
+        try:
+            # Retriving the entity using datastore_id
+            id = int(params.get('id'))
+            ndb.Key(Plants, int(id)).delete()
+        except Exception as e:
+            logging.error(e)                  
+
+
 app = webapp2.WSGIApplication([
     ('/plants/get', GetPlants),
-    ('/plants/create', CreatePlantsDatabase)
+    ('/plants/create', CreatePlantsDatabase),
+    ('/plants/put', UpdatePlantsDatabase),
+    ('/plants/delete', DeletePlant)
 ], debug=True)

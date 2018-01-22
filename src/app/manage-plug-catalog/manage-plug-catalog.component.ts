@@ -34,11 +34,13 @@ export class ManagePlugCatalogComponent {
       this.ghEditList[i] = false;
       this.isAddFlag[i] = false;
     }
+    this.getPlantVarieties();
     }
 
-  getPlants() {
+    getPlantVarieties() {
     this.appSharedService.getPlantVarieties().subscribe(
       plants => {
+        console.log(plants);
         this.appSharedService.plants = plants;
         this.greenHouses = Object.assign([], this.appSharedService.plants);
       });
@@ -46,23 +48,31 @@ export class ManagePlugCatalogComponent {
 
   editableRow(index, gh) {
     this.isValid = true;
-    for (let i = 0; i < this.greenHouses.length; i++) {
+    for (let i = 0; i < this.appSharedService.plants.length; i++) {
       this.ghEditList[i] = false;
     }
     this.ghEditList[index] = true;
-  }
-
-  addPlant(condition) {
-
-    this.greenHouses.push(new Plant());
-    this.editableRow(this.greenHouses.length - 1, {});
-    this.isAddFlag[this.greenHouses.length - 1] = true;
   }
 
   closeDialog(): void {
     this.dialogRef.close();
   }
 
+  addVariety() {
+    let newV = {
+      "name": null,
+      "icon": "basil",
+      "color_id": "st1",
+      "url": "dist/assets/sprites/icon-sprite-sheet.svg#basil",
+      "varietyType": "basil",
+      "organic":null,
+      "id":null
+    };
+    this.appSharedService.plants.push(newV);
+    this.editableRow(this.appSharedService.plants.length - 1, {});
+    this.isAddFlag[this.appSharedService.plants.length - 1] = true;
+   
+  }
 
   deletePlant(plant, i) {
   }
