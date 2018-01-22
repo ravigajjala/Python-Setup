@@ -11,7 +11,7 @@ import { Plant } from '../providers/classes/plantInfo.class';
 export class ManagePlugCatalogComponent {
 
   public currentGreenHouses = [];
-  
+
   public currentPlugs = [];
   public newPlug: Plant;
   public locationId;
@@ -28,16 +28,16 @@ export class ManagePlugCatalogComponent {
   public isAddFlag = [];
 
   constructor(public appSharedService: AppSharedService,
-    public dialogRef: MatDialogRef<ManagePlugCatalogComponent>) { 
-      this.greenHouses = Object.assign([], this.appSharedService.locations);
+    public dialogRef: MatDialogRef<ManagePlugCatalogComponent>) {
+    this.greenHouses = Object.assign([], this.appSharedService.locations);
     for (let i = 0; i < this.greenHouses.length; i++) {
       this.ghEditList[i] = false;
       this.isAddFlag[i] = false;
     }
     this.getPlantVarieties();
-    }
+  }
 
-    getPlantVarieties() {
+  getPlantVarieties() {
     this.appSharedService.getPlantVarieties().subscribe(
       plants => {
         console.log(plants);
@@ -65,15 +65,27 @@ export class ManagePlugCatalogComponent {
       "color_id": "st1",
       "url": "dist/assets/sprites/icon-sprite-sheet.svg#basil",
       "varietyType": "basil",
-      "organic":null,
-      "id":null
+      "organic": null,
+      "id": null
     };
     this.appSharedService.plants.push(newV);
     this.editableRow(this.appSharedService.plants.length - 1, {});
     this.isAddFlag[this.appSharedService.plants.length - 1] = true;
-   
+
   }
 
-  deletePlant(plant, i) {
+  updateVariety() {
+  }
+
+  deleteVariety(plants, i) {
+    if (!confirm('Are you sure want to Delete?')) {
+      return false;
+    }
+    const id = plants.datastore_id;
+    const that = this;
+    this.appSharedService.deletePlant(id).subscribe(
+      res => { console.log(res); that.appSharedService.plants.splice(i, 1); this.appSharedService.plants.splice(i,1);},
+      err => console.log(err)
+    );
   }
 }
