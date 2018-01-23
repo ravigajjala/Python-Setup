@@ -1162,6 +1162,17 @@ export class AppSharedService {
             });
     }
 
+    updatePlant(plant: Plant): Observable<Plant[]> {
+        return this.http.put('/plants/put', plant, this.options)
+            .map((res: Response) => {
+                console.log(res);
+                return res;
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
     addPlants(): Observable<Plant[]> {
         return this.http.post('/plants/create', this.plantsData, this.options)
             .map((res: Response) => {
@@ -1174,6 +1185,16 @@ export class AppSharedService {
 
     deleteLocation(id): Observable<Plant[]> {
         return this.http.delete('/locations/delete' + '?id=' + id, this.options)
+            .map((res: Response) => {
+                return res;
+            })
+            .catch((err: Response) => {
+                return Observable.throw(err.json().error || 'Server error');
+            });
+    }
+
+    deletePlant(id): Observable<Plant[]> {
+        return this.http.delete('/plants/delete' + '?id=' + id, this.options)
             .map((res: Response) => {
                 return res;
             })
