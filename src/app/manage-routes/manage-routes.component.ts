@@ -73,10 +73,14 @@ public greenHouseRoutes = [];
     if (!confirm('Are you sure want to Delete?')) {
       return false;
     }
+    let that = this;
     this.greenHouseRoutes.splice(i,1);
-    this.appSharedService.currentGreenHouseLocation.routes = this.greenHouseRoutes;
-    this.appSharedService.updateLocation(this.appSharedService.currentGreenHouseLocation).subscribe(
-      res => {console.log(res);this.appSharedService.changeMessage('delete_route');},
+    const uploadLocationRoute = Object.assign({},that.appSharedService.currentGreenHouseLocation);
+    uploadLocationRoute.routes = this.greenHouseRoutes;
+    this.appSharedService.updateLocation(uploadLocationRoute).subscribe(
+      res => {console.log(res);
+        that.appSharedService.currentGreenHouseLocation.routes = that.greenHouseRoutes;
+        that.appSharedService.changeMessage('delete_route');},
       err => console.log(err)
     );
   }

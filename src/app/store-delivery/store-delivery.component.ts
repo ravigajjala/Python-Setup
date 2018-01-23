@@ -78,7 +78,7 @@ export class StoreDeliveryComponent implements OnInit {
           this.isAddedRoute = true;
         }
         if(message === "delete_route"){
-          this.isDeletedRoute = true;
+          this.isDeletedRoute = true;          
         }
         else {
           this.getPlugToDeliverData();
@@ -123,8 +123,6 @@ export class StoreDeliveryComponent implements OnInit {
   }
 
   updateRouteNoSale(item1, ind, routeObj) {
-    // console.log("going to update route no.", ind, routeObj);
-    // console.log("all routes ... to update route no.", this.appSharedService.currentGreenHouseLocation.routes);
     if(this.isAddedRoute){
     ind = ind + 1;
     
@@ -153,6 +151,8 @@ export class StoreDeliveryComponent implements OnInit {
     item1.appStoreDelivery.routeNumberSale = routeNumberSale;
     this.isDeletedRoute = false;
     this.updateRouteTotal(item1);
+    let that = this;
+    setTimeout(function(){that.getPlugToDeliverData()}, 100);;
   }
   else {
     let tmprouteObj;
