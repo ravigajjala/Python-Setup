@@ -29,12 +29,11 @@ export class ManagePlugCatalogComponent {
 
   constructor(public appSharedService: AppSharedService,
     public dialogRef: MatDialogRef<ManagePlugCatalogComponent>) {
-    this.greenHouses = Object.assign([], this.appSharedService.locations);
-    for (let i = 0; i < this.greenHouses.length; i++) {
+    this.appSharedService.plants = Object.assign([], this.appSharedService.plants);
+    for (let i = 0; i < this.appSharedService.plants.length; i++) {
       this.ghEditList[i] = false;
       this.isAddFlag[i] = false;
     }
-    this.getPlantVarieties();
   }
 
   getPlantVarieties() {
@@ -42,7 +41,7 @@ export class ManagePlugCatalogComponent {
       plants => {
         console.log(plants);
         this.appSharedService.plants = plants;
-        this.greenHouses = Object.assign([], this.appSharedService.plants);
+        this.appSharedService.plants = Object.assign([], this.appSharedService.plants);
       });
   }
 
@@ -54,10 +53,6 @@ export class ManagePlugCatalogComponent {
     this.ghEditList[index] = true;
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
   addVariety() {
     let newV = {
       "name": null,
@@ -66,7 +61,7 @@ export class ManagePlugCatalogComponent {
       "url": "dist/assets/sprites/icon-sprite-sheet.svg#basil",
       "varietyType": "basil",
       "organic": null,
-      "id": null
+      "datastore_id": null
     };
     this.appSharedService.plants.push(newV);
     this.editableRow(this.appSharedService.plants.length - 1, {});
@@ -74,7 +69,22 @@ export class ManagePlugCatalogComponent {
 
   }
 
-  updateVariety() {
+  updateVariety(formCtrl, plant, i) {
+    if (!formCtrl.form.valid) {
+      return false;
+    }
+
+    if (this.isAddFlag[i]) {
+      this.appSharedService.addPlants().subscribe(
+        res => { console.log(res); this.ghEditList[i] = false; this.isAddFlag[i] = false; this.getPlantVarieties(); },
+        err => console.log(err)
+      );
+    } else {
+      this.appSharedService.updatePlant(plant).subscribe(
+        res => { console.log(res); this.ghEditList[i] = false; },
+        err => console.log(err)
+      );
+    }
   }
 
   deleteVariety(plants, i) {
@@ -84,8 +94,12 @@ export class ManagePlugCatalogComponent {
     const id = plants.datastore_id;
     const that = this;
     this.appSharedService.deletePlant(id).subscribe(
-      res => { console.log(res); that.appSharedService.plants.splice(i, 1); this.appSharedService.plants.splice(i,1);},
+      res => { console.log(res); that.appSharedService.plants.splice(i, 1);},
       err => console.log(err)
     );
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }
