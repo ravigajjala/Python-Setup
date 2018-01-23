@@ -65,7 +65,7 @@ export class ShipToLocationInfo {
 }
 
 export class Plant {
-	id: number;
+	datastore_id: number;
 	name: string;
 	icon: string;
 	url: string;
